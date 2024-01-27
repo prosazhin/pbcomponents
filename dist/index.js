@@ -690,41 +690,26 @@ const ke = {
 ] }), Rr = {
   s: "w-4 h-4",
   m: "w-6 h-6 rounded-sm"
-}, Ar = ({
-  className: i,
-  name: a,
-  value: l,
-  checked: o,
-  onChange: v,
-  size: R,
-  disabled: g = !1,
-  indeterminate: m = !1
-}) => {
+}, Ar = ({ className: i, name: a, value: l, checked: o, onChange: v, size: R, disabled: g = !1, indeterminate: m = !1 }) => {
   const d = Fe(null);
   return De(() => {
     d.current && (d.current.indeterminate = m);
-  }, [m]), /* @__PURE__ */ E.jsx(
-    "div",
+  }, [m]), /* @__PURE__ */ E.jsx("div", { className: P("checkbox", { "disabled:bg-primary-main": g }, i), children: /* @__PURE__ */ E.jsx(
+    "input",
     {
-      className: P("checkbox", { "disabled:bg-primary-main": g }, i),
-      children: /* @__PURE__ */ E.jsx(
-        "input",
-        {
-          type: "checkbox",
-          ref: d,
-          name: a,
-          value: l,
-          checked: o,
-          disabled: g,
-          onChange: v,
-          className: P(
-            "border-solid border-secondary-light rounded-sm cursor-pointer checked:bg-primary-main hover:checked:bg-primary-darker outline-none",
-            Rr[R]
-          )
-        }
+      type: "checkbox",
+      ref: d,
+      name: a,
+      value: l,
+      checked: o,
+      disabled: g,
+      onChange: v,
+      className: P(
+        "border-solid border-secondary-light rounded-sm cursor-pointer checked:bg-primary-main hover:checked:bg-primary-darker outline-none",
+        Rr[R]
       )
     }
-  );
+  ) });
 };
 function _r({
   title: i,
