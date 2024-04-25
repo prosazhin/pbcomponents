@@ -18,7 +18,7 @@ export type Props = DefaultPropsType<{
 }>;
 
 const Content = ({ children, size, medium, leftIcon: LeftIcon, rightIcon: RightIcon, className }: Props) => (
-  <span className={clsx('inline-flex w-max flex-nowrap items-center', sizes[size], className)}>
+  <span className={clsx('inline-flex w-max flex-nowrap w-max items-center', sizes[size], className)}>
     {LeftIcon && <Icon name={LeftIcon} size={size} />}
     {children && (
       <Text size={size} medium={medium}>

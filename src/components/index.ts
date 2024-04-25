@@ -6,3 +6,4 @@ export { default as Chekbox } from '@/components/helpers/chekbox';
 export { default as Button } from '@/components/shared/button';
 export { default as Tag } from '@/components/shared/tag';
 export { default as Badge } from '@/components/shared/badge';
+export { default as Radio } from '@/components/shared/radio';
