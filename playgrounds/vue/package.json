@@ -1,0 +1,37 @@
+{
+  "name": "storybook-vue",
+  "private": true,
+  "version": "0.0.0",
+  "author": "Evgenii Sazhin <prosazhin@gmail.com> (https://prosazhin.ru)",
+  "type": "module",
+  "scripts": {
+    "build:storybook": "storybook build --docs",
+    "build:components": "npm run --workspace=@pbcomponents/vue build",
+    "build": "npm-run-all -p build:*",
+    "dev:storybook": "storybook dev -p 6006 --docs",
+    "dev:components": "npm run --workspace=@pbcomponents/vue dev",
+    "dev": "npm-run-all -p dev:*",
+    "clean": "rimraf ./storybook-static"
+  },
+  "dependencies": {
+    "@pbcomponents/vue": "*",
+    "vue": "^3.4.38"
+  },
+  "devDependencies": {
+    "@heroicons/vue": "^2.1.5",
+    "@chromatic-com/storybook": "^1.7.0",
+    "@storybook/addon-essentials": "^8.2.9",
+    "@storybook/addon-interactions": "^8.2.9",
+    "@storybook/addon-links": "^8.2.9",
+    "@storybook/addon-onboarding": "^8.2.9",
+    "@storybook/blocks": "^8.2.9",
+    "@storybook/test": "^8.2.9",
+    "@storybook/vue3": "^8.2.9",
+    "@storybook/vue3-vite": "^8.2.9",
+    "@vitejs/plugin-vue": "^5.1.2",
+    "storybook": "^8.2.9",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.2",
+    "vue-tsc": "^2.0.29"
+  }
+}
