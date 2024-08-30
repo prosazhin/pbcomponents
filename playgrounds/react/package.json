@@ -5,9 +5,9 @@
   "author": "Evgenii Sazhin <prosazhin@gmail.com> (https://prosazhin.ru)",
   "type": "module",
   "scripts": {
-    "build:storybook": "storybook build --docs",
     "build:components": "npm run --workspace=@pbcomponents/react build",
-    "build": "npm-run-all -p build:*",
+    "build:storybook": "storybook build --docs",
+    "build": "npm-run-all -s build:components build:storybook",
     "dev:storybook": "storybook dev -p 6006 --docs",
     "dev:components": "npm run --workspace=@pbcomponents/react dev",
     "dev": "npm-run-all -p dev:*",

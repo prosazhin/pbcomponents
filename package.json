@@ -9,9 +9,7 @@
     "./playgrounds/*"
   ],
   "scripts": {
-    "react": "npm run --workspace=@pbcomponents/react",
     "react-dev": "npm run --workspace=storybook-react dev",
-    "vue": "npm run --workspace=@pbcomponents/vue",
     "vue-dev": "npm run --workspace=storybook-vue dev",
     "build:react": "npm run --workspace=@pbcomponents/react build",
     "build:vue": "npm run --workspace=@pbcomponents/vue build",
