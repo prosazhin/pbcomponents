@@ -1,25 +1,13 @@
-# react-pbcomponents
+# @pbcomponents/react
+
+[Preview](https://pbcomponents-react.vercel.app/?path=/docs/introduction--docs) | [Figma community](https://www.figma.com/community/file/1214486013859546496/pbcomponents)
 
 ## prosazhin basic components for react
 
-The library contains basic components for rapid prototyping based on design tokens from the pbstyles library.
+UI component library for React with Typescript and Tailwind.
 
-[Demo](https://react-pbcomponents.vercel.app/?path=/docs/introduction--docs) | [Figma community](https://www.figma.com/community/file/1214486013859546496/pbcomponents)
-
-## Install
+## Installation
 
 ```bash
-yarn add react-pbcomponents
-# or
-npm install react-pbcomponents
-```
-
-## Starting develop
-
-```bash
-git clone git@github.com:prosazhin/react-pbcomponents.git
-cd react-pbcomponents
-
-npm install
-npm run dev
+npm install @pbcomponents/react
 ```
