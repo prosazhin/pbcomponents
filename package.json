@@ -18,7 +18,7 @@
     "build": "npm-run-all -p build:*",
     "clean": "npm run clean --workspaces --if-present",
     "install-force": "npm install --force",
-    "format": "prettier --write",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,vue,md,mdx,json}\"",
     "prepare": "npx simple-git-hooks"
   },
   "author": "Evgenii Sazhin <prosazhin@gmail.com> (https://prosazhin.ru)",
@@ -40,7 +40,6 @@
     "tabWidth": 2,
     "jsxSingleQuote": true,
     "singleQuote": true,
-    "jsxBracketSameLine": false,
     "quoteProps": "as-needed",
     "arrowParens": "always",
     "endOfLine": "lf",
