@@ -1,6 +1,6 @@
 {
   "name": "pbcomponents",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "UI component library for React and Vue with Typescript and Tailwind",
   "main": "index.js",
   "private": true,
@@ -53,6 +53,10 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
+  },
+  "dependencies": {
+    "@pbcomponents/react": "*",
+    "@pbcomponents/vue": "*"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.4.0",
