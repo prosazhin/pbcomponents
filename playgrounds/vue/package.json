@@ -14,7 +14,6 @@
     "clean": "rimraf ./storybook-static"
   },
   "dependencies": {
-    "@pbcomponents/vue": "*",
     "vue": "^3.4.38"
   },
   "devDependencies": {
