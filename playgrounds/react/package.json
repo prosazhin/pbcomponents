@@ -11,7 +11,10 @@
     "dev:storybook": "storybook dev -p 6006 --docs",
     "dev:components": "npm run --workspace=@pbcomponents/react dev",
     "dev": "npm-run-all -p dev:*",
-    "clean": "rimraf ./storybook-static"
+    "lint": "eslint stories",
+    "clean:build": "rimraf ./storybook-static",
+    "clean:modules": "rimraf ./node_modules",
+    "clean": "npm-run-all -p clean:*"
   },
   "dependencies": {
     "react": "^18.3.1",
@@ -19,7 +22,7 @@
   },
   "devDependencies": {
     "@heroicons/react": "^2.1.5",
-    "@chromatic-com/storybook": "^1.7.0",
+    "@chromatic-com/storybook": "^1.8.0",
     "@eslint/js": "^9.9.1",
     "@storybook/addon-essentials": "^8.2.9",
     "@storybook/addon-interactions": "^8.2.9",
@@ -29,10 +32,13 @@
     "@storybook/react": "^8.2.9",
     "@storybook/react-vite": "^8.2.9",
     "@storybook/test": "^8.2.9",
-    "@types/react": "^18.3.4",
+    "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
     "eslint": "^9.9.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react": "^7.35.0",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.11",
     "eslint-plugin-storybook": "^0.8.0",

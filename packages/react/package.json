@@ -31,10 +31,10 @@
   "scripts": {
     "dev": "vite build --watch",
     "build": "tsc && vite build",
-    "lint": "tsc --noEmit && eslint src",
-    "lint:fix": "eslint --fix src --ext .ts,.tsx",
-    "lint:markup": "tsc --noEmit",
-    "clean": "rimraf ./dist"
+    "lint": "eslint src",
+    "clean:build": "rimraf ./dist",
+    "clean:modules": "rimraf ./node_modules",
+    "clean": "npm-run-all -p clean:*"
   },
   "peerDependencies": {
     "react": "^18.2.0",
@@ -42,14 +42,12 @@
   },
   "devDependencies": {
     "@heroicons/react": "^2.1.5",
-    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@eslint/js": "^9.9.1",
     "@tailwindcss/forms": "^0.5.8",
     "@tailwindcss/typography": "^0.5.15",
     "@types/node": "^22.5.1",
-    "@types/react": "^18.3.4",
+    "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
-    "@typescript-eslint/eslint-plugin": "^8.3.0",
-    "@typescript-eslint/parser": "^8.3.0",
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.20",
     "clsx": "^2.1.1",
@@ -60,7 +58,7 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.11",
     "eslint-plugin-tailwindcss": "^3.17.4",
-    "pbstyles": "^1.2.2",
+    "pbstyles": "^2.0.1",
     "postcss": "^8.4.41",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -69,14 +67,21 @@
     "typescript": "^5.5.4",
     "vite": "^5.4.2",
     "vite-plugin-css-injected-by-js": "^3.5.1",
-    "vite-plugin-dts": "^4.0.3"
+    "vite-plugin-dts": "^4.0.3",
+    "globals": "^15.9.0",
+    "typescript-eslint": "^8.3.0"
   },
   "keywords": [
     "react",
     "typescript",
     "tailwindcss",
     "ui",
-    "components"
+    "components",
+    "components-library",
+    "ui-components",
+    "library",
+    "design",
+    "tool"
   ],
   "contributors": [
     {
@@ -84,10 +89,5 @@
       "email": "le.ktrna@gmail.com",
       "url": "https://github.com/klebedeva"
     }
-  ],
-  "eslintConfig": {
-    "extends": [
-      "plugin:storybook/recommended"
-    ]
-  }
+  ]
 }

@@ -2,9 +2,7 @@ import eslint from '@eslint/js';
 import configPrettier from 'eslint-config-prettier';
 import prettier from 'eslint-plugin-prettier';
 import prettierRecommended from 'eslint-plugin-prettier/recommended';
-import react from 'eslint-plugin-react';
-import reactHooks from 'eslint-plugin-react-hooks';
-import reactRefresh from 'eslint-plugin-react-refresh';
+import vue from 'eslint-plugin-vue';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
@@ -12,16 +10,15 @@ export default tseslint.config(
   eslint.configs.recommended,
   prettierRecommended,
   ...tseslint.configs.recommended,
+  ...vue.configs['flat/base'],
+  ...vue.configs['flat/recommended'],
   {
     ignores: ['storybook-static', 'node_modules', '**/*.config.js', '**/*.d.ts'],
   },
   {
-    files: ['**/*.{js,jsx,ts,tsx}'],
+    files: ['**/*.{js,jsx,ts,tsx,vue}'],
     plugins: {
       'typescript-eslint': tseslint.plugin,
-      react: react,
-      'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
       prettier: prettier,
     },
     languageOptions: {
@@ -34,6 +31,7 @@ export default tseslint.config(
           ts: tseslint.parser,
           tsx: tseslint.parser,
         },
+        extraFileExtensions: ['.vue'],
         ecmaFeatures: {
           jsx: true,
         },
@@ -49,7 +47,6 @@ export default tseslint.config(
       },
     },
     rules: {
-      ...reactHooks.configs.recommended.rules,
       curly: 'error',
       'no-shadow': 'error',
       'no-nested-ternary': 'warn',
@@ -62,9 +59,11 @@ export default tseslint.config(
       '@typescript-eslint/no-unused-vars': 'error',
       '@typescript-eslint/no-empty-object-type': 'off',
       '@typescript-eslint/no-explicit-any': 'warn',
-      'react/react-in-jsx-scope': 'off',
-      'react-hooks/exhaustive-deps': 'off',
-      'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+      'tailwindcss/classnames-order': 'off',
+      'tailwindcss/no-custom-classname': 'off',
+      'vue/script-indent': 'off',
+      'vue/no-multiple-template-root': 'off',
+      'vue/multi-word-component-names': 'off',
     },
   },
   configPrettier,

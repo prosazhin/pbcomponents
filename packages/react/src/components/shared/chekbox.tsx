@@ -65,7 +65,7 @@ export const Checkbox = <T extends React.ElementType = 'input'>({
         checked={checked}
         disabled={disabled}
         className={clsx(
-          'border-secondary-light rounded-xs hover:border-primary-main outline-primary cursor-pointer appearance-none border transition-colors focus:ring-0 focus:ring-offset-0 disabled:!cursor-not-allowed',
+          'outline-primary rounded-xs border-secondary-light hover:border-primary-main cursor-pointer appearance-none border transition-colors focus:ring-0 focus:ring-offset-0 disabled:!cursor-not-allowed',
           checked && state.checked,
           indeterminate && state.indeterminate,
           disabled && !checked && !indeterminate && state.disabled,

@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 
-import theme from 'pbstyles/styles/tailwindcss';
+import theme from 'pbstyles/styles/tailwind-theme';
 
 export default {
   mode: 'jit',
@@ -11,5 +11,5 @@ export default {
       ...theme.extend,
     },
   },
-  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography'), require('@tailwindcss/aspect-ratio')],
+  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
 };
