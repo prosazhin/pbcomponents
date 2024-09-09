@@ -7,7 +7,7 @@ import { Tab as Component } from '@pbcomponents/react';
 Component.displayName = 'Tab';
 
 const meta = {
-  title: 'Helpers/Tab/Button',
+  title: 'Components/Tabs/Tab/Button',
   component: Component,
   parameters: {
     layout: 'centered',
