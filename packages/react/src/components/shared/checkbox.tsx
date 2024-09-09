@@ -13,10 +13,10 @@ export type Props<T extends React.ElementType> = PolymorphicComponentPropsWithRe
   {
     labelPlace: 'left' | 'right';
     size: 's' | 'm';
-    checked: boolean;
+    checked?: boolean | never;
     indeterminate?: boolean | never;
     disabled?: boolean | never;
-    setChecked: (value: boolean) => void;
+    onChange: (value: boolean) => void;
   }
 >;
 
@@ -24,11 +24,12 @@ export const Checkbox = <T extends React.ElementType = 'input'>({
   className,
   labelPlace = 'right',
   size,
-  checked,
-  indeterminate,
+  checked = false,
+  indeterminate = false,
   label,
   disabled,
-  setChecked,
+  onChange,
+  ...rest
 }: Props<T>) => {
   const input = useRef<HTMLInputElement>(null);
 
@@ -47,19 +48,19 @@ export const Checkbox = <T extends React.ElementType = 'input'>({
   return (
     <label
       className={clsx(
-        'pbc pbc-inline-flex pbc-w-max pbc-cursor-pointer pbc-flex-nowrap pbc-gap-x-8 pbc-transition-colors',
+        'pbc pbc-inline-flex pbc-w-max pbc-cursor-pointer pbc-flex-nowrap pbc-gap-x-8',
         disabled && '!pbc-cursor-default',
         className,
       )}
     >
-      <div className={clsx('pbc-relative', size === 's' && 'pbc-size-16', size === 'm' && 'pbc-size-24')}>
+      <div className={clsx('pbc pbc-relative', size === 's' && 'pbc-size-16', size === 'm' && 'pbc-size-24')}>
         <input
           type='checkbox'
           ref={input}
           checked={checked}
           disabled={disabled}
           className={clsx(
-            'pbc-cursor-pointer pbc-appearance-none pbc-transition-colors focus:pbc-ring-0 focus:pbc-ring-offset-0 pbc-outline-primary !pbc-m-0',
+            'pbc pbc-cursor-pointer pbc-appearance-none pbc-transition-colors focus:pbc-ring-0 focus:pbc-ring-offset-0 pbc-outline-primary !pbc-m-0',
             'pbc-rounded-4 pbc-border-secondary-light hover:pbc-border-primary-main pbc-border-1 pbc-border-solid',
             'disabled:!pbc-cursor-default disabled:pbc-bg-basic-lighter disabled:pbc-border-secondary-light hover:disabled:pbc-border-secondary-light hover:disabled:pbc-bg-basic-lighter',
             'checked:pbc-bg-primary-main checked:pbc-border-transparent hover:checked:pbc-bg-primary-darker disabled:checked:pbc-bg-primary-light disabled:checked:pbc-border-transparent hover:disabled:checked:pbc-bg-primary-light',
@@ -67,7 +68,8 @@ export const Checkbox = <T extends React.ElementType = 'input'>({
             size === 's' && 'pbc-size-16',
             size === 'm' && 'pbc-size-24',
           )}
-          onChange={(event) => setChecked(event.target.checked)}
+          onChange={(event) => onChange(event.target.checked)}
+          {...rest}
         />
         {(checked || indeterminate) && <Icon tag={IconIcon} size={size} className='pbc-absolute pbc-top-0 pbc-left-0 pbc-text-white' />}
       </div>

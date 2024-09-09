@@ -40,7 +40,7 @@ const Page = () => (
 | Tag Link               | +            | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tag-link--docs)        |
 | Checkbox               | +            | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-checkbox--docs)        |
 | Switch                 | -            | -                                                                                          |
-| Radio                  | -            | -                                                                                          |
+| Radio                  | +            | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-radio--docs)           |
 | Inline Radio           | -            | -                                                                                          |
 | Inline Radio Item      | -            | -                                                                                          |
 | Input                  | -            | -                                                                                          |

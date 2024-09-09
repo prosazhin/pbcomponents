@@ -40,7 +40,7 @@ const meta = {
     checked: false,
     indeterminate: false,
     disabled: false,
-    setChecked: () => {},
+    onChange: () => {},
     className: '',
   },
 } satisfies Meta<typeof Component>;

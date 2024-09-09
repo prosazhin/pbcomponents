@@ -2,30 +2,47 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { Radio as Component } from '@pbcomponents/react';
 
-const meta: Meta<typeof Component> = {
-  title: 'Helpers/Radio',
+// @ts-expect-error: Unreachable code error
+Component.displayName = 'Radio';
+
+const meta = {
+  title: 'Components/Radio',
   component: Component,
+  parameters: {
+    layout: 'centered',
+  },
   tags: ['autodocs'],
   argTypes: {
-    children: { control: 'text' },
+    label: { control: 'text' },
+    labelPlace: {
+      options: ['left', 'right'],
+      control: { type: 'radio' },
+    },
     size: {
       options: ['s', 'm'],
       control: { type: 'radio' },
+    },
+    checked: {
+      control: 'boolean',
     },
     disabled: {
       control: 'boolean',
     },
     className: { control: 'text' },
   },
-};
+  args: {
+    label: 'Radio',
+    labelPlace: 'right',
+    size: 'm',
+    checked: false,
+    disabled: false,
+    onChange: () => {},
+    className: '',
+  },
+} satisfies Meta<typeof Component>;
 
 export default meta;
 
-type Story = StoryObj<typeof Component>;
+type Story = StoryObj<typeof meta>;
 
-export const Radio: Story = {
-  args: {
-    children: 'Radio',
-    size: 'm',
-  },
-};
+export const S: Story = {};
