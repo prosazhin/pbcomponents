@@ -53,7 +53,7 @@ import { Button } from '@pbcomponents/vue';
 ## Components
 
 | Name                   | Ready to use for React | React Preview                                                                              | Ready to use for Vue | Vue Preview |
-| :--------------------- | :--------------------- | :----------------------------------------------------------------------------------------- | -------------------- | ----------- |
+| :--------------------- | :--------------------- | :----------------------------------------------------------------------------------------- | :------------------- | :---------- |
 | Button                 | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-button-button--docs)   | -                    | -           |
 | Button Link            | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-button-link--docs)     | -                    | -           |
 | Button Group           | -                      | -                                                                                          | -                    | -           |
