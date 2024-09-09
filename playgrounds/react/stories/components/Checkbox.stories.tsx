@@ -41,7 +41,6 @@ const meta = {
     indeterminate: false,
     disabled: false,
     onChange: () => {},
-    className: '',
   },
 } satisfies Meta<typeof Component>;
 
