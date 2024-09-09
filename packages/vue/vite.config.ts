@@ -2,8 +2,8 @@ import vue from '@vitejs/plugin-vue';
 import { resolve } from 'path';
 import tailwindcss from 'tailwindcss';
 import { defineConfig } from 'vite';
-import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 import dts from 'vite-plugin-dts';
+import { libInjectCss } from 'vite-plugin-lib-inject-css';
 
 export default defineConfig({
   resolve: {
@@ -11,7 +11,7 @@ export default defineConfig({
       '@': resolve(__dirname, 'src'),
     },
   },
-  plugins: [vue(), dts(), cssInjectedByJsPlugin()],
+  plugins: [vue(), dts({ rollupTypes: true }), libInjectCss()],
   css: {
     postcss: {
       plugins: [tailwindcss],
@@ -27,7 +27,7 @@ export default defineConfig({
       fileName: 'index',
     },
     rollupOptions: {
-      external: ['vue'],
+      external: ['vue', 'tailwindcss'],
       output: {
         exports: 'named',
         globals: {

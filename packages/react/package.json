@@ -2,24 +2,44 @@
   "name": "@pbcomponents/react",
   "version": "0.0.1",
   "description": "UI component library for React with Typescript and Tailwind",
+  "license": "MIT",
+  "author": "Evgenii Sazhin <prosazhin@gmail.com> (https://prosazhin.ru)",
+  "keywords": [
+    "react",
+    "typescript",
+    "tailwindcss",
+    "ui",
+    "components",
+    "components-library",
+    "ui-components",
+    "library",
+    "design",
+    "tool"
+  ],
+  "homepage": "https://github.com/prosazhin/pbcomponents",
   "repository": {
     "type": "git",
-    "url": "https://github.com/prosazhin/react-pbcomponents.git"
+    "url": "https://github.com/prosazhin/pbcomponents.git",
+    "directory": "packages/react"
   },
-  "author": "Evgenii Sazhin <prosazhin@gmail.com> (https://prosazhin.ru)",
-  "license": "MIT",
   "type": "module",
   "types": "./dist/index.d.ts",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    }
+      "require": "./dist/index.cjs",
+      "styles": "./dist/index.css"
+    },
+    "./css": "./dist/index.css"
   },
   "files": [
     "dist"
+  ],
+  "sideEffects": [
+    "**/*.css"
   ],
   "publishConfig": {
     "access": "public",
@@ -41,14 +61,14 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@heroicons/react": "^2.1.5",
     "@eslint/js": "^9.9.1",
+    "@heroicons/react": "^2.1.5",
     "@tailwindcss/forms": "^0.5.8",
     "@tailwindcss/typography": "^0.5.15",
     "@types/node": "^22.5.1",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react": "^4.3.1",
+    "@vitejs/plugin-react-swc": "^3.7.0",
     "autoprefixer": "^10.4.20",
     "clsx": "^2.1.1",
     "eslint": "^9.9.1",
@@ -58,6 +78,7 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.11",
     "eslint-plugin-tailwindcss": "^3.17.4",
+    "globals": "^15.9.0",
     "pbstyles": "^2.0.1",
     "postcss": "^8.4.41",
     "react": "^18.3.1",
@@ -65,24 +86,11 @@
     "tailwindcss": "^3.4.10",
     "tslib": "^2.7.0",
     "typescript": "^5.5.4",
+    "typescript-eslint": "^8.3.0",
     "vite": "^5.4.2",
-    "vite-plugin-css-injected-by-js": "^3.5.1",
-    "vite-plugin-dts": "^4.0.3",
-    "globals": "^15.9.0",
-    "typescript-eslint": "^8.3.0"
+    "vite-plugin-lib-inject-css": "^2.1.1",
+    "vite-plugin-dts": "^4.0.3"
   },
-  "keywords": [
-    "react",
-    "typescript",
-    "tailwindcss",
-    "ui",
-    "components",
-    "components-library",
-    "ui-components",
-    "library",
-    "design",
-    "tool"
-  ],
   "contributors": [
     {
       "name": "Katya Lebedeva",

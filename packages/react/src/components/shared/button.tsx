@@ -7,52 +7,14 @@ import clsx from 'clsx';
 import Content from '@/components/helpers/content';
 import Icon from '@/components/helpers/icon';
 
-const sizes = {
-  xs: 'py-[4px] px-[8px] rounded-sm before:rounded-sm',
-  s: 'py-[8px] px-[12px] rounded-md before:rounded-md',
-  m: 'py-[12px] px-[16px] rounded-lg before:rounded-lg',
-  l: 'py-[18px] px-[24px] rounded-xl before:rounded-xl',
-};
-
-const themes = {
-  filled: {
-    primary: 'bg-primary-main text-white hover:bg-primary-darker outline-primary',
-    secondary: 'bg-secondary-main text-white hover:bg-secondary-darker outline-secondary',
-    success: 'bg-success-main text-white hover:bg-success-darker outline-success',
-    danger: 'bg-danger-main text-white hover:bg-danger-main outline-danger',
-    disabled: 'bg-secondary-lighter text-base-light',
-  },
-  light: {
-    primary: 'bg-primary-lighter text-primary-main hover:bg-primary-light outline-primary',
-    secondary: 'bg-secondary-lighter text-base-main hover:bg-secondary-light outline-secondary',
-    success: 'bg-success-lighter text-success-main hover:bg-success-light outline-success',
-    danger: 'bg-danger-lighter text-danger-main hover:bg-danger-light outline-danger',
-    disabled: 'bg-secondary-lighter text-base-light',
-  },
-  border: {
-    primary: 'before:border-primary-light text-primary-main hover:bg-primary-lighter before:hover:border-primary-lighter outline-primary',
-    secondary:
-      'before:border-secondary-light text-base-main hover:bg-secondary-lighter before:hover:border-secondary-lighter outline-secondary',
-    success: 'before:border-success-light text-success-main hover:bg-success-lighter before:hover:border-success-lighter outline-success',
-    danger: 'before:border-danger-light text-danger-main hover:bg-danger-lighter before:hover:border-danger-lighter outline-danger',
-    disabled: 'before:border-secondary-lighter text-base-light',
-  },
-  ghost: {
-    primary: 'text-primary-main hover:bg-primary-lighter outline-primary outline-primary',
-    secondary: 'text-base-main hover:bg-secondary-lighter outline-secondary',
-    success: 'text-success-main hover:bg-success-lighter outline-success',
-    danger: 'text-danger-main hover:bg-danger-lighter outline-danger',
-    disabled: 'text-base-light',
-  },
-};
-
 export type Props<T extends React.ElementType> = PolymorphicComponentPropsWithRef<
   T,
   WithIconsType & {
     size: 'xs' | 's' | 'm' | 'l';
     theme: 'filled' | 'light' | 'border' | 'ghost';
     color: 'primary' | 'secondary' | 'success' | 'danger';
-    loading?: boolean;
+    loading?: boolean | never;
+    disabled?: boolean | never;
   }
 >;
 
@@ -82,10 +44,43 @@ const Button = <T extends React.ElementType = 'button' | 'a'>({
   return (
     <Component
       className={clsx(
-        'relative inline-flex w-max cursor-pointer flex-nowrap items-center justify-center transition-colors before:absolute before:size-full before:transition-colors',
-        sizes[size],
-        theme === 'border' && 'before:border',
-        disabled && !loading ? `${themes[theme].disabled} !cursor-not-allowed` : themes[theme][color],
+        'pbc pbc-flex-inline pbc-transition-colors',
+        size === 'xs' && 'pbc-py-4 pbc-px-8 pbc-rounded-6 pbc-h-26',
+        size === 's' && 'pbc-py-8 pbc-px-12 pbc-rounded-8 pbc-h-[34px]',
+        size === 'm' && 'pbc-py-12 pbc-px-16 pbc-rounded-12 pbc-h-48',
+        size === 'l' && 'pbc-py-16 pbc-px-20 pbc-rounded-16 pbc-h-[62px]',
+        theme === 'filled' && 'pbc-text-white',
+        theme === 'filled' && color === 'primary' && 'pbc-bg-primary-main hover:pbc-bg-primary-darker',
+        theme === 'filled' && color === 'secondary' && 'pbc-bg-secondary-main hover:pbc-bg-secondary-darker',
+        theme === 'filled' && color === 'success' && 'pbc-bg-success-main hover:pbc-bg-success-darker',
+        theme === 'filled' && color === 'danger' && 'pbc-bg-danger-main hover:pbc-bg-danger-darker',
+        theme === 'filled' && disabled && !loading && '!pbc-bg-secondary-lighter !pbc-text-basic-light',
+        theme !== 'filled' && color === 'primary' && 'pbc-text-primary-darker',
+        theme !== 'filled' && color === 'secondary' && 'pbc-text-basic-main',
+        theme !== 'filled' && color === 'success' && 'pbc-text-success-darker',
+        theme !== 'filled' && color === 'danger' && 'pbc-text-danger-darker',
+        theme === 'light' && color === 'primary' && 'pbc-bg-primary-lighter hover:pbc-bg-primary-light',
+        theme === 'light' && color === 'secondary' && 'pbc-bg-secondary-lighter hover:pbc-bg-secondary-light',
+        theme === 'light' && color === 'success' && 'pbc-bg-success-lighter hover:pbc-bg-success-light',
+        theme === 'light' && color === 'danger' && 'pbc-bg-danger-lighter hover:pbc-bg-danger-light',
+        theme === 'light' && disabled && !loading && '!pbc-bg-secondary-lighter !pbc-text-basic-light',
+        theme === 'border' && 'pbc-border-1 hover:pbc-border-transparent',
+        theme === 'border' && color === 'primary' && 'pbc-border-primary-light hover:pbc-bg-primary-lighter',
+        theme === 'border' && color === 'secondary' && 'pbc-border-secondary-light hover:pbc-bg-secondary-lighter',
+        theme === 'border' && color === 'success' && 'pbc-border-success-light hover:pbc-bg-success-lighter',
+        theme === 'border' && color === 'danger' && 'pbc-border-danger-light hover:pbc-bg-danger-lighter',
+        theme === 'border' && disabled && !loading && '!pbc-border-secondary-lighter !pbc-text-basic-light',
+        theme === 'ghost' && color === 'primary' && 'hover:pbc-bg-primary-lighter',
+        theme === 'ghost' && color === 'secondary' && 'hover:pbc-bg-secondary-lighter',
+        theme === 'ghost' && color === 'success' && 'hover:pbc-bg-success-lighter',
+        theme === 'ghost' && color === 'danger' && 'hover:pbc-bg-danger-lighter',
+        color === 'primary' && 'pbc-outline-primary',
+        color === 'secondary' && 'pbc-outline-secondary',
+        color === 'success' && 'pbc-outline-success',
+        color === 'danger' && 'pbc-outline-danger',
+        theme === 'ghost' && disabled && !loading && '!pbc-text-basic-light',
+        (theme === 'border' || theme === 'ghost') && 'pbc-bg-transparent',
+        loading && 'pbc-cursor-default',
         className,
       )}
       disabled={disabled || loading}
@@ -95,7 +90,7 @@ const Button = <T extends React.ElementType = 'button' | 'a'>({
       {...rest}
     >
       {loading ? (
-        <Icon name={ArrowPathIcon} size={size === 'xs' ? 's' : size} className={clsx(themes[theme][color], 'animate-spin transition')} />
+        <Icon tag={ArrowPathIcon} size={size === 'xs' ? 's' : size} className={clsx('pbc-animate-spin pbc-transition')} />
       ) : (
         <Content size={size === 'xs' ? 's' : size} leftIcon={leftIcon} rightIcon={rightIcon} medium={true}>
           {children}

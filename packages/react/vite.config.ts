@@ -1,9 +1,9 @@
-import react from '@vitejs/plugin-react';
+import react from '@vitejs/plugin-react-swc';
 import { resolve } from 'path';
 import tailwindcss from 'tailwindcss';
 import { defineConfig } from 'vite';
-import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 import dts from 'vite-plugin-dts';
+import { libInjectCss } from 'vite-plugin-lib-inject-css';
 
 export default defineConfig({
   resolve: {
@@ -11,7 +11,7 @@ export default defineConfig({
       '@': resolve(__dirname, 'src'),
     },
   },
-  plugins: [react(), dts(), cssInjectedByJsPlugin()],
+  plugins: [react(), dts({ rollupTypes: true }), libInjectCss()],
   css: {
     postcss: {
       plugins: [tailwindcss],

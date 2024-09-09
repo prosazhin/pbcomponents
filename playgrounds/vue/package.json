@@ -10,7 +10,7 @@
     "build": "npm-run-all -s build:components build:storybook",
     "dev:storybook": "storybook dev -p 6006 --docs",
     "dev:components": "npm run --workspace=@pbcomponents/vue dev",
-    "dev": "npm-run-all -p dev:*",
+    "dev": "concurrently \"npm run dev:components\" \"npm run dev:storybook\"",
     "lint": "eslint stories",
     "clean:build": "rimraf ./storybook-static",
     "clean:modules": "rimraf ./node_modules",
@@ -42,7 +42,8 @@
     "eslint-plugin-tailwindcss": "^3.17.4",
     "eslint-plugin-vue": "^9.27.0",
     "eslint-plugin-storybook": "^0.8.0",
-    "typescript-eslint": "^8.3.0"
+    "typescript-eslint": "^8.3.0",
+    "concurrently": "^8.2.2"
   },
   "eslintConfig": {
     "extends": [

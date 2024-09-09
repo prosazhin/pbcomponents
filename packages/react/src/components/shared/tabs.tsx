@@ -23,11 +23,17 @@ const Tabs = <T,>({ className, defaultIndex = 0, options, display, onChange }: P
   return (
     <div
       className={clsx(
-        'after:bg-secondary-lighter relative w-full after:absolute after:inset-x-0 after:bottom-0 after:z-[1] after:h-[2px] after:w-full after:rounded-full',
+        'pbc pbc-relative pbc-w-full after:pbc-absolute after:pbc-inset-x-0 after:pbc-bottom-0 after:pbc-z-[1]',
+        'after:pbc-bg-secondary-lighter after:pbc-h-2 after:pbc-w-full after:pbc-rounded-999',
         className,
       )}
     >
-      <div className='scrollbar-hidden relative z-[2] flex w-auto flex-row flex-nowrap items-center gap-x-[16px] overflow-x-auto'>
+      <div
+        className={clsx(
+          'pbc-scrollbar-hidden pbc-relative pbc-z-[2] pbc-flex pbc-w-auto pbc-flex-row',
+          'pbc-flex-nowrap pbc-items-center pbc-gap-x-16 pbc-overflow-x-auto',
+        )}
+      >
         {options.map((item, index) => (
           <Tab key={index} {...item} active={activeTab === index} onClick={() => handleTabChange(index, item)}>
             {extract(item, display)}

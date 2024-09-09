@@ -1,9 +1,12 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import { Chekbox as Component } from '@pbcomponents/react';
+import { Checkbox as Component } from '@pbcomponents/react';
+
+// @ts-expect-error: Unreachable code error
+Component.displayName = 'Checkbox';
 
 const meta = {
-  title: 'Components/Chekbox',
+  title: 'Components/Checkbox',
   component: Component,
   parameters: {
     layout: 'centered',
@@ -30,20 +33,20 @@ const meta = {
     },
     className: { control: 'text' },
   },
-} satisfies Meta<typeof Component>;
-
-export default meta;
-
-type Story = StoryObj<typeof meta>;
-
-export const Chekbox: Story = {
   args: {
-    label: 'Chekbox',
+    label: 'Checkbox',
     labelPlace: 'right',
     size: 'm',
     checked: false,
     indeterminate: false,
     disabled: false,
     setChecked: () => {},
+    className: '',
   },
-};
+} satisfies Meta<typeof Component>;
+
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const S: Story = {};

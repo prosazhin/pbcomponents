@@ -1,31 +1,23 @@
+import { ICON_SIZE } from '@/consts';
 import { ComponentType, IconType } from '@/types';
 import clsx from 'clsx';
 
-const sizes = {
-  s: {
-    size: 16,
-    class: 'size-[16px]',
-  },
-  m: {
-    size: 24,
-    class: 'size-[24px]',
-  },
-  l: {
-    size: 28,
-    class: 'size-[28px]',
-  },
-};
-
 export type Props = ComponentType & {
-  name: IconType;
+  tag: IconType;
   size: 's' | 'm' | 'l';
 };
 
-const Icon = ({ className, name: IconTag, size }: Props) => (
+const Icon = ({ className, tag: IconTag, size }: Props) => (
   <IconTag
-    width={sizes[size].size}
-    height={sizes[size].size}
-    className={clsx('bg-transparent text-inherit', sizes[size].class, className)}
+    width={ICON_SIZE[size]}
+    height={ICON_SIZE[size]}
+    className={clsx(
+      'pbc pbc-bg-transparent pbc-text-inherit',
+      size === 's' && 'pbc-size-16',
+      size === 'm' && 'pbc-size-24',
+      size === 'l' && 'pbc-size-28',
+      className,
+    )}
   />
 );
 

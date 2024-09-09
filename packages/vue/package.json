@@ -2,24 +2,44 @@
   "name": "@pbcomponents/vue",
   "version": "0.0.1",
   "description": "UI component library for Vue with Typescript and Tailwind",
+  "license": "MIT",
+  "author": "Evgenii Sazhin <prosazhin@gmail.com> (https://prosazhin.ru)",
+  "keywords": [
+    "vue",
+    "typescript",
+    "tailwindcss",
+    "ui",
+    "components",
+    "components-library",
+    "ui-components",
+    "library",
+    "design",
+    "tool"
+  ],
+  "homepage": "https://github.com/prosazhin/pbcomponents",
   "repository": {
     "type": "git",
-    "url": "https://github.com/prosazhin/vue-pbcomponents.git"
+    "url": "https://github.com/prosazhin/pbcomponents.git",
+    "directory": "packages/vue"
   },
-  "author": "Evgenii Sazhin <prosazhin@gmail.com> (https://prosazhin.ru)",
-  "license": "MIT",
   "type": "module",
   "types": "./dist/index.d.ts",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    }
+      "require": "./dist/index.cjs",
+      "styles": "./dist/index.css"
+    },
+    "./css": "./dist/index.css"
   },
   "files": [
     "dist"
+  ],
+  "sideEffects": [
+    "**/*.css"
   ],
   "publishConfig": {
     "access": "public",
@@ -55,25 +75,13 @@
     "pbstyles": "^2.0.1",
     "tailwindcss": "^3.4.10",
     "vite": "^5.4.2",
-    "vite-plugin-css-injected-by-js": "^3.5.1",
+    "vite-plugin-lib-inject-css": "^2.1.1",
     "vite-plugin-dts": "^4.0.3",
     "vue-tsc": "^2.1.4",
     "globals": "^15.9.0",
     "clsx": "^2.1.1",
     "typescript-eslint": "^8.3.0"
   },
-  "keywords": [
-    "vue",
-    "typescript",
-    "tailwindcss",
-    "ui",
-    "components",
-    "components-library",
-    "ui-components",
-    "library",
-    "design",
-    "tool"
-  ],
   "contributors": [
     {
       "name": "Katya Lebedeva",

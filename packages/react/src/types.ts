@@ -4,17 +4,17 @@
 
 export type IconType = React.ComponentType<
   React.PropsWithoutRef<React.ComponentProps<'svg'>> & {
-    title?: string | undefined;
-    titleId?: string | undefined;
+    title?: string | undefined | never;
+    titleId?: string | undefined | never;
   }
 >;
 
 export type WithLeftIconType = {
-  leftIcon?: IconType;
+  leftIcon?: IconType | never;
 };
 
 export type WithRightIconType = {
-  rightIcon?: IconType;
+  rightIcon?: IconType | never;
 };
 
 export type WithIconsType = WithLeftIconType & WithRightIconType;
@@ -24,8 +24,8 @@ export type WithIconsType = WithLeftIconType & WithRightIconType;
  */
 
 export type ComponentType = {
-  children?: React.ReactNode;
-  className?: string;
+  children?: React.ReactNode | never;
+  className?: string | never;
 };
 
 export type ComponentWithIconsType = ComponentType & WithIconsType;
@@ -66,4 +66,5 @@ export type KeyExtractor<T> = Extractor<T, ReactKey>;
 export type DisplayExtractor<T> = Extractor<T, Displayable>;
 
 export const extract = <T, TExtracted>(value: T, extractor: Extractor<T, TExtracted>) =>
+  // eslint-disable-next-line no-nested-ternary
   (typeof extractor === 'function' ? extractor(value) : typeof extractor !== 'undefined' ? value[extractor] : value) as TExtracted;

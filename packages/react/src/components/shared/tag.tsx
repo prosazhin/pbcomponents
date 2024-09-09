@@ -7,31 +7,14 @@ import clsx from 'clsx';
 import Content from '@/components/helpers/content';
 import Icon from '@/components/helpers/icon';
 
-const sizes = {
-  s: 'py-[4px] px-[8px]',
-  m: 'py-[8px] px-[12px]',
-};
-
-const themes = {
-  light: {
-    default: 'bg-primary-lighter text-base-main hover:bg-primary-light',
-    checked: 'bg-primary-main text-white hover:bg-primary-darker',
-    disabled: 'bg-secondary-lighter text-base-light',
-  },
-  border: {
-    default: 'before:border-secondary-light text-base-main hover:before:border-primary-main',
-    checked: 'bg-primary-main text-white hover:bg-primary-darker',
-    disabled: 'before:border-secondary-lighter text-base-light',
-  },
-};
-
 export type Props<T extends React.ElementType> = PolymorphicComponentPropsWithRef<
   T,
   WithIconsType & {
     checked: boolean;
     size: 's' | 'm';
     theme: 'light' | 'border';
-    loading?: boolean;
+    loading?: boolean | never;
+    disabled?: boolean | never;
   }
 >;
 
@@ -61,16 +44,15 @@ const Tag = <T extends React.ElementType = 'button' | 'a'>({
   return (
     <Component
       className={clsx(
-        'relative inline-flex w-max cursor-pointer flex-nowrap items-center justify-center rounded-full transition-colors before:absolute before:size-full before:rounded-full before:transition-colors',
-        sizes[size],
-        !checked && theme === 'border' && 'before:border',
-        checked
-          ? disabled && !loading
-            ? `${themes.light.disabled} !cursor-not-allowed`
-            : themes[theme].checked
-          : disabled && !loading
-            ? `${themes[theme].disabled} !cursor-not-allowed`
-            : themes[theme].default,
+        'pbc pbc-rounded-999 pbc-flex-inline pbc-transition-colors pbc-outline-primary pbc-border-1',
+        size === 's' && 'pbc-h-26 pbc-px-8 pbc-py-4',
+        size === 'm' && 'pbc-h-[34px] pbc-px-12 pbc-py-8',
+        theme === 'light' && !checked && 'pbc-bg-primary-lighter pbc-text-basic-main hover:pbc-bg-primary-light',
+        theme === 'border' && !checked && 'pbc-border-secondary-light pbc-text-basic-main hover:pbc-border-primary-main pbc-bg-transparent',
+        checked && 'pbc-bg-primary-main hover:pbc-bg-primary-darker pbc-text-white',
+        (theme === 'light' || checked) && disabled && !loading && 'pbc-bg-secondary-lighter pbc-text-basic-light',
+        theme === 'border' && disabled && !loading && 'pbc-border-secondary-lighter pbc-text-basic-light',
+        loading && 'pbc-cursor-default',
         className,
       )}
       disabled={disabled || loading}
@@ -80,7 +62,7 @@ const Tag = <T extends React.ElementType = 'button' | 'a'>({
       {...rest}
     >
       {loading ? (
-        <Icon name={ArrowPathIcon} size='s' className='animate-spin transition' />
+        <Icon tag={ArrowPathIcon} size='s' className={clsx('pbc-animate-spin pbc-transition')} />
       ) : (
         <Content size='s' leftIcon={leftIcon} rightIcon={rightIcon} medium={true}>
           {children}

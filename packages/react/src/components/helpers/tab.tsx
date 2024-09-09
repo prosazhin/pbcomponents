@@ -7,6 +7,7 @@ export type Props<T extends React.ElementType> = PolymorphicComponentPropsWithRe
   T,
   WithIconsType & {
     active: boolean;
+    disabled?: boolean | never;
   }
 >;
 
@@ -17,17 +18,20 @@ const Tab = <T extends React.ElementType = 'button' | 'a'>({ children, className
   return (
     <Component
       className={clsx(
-        'text-base-main hover:text-base-main group relative inline-flex w-max cursor-pointer flex-nowrap items-center justify-center pb-[12px] after:absolute after:inset-x-0 after:bottom-0 after:z-[1] after:h-[2px] after:w-full after:rounded-full after:transition-colors',
-        active && 'text-primary-main after:bg-primary-main',
-        disabled && 'text-base-light !cursor-not-allowed after:hidden',
+        'pbc pbc-text-basic-main hover:pbc-text-basic-main pbc-flex-inline pbc-group pbc-relative pbc-p-0 pbc-pb-12 pbc-bg-transparent',
+        'after:pbc-absolute after:pbc-rounded-999 after:pbc-inset-x-0 after:pbc-bottom-0 after:pbc-z-[1] after:pbc-h-2 after:pbc-w-full after:pbc-transition-colors',
+        active && 'pbc-text-primary-main after:pbc-bg-primary-main',
+        disabled && 'pbc-text-basic-light after:pbc-hidden',
         className,
       )}
+      disabled={disabled}
+      aria-disabled={disabled}
       {...rest}
     >
       <Content
         className={clsx(
-          'group-hover:bg-secondary-lighter rounded-md px-[8px] py-[2px] transition-colors',
-          disabled && 'text-base-light !cursor-not-allowed !bg-transparent',
+          'group-hover:pbc-bg-secondary-lighter pbc-rounded-8 pbc-px-8 pbc-py-2 pbc-transition-colors',
+          disabled && 'pbc-text-basic-light !pbc-bg-transparent',
         )}
         size='m'
         leftIcon={leftIcon}

@@ -75,6 +75,7 @@ export default tseslint.config(
       'vue/script-indent': 'off',
       'vue/no-multiple-template-root': 'off',
       'vue/multi-word-component-names': 'off',
+      'prettier/prettier': 'off',
     },
   },
   configPrettier,

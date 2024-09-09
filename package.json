@@ -10,7 +10,9 @@
   ],
   "scripts": {
     "react-dev": "npm run --workspace=storybook-react dev",
+    "react-lib-dev": "npm run --workspace=@pbcomponents/react dev",
     "vue-dev": "npm run --workspace=storybook-vue dev",
+    "vue-lib-dev": "npm run --workspace=@pbcomponents/vue dev",
     "build:react": "npm run --workspace=@pbcomponents/react build",
     "build:vue": "npm run --workspace=@pbcomponents/vue build",
     "build": "npm-run-all -p build:*",
