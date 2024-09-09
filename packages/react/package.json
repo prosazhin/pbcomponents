@@ -93,6 +93,11 @@
   },
   "contributors": [
     {
+      "name": "Evgenii Sazhin",
+      "email": "prosazhin@gmail.com",
+      "url": "https://github.com/prosazhin"
+    },
+    {
       "name": "Katya Lebedeva",
       "email": "le.ktrna@gmail.com",
       "url": "https://github.com/klebedeva"
