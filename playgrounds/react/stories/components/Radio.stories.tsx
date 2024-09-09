@@ -1,12 +1,12 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import { Checkbox as Component } from '@pbcomponents/react';
+import { Radio as Component } from '@pbcomponents/react';
 
 // @ts-expect-error: Unreachable code error
-Component.displayName = 'Checkbox';
+Component.displayName = 'Radio';
 
 const meta = {
-  title: 'Components/Checkbox',
+  title: 'Components/Radio',
   component: Component,
   parameters: {
     layout: 'centered',
@@ -25,20 +25,16 @@ const meta = {
     checked: {
       control: 'boolean',
     },
-    indeterminate: {
-      control: 'boolean',
-    },
     disabled: {
       control: 'boolean',
     },
     className: { control: 'text' },
   },
   args: {
-    label: 'Checkbox',
+    label: 'Radio',
     labelPlace: 'right',
     size: 'm',
     checked: false,
-    indeterminate: false,
     disabled: false,
     onChange: () => {},
   },

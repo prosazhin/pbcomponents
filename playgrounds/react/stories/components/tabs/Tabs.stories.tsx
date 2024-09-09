@@ -23,7 +23,6 @@ const meta = {
     display: 'title',
     defaultIndex: 0,
     onChange: () => {},
-    className: '',
   },
 } satisfies Meta<typeof Component>;
 

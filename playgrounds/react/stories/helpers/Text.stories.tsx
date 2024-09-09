@@ -25,7 +25,6 @@ const meta = {
     children: 'label',
     size: 'm',
     medium: false,
-    className: '',
   },
 } satisfies Meta<typeof Component>;
 
