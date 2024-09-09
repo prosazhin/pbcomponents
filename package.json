@@ -1,128 +1,77 @@
 {
-  "name": "react-pbcomponents",
-  "version": "0.0.1",
-  "description": "UI component library for React with Typescript and Tailwind",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/prosazhin/react-pbcomponents.git"
+  "name": "pbcomponents",
+  "version": "0.0.0",
+  "description": "UI component library for React and Vue with Typescript and Tailwind",
+  "main": "index.js",
+  "private": true,
+  "workspaces": [
+    "./packages/*",
+    "./playgrounds/*"
+  ],
+  "scripts": {
+    "react-dev": "npm run --workspace=storybook-react dev",
+    "react-lib-dev": "npm run --workspace=@pbcomponents/react dev",
+    "vue-dev": "npm run --workspace=storybook-vue dev",
+    "vue-lib-dev": "npm run --workspace=@pbcomponents/vue dev",
+    "build:react": "npm run --workspace=@pbcomponents/react build",
+    "build:vue": "npm run --workspace=@pbcomponents/vue build",
+    "build": "npm-run-all -p build:*",
+    "lint": "npm run lint --workspaces --if-present",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,vue,md,mdx,json}\"",
+    "install-force": "npm install --force",
+    "clean:all-build": "npm run clean:build --workspaces --if-present",
+    "clean:all-modules": "npm run clean:modules --workspaces --if-present",
+    "clean:all": "npm-run-all -s clean:all-build clean:all-modules",
+    "clean:lock": "rm package-lock.json",
+    "clean:modules": "rimraf ./node_modules",
+    "prepare": "npx simple-git-hooks"
   },
   "author": "Evgenii Sazhin <prosazhin@gmail.com> (https://prosazhin.ru)",
   "license": "MIT",
-  "type": "module",
-  "types": "./dist/index.d.ts",
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    }
-  },
-  "files": [
-    "dist"
-  ],
-  "engines": {
-    "node": ">=18.0.0"
-  },
-  "scripts": {
-    "dev": "concurrently \"npm run dev:lib\" \"npm run dev:storybook\"",
-    "build": "npm run build:lib && npm run build:storybook",
-    "dev:lib": "vite build --watch",
-    "build:lib": "tsc && vite build",
-    "dev:storybook": "storybook dev -p 6006 --docs",
-    "build:storybook": "storybook build --docs",
-    "lint": "tsc --noEmit && eslint src",
-    "lint:fix": "eslint --fix src --ext .ts,.tsx",
-    "lint:markup": "tsc --noEmit",
-    "format": "prettier --write src",
-    "prepare": "husky install"
-  },
-  "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "devDependencies": {
-    "@heroicons/react": "^2.0.18",
-    "@storybook/addon-essentials": "^7.5.1",
-    "@storybook/addon-interactions": "^7.5.1",
-    "@storybook/addon-links": "^7.5.1",
-    "@storybook/addon-mdx-gfm": "^7.5.1",
-    "@storybook/addon-onboarding": "^1.0.8",
-    "@storybook/blocks": "^7.5.1",
-    "@storybook/react": "^7.5.1",
-    "@storybook/react-vite": "^7.5.1",
-    "@storybook/testing-library": "^0.2.2",
-    "@tailwindcss/aspect-ratio": "^0.4.2",
-    "@tailwindcss/forms": "^0.5.4",
-    "@tailwindcss/typography": "^0.5.9",
-    "@trivago/prettier-plugin-sort-imports": "^4.2.0",
-    "@types/node": "^20.4.5",
-    "@types/react": "^18.2.17",
-    "@types/react-dom": "^18.2.7",
-    "@typescript-eslint/eslint-plugin": "^6.1.0",
-    "@typescript-eslint/parser": "^6.1.0",
-    "@vitejs/plugin-react": "^4.0.3",
-    "autoprefixer": "^10.4.14",
-    "clsx": "^2.0.0",
-    "concurrently": "^8.2.0",
-    "eslint": "^8.45.0",
-    "eslint-config-prettier": "^8.9.0",
-    "eslint-plugin-prettier": "^5.0.0",
-    "eslint-plugin-react": "^7.33.1",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.3",
-    "eslint-plugin-storybook": "^0.6.15",
-    "eslint-plugin-tailwindcss": "^3.13.0",
-    "husky": "^8.0.0",
-    "lint-staged": "^13.2.3",
-    "pbstyles": "^1.2.1",
-    "postcss": "^8.4.26",
-    "prettier": "^3.0.0",
-    "prettier-plugin-tailwindcss": "^0.4.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "storybook": "^7.5.1",
-    "tailwindcss": "^3.3.3",
-    "tslib": "^2.6.0",
-    "typescript": "^5.1.6",
-    "vite": "^4.4.5",
-    "vite-plugin-css-injected-by-js": "^3.2.1",
-    "vite-plugin-dts": "^3.4.0"
+  "simple-git-hooks": {
+    "pre-commit": "npx --no-install lint-staged --concurrent false",
+    "pre-push": "npm run format",
+    "commit-msg": "npx --no-install commitlint --edit ${1}"
   },
   "lint-staged": {
-    "src/**/*.{ts,tsx}": [
-      "prettier --write",
-      "eslint --fix"
-    ],
-    "src/**/*.{md,mdx}": [
-      "prettier --write"
-    ],
-    "stories/**/*.{md,mdx}": [
-      "prettier --write"
+    "*": "npm run format"
+  },
+  "prettier": {
+    "bracketSpacing": true,
+    "semi": true,
+    "useTabs": false,
+    "trailingComma": "all",
+    "printWidth": 140,
+    "tabWidth": 2,
+    "jsxSingleQuote": true,
+    "singleQuote": true,
+    "quoteProps": "as-needed",
+    "arrowParens": "always",
+    "endOfLine": "lf",
+    "organizeImportsSkipDestructiveCodeActions": true,
+    "plugins": [
+      "prettier-plugin-organize-imports",
+      "prettier-plugin-tailwindcss"
     ]
   },
-  "keywords": [
-    "react",
-    "typescript",
-    "tailwindcss",
-    "ui",
-    "components",
-    "storybook",
-    "vite",
-    "eslint",
-    "prettier",
-    "husky"
-  ],
-  "contributors": [
-    {
-      "name": "example",
-      "email": "example@example.com",
-      "url": "https://example.com"
-    }
-  ],
-  "eslintConfig": {
+  "commitlint": {
     "extends": [
-      "plugin:storybook/recommended"
+      "@commitlint/config-conventional"
     ]
+  },
+  "dependencies": {
+    "@pbcomponents/react": "*",
+    "@pbcomponents/vue": "*"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.4.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "lint-staged": "^15.2.9",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^3.3.3",
+    "prettier-plugin-organize-imports": "^4.0.0",
+    "prettier-plugin-tailwindcss": "^0.6.6",
+    "rimraf": "^3.0.2",
+    "simple-git-hooks": "^2.11.1"
   }
 }
