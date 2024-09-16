@@ -52,36 +52,36 @@ import { Button } from '@pbcomponents/vue';
 
 ## Components
 
-| Name                   | Ready to use for React | React Preview                                                                              | Ready to use for Vue | Vue Preview |
-| :--------------------- | :--------------------- | :----------------------------------------------------------------------------------------- | :------------------- | :---------- |
-| Button                 | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-button-button--docs)   | -                    | -           |
-| Button Link            | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-button-link--docs)     | -                    | -           |
-| Button Group           | -                      | -                                                                                          | -                    | -           |
-| Badge                  | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-badge--docs)           | -                    | -           |
-| Tag Button             | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tag-button--docs)      | -                    | -           |
-| Tag Link               | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tag-link--docs)        | -                    | -           |
-| Checkbox               | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-checkbox--docs)        | -                    | -           |
-| Switch                 | -                      | -                                                                                          | -                    | -           |
-| Radio                  | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-radio--docs)           | -                    | -           |
-| Inline Radio           | -                      | -                                                                                          | -                    | -           |
-| Inline Radio Item      | -                      | -                                                                                          | -                    | -           |
-| Input                  | -                      | -                                                                                          | -                    | -           |
-| Textarea               | -                      | -                                                                                          | -                    | -           |
-| Select                 | -                      | -                                                                                          | -                    | -           |
-| Field                  | -                      | -                                                                                          | -                    | -           |
-| Dropdown               | -                      | -                                                                                          | -                    | -           |
-| Dropdown Item          | -                      | -                                                                                          | -                    | -           |
-| Dropdown Item Checkbox | -                      | -                                                                                          | -                    | -           |
-| Dropdown Item Switch   | -                      | -                                                                                          | -                    | -           |
-| Dropdown Item Radio    | -                      | -                                                                                          | -                    | -           |
-| Tabs                   | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tabs--docs)            | -                    | -           |
-| Tab Button             | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tabs-tab-button--docs) | -                    | -           |
-| Tab Link               | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tabs-tab-link--docs)   | -                    | -           |
-| Collapse               | -                      | -                                                                                          | -                    | -           |
-| Collapse Item          | -                      | -                                                                                          | -                    | -           |
-| Alert                  | -                      | -                                                                                          | -                    | -           |
-| Modal                  | -                      | -                                                                                          | -                    | -           |
-| Notification           | -                      | -                                                                                          | -                    | -           |
+| Name                   | Ready to use for React | React Preview                                                                                             | Ready to use for Vue | Vue Preview |
+| :--------------------- | :--------------------- | :-------------------------------------------------------------------------------------------------------- | :------------------- | :---------- |
+| Button                 | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-button-button--docs)                  | -                    | -           |
+| Button Link            | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-button-link--docs)                    | -                    | -           |
+| Button Group           | -                      | -                                                                                                         | -                    | -           |
+| Badge                  | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-badge--docs)                          | -                    | -           |
+| Tag Button             | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tag-button--docs)                     | -                    | -           |
+| Tag Link               | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tag-link--docs)                       | -                    | -           |
+| Checkbox               | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-checkbox--docs)                       | -                    | -           |
+| Switch                 | -                      | -                                                                                                         | -                    | -           |
+| Radio                  | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-radio--docs)                          | -                    | -           |
+| Inline Radio           | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-inline-radio-inline-radio--docs)      | -                    | -           |
+| Inline Radio Item      | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-inline-radio-inline-radio-item--docs) | -                    | -           |
+| Input                  | -                      | -                                                                                                         | -                    | -           |
+| Textarea               | -                      | -                                                                                                         | -                    | -           |
+| Select                 | -                      | -                                                                                                         | -                    | -           |
+| Field                  | -                      | -                                                                                                         | -                    | -           |
+| Dropdown               | -                      | -                                                                                                         | -                    | -           |
+| Dropdown Item          | -                      | -                                                                                                         | -                    | -           |
+| Dropdown Item Checkbox | -                      | -                                                                                                         | -                    | -           |
+| Dropdown Item Switch   | -                      | -                                                                                                         | -                    | -           |
+| Dropdown Item Radio    | -                      | -                                                                                                         | -                    | -           |
+| Tabs                   | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tabs--docs)                           | -                    | -           |
+| Tab Button             | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tabs-tab-button--docs)                | -                    | -           |
+| Tab Link               | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tabs-tab-link--docs)                  | -                    | -           |
+| Collapse               | -                      | -                                                                                                         | -                    | -           |
+| Collapse Item          | -                      | -                                                                                                         | -                    | -           |
+| Alert                  | -                      | -                                                                                                         | -                    | -           |
+| Modal                  | -                      | -                                                                                                         | -                    | -           |
+| Notification           | -                      | -                                                                                                         | -                    | -           |
 
 ## Helpers
 
