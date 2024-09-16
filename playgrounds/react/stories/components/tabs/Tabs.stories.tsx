@@ -8,20 +8,14 @@ Component.displayName = 'Tabs';
 const meta = {
   title: 'Components/Tabs',
   component: Component,
-  parameters: {
-    layout: 'centered',
-  },
   tags: ['autodocs'],
   argTypes: {
-    display: { control: 'text' },
-    defaultIndex: { control: 'number' },
+    activeValue: { control: 'text' },
     className: { control: 'text' },
   },
   args: {
-    options: ['1', '2', '3', '4'].map((item) => ({ title: `Tab #${item}` })),
-    // @ts-expect-error: Unreachable code error
-    display: 'title',
-    defaultIndex: 0,
+    activeValue: '2',
+    options: ['1', '2', '3', '4'].map((item) => ({ label: `Tab`, value: item, children: item })),
     onChange: () => {},
   },
 } satisfies Meta<typeof Component>;

@@ -7,7 +7,7 @@ import clsx from 'clsx';
 import Content from '@/components/helpers/content';
 import Icon from '@/components/helpers/icon';
 
-export type Props<T extends React.ElementType> = PolymorphicComponentPropsWithRef<
+export type Props<T extends React.ElementType = 'button' | 'a'> = PolymorphicComponentPropsWithRef<
   T,
   WithIconsType & {
     size: 'xs' | 's' | 'm' | 'l';

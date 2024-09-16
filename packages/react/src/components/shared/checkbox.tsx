@@ -8,7 +8,7 @@ import clsx from 'clsx';
 import Content from '@/components/helpers/content';
 import Icon from '@/components/helpers/icon';
 
-export type Props<T extends React.ElementType> = PolymorphicComponentPropsWithRef<
+export type Props<T extends React.ElementType = 'input'> = PolymorphicComponentPropsWithRef<
   T,
   {
     labelPlace: 'left' | 'right';
@@ -68,10 +68,10 @@ export const Checkbox = <T extends React.ElementType = 'input'>({
             size === 's' && 'pbc-size-16',
             size === 'm' && 'pbc-size-24',
           )}
-          onChange={(event) => onChange(event.target.checked)}
           {...rest}
+          onChange={(event) => onChange(event.target.checked)}
         />
-        {(checked || indeterminate) && <Icon tag={IconIcon} size={size} className='pbc-absolute pbc-top-0 pbc-left-0 pbc-text-white' />}
+        {(checked || indeterminate) && <Icon tag={IconIcon} size={size} className='pbc-absolute pbc-inset-0 pbc-m-auto pbc-text-white' />}
       </div>
       {label && (
         <Content

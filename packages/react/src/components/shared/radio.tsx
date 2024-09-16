@@ -3,7 +3,7 @@ import clsx from 'clsx';
 
 import Content from '@/components/helpers/content';
 
-export type Props<T extends React.ElementType> = PolymorphicComponentPropsWithRef<
+export type Props<T extends React.ElementType = 'input'> = PolymorphicComponentPropsWithRef<
   T,
   {
     labelPlace: 'left' | 'right';
@@ -35,7 +35,6 @@ export const Radio = <T extends React.ElementType = 'input'>({
       type='radio'
       checked={checked}
       disabled={disabled}
-      onChange={(event) => onChange(event.target.checked)}
       className={clsx(
         'pbc pbc-relative pbc-cursor-pointer pbc-appearance-none pbc-transition-colors focus:pbc-ring-0 focus:pbc-ring-offset-0 pbc-outline-primary !pbc-m-0',
         'pbc-rounded-999 pbc-border-secondary-light hover:pbc-border-primary-main pbc-border-1 pbc-border-solid',
@@ -45,6 +44,7 @@ export const Radio = <T extends React.ElementType = 'input'>({
         size === 'm' && 'pbc-size-24 before:pbc-size-10',
       )}
       {...rest}
+      onChange={(event) => onChange(event.target.checked)}
     />
     {label && (
       <Content

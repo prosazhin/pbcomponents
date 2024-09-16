@@ -14,8 +14,8 @@ const Icon = ({ className, tag: IconTag, size }: Props) => (
     className={clsx(
       'pbc pbc-bg-transparent pbc-text-inherit',
       size === 's' && 'pbc-size-16',
-      size === 'm' && 'pbc-size-24',
-      size === 'l' && 'pbc-size-28',
+      size === 'm' && 'pbc-size-20',
+      size === 'l' && 'pbc-size-24',
       className,
     )}
   />

@@ -1,33 +1,29 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import { InlineRadioItem as Component } from '@pbcomponents/react';
+import { InlineRadio as Component } from '@pbcomponents/react';
 
 // @ts-expect-error: Unreachable code error
 Component.displayName = 'InlineRadio';
 
 const meta = {
-  title: 'Components/InlineRadio/InlineRadio',
+  title: 'Components/Inline Radio/Inline Radio',
   component: Component,
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
   argTypes: {
-    children: { control: 'text' },
+    activeValue: { control: 'text' },
+    className: { control: 'text' },
     size: {
       options: ['s', 'm'],
       control: { type: 'radio' },
     },
-    isActive: {
-      control: 'boolean',
-    },
-    className: { control: 'text' },
   },
   args: {
-    label: 'Inline Radio Item',
     size: 'm',
-    checked: false,
-    disabled: false,
+    activeValue: '2',
+    options: ['1', '2', '3', '4'].map((item) => ({ label: `Label`, value: item })),
     onChange: () => {},
   },
 } satisfies Meta<typeof Component>;

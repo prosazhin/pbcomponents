@@ -3,15 +3,16 @@ import clsx from 'clsx';
 
 import Content from '@/components/helpers/content';
 
-export type Props<T extends React.ElementType> = PolymorphicComponentPropsWithRef<
+export type Props<T extends React.ElementType = 'button' | 'a'> = PolymorphicComponentPropsWithRef<
   T,
   WithIconsType & {
-    active: boolean;
+    value: string;
+    active?: boolean | never;
     disabled?: boolean | never;
   }
 >;
 
-const Tab = <T extends React.ElementType = 'button' | 'a'>({ children, className, leftIcon, rightIcon, active, ...rest }: Props<T>) => {
+const Tab = <T extends React.ElementType = 'button' | 'a'>({ label, className, leftIcon, rightIcon, active, ...rest }: Props<T>) => {
   const { href, disabled } = rest;
   const Component = href ? 'a' : 'button';
 
@@ -38,7 +39,7 @@ const Tab = <T extends React.ElementType = 'button' | 'a'>({ children, className
         rightIcon={rightIcon}
         medium={true}
       >
-        {children}
+        {label}
       </Content>
     </Component>
   );
