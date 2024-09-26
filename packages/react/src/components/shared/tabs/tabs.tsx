@@ -1,20 +1,24 @@
-import { ComponentType } from '@/types';
+'use client';
+
+import Tab, { TabProps } from '@/components/shared/tabs/tab';
+import { ComponentWrapperType, DivType } from '@/types';
 import clsx from 'clsx';
+import { forwardRef, useState } from 'react';
 
-import Tab, { Props as TabProps } from '@/components/shared/tabs/tab';
+export interface TabsProps<T> extends ComponentWrapperType<T> {
+  defaultIndex?: number;
+  onChange?: (index: number, event: React.MouseEvent<HTMLElement>) => void;
+}
 
-export type Props<T extends TabProps> = ComponentType & {
-  activeValue: string;
-  options: T[];
-  onChange: (value: T) => void;
-};
-
-const Tabs = <T extends TabProps>({ className, activeValue, options, onChange }: Props<T>) => {
-  const children: React.ReactNode | undefined = options.find((tab) => tab.children && tab.value === activeValue)?.children;
+const Tabs = forwardRef<DivType, TabsProps<React.ReactElement<TabProps>>>((props, ref) => {
+  const { children, className, defaultIndex = 0, onChange, ...rest } = props;
+  const [activeIndex, setActiveIndex] = useState<number>(defaultIndex);
 
   return (
     <div>
       <div
+        {...rest}
+        ref={ref}
         className={clsx(
           'pbc pbc-relative pbc-w-full after:pbc-absolute after:pbc-inset-x-0 after:pbc-bottom-0 after:pbc-z-[1]',
           'after:pbc-bg-secondary-lighter after:pbc-h-2 after:pbc-w-full after:pbc-rounded-999',
@@ -27,14 +31,25 @@ const Tabs = <T extends TabProps>({ className, activeValue, options, onChange }:
             'pbc-flex-nowrap pbc-items-center pbc-gap-x-16 pbc-overflow-x-auto',
           )}
         >
-          {options.map((item, index) => (
-            <Tab key={index} {...item} active={item.value === activeValue} onClick={() => onChange(item)} />
-          ))}
+          {children &&
+            children.map(({ props: itemProps }, index) => (
+              <Tab
+                {...itemProps}
+                key={index}
+                active={activeIndex === index}
+                onClick={(event) => {
+                  setActiveIndex(index);
+                  if (onChange) onChange(index, event);
+                }}
+              />
+            ))}
         </div>
       </div>
-      {children}
+      {children && children[activeIndex].props.children}
     </div>
   );
-};
+});
+
+Tabs.displayName = 'Tabs';
 
 export default Tabs;

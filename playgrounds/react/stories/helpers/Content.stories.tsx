@@ -2,9 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import * as heroicons from '@heroicons/react/24/solid';
 import { Content as Component } from '@pbcomponents/react';
-
-// @ts-expect-error: Unreachable code error
-Component.displayName = 'Content';
+import { defaultArgs, iconsArg, mediumArg, SMLSizeArg } from '../args';
 
 const meta = {
   title: 'Helpers/Content',
@@ -14,33 +12,21 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {
-    children: { control: 'text' },
-    className: { control: 'text' },
-    leftIcon: {
-      options: [undefined, ...Object.keys(heroicons)],
-      control: { type: 'select' },
-    },
-    rightIcon: {
-      options: [undefined, ...Object.keys(heroicons)],
-      control: { type: 'select' },
-    },
-    size: {
-      options: ['s', 'm', 'l'],
-      control: { type: 'radio' },
-    },
-    medium: { control: 'boolean' },
+    ...Object.assign(defaultArgs),
+    ...Object.assign(iconsArg),
+    ...Object.assign(SMLSizeArg),
+    ...Object.assign(mediumArg),
   },
   args: {
     children: 'Content',
-    leftIcon: undefined,
-    rightIcon: undefined,
     size: 'm',
     medium: false,
+    leftIcon: undefined,
+    rightIcon: undefined,
     className: '',
   },
   render: ({ children, leftIcon, rightIcon, size, medium, className }) => (
     <Component
-      children={children}
       size={size}
       medium={medium}
       // @ts-expect-error: Unreachable code error
@@ -48,7 +34,9 @@ const meta = {
       // @ts-expect-error: Unreachable code error
       rightIcon={rightIcon ? heroicons[rightIcon] : rightIcon}
       className={className ? className : undefined}
-    />
+    >
+      {children}
+    </Component>
   ),
 } satisfies Meta<typeof Component>;
 

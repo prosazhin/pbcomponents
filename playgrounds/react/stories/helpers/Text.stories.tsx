@@ -1,9 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 import { Text as Component } from '@pbcomponents/react';
-
-// @ts-expect-error: Unreachable code error
-Component.displayName = 'Text';
+import { defaultArgs, mediumArg, SMLSizeArg } from '../args';
 
 const meta = {
   title: 'Helpers/Text',
@@ -13,19 +11,21 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {
-    children: { control: 'text' },
-    className: { control: 'text' },
-    size: {
-      options: ['s', 'm', 'l'],
-      control: { type: 'radio' },
-    },
-    medium: { control: 'boolean' },
+    ...Object.assign(defaultArgs),
+    ...Object.assign(SMLSizeArg),
+    ...Object.assign(mediumArg),
   },
   args: {
     children: 'label',
     size: 'm',
     medium: false,
+    className: '',
   },
+  render: ({ children, size, medium, className }) => (
+    <Component size={size} medium={medium} className={className ? className : undefined}>
+      {children}
+    </Component>
+  ),
 } satisfies Meta<typeof Component>;
 
 export default meta;

@@ -2,56 +2,44 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import * as heroicons from '@heroicons/react/24/solid';
 import { Tab as Component } from '@pbcomponents/react';
-
-// @ts-expect-error: Unreachable code error
-Component.displayName = 'Tab';
+import { activeArg, classNameArg, disabledArg, iconsArg } from '../../../args';
 
 const meta = {
-  title: 'Components/Tabs/Tab/Link',
+  title: 'Components/Tabs/Tab/Tab Link',
   component: Component,
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
   argTypes: {
-    children: { control: 'text' },
-    className: { control: 'text' },
-    leftIcon: {
-      options: [undefined, ...Object.keys(heroicons)],
-      control: { type: 'select' },
+    ...Object.assign(classNameArg),
+    ...Object.assign(iconsArg),
+    ...Object.assign(activeArg),
+    ...Object.assign(disabledArg),
+    label: {
+      control: 'text',
+      defaultValue: { summary: undefined },
     },
-    rightIcon: {
-      options: [undefined, ...Object.keys(heroicons)],
-      control: { type: 'select' },
-    },
-    active: {
-      control: 'boolean',
-    },
-    disabled: {
-      control: 'boolean',
-    },
-    href: { control: 'text' },
   },
   args: {
-    children: 'Tab',
-    leftIcon: undefined,
-    rightIcon: undefined,
+    label: 'Tab',
     active: false,
     disabled: false,
     href: '#',
+    leftIcon: undefined,
+    rightIcon: undefined,
     className: '',
   },
-  render: ({ children, leftIcon, rightIcon, active, disabled, href, className }) => (
+  render: ({ label, leftIcon, rightIcon, active, disabled, href, className }) => (
     <Component
-      children={children}
+      label={label}
+      active={active}
+      disabled={disabled}
+      href={href}
       // @ts-expect-error: Unreachable code error
       leftIcon={leftIcon ? heroicons[leftIcon] : leftIcon}
       // @ts-expect-error: Unreachable code error
       rightIcon={rightIcon ? heroicons[rightIcon] : rightIcon}
-      active={active}
-      disabled={disabled}
-      // @ts-expect-error: Unreachable code error
-      href={href}
       className={className ? className : undefined}
     />
   ),

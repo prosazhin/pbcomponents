@@ -1,48 +1,49 @@
-import { ArrowPathIcon } from '@heroicons/react/24/solid';
-import { useEffect, useRef, useState } from 'react';
-
-import { PolymorphicComponentPropsWithRef, WithIconsType } from '@/types';
-import clsx from 'clsx';
+'use client';
 
 import Content from '@/components/helpers/content';
 import Icon from '@/components/helpers/icon';
+import { ButtonOrLinkHTMLAttributes, ButtonOrLinkType, CheckedType, DisabledType, LoadingType, SMSizeType, WithIconsType } from '@/types';
+import { ArrowPathIcon } from '@heroicons/react/24/solid';
+import clsx from 'clsx';
+import { forwardRef, useEffect, useRef, useState } from 'react';
 
-export type Props<T extends React.ElementType = 'button' | 'a'> = PolymorphicComponentPropsWithRef<
-  T,
-  WithIconsType & {
-    checked: boolean;
-    size: 's' | 'm';
-    theme: 'light' | 'border';
-    loading?: boolean | never;
-    disabled?: boolean | never;
-  }
->;
+type BaseTagProps = ButtonOrLinkHTMLAttributes & CheckedType & LoadingType & DisabledType & WithIconsType & SMSizeType;
 
-const Tag = <T extends React.ElementType = 'button' | 'a'>({
-  children,
-  className,
-  leftIcon,
-  rightIcon,
-  checked,
-  size,
-  theme,
-  loading,
-  ...rest
-}: Props<T>) => {
+export interface TagProps extends BaseTagProps {
+  theme?: 'light' | 'border';
+}
+
+const Tag = forwardRef<ButtonOrLinkType, TagProps>((props, ref) => {
+  const {
+    children,
+    className,
+    href,
+    size = 'm',
+    theme = 'light',
+    checked = false,
+    loading = false,
+    disabled = false,
+    leftIcon,
+    rightIcon,
+    ...rest
+  } = props;
+  const TagName = href ? 'a' : 'button';
+
+  const internalRef = useRef<ButtonOrLinkType>(null);
+  const tagRef = (ref || internalRef) as React.MutableRefObject<ButtonOrLinkType>;
+
   const [width, setWidth] = useState<number>(0);
-  const ref = useRef<HTMLButtonElement | HTMLAnchorElement>(null);
-
-  const { href, disabled } = rest;
-  const Component = href ? 'a' : 'button';
 
   useEffect(() => {
-    if (ref && ref.current) {
-      setWidth(ref.current.offsetWidth);
+    if (tagRef.current) {
+      setWidth(tagRef.current.offsetWidth);
     }
-  }, [children, size, leftIcon, rightIcon]);
+  }, [tagRef, children, size, leftIcon, rightIcon]);
 
   return (
-    <Component
+    <TagName
+      {...rest}
+      ref={tagRef as any}
       className={clsx(
         'pbc pbc-rounded-999 pbc-flex-inline pbc-transition-colors pbc-outline-primary pbc-border-1',
         size === 's' && 'pbc-h-26 pbc-px-8 pbc-py-4',
@@ -57,9 +58,7 @@ const Tag = <T extends React.ElementType = 'button' | 'a'>({
       )}
       disabled={disabled || loading}
       aria-disabled={disabled || loading}
-      ref={ref}
       style={{ width: loading ? width : undefined }}
-      {...rest}
     >
       {loading ? (
         <Icon tag={ArrowPathIcon} size='s' className={clsx('pbc-animate-spin pbc-transition')} />
@@ -68,8 +67,10 @@ const Tag = <T extends React.ElementType = 'button' | 'a'>({
           {children}
         </Content>
       )}
-    </Component>
+    </TagName>
   );
-};
+});
+
+Tag.displayName = 'Tag';
 
 export default Tag;

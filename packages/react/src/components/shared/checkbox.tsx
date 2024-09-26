@@ -1,43 +1,47 @@
-import { useEffect, useRef } from 'react';
-
-import { CheckIcon, MinusIcon } from '@heroicons/react/24/solid';
-
-import { PolymorphicComponentPropsWithRef } from '@/types';
-import clsx from 'clsx';
+'use client';
 
 import Content from '@/components/helpers/content';
 import Icon from '@/components/helpers/icon';
+import {
+  CheckedType,
+  DisabledType,
+  IndeterminateType,
+  InputHTMLAttributes,
+  InputType,
+  LabelPlaceType,
+  SMSizeType,
+  WithIconsType,
+} from '@/types';
+import { CheckIcon, MinusIcon } from '@heroicons/react/24/solid';
+import clsx from 'clsx';
+import { forwardRef, useEffect, useRef } from 'react';
 
-export type Props<T extends React.ElementType = 'input'> = PolymorphicComponentPropsWithRef<
-  T,
-  {
-    labelPlace: 'left' | 'right';
-    size: 's' | 'm';
-    checked?: boolean | never;
-    indeterminate?: boolean | never;
-    disabled?: boolean | never;
-    onChange: (value: boolean) => void;
-  }
->;
+type BaseCheckboxProps = InputHTMLAttributes & LabelPlaceType & CheckedType & IndeterminateType & DisabledType & WithIconsType & SMSizeType;
 
-export const Checkbox = <T extends React.ElementType = 'input'>({
-  className,
-  labelPlace = 'right',
-  size,
-  checked = false,
-  indeterminate = false,
-  label,
-  disabled,
-  onChange,
-  ...rest
-}: Props<T>) => {
-  const input = useRef<HTMLInputElement>(null);
+export interface CheckboxProps extends BaseCheckboxProps {}
+
+const Checkbox = forwardRef<InputType, CheckboxProps>((props, ref) => {
+  const {
+    children,
+    className,
+    labelPlace = 'right',
+    size = 'm',
+    checked = false,
+    indeterminate = false,
+    disabled = false,
+    leftIcon,
+    rightIcon,
+    ...rest
+  } = props;
+
+  const internalRef = useRef<InputType>(null);
+  const checkboxRef = (ref || internalRef) as React.MutableRefObject<InputType>;
 
   useEffect(() => {
-    if (input.current) {
-      input.current.indeterminate = Boolean(indeterminate);
+    if (checkboxRef.current) {
+      checkboxRef.current.indeterminate = indeterminate;
     }
-  }, [indeterminate]);
+  }, [checkboxRef, indeterminate]);
 
   let IconIcon = CheckIcon;
 
@@ -55,25 +59,28 @@ export const Checkbox = <T extends React.ElementType = 'input'>({
     >
       <div className={clsx('pbc pbc-relative', size === 's' && 'pbc-size-16', size === 'm' && 'pbc-size-24')}>
         <input
+          {...rest}
+          ref={checkboxRef}
           type='checkbox'
-          ref={input}
           checked={checked}
           disabled={disabled}
           className={clsx(
-            'pbc pbc-cursor-pointer pbc-appearance-none pbc-transition-colors focus:pbc-ring-0 focus:pbc-ring-offset-0 pbc-outline-primary !pbc-m-0',
+            'pbc pbc-size-full pbc-cursor-pointer pbc-appearance-none pbc-transition-colors focus:pbc-ring-0 focus:pbc-ring-offset-0 pbc-outline-primary !pbc-m-0',
             'pbc-rounded-4 pbc-border-secondary-light hover:pbc-border-primary-main pbc-border-1 pbc-border-solid',
             'disabled:!pbc-cursor-default disabled:pbc-bg-basic-lighter disabled:pbc-border-secondary-light hover:disabled:pbc-border-secondary-light hover:disabled:pbc-bg-basic-lighter',
             'checked:pbc-bg-primary-main checked:pbc-border-transparent hover:checked:pbc-bg-primary-darker disabled:checked:pbc-bg-primary-light disabled:checked:pbc-border-transparent hover:disabled:checked:pbc-bg-primary-light',
             'indeterminate:pbc-bg-primary-main indeterminate:pbc-border-transparent hover:indeterminate:pbc-bg-primary-darker disabled:indeterminate:pbc-bg-primary-light disabled:indeterminate:pbc-border-transparent hover:disabled:indeterminate:pbc-bg-primary-light',
-            size === 's' && 'pbc-size-16',
-            size === 'm' && 'pbc-size-24',
           )}
-          {...rest}
-          onChange={(event) => onChange(event.target.checked)}
         />
-        {(checked || indeterminate) && <Icon tag={IconIcon} size={size} className='pbc-absolute pbc-inset-0 pbc-m-auto pbc-text-white' />}
+        {(checked || indeterminate) && (
+          <Icon
+            tag={IconIcon}
+            size={size}
+            className='pbc-absolute pbc-inset-0 pbc-m-auto pbc-text-white pbc-pointer-events-none pbc-select-none'
+          />
+        )}
       </div>
-      {label && (
+      {children && (
         <Content
           className={clsx(
             'pbc-flex-1 pbc-transition-colors',
@@ -82,12 +89,16 @@ export const Checkbox = <T extends React.ElementType = 'input'>({
             disabled ? 'pbc-text-basic-light' : 'pbc-text-basic-main',
           )}
           size={size}
+          leftIcon={leftIcon}
+          rightIcon={rightIcon}
         >
-          {label}
+          {children}
         </Content>
       )}
     </label>
   );
-};
+});
+
+Checkbox.displayName = 'Checkbox';
 
 export default Checkbox;

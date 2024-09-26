@@ -2,9 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import * as heroicons from '@heroicons/react/24/solid';
 import { Icon as Component } from '@pbcomponents/react';
-
-// @ts-expect-error: Unreachable code error
-Component.displayName = 'Icon';
+import { classNameArg, iconArg, SMLSizeArg } from '../args';
 
 export type Props = {
   className?: string | never;
@@ -20,15 +18,9 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {
-    className: { control: 'text' },
-    tag: {
-      options: Object.keys(heroicons),
-      control: { type: 'select' },
-    },
-    size: {
-      options: ['s', 'm', 'l'],
-      control: { type: 'radio' },
-    },
+    ...Object.assign(SMLSizeArg),
+    ...Object.assign(classNameArg),
+    tag: { ...iconArg },
   },
   args: {
     // @ts-expect-error: Unreachable code error

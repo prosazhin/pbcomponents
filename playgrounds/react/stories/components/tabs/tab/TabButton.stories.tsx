@@ -2,56 +2,47 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import * as heroicons from '@heroicons/react/24/solid';
 import { Tab as Component } from '@pbcomponents/react';
-
-// @ts-expect-error: Unreachable code error
-Component.displayName = 'Tab';
+import { activeArg, classNameArg, disabledArg, iconsArg, onClickArg, typeArg } from '../../../args';
 
 const meta = {
-  title: 'Components/Tabs/Tab/Button',
+  title: 'Components/Tabs/Tab/Tab Button',
   component: Component,
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
   argTypes: {
-    children: { control: 'text' },
-    className: { control: 'text' },
-    leftIcon: {
-      options: [undefined, ...Object.keys(heroicons)],
-      control: { type: 'select' },
+    ...Object.assign(classNameArg),
+    ...Object.assign(iconsArg),
+    ...Object.assign(activeArg),
+    ...Object.assign(disabledArg),
+    ...Object.assign(typeArg),
+    ...Object.assign(onClickArg),
+    label: {
+      control: 'text',
+      defaultValue: { summary: undefined },
     },
-    rightIcon: {
-      options: [undefined, ...Object.keys(heroicons)],
-      control: { type: 'select' },
-    },
-    active: {
-      control: 'boolean',
-    },
-    disabled: {
-      control: 'boolean',
-    },
-    type: { control: 'text' },
   },
   args: {
-    children: 'Tab',
-    leftIcon: undefined,
-    rightIcon: undefined,
+    label: 'Tab',
     active: false,
     disabled: false,
     type: 'button',
     onClick: () => {},
+    leftIcon: undefined,
+    rightIcon: undefined,
     className: '',
   },
-  render: ({ children, leftIcon, rightIcon, active, disabled, type, onClick, className }) => (
+  render: ({ label, leftIcon, rightIcon, active, disabled, type, onClick, className }) => (
     <Component
-      children={children}
+      label={label}
+      active={active}
+      disabled={disabled}
+      type={type}
       // @ts-expect-error: Unreachable code error
       leftIcon={leftIcon ? heroicons[leftIcon] : leftIcon}
       // @ts-expect-error: Unreachable code error
       rightIcon={rightIcon ? heroicons[rightIcon] : rightIcon}
-      active={active}
-      disabled={disabled}
-      type={type}
       className={className ? className : undefined}
       onClick={onClick}
     />

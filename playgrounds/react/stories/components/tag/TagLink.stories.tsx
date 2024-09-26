@@ -2,75 +2,57 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import * as heroicons from '@heroicons/react/24/solid';
 import { Tag as Component } from '@pbcomponents/react';
-
-// @ts-expect-error: Unreachable code error
-Component.displayName = 'Tag';
+import { checkedArg, defaultArgs, disabledArg, hrefArg, iconsArg, loadingArg, SMSizeArg } from '../../args';
 
 const meta = {
-  title: 'Components/Tag/Link',
+  title: 'Components/Tag/Tag Link',
   component: Component,
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
   argTypes: {
-    children: { control: 'text' },
-    className: { control: 'text' },
-    leftIcon: {
-      options: [undefined, ...Object.keys(heroicons)],
-      control: { type: 'select' },
-    },
-    rightIcon: {
-      options: [undefined, ...Object.keys(heroicons)],
-      control: { type: 'select' },
-    },
-    size: {
-      options: ['s', 'm'],
-      control: { type: 'radio' },
-    },
+    ...Object.assign(defaultArgs),
+    ...Object.assign(SMSizeArg),
+    ...Object.assign(iconsArg),
+    ...Object.assign(checkedArg),
+    ...Object.assign(disabledArg),
+    ...Object.assign(loadingArg),
+    ...Object.assign(hrefArg),
     theme: {
       options: ['light', 'border'],
       control: { type: 'radio' },
+      defaultValue: { summary: 'light' },
     },
-    checked: {
-      control: 'boolean',
-    },
-    disabled: {
-      control: 'boolean',
-    },
-    loading: {
-      control: 'boolean',
-    },
-    href: { control: 'text' },
   },
   args: {
     children: 'Tag',
-    leftIcon: undefined,
-    rightIcon: undefined,
     size: 's',
     theme: 'light',
     checked: false,
     disabled: false,
     loading: false,
     href: '#',
+    leftIcon: undefined,
+    rightIcon: undefined,
     className: '',
   },
   render: ({ children, leftIcon, rightIcon, size, theme, checked, disabled, loading, href, className }) => (
     <Component
-      children={children}
-      // @ts-expect-error: Unreachable code error
-      leftIcon={leftIcon ? heroicons[leftIcon] : leftIcon}
-      // @ts-expect-error: Unreachable code error
-      rightIcon={rightIcon ? heroicons[rightIcon] : rightIcon}
       size={size}
       theme={theme}
       checked={checked}
       disabled={disabled}
       loading={loading}
-      // @ts-expect-error: Unreachable code error
       href={href}
+      // @ts-expect-error: Unreachable code error
+      leftIcon={leftIcon ? heroicons[leftIcon] : leftIcon}
+      // @ts-expect-error: Unreachable code error
+      rightIcon={rightIcon ? heroicons[rightIcon] : rightIcon}
       className={className ? className : undefined}
-    />
+    >
+      {children}
+    </Component>
   ),
 } satisfies Meta<typeof Component>;
 

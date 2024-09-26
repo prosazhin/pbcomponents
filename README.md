@@ -54,14 +54,14 @@ import { Button } from '@pbcomponents/vue';
 
 | Name                   | Ready to use for React | React Preview                                                                                             | Ready to use for Vue | Vue Preview |
 | :--------------------- | :--------------------- | :-------------------------------------------------------------------------------------------------------- | :------------------- | :---------- |
-| Button                 | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-button-button--docs)                  | -                    | -           |
-| Button Link            | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-button-link--docs)                    | -                    | -           |
-| Button Group           | -                      | -                                                                                                         | -                    | -           |
+| Button                 | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-buttons-button-button--docs)          | -                    | -           |
+| Button Link            | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-buttons-button-button-link--docs)     | -                    | -           |
+| Button Group           | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-buttons-button-group--docs)           | -                    | -           |
 | Badge                  | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-badge--docs)                          | -                    | -           |
-| Tag Button             | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tag-button--docs)                     | -                    | -           |
-| Tag Link               | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tag-link--docs)                       | -                    | -           |
+| Tag Button             | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tag-tag-button--docs)                 | -                    | -           |
+| Tag Link               | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tag-tag-link--docs)                   | -                    | -           |
 | Checkbox               | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-checkbox--docs)                       | -                    | -           |
-| Switch                 | -                      | -                                                                                                         | -                    | -           |
+| Switch                 | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-switch--docs)                         | -                    | -           |
 | Radio                  | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-radio--docs)                          | -                    | -           |
 | Inline Radio           | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-inline-radio-inline-radio--docs)      | -                    | -           |
 | Inline Radio Item      | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-inline-radio-inline-radio-item--docs) | -                    | -           |
@@ -74,9 +74,9 @@ import { Button } from '@pbcomponents/vue';
 | Dropdown Item Checkbox | -                      | -                                                                                                         | -                    | -           |
 | Dropdown Item Switch   | -                      | -                                                                                                         | -                    | -           |
 | Dropdown Item Radio    | -                      | -                                                                                                         | -                    | -           |
-| Tabs                   | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tabs--docs)                           | -                    | -           |
-| Tab Button             | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tabs-tab-button--docs)                | -                    | -           |
-| Tab Link               | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tabs-tab-link--docs)                  | -                    | -           |
+| Tabs                   | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tabs-tabs--docs)                      | -                    | -           |
+| Tab Button             | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tabs-tab-tab-button--docs)            | -                    | -           |
+| Tab Link               | +                      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tabs-tab-tab-link--docs)              | -                    | -           |
 | Collapse               | -                      | -                                                                                                         | -                    | -           |
 | Collapse Item          | -                      | -                                                                                                         | -                    | -           |
 | Alert                  | -                      | -                                                                                                         | -                    | -           |

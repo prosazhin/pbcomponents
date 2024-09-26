@@ -2,77 +2,64 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import * as heroicons from '@heroicons/react/24/solid';
 import { Button as Component } from '@pbcomponents/react';
-
-// @ts-expect-error: Unreachable code error
-Component.displayName = 'Button';
+import { defaultArgs, disabledArg, iconsArg, loadingArg, onClickArg, sizeArg, typeArg } from '../../../args';
 
 const meta = {
-  title: 'Components/Button/Button',
+  title: 'Components/Buttons/Button/Button',
   component: Component,
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
   argTypes: {
-    children: { control: 'text' },
-    className: { control: 'text' },
-    leftIcon: {
-      options: [undefined, ...Object.keys(heroicons)],
-      control: { type: 'select' },
-    },
-    rightIcon: {
-      options: [undefined, ...Object.keys(heroicons)],
-      control: { type: 'select' },
-    },
-    size: {
-      options: ['xs', 's', 'm', 'l'],
-      control: { type: 'radio' },
-    },
+    ...Object.assign(defaultArgs),
+    ...Object.assign(sizeArg),
+    ...Object.assign(iconsArg),
+    ...Object.assign(disabledArg),
+    ...Object.assign(loadingArg),
+    ...Object.assign(typeArg),
+    ...Object.assign(onClickArg),
     theme: {
       options: ['filled', 'light', 'border', 'ghost'],
       control: { type: 'radio' },
+      defaultValue: { summary: 'filled' },
     },
     color: {
       options: ['primary', 'secondary', 'success', 'danger'],
       control: { type: 'radio' },
+      defaultValue: { summary: 'primary' },
     },
-    disabled: {
-      control: 'boolean',
-    },
-    loading: {
-      control: 'boolean',
-    },
-    type: { control: 'text' },
   },
   args: {
     children: 'Button',
-    leftIcon: undefined,
-    rightIcon: undefined,
-    size: 's',
+    size: 'm',
     theme: 'filled',
     color: 'primary',
     disabled: false,
     loading: false,
     type: 'button',
     onClick: () => {},
+    leftIcon: undefined,
+    rightIcon: undefined,
     className: '',
   },
   render: ({ children, leftIcon, rightIcon, size, theme, color, disabled, loading, className, onClick, type }) => (
     <Component
-      children={children}
-      // @ts-expect-error: Unreachable code error
-      leftIcon={leftIcon ? heroicons[leftIcon] : leftIcon}
-      // @ts-expect-error: Unreachable code error
-      rightIcon={rightIcon ? heroicons[rightIcon] : rightIcon}
       size={size}
       theme={theme}
       color={color}
       disabled={disabled}
       loading={loading}
       type={type}
+      // @ts-expect-error: Unreachable code error
+      leftIcon={leftIcon ? heroicons[leftIcon] : leftIcon}
+      // @ts-expect-error: Unreachable code error
+      rightIcon={rightIcon ? heroicons[rightIcon] : rightIcon}
       className={className ? className : undefined}
       onClick={onClick}
-    />
+    >
+      {children}
+    </Component>
   ),
 } satisfies Meta<typeof Component>;
 

@@ -1,9 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 import { Radio as Component } from '@pbcomponents/react';
-
-// @ts-expect-error: Unreachable code error
-Component.displayName = 'Radio';
+import { useArgs } from '@storybook/preview-api';
+import { checkedArg, defaultArgs, disabledArg, iconsArg, inputCheckboxArg, labelPlaceArg, SMSizeArg } from '../args';
 
 const meta = {
   title: 'Components/Radio',
@@ -13,30 +12,47 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {
-    label: { control: 'text' },
-    labelPlace: {
-      options: ['left', 'right'],
-      control: { type: 'radio' },
-    },
-    size: {
-      options: ['s', 'm'],
-      control: { type: 'radio' },
-    },
-    checked: {
-      control: 'boolean',
-    },
-    disabled: {
-      control: 'boolean',
-    },
-    className: { control: 'text' },
+    ...Object.assign(defaultArgs),
+    ...Object.assign(SMSizeArg),
+    ...Object.assign(iconsArg),
+    ...Object.assign(labelPlaceArg),
+    ...Object.assign(checkedArg),
+    ...Object.assign(disabledArg),
+    ...Object.assign(inputCheckboxArg),
   },
   args: {
-    label: 'Radio',
+    children: 'Label',
     labelPlace: 'right',
     size: 'm',
     checked: false,
     disabled: false,
     onChange: () => {},
+    leftIcon: undefined,
+    rightIcon: undefined,
+    className: '',
+  },
+  render: function Render(args) {
+    const { children, labelPlace, leftIcon, rightIcon, size, disabled, className } = args;
+    const [{ checked }, setArgs] = useArgs();
+
+    return (
+      <Component
+        size={size}
+        labelPlace={labelPlace}
+        checked={checked}
+        disabled={disabled}
+        // @ts-expect-error: Unreachable code error
+        leftIcon={leftIcon ? heroicons[leftIcon] : leftIcon}
+        // @ts-expect-error: Unreachable code error
+        rightIcon={rightIcon ? heroicons[rightIcon] : rightIcon}
+        className={className ? className : undefined}
+        onChange={() => {
+          setArgs({ checked: !checked });
+        }}
+      >
+        {children}
+      </Component>
+    );
   },
 } satisfies Meta<typeof Component>;
 

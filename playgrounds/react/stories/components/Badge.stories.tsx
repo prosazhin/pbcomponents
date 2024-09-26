@@ -2,9 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import * as heroicons from '@heroicons/react/24/solid';
 import { Badge as Component } from '@pbcomponents/react';
-
-// @ts-expect-error: Unreachable code error
-Component.displayName = 'Badge';
+import { defaultArgs, iconsArg, SMSizeArg } from '../args';
 
 const meta = {
   title: 'Components/Badge',
@@ -14,41 +12,31 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {
-    children: { control: 'text' },
-    className: { control: 'text' },
-    leftIcon: {
-      options: [undefined, ...Object.keys(heroicons)],
-      control: { type: 'select' },
-    },
-    rightIcon: {
-      options: [undefined, ...Object.keys(heroicons)],
-      control: { type: 'select' },
-    },
-    size: {
-      options: ['s', 'm'],
-      control: { type: 'radio' },
-    },
+    ...Object.assign(defaultArgs),
+    ...Object.assign(SMSizeArg),
+    ...Object.assign(iconsArg),
     theme: {
       options: ['filled', 'light', 'border'],
       control: { type: 'radio' },
+      defaultValue: { summary: 'filled' },
     },
     color: {
       options: ['primary', 'secondary', 'success', 'danger'],
       control: { type: 'radio' },
+      defaultValue: { summary: 'primary' },
     },
   },
   args: {
     children: 'Badge',
-    leftIcon: undefined,
-    rightIcon: undefined,
     size: 's',
     theme: 'filled',
     color: 'primary',
+    leftIcon: undefined,
+    rightIcon: undefined,
     className: '',
   },
-  render: ({ children, leftIcon, rightIcon, size, theme, color, className }) => (
+  render: ({ children, className, size, theme, color, leftIcon, rightIcon }) => (
     <Component
-      children={children}
       size={size}
       theme={theme}
       color={color}
@@ -57,7 +45,9 @@ const meta = {
       // @ts-expect-error: Unreachable code error
       rightIcon={rightIcon ? heroicons[rightIcon] : rightIcon}
       className={className ? className : undefined}
-    />
+    >
+      {children}
+    </Component>
   ),
 } satisfies Meta<typeof Component>;
 

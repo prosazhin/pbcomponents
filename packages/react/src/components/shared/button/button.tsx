@@ -1,48 +1,56 @@
-import { ArrowPathIcon } from '@heroicons/react/24/solid';
-import { useEffect, useRef, useState } from 'react';
-
-import { PolymorphicComponentPropsWithRef, WithIconsType } from '@/types';
-import clsx from 'clsx';
+'use client';
 
 import Content from '@/components/helpers/content';
 import Icon from '@/components/helpers/icon';
+import {
+  ButtonOrLinkHTMLAttributes,
+  ButtonOrLinkType,
+  ColorType,
+  DisabledType,
+  LoadingType,
+  SizeType,
+  ThemeType,
+  WithIconsType,
+} from '@/types';
+import { ArrowPathIcon } from '@heroicons/react/24/solid';
+import clsx from 'clsx';
+import { forwardRef, useEffect, useRef, useState } from 'react';
 
-export type Props<T extends React.ElementType = 'button' | 'a'> = PolymorphicComponentPropsWithRef<
-  T,
-  WithIconsType & {
-    size: 'xs' | 's' | 'm' | 'l';
-    theme: 'filled' | 'light' | 'border' | 'ghost';
-    color: 'primary' | 'secondary' | 'success' | 'danger';
-    loading?: boolean | never;
-    disabled?: boolean | never;
-  }
->;
+type BaseButtonProps = ButtonOrLinkHTMLAttributes & LoadingType & DisabledType & WithIconsType & ColorType & SizeType & ThemeType;
 
-const Button = <T extends React.ElementType = 'button' | 'a'>({
-  children,
-  className,
-  leftIcon,
-  rightIcon,
-  size,
-  theme,
-  color,
-  loading,
-  ...rest
-}: Props<T>) => {
+export interface ButtonProps extends BaseButtonProps {}
+
+const Button = forwardRef<ButtonOrLinkType, ButtonProps>((props, ref) => {
+  const {
+    children,
+    className,
+    href,
+    size = 'm',
+    theme = 'filled',
+    color = 'primary',
+    loading = false,
+    disabled = false,
+    leftIcon,
+    rightIcon,
+    ...rest
+  } = props;
+  const TagName = href ? 'a' : 'button';
+
+  const internalRef = useRef<ButtonOrLinkType>(null);
+  const buttonRef = (ref || internalRef) as React.MutableRefObject<ButtonOrLinkType>;
+
   const [width, setWidth] = useState<number>(0);
-  const ref = useRef<HTMLButtonElement | HTMLAnchorElement>(null);
-
-  const { href, disabled } = rest;
-  const Component = href ? 'a' : 'button';
 
   useEffect(() => {
-    if (ref && ref.current) {
-      setWidth(ref.current.offsetWidth);
+    if (buttonRef.current) {
+      setWidth(buttonRef.current.offsetWidth);
     }
-  }, [children, size, leftIcon, rightIcon]);
+  }, [buttonRef, children, size, leftIcon, rightIcon]);
 
   return (
-    <Component
+    <TagName
+      {...rest}
+      ref={buttonRef as any}
       className={clsx(
         'pbc pbc-flex-inline pbc-transition-colors',
         size === 'xs' && 'pbc-py-4 pbc-px-8 pbc-rounded-6 pbc-h-26',
@@ -85,9 +93,7 @@ const Button = <T extends React.ElementType = 'button' | 'a'>({
       )}
       disabled={disabled || loading}
       aria-disabled={disabled || loading}
-      ref={ref}
       style={{ width: loading ? width : undefined }}
-      {...rest}
     >
       {loading ? (
         <Icon tag={ArrowPathIcon} size={size === 'xs' ? 's' : size} className={clsx('pbc-animate-spin pbc-transition')} />
@@ -96,8 +102,10 @@ const Button = <T extends React.ElementType = 'button' | 'a'>({
           {children}
         </Content>
       )}
-    </Component>
+    </TagName>
   );
-};
+});
+
+Button.displayName = 'Button';
 
 export default Button;

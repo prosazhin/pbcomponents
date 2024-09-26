@@ -1,30 +1,49 @@
-import { ComponentType } from '@/types';
+'use client';
+
+import InlineRadioItem, { InlineRadioItemProps } from '@/components/shared/inline-radio/inline-radio-item';
+import { ComponentWrapperType, DivType, SMSizeType } from '@/types';
 import clsx from 'clsx';
+import { forwardRef, useState } from 'react';
 
-import InlineRadioItem, { Props as InlineRadioItemProps } from '@/components/shared/inline-radio/inline-radio-item';
+export interface InlineRadioProps<T> extends ComponentWrapperType<T>, SMSizeType {
+  defaultValue?: string;
+  onChange?: (value: string, event: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
-export type Props<T extends InlineRadioItemProps> = ComponentType & {
-  size: 's' | 'm';
-  activeValue: string;
-  options: T[];
-  onChange: (value: T) => void;
-};
+const InlineRadio = forwardRef<DivType, InlineRadioProps<React.ReactElement<InlineRadioItemProps>>>((props, ref) => {
+  const { children, className, defaultValue, size, onChange, ...rest } = props;
+  const [activeValue, setActiveValue] = useState<string | undefined>(defaultValue);
 
-const InlineRadio = <T extends InlineRadioItemProps>({ className, activeValue, size, options, onChange }: Props<T>) => (
-  <div
-    className={clsx(
-      'pbc pbc-relative pbc-w-max pbc-bg-basic-lighter pbc-p-4',
-      size === 's' && 'pbc-rounded-8',
-      size === 'm' && 'pbc-rounded-12',
-      className,
-    )}
-  >
-    <div className='pbc pbc-gap-4 pbc-inline-flex pbc-w-auto pbc-flex-row pbc-flex-nowrap pbc-items-center pbc-overflow-x-auto'>
-      {options.map((item, index) => (
-        <InlineRadioItem key={index} {...item} size={size} checked={item.value === activeValue} onClick={() => onChange(item)} />
-      ))}
+  return (
+    <div
+      {...rest}
+      ref={ref}
+      className={clsx(
+        'pbc pbc-relative pbc-w-max pbc-bg-basic-lighter pbc-p-4',
+        size === 's' && 'pbc-rounded-8',
+        size === 'm' && 'pbc-rounded-12',
+        className,
+      )}
+    >
+      <div className='pbc pbc-gap-4 pbc-inline-flex pbc-w-auto pbc-flex-row pbc-flex-nowrap pbc-items-center pbc-overflow-x-auto'>
+        {children &&
+          children.map(({ props: itemProps }, index) => (
+            <InlineRadioItem
+              {...itemProps}
+              key={index}
+              size={size}
+              checked={activeValue === itemProps.value}
+              onChange={(value, event) => {
+                setActiveValue(value);
+                if (onChange) onChange(value, event);
+              }}
+            />
+          ))}
+      </div>
     </div>
-  </div>
-);
+  );
+});
+
+InlineRadio.displayName = 'InlineRadio';
 
 export default InlineRadio;

@@ -1,5 +1,6 @@
 import react from '@vitejs/plugin-react-swc';
 import { resolve } from 'path';
+import preserveDirectives from 'rollup-preserve-directives';
 import tailwindcss from 'tailwindcss';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
@@ -11,7 +12,7 @@ export default defineConfig({
       '@': resolve(__dirname, 'src'),
     },
   },
-  plugins: [react(), dts({ rollupTypes: true }), libInjectCss()],
+  plugins: [react(), dts({ rollupTypes: true }), libInjectCss(), preserveDirectives()],
   css: {
     postcss: {
       plugins: [tailwindcss],

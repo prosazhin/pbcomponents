@@ -1,70 +1,52 @@
-/**
- * Icons Types
- */
+export type LabelPlaceType = { labelPlace?: 'right' | 'left' };
+export type CheckedType = { checked?: boolean };
+export type IndeterminateType = { indeterminate?: boolean };
+export type LoadingType = { loading?: boolean };
+export type DisabledType = { disabled?: boolean };
+export type MediumType = { medium?: boolean };
 
-export type IconType = React.ComponentType<
-  React.PropsWithoutRef<React.ComponentProps<'svg'>> & {
+export type SizeType = { size?: 'xs' | 's' | 'm' | 'l' };
+export type SMLSizeType = { size?: 's' | 'm' | 'l' };
+export type SMSizeType = { size?: 's' | 'm' };
+
+export type ColorType = { color?: 'primary' | 'secondary' | 'success' | 'danger' };
+export type ThemeType = { theme?: 'filled' | 'light' | 'border' | 'ghost' };
+
+export type DivType = HTMLDivElement;
+export type DivHTMLAttributes = React.HTMLAttributes<DivType>;
+
+export type SpanType = HTMLSpanElement;
+export type SpanHTMLAttributes = React.HTMLAttributes<SpanType>;
+
+export type InputType = HTMLInputElement;
+export type InputHTMLAttributes = React.HTMLAttributes<InputType>;
+
+export type ButtonType = HTMLButtonElement;
+export type ButtonHTMLAttributes = React.ButtonHTMLAttributes<HTMLElement>;
+
+export type LinkType = HTMLAnchorElement;
+export type LinkHTMLAttributes = React.AnchorHTMLAttributes<HTMLElement>;
+
+export type ButtonOrLinkType = ButtonType | LinkType;
+export type ButtonOrLinkHTMLAttributes = React.HTMLAttributes<HTMLElement> & ButtonHTMLAttributes & LinkHTMLAttributes;
+
+export type SvgType = React.ComponentType<
+  React.ComponentProps<'svg'> & {
     title?: string | undefined | never;
     titleId?: string | undefined | never;
   }
 >;
 
-export type WithLeftIconType = {
-  leftIcon?: IconType | never;
-};
-
-export type WithRightIconType = {
-  rightIcon?: IconType | never;
-};
-
+export type WithLeftIconType = { leftIcon?: SvgType | never };
+export type WithRightIconType = { rightIcon?: SvgType | never };
 export type WithIconsType = WithLeftIconType & WithRightIconType;
 
-/**
- * Components Types
- */
-
 export type ComponentType = {
-  children?: React.ReactNode | never;
-  className?: string | never;
+  children?: React.ReactNode;
+  className?: string;
 };
 
-export type ComponentWithIconsType = ComponentType & WithIconsType;
-
-/**
- * Polymorphic Component Types
- */
-
-export type AsProp<C extends React.ElementType> = {
-  as?: C;
+export type ComponentWrapperType<T> = {
+  children?: T[];
+  className?: string;
 };
-
-export type PropsToOmit<C extends React.ElementType, P> = keyof (AsProp<C> & P);
-
-export type PolymorphicComponentProps<C extends React.ElementType, Props = {}> = React.PropsWithChildren<Props & AsProp<C>> &
-  Omit<React.ComponentPropsWithoutRef<C>, PropsToOmit<C, Props>>;
-
-export type PolymorphicRef<C extends React.ElementType> = React.ComponentPropsWithRef<C>['ref'];
-
-export type PolymorphicComponentPropsWithRef<C extends React.ElementType, Props = {}> = PolymorphicComponentProps<C, Props> & {
-  ref?: PolymorphicRef<C>;
-};
-
-/**
- * Extract Types
- */
-
-export type Displayable = JSX.Element | string | number | null | undefined;
-
-export type ReactKey = React.Key | null | undefined;
-
-export type KeysOfType<T, TProp> = keyof Pick<T, { [K in keyof T]: T[K] extends TProp ? K : never }[keyof T]>;
-
-export type Extractor<T, TExtracted> = KeysOfType<T, TExtracted> | ((value: T) => TExtracted) | undefined;
-
-export type KeyExtractor<T> = Extractor<T, ReactKey>;
-
-export type DisplayExtractor<T> = Extractor<T, Displayable>;
-
-export const extract = <T, TExtracted>(value: T, extractor: Extractor<T, TExtracted>) =>
-  // eslint-disable-next-line no-nested-ternary
-  (typeof extractor === 'function' ? extractor(value) : typeof extractor !== 'undefined' ? value[extractor] : value) as TExtracted;

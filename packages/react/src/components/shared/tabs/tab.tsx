@@ -1,23 +1,28 @@
-import { PolymorphicComponentPropsWithRef, WithIconsType } from '@/types';
-import clsx from 'clsx';
+'use client';
 
 import Content from '@/components/helpers/content';
+import { ButtonOrLinkHTMLAttributes, ButtonOrLinkType, DisabledType, WithIconsType } from '@/types';
+import clsx from 'clsx';
+import { forwardRef, useRef } from 'react';
 
-export type Props<T extends React.ElementType = 'button' | 'a'> = PolymorphicComponentPropsWithRef<
-  T,
-  WithIconsType & {
-    value: string;
-    active?: boolean | never;
-    disabled?: boolean | never;
-  }
->;
+type BaseTabProps = ButtonOrLinkHTMLAttributes & DisabledType & WithIconsType;
 
-const Tab = <T extends React.ElementType = 'button' | 'a'>({ label, className, leftIcon, rightIcon, active, ...rest }: Props<T>) => {
-  const { href, disabled } = rest;
-  const Component = href ? 'a' : 'button';
+export interface TabProps extends BaseTabProps {
+  label?: string;
+  active?: boolean;
+}
+
+const Tab = forwardRef<ButtonOrLinkType, TabProps>((props, ref) => {
+  const { label, className, href, active = false, disabled = false, leftIcon, rightIcon, ...rest } = props;
+  const TagName = href ? 'a' : 'button';
+
+  const internalRef = useRef<ButtonOrLinkType>(null);
+  const tabRef = (ref || internalRef) as React.MutableRefObject<ButtonOrLinkType>;
 
   return (
-    <Component
+    <TagName
+      {...rest}
+      ref={tabRef as any}
       className={clsx(
         'pbc pbc-text-basic-main hover:pbc-text-basic-main pbc-flex-inline pbc-group pbc-relative pbc-p-0 pbc-pb-12 pbc-bg-transparent',
         'after:pbc-absolute after:pbc-rounded-999 after:pbc-inset-x-0 after:pbc-bottom-0 after:pbc-z-[1] after:pbc-h-2 after:pbc-w-full after:pbc-transition-colors',
@@ -27,7 +32,6 @@ const Tab = <T extends React.ElementType = 'button' | 'a'>({ label, className, l
       )}
       disabled={disabled}
       aria-disabled={disabled}
-      {...rest}
     >
       <Content
         className={clsx(
@@ -41,8 +45,10 @@ const Tab = <T extends React.ElementType = 'button' | 'a'>({ label, className, l
       >
         {label}
       </Content>
-    </Component>
+    </TagName>
   );
-};
+});
+
+Tab.displayName = 'Tab';
 
 export default Tab;

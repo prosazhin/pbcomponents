@@ -1,11 +1,11 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import { Checkbox as Component } from '@pbcomponents/react';
+import { Switch as Component } from '@pbcomponents/react';
 import { useArgs } from '@storybook/preview-api';
 import { checkedArg, defaultArgs, disabledArg, iconsArg, inputCheckboxArg, labelPlaceArg, SMSizeArg } from '../args';
 
 const meta = {
-  title: 'Components/Checkbox',
+  title: 'Components/Switch',
   component: Component,
   parameters: {
     layout: 'centered',
@@ -19,17 +19,12 @@ const meta = {
     ...Object.assign(checkedArg),
     ...Object.assign(disabledArg),
     ...Object.assign(inputCheckboxArg),
-    indeterminate: {
-      control: 'boolean',
-      defaultValue: { summary: 'false' },
-    },
   },
   args: {
     children: 'Label',
     labelPlace: 'right',
     size: 'm',
     checked: false,
-    indeterminate: false,
     disabled: false,
     onChange: () => {},
     leftIcon: undefined,
@@ -38,14 +33,13 @@ const meta = {
   },
   render: function Render(args) {
     const { children, labelPlace, leftIcon, rightIcon, size, disabled, className } = args;
-    const [{ checked, indeterminate }, setArgs] = useArgs();
+    const [{ checked }, setArgs] = useArgs();
 
     return (
       <Component
         size={size}
         labelPlace={labelPlace}
         checked={checked}
-        indeterminate={indeterminate}
         disabled={disabled}
         // @ts-expect-error: Unreachable code error
         leftIcon={leftIcon ? heroicons[leftIcon] : leftIcon}
@@ -53,15 +47,7 @@ const meta = {
         rightIcon={rightIcon ? heroicons[rightIcon] : rightIcon}
         className={className ? className : undefined}
         onChange={() => {
-          if (!indeterminate && !checked) {
-            setArgs({ checked: !checked, indeterminate: !indeterminate });
-          }
-          if (indeterminate && checked) {
-            setArgs({ indeterminate: !indeterminate });
-          }
-          if (!indeterminate && checked) {
-            setArgs({ checked: !checked });
-          }
+          setArgs({ checked: !checked });
         }}
       >
         {children}

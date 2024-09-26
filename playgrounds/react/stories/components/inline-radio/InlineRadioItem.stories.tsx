@@ -2,9 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import * as heroicons from '@heroicons/react/24/solid';
 import { InlineRadioItem as Component } from '@pbcomponents/react';
-
-// @ts-expect-error: Unreachable code error
-Component.displayName = 'InlineRadioItem';
+import { checkedArg, defaultArgs, disabledArg, iconsArg, SMSizeArg } from '../../args';
 
 const meta = {
   title: 'Components/Inline Radio/Inline Radio Item',
@@ -14,44 +12,47 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {
-    label: { control: 'text' },
-    size: {
-      options: ['s', 'm'],
-      control: { type: 'radio' },
+    ...Object.assign(defaultArgs),
+    ...Object.assign(SMSizeArg),
+    ...Object.assign(iconsArg),
+    ...Object.assign(checkedArg),
+    ...Object.assign(disabledArg),
+    value: {
+      control: 'text',
+      type: 'string',
+      defaultValue: { summary: undefined },
     },
-    leftIcon: {
-      options: [undefined, ...Object.keys(heroicons)],
-      control: { type: 'select' },
+    onChange: {
+      defaultValue: { summary: undefined },
+      type: '(value, event) => void',
     },
-    rightIcon: {
-      options: [undefined, ...Object.keys(heroicons)],
-      control: { type: 'select' },
-    },
-    className: { control: 'text' },
   },
   args: {
-    label: 'Label',
+    children: 'Label',
+    value: '',
     size: 'm',
-    leftIcon: undefined,
-    rightIcon: undefined,
     checked: false,
     disabled: false,
     onChange: () => {},
+    leftIcon: undefined,
+    rightIcon: undefined,
     className: '',
   },
-  render: ({ label, leftIcon, rightIcon, size, checked, disabled, onChange, className }) => (
+  render: ({ children, value, leftIcon, rightIcon, size, checked, disabled, onChange, className }) => (
     <Component
-      label={label}
+      value={value}
+      size={size}
+      checked={checked}
+      disabled={disabled}
       // @ts-expect-error: Unreachable code error
       leftIcon={leftIcon ? heroicons[leftIcon] : leftIcon}
       // @ts-expect-error: Unreachable code error
       rightIcon={rightIcon ? heroicons[rightIcon] : rightIcon}
-      size={size}
-      checked={checked}
-      disabled={disabled}
       className={className ? className : undefined}
       onChange={onChange}
-    />
+    >
+      {children}
+    </Component>
   ),
 } satisfies Meta<typeof Component>;
 
