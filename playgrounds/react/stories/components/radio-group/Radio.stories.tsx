@@ -1,47 +1,37 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import * as heroicons from '@heroicons/react/24/solid';
-import { InlineRadioItem as Component } from '@pbcomponents/react';
-import { checkedArg, defaultArgs, disabledArg, iconsArg, SMSizeArg } from '../../args';
+import { Radio as Component } from '@pbcomponents/react';
+import { labelPlaceArg, radioArg } from '../../args';
 
 const meta = {
-  title: 'Components/Inline Radio/Inline Radio Item',
+  title: 'Components/Radio Group/Radio',
   component: Component,
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
   argTypes: {
-    ...Object.assign(defaultArgs),
-    ...Object.assign(SMSizeArg),
-    ...Object.assign(iconsArg),
-    ...Object.assign(checkedArg),
-    ...Object.assign(disabledArg),
-    value: {
-      control: 'text',
-      type: 'string',
-      defaultValue: { summary: undefined },
-    },
-    onChange: {
-      defaultValue: { summary: undefined },
-      type: '(value, event) => void',
-    },
+    ...Object.assign(radioArg),
+    ...Object.assign(labelPlaceArg),
   },
   args: {
     children: 'Label',
-    value: '',
+    labelPlace: 'right',
     size: 'm',
     checked: false,
     disabled: false,
+    value: '',
+    name: '',
     onChange: () => {},
     leftIcon: undefined,
     rightIcon: undefined,
     className: '',
   },
-  render: ({ children, value, leftIcon, rightIcon, size, checked, disabled, onChange, className }) => (
+  render: ({ children, checked, value, labelPlace, leftIcon, rightIcon, size, disabled, className, name, onChange }) => (
     <Component
       value={value}
       size={size}
+      labelPlace={labelPlace}
       checked={checked}
       disabled={disabled}
       // @ts-expect-error: Unreachable code error
@@ -49,6 +39,7 @@ const meta = {
       // @ts-expect-error: Unreachable code error
       rightIcon={rightIcon ? heroicons[rightIcon] : rightIcon}
       className={className ? className : undefined}
+      name={name ? name : undefined}
       onChange={onChange}
     >
       {children}

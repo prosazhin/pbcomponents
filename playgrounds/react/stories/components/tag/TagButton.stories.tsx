@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import * as heroicons from '@heroicons/react/24/solid';
 import { Tag as Component } from '@pbcomponents/react';
-import { checkedArg, defaultArgs, disabledArg, iconsArg, loadingArg, onClickArg, SMSizeArg, typeArg } from '../../args';
+import { onClickArg, tagArg, typeArg } from '../../args';
 
 const meta = {
   title: 'Components/Tag/Tag Button',
@@ -12,19 +12,9 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {
-    ...Object.assign(defaultArgs),
-    ...Object.assign(SMSizeArg),
-    ...Object.assign(iconsArg),
-    ...Object.assign(checkedArg),
-    ...Object.assign(disabledArg),
-    ...Object.assign(loadingArg),
+    ...Object.assign(tagArg),
     ...Object.assign(typeArg),
     ...Object.assign(onClickArg),
-    theme: {
-      options: ['light', 'border'],
-      control: { type: 'radio' },
-      defaultValue: { summary: 'light' },
-    },
   },
   args: {
     children: 'Tag',

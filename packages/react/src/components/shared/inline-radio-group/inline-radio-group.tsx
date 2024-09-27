@@ -1,25 +1,23 @@
 'use client';
 
-import InlineRadioItem, { InlineRadioItemProps } from '@/components/shared/inline-radio/inline-radio-item';
-import { ComponentWrapperType, DivType, SMSizeType } from '@/types';
+import InlineRadio, { InlineRadioProps } from '@/components/shared/inline-radio-group/inline-radio';
+import { ComponentWrapperType, FieldSetType, RadioGroupType, SMSizeType } from '@/types';
 import clsx from 'clsx';
 import { forwardRef, useState } from 'react';
 
-export interface InlineRadioProps<T> extends ComponentWrapperType<T>, SMSizeType {
-  defaultValue?: string;
-  onChange?: (value: string, event: React.ChangeEvent<HTMLInputElement>) => void;
-}
+export interface InlineRadioGroupProps<T> extends ComponentWrapperType<T>, RadioGroupType, SMSizeType {}
 
-const InlineRadio = forwardRef<DivType, InlineRadioProps<React.ReactElement<InlineRadioItemProps>>>((props, ref) => {
+const InlineRadioGroup = forwardRef<FieldSetType, InlineRadioGroupProps<React.ReactElement<InlineRadioProps>>>((props, ref) => {
   const { children, className, defaultValue, size, onChange, ...rest } = props;
+  const { name, disabled } = rest;
   const [activeValue, setActiveValue] = useState<string | undefined>(defaultValue);
 
   return (
-    <div
+    <fieldset
       {...rest}
       ref={ref}
       className={clsx(
-        'pbc pbc-relative pbc-w-max pbc-bg-basic-lighter pbc-p-4',
+        'pbc pbc-relative pbc-w-max pbc-bg-basic-lighter !pbc-p-4 pbc-appearance-none',
         size === 's' && 'pbc-rounded-8',
         size === 'm' && 'pbc-rounded-12',
         className,
@@ -28,11 +26,13 @@ const InlineRadio = forwardRef<DivType, InlineRadioProps<React.ReactElement<Inli
       <div className='pbc pbc-gap-4 pbc-inline-flex pbc-w-auto pbc-flex-row pbc-flex-nowrap pbc-items-center pbc-overflow-x-auto'>
         {children &&
           children.map(({ props: itemProps }, index) => (
-            <InlineRadioItem
+            <InlineRadio
               {...itemProps}
               key={index}
+              name={name ? name : undefined}
               size={size}
               checked={activeValue === itemProps.value}
+              disabled={disabled ? disabled : undefined}
               onChange={(value, event) => {
                 setActiveValue(value);
                 if (onChange) onChange(value, event);
@@ -40,10 +40,10 @@ const InlineRadio = forwardRef<DivType, InlineRadioProps<React.ReactElement<Inli
             />
           ))}
       </div>
-    </div>
+    </fieldset>
   );
 });
 
-InlineRadio.displayName = 'InlineRadio';
+InlineRadioGroup.displayName = 'InlineRadioGroup';
 
-export default InlineRadio;
+export default InlineRadioGroup;

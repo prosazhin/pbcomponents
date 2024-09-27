@@ -125,9 +125,102 @@ export const hrefArg = {
   },
 };
 
-export const inputCheckboxArg = {
+export const buttonArg = {
+  ...defaultArgs,
+  ...sizeArg,
+  ...iconsArg,
+  ...loadingArg,
+  ...disabledArg,
+  theme: {
+    options: ['filled', 'light', 'border', 'ghost'],
+    control: { type: 'radio' },
+    defaultValue: { summary: 'filled' },
+  },
+  color: {
+    options: ['primary', 'secondary', 'success', 'danger'],
+    control: { type: 'radio' },
+    defaultValue: { summary: 'primary' },
+  },
+};
+
+export const tagArg = {
+  ...defaultArgs,
+  ...SMSizeArg,
+  ...iconsArg,
+  ...checkedArg,
+  ...loadingArg,
+  ...disabledArg,
+  theme: {
+    options: ['light', 'border'],
+    control: { type: 'radio' },
+    defaultValue: { summary: 'light' },
+  },
+};
+
+export const checkboxArg = {
+  ...defaultArgs,
+  ...iconsArg,
+  ...labelPlaceArg,
+  ...SMSizeArg,
+  ...checkedArg,
+  ...disabledArg,
   onChange: {
     defaultValue: { summary: undefined },
-    type: '(event) => void',
+    type: '(value, event) => void',
+  },
+};
+
+export const radioArg = {
+  ...defaultArgs,
+  ...iconsArg,
+  ...SMSizeArg,
+  ...checkedArg,
+  ...disabledArg,
+  value: {
+    control: 'text',
+    type: 'string',
+    defaultValue: { summary: undefined },
+  },
+  name: {
+    control: 'text',
+    type: 'string',
+    defaultValue: { summary: undefined },
+  },
+  onChange: {
+    defaultValue: { summary: undefined },
+    type: '(value, event) => void',
+  },
+};
+
+export const radioGroupArg = {
+  ...classNameArg,
+  ...SMSizeArg,
+  ...disabledArg,
+  defaultValue: {
+    control: 'text',
+    defaultValue: { summary: undefined },
+  },
+  name: {
+    control: 'text',
+    defaultValue: { summary: undefined },
+  },
+  form: {
+    control: 'text',
+    defaultValue: { summary: undefined },
+  },
+  onChange: {
+    defaultValue: { summary: undefined },
+    type: '(value, event) => void',
+  },
+};
+
+export const tabArg = {
+  ...classNameArg,
+  ...iconsArg,
+  ...activeArg,
+  ...disabledArg,
+  label: {
+    control: 'text',
+    defaultValue: { summary: undefined },
   },
 };

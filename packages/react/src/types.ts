@@ -13,13 +13,11 @@ export type ColorType = { color?: 'primary' | 'secondary' | 'success' | 'danger'
 export type ThemeType = { theme?: 'filled' | 'light' | 'border' | 'ghost' };
 
 export type DivType = HTMLDivElement;
-export type DivHTMLAttributes = React.HTMLAttributes<DivType>;
+export type FieldSetType = HTMLFieldSetElement;
+export type InputType = HTMLInputElement;
 
 export type SpanType = HTMLSpanElement;
 export type SpanHTMLAttributes = React.HTMLAttributes<SpanType>;
-
-export type InputType = HTMLInputElement;
-export type InputHTMLAttributes = React.HTMLAttributes<InputType>;
 
 export type ButtonType = HTMLButtonElement;
 export type ButtonHTMLAttributes = React.ButtonHTMLAttributes<HTMLElement>;
@@ -44,9 +42,27 @@ export type WithIconsType = WithLeftIconType & WithRightIconType;
 export type ComponentType = {
   children?: React.ReactNode;
   className?: string;
+  id?: string;
 };
 
 export type ComponentWrapperType<T> = {
   children?: T[];
   className?: string;
+  id?: string;
 };
+
+export type RadioOnChangeType = {
+  onChange?: (value: string, event: React.ChangeEvent<HTMLInputElement>) => void;
+};
+
+export type RadioType = {
+  value: string;
+  name?: string;
+} & RadioOnChangeType;
+
+export type RadioGroupType = {
+  defaultValue?: string;
+  name?: string;
+  form?: string;
+} & RadioOnChangeType &
+  DisabledType;

@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { Switch as Component } from '@pbcomponents/react';
 import { useArgs } from '@storybook/preview-api';
-import { checkedArg, defaultArgs, disabledArg, iconsArg, inputCheckboxArg, labelPlaceArg, SMSizeArg } from '../args';
+import { checkboxArg } from '../args';
 
 const meta = {
   title: 'Components/Switch',
@@ -12,13 +12,7 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {
-    ...Object.assign(defaultArgs),
-    ...Object.assign(SMSizeArg),
-    ...Object.assign(iconsArg),
-    ...Object.assign(labelPlaceArg),
-    ...Object.assign(checkedArg),
-    ...Object.assign(disabledArg),
-    ...Object.assign(inputCheckboxArg),
+    ...Object.assign(checkboxArg),
   },
   args: {
     children: 'Label',
@@ -46,8 +40,8 @@ const meta = {
         // @ts-expect-error: Unreachable code error
         rightIcon={rightIcon ? heroicons[rightIcon] : rightIcon}
         className={className ? className : undefined}
-        onChange={() => {
-          setArgs({ checked: !checked });
+        onChange={(value) => {
+          setArgs({ checked: value });
         }}
       >
         {children}

@@ -1,21 +1,34 @@
 'use client';
 
 import Content from '@/components/helpers/content';
-import { CheckedType, DisabledType, InputHTMLAttributes, InputType, LabelPlaceType, SMSizeType, WithIconsType } from '@/types';
+import { CheckedType, ComponentType, DisabledType, InputType, LabelPlaceType, SMSizeType, WithIconsType } from '@/types';
 import clsx from 'clsx';
 import { forwardRef } from 'react';
 
-type BaseSwitchProps = InputHTMLAttributes & LabelPlaceType & CheckedType & DisabledType & WithIconsType & SMSizeType;
+type BaseSwitchProps = ComponentType & LabelPlaceType & CheckedType & DisabledType & WithIconsType & SMSizeType;
 
-export interface SwitchProps extends BaseSwitchProps {}
+export interface SwitchProps extends BaseSwitchProps {
+  onChange?: (value: boolean, event: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
 const Switch = forwardRef<InputType, SwitchProps>((props, ref) => {
-  const { children, className, labelPlace = 'right', size = 'm', checked = false, disabled = false, leftIcon, rightIcon, ...rest } = props;
+  const {
+    children,
+    className,
+    onChange,
+    labelPlace = 'right',
+    size = 'm',
+    checked = false,
+    disabled = false,
+    leftIcon,
+    rightIcon,
+    ...rest
+  } = props;
 
   return (
     <label
       className={clsx(
-        'pbc pbc-inline-flex pbc-w-max pbc-cursor-pointer pbc-flex-nowrap pbc-gap-x-8',
+        'pbc pbc-inline-flex pbc-w-max pbc-cursor-pointer pbc-flex-nowrap pbc-group pbc-gap-8',
         disabled && '!pbc-cursor-default',
         className,
       )}
@@ -29,11 +42,14 @@ const Switch = forwardRef<InputType, SwitchProps>((props, ref) => {
           disabled={disabled}
           className={clsx(
             'pbc pbc-size-full pbc-cursor-pointer pbc-appearance-none pbc-transition-colors focus:pbc-ring-0 focus:pbc-ring-offset-0 pbc-outline-primary !pbc-m-0',
-            'pbc-rounded-999 pbc-bg-secondary-lighter hover:pbc-bg-secondary-light',
-            'disabled:!pbc-cursor-default disabled:pbc-bg-basic-lighter hover:disabled:pbc-bg-basic-lighter',
-            'checked:pbc-bg-primary-main hover:checked:pbc-bg-primary-darker disabled:checked:pbc-bg-primary-light hover:disabled:checked:pbc-bg-primary-light',
-            'indeterminate:pbc-bg-primary-main hover:indeterminate:pbc-bg-primary-darker disabled:indeterminate:pbc-bg-primary-light hover:disabled:indeterminate:pbc-bg-primary-light',
+            'pbc-rounded-999 pbc-bg-secondary-lighter group-hover:pbc-bg-secondary-light',
+            'disabled:!pbc-cursor-default disabled:!pbc-bg-basic-lighter group-hover:disabled:!pbc-bg-basic-lighter',
+            'checked:pbc-bg-primary-main group-hover:checked:pbc-bg-primary-darker disabled:checked:!pbc-bg-primary-light group-hover:disabled:checked:!pbc-bg-primary-light',
+            'indeterminate:pbc-bg-primary-main group-hover:indeterminate:pbc-bg-primary-darker disabled:indeterminate:!pbc-bg-primary-light group-hover:disabled:indeterminate:!pbc-bg-primary-light',
           )}
+          onChange={(event) => {
+            if (onChange) onChange(event.target.checked, event);
+          }}
         />
         <div
           className={clsx(

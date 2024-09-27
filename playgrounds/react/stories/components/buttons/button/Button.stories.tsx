@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import * as heroicons from '@heroicons/react/24/solid';
 import { Button as Component } from '@pbcomponents/react';
-import { defaultArgs, disabledArg, iconsArg, loadingArg, onClickArg, sizeArg, typeArg } from '../../../args';
+import { buttonArg, onClickArg, typeArg } from '../../../args';
 
 const meta = {
   title: 'Components/Buttons/Button/Button',
@@ -12,23 +12,9 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {
-    ...Object.assign(defaultArgs),
-    ...Object.assign(sizeArg),
-    ...Object.assign(iconsArg),
-    ...Object.assign(disabledArg),
-    ...Object.assign(loadingArg),
+    ...Object.assign(buttonArg),
     ...Object.assign(typeArg),
     ...Object.assign(onClickArg),
-    theme: {
-      options: ['filled', 'light', 'border', 'ghost'],
-      control: { type: 'radio' },
-      defaultValue: { summary: 'filled' },
-    },
-    color: {
-      options: ['primary', 'secondary', 'success', 'danger'],
-      control: { type: 'radio' },
-      defaultValue: { summary: 'primary' },
-    },
   },
   args: {
     children: 'Button',

@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import * as heroicons from '@heroicons/react/24/solid';
 import { Tab as Component } from '@pbcomponents/react';
-import { activeArg, classNameArg, disabledArg, iconsArg } from '../../../args';
+import { hrefArg, tabArg } from '../../../args';
 
 const meta = {
   title: 'Components/Tabs/Tab/Tab Link',
@@ -12,14 +12,8 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {
-    ...Object.assign(classNameArg),
-    ...Object.assign(iconsArg),
-    ...Object.assign(activeArg),
-    ...Object.assign(disabledArg),
-    label: {
-      control: 'text',
-      defaultValue: { summary: undefined },
-    },
+    ...Object.assign(tabArg),
+    ...Object.assign(hrefArg),
   },
   args: {
     label: 'Tab',

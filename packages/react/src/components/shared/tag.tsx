@@ -17,7 +17,6 @@ const Tag = forwardRef<ButtonOrLinkType, TagProps>((props, ref) => {
   const {
     children,
     className,
-    href,
     size = 'm',
     theme = 'light',
     checked = false,
@@ -27,6 +26,7 @@ const Tag = forwardRef<ButtonOrLinkType, TagProps>((props, ref) => {
     rightIcon,
     ...rest
   } = props;
+  const { href } = rest;
   const TagName = href ? 'a' : 'button';
 
   const internalRef = useRef<ButtonOrLinkType>(null);
@@ -51,8 +51,8 @@ const Tag = forwardRef<ButtonOrLinkType, TagProps>((props, ref) => {
         theme === 'light' && !checked && 'pbc-bg-primary-lighter pbc-text-basic-main hover:pbc-bg-primary-light',
         theme === 'border' && !checked && 'pbc-border-secondary-light pbc-text-basic-main hover:pbc-border-primary-main pbc-bg-transparent',
         checked && 'pbc-bg-primary-main hover:pbc-bg-primary-darker pbc-text-white',
-        (theme === 'light' || checked) && disabled && !loading && 'pbc-bg-secondary-lighter pbc-text-basic-light',
-        theme === 'border' && disabled && !loading && 'pbc-border-secondary-lighter pbc-text-basic-light',
+        (theme === 'light' || checked) && disabled && !loading && '!pbc-bg-secondary-lighter !pbc-text-basic-light',
+        theme === 'border' && disabled && !loading && '!pbc-border-secondary-lighter !pbc-text-basic-light',
         loading && 'pbc-cursor-default',
         className,
       )}

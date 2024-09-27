@@ -24,7 +24,6 @@ const Button = forwardRef<ButtonOrLinkType, ButtonProps>((props, ref) => {
   const {
     children,
     className,
-    href,
     size = 'm',
     theme = 'filled',
     color = 'primary',
@@ -34,6 +33,7 @@ const Button = forwardRef<ButtonOrLinkType, ButtonProps>((props, ref) => {
     rightIcon,
     ...rest
   } = props;
+  const { href } = rest;
   const TagName = href ? 'a' : 'button';
 
   const internalRef = useRef<ButtonOrLinkType>(null);

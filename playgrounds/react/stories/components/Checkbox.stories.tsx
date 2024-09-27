@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { Checkbox as Component } from '@pbcomponents/react';
 import { useArgs } from '@storybook/preview-api';
-import { checkedArg, defaultArgs, disabledArg, iconsArg, inputCheckboxArg, labelPlaceArg, SMSizeArg } from '../args';
+import { checkboxArg } from '../args';
 
 const meta = {
   title: 'Components/Checkbox',
@@ -12,13 +12,7 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {
-    ...Object.assign(defaultArgs),
-    ...Object.assign(SMSizeArg),
-    ...Object.assign(iconsArg),
-    ...Object.assign(labelPlaceArg),
-    ...Object.assign(checkedArg),
-    ...Object.assign(disabledArg),
-    ...Object.assign(inputCheckboxArg),
+    ...Object.assign(checkboxArg),
     indeterminate: {
       control: 'boolean',
       defaultValue: { summary: 'false' },
@@ -52,15 +46,15 @@ const meta = {
         // @ts-expect-error: Unreachable code error
         rightIcon={rightIcon ? heroicons[rightIcon] : rightIcon}
         className={className ? className : undefined}
-        onChange={() => {
+        onChange={(value) => {
           if (!indeterminate && !checked) {
-            setArgs({ checked: !checked, indeterminate: !indeterminate });
+            setArgs({ checked: value, indeterminate: !indeterminate });
           }
           if (indeterminate && checked) {
             setArgs({ indeterminate: !indeterminate });
           }
           if (!indeterminate && checked) {
-            setArgs({ checked: !checked });
+            setArgs({ checked: value });
           }
         }}
       >
