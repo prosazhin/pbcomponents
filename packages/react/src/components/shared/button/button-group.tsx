@@ -1,17 +1,29 @@
 'use client';
 
 import Button, { ButtonProps } from '@/components/shared/button/button';
-import { ComponentWrapperType, DivType, SizeType } from '@/types';
+import { DivHTMLAttrs, DivType, SizeType } from '@/types';
 import clsx from 'clsx';
 import { forwardRef } from 'react';
 
-export interface ButtonGroupProps<T> extends ComponentWrapperType<T>, SizeType {}
+type ButtonGroupTType = React.ReactElement<ButtonProps>;
+type BaseButtonGroupProps<T> = Omit<DivHTMLAttrs, 'children'> & {
+  children?: T[];
+} & SizeType;
 
-const ButtonGroup = forwardRef<DivType, ButtonGroupProps<React.ReactElement<ButtonProps>>>((props, ref) => {
+export interface ButtonGroupProps extends BaseButtonGroupProps<ButtonGroupTType> {}
+
+const ButtonGroup = forwardRef<DivType, ButtonGroupProps>((props, ref) => {
   const { children, className, size = 'm', ...rest } = props;
 
   return (
-    <div {...rest} ref={ref} className={clsx('pbc pbc-flex-inline -pbc-space-x-1 pbc-relative', className)}>
+    <div
+      {...rest}
+      ref={ref}
+      className={clsx(
+        'pbc pbc-inline-flex pbc-w-max pbc-flex-nowrap pbc-items-center pbc-justify-center -pbc-space-x-1 pbc-relative',
+        className,
+      )}
+    >
       {children &&
         children.map(({ props: itemProps }, index) => {
           const first = index === 0;
@@ -23,7 +35,7 @@ const ButtonGroup = forwardRef<DivType, ButtonGroupProps<React.ReactElement<Butt
               key={index}
               size={size}
               className={clsx(
-                'hover:pbc-z-[1] focus:pbc-z-[2]',
+                'pbc-z-0 hover:pbc-z-[1] focus:pbc-z-[2]',
                 first && size === 'xs' && '!pbc-rounded-l-6 !pbc-rounded-r-0',
                 first && size === 's' && '!pbc-rounded-l-8 !pbc-rounded-r-0',
                 first && size === 'm' && '!pbc-rounded-l-12 !pbc-rounded-r-0',

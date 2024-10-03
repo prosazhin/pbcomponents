@@ -223,10 +223,6 @@
     color: inherit;
   }
 
-  .pbc-flex-inline {
-    @apply pbc-inline-flex pbc-w-max pbc-flex-nowrap pbc-items-center pbc-justify-center;
-  }
-
   .pbc-outline-primary {
     @apply focus:pbc-outline-primary-main/20 active:pbc-outline-none;
   }

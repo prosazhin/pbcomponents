@@ -1,11 +1,11 @@
 'use client';
 
 import Content from '@/components/helpers/content';
-import { ButtonOrLinkHTMLAttributes, ButtonOrLinkType, DisabledType, WithIconsType } from '@/types';
+import { ButtonOrLinkHTMLAttrs, ButtonOrLinkType, TextClassNameType, WithIconsType } from '@/types';
 import clsx from 'clsx';
 import { forwardRef, useRef } from 'react';
 
-type BaseTabProps = ButtonOrLinkHTMLAttributes & DisabledType & WithIconsType;
+type BaseTabProps = ButtonOrLinkHTMLAttrs & WithIconsType & TextClassNameType;
 
 export interface TabProps extends BaseTabProps {
   label?: string;
@@ -13,7 +13,7 @@ export interface TabProps extends BaseTabProps {
 }
 
 const Tab = forwardRef<ButtonOrLinkType, TabProps>((props, ref) => {
-  const { label, className, active = false, disabled = false, leftIcon, rightIcon, ...rest } = props;
+  const { label, className, textClassName, active = false, disabled = false, leftIcon, rightIcon, ...rest } = props;
   const { href } = rest;
   const TagName = href ? 'a' : 'button';
 
@@ -25,7 +25,7 @@ const Tab = forwardRef<ButtonOrLinkType, TabProps>((props, ref) => {
       {...rest}
       ref={tabRef as any}
       className={clsx(
-        'pbc pbc-text-basic-main hover:pbc-text-basic-main pbc-flex-inline pbc-group pbc-relative pbc-p-0 pbc-pb-12 pbc-bg-transparent',
+        'pbc pbc-text-basic-main hover:pbc-text-basic-main pbc-inline-flex pbc-w-max pbc-flex-nowrap pbc-items-center pbc-justify-center pbc-group pbc-relative pbc-p-0 pbc-pb-12 pbc-bg-transparent',
         'after:pbc-absolute after:pbc-rounded-999 after:pbc-inset-x-0 after:pbc-bottom-0 after:pbc-z-[1] after:pbc-h-2 after:pbc-w-full after:pbc-transition-colors',
         active && 'pbc-text-primary-main after:pbc-bg-primary-main',
         disabled && '!pbc-text-basic-light after:!pbc-hidden',
@@ -38,6 +38,7 @@ const Tab = forwardRef<ButtonOrLinkType, TabProps>((props, ref) => {
         className={clsx(
           'group-hover:pbc-bg-secondary-lighter pbc-rounded-8 pbc-px-8 pbc-py-2 pbc-transition-colors',
           disabled && '!pbc-text-basic-light !pbc-bg-transparent',
+          textClassName,
         )}
         size='m'
         leftIcon={leftIcon}

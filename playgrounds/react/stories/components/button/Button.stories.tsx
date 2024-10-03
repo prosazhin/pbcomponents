@@ -1,45 +1,52 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 import * as heroicons from '@heroicons/react/24/solid';
-import { Tag as Component } from '@pbcomponents/react';
-import { hrefArg, tagArg } from '../../args';
+import { Button as Component } from '@pbcomponents/react';
+import { buttonArg } from '../../args';
 
 const meta = {
-  title: 'Components/Tag/Tag Link',
+  title: 'Components/Button/Button',
   component: Component,
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
   argTypes: {
-    ...Object.assign(tagArg),
-    ...Object.assign(hrefArg),
+    ...Object.assign(buttonArg),
   },
   args: {
-    children: 'Tag',
-    size: 's',
-    theme: 'light',
-    checked: false,
+    // @ts-expect-error: Unreachable code error
+    as: 'button',
+    children: 'Button',
+    size: 'm',
+    theme: 'filled',
+    color: 'primary',
     disabled: false,
     loading: false,
     href: '#',
+    type: 'button',
+    onClick: () => {},
     leftIcon: undefined,
     rightIcon: undefined,
     className: '',
+    textClassName: '',
   },
-  render: ({ children, leftIcon, rightIcon, size, theme, checked, disabled, loading, href, className }) => (
+  render: ({ children, leftIcon, rightIcon, size, theme, color, disabled, loading, className, textClassName, onClick, type, href }) => (
     <Component
       size={size}
       theme={theme}
-      checked={checked}
+      color={color}
       disabled={disabled}
       loading={loading}
+      type={type}
       href={href}
       // @ts-expect-error: Unreachable code error
       leftIcon={leftIcon ? heroicons[leftIcon] : leftIcon}
       // @ts-expect-error: Unreachable code error
       rightIcon={rightIcon ? heroicons[rightIcon] : rightIcon}
       className={className ? className : undefined}
+      textClassName={textClassName ? textClassName : undefined}
+      onClick={onClick}
     >
       {children}
     </Component>

@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import * as heroicons from '@heroicons/react/24/solid';
 import { Badge as Component } from '@pbcomponents/react';
-import { defaultArgs, iconsArg, SMSizeArg } from '../args';
+import { defaultArgs, iconsArg, SMSizeArg, textClassNameTypeArg } from '../args';
 
 const meta = {
   title: 'Components/Badge',
@@ -15,6 +15,7 @@ const meta = {
     ...Object.assign(defaultArgs),
     ...Object.assign(SMSizeArg),
     ...Object.assign(iconsArg),
+    ...Object.assign(textClassNameTypeArg),
     theme: {
       options: ['filled', 'light', 'border'],
       control: { type: 'radio' },
@@ -28,14 +29,15 @@ const meta = {
   },
   args: {
     children: 'Badge',
-    size: 's',
+    size: 'm',
     theme: 'filled',
     color: 'primary',
     leftIcon: undefined,
     rightIcon: undefined,
     className: '',
+    textClassName: '',
   },
-  render: ({ children, className, size, theme, color, leftIcon, rightIcon }) => (
+  render: ({ children, className, textClassName, size, theme, color, leftIcon, rightIcon }) => (
     <Component
       size={size}
       theme={theme}
@@ -45,6 +47,7 @@ const meta = {
       // @ts-expect-error: Unreachable code error
       rightIcon={rightIcon ? heroicons[rightIcon] : rightIcon}
       className={className ? className : undefined}
+      textClassName={textClassName ? textClassName : undefined}
     >
       {children}
     </Component>

@@ -4,7 +4,7 @@ import { Button, ButtonGroup as Component } from '@pbcomponents/react';
 import { classNameArg, sizeArg } from '../../args';
 
 const meta = {
-  title: 'Components/Buttons/Button Group',
+  title: 'Components/Button/Button Group',
   component: Component,
   parameters: {
     layout: 'centered',
@@ -14,6 +14,7 @@ const meta = {
     ...Object.assign(classNameArg),
     ...Object.assign(sizeArg),
     children: {
+      control: 'object',
       type: 'Button[]',
       defaultValue: { summary: undefined },
     },

@@ -1,21 +1,40 @@
 'use client';
 
 import Content from '@/components/helpers/content';
-import { CheckedType, ComponentType, DisabledType, InputType, LabelPlaceType, SMSizeType, WithIconsType } from '@/types';
+import {
+  ChildrenType,
+  InputEvent,
+  InputHTMLAttrs,
+  InputType,
+  LabelPlaceType,
+  SMSizeType,
+  TextClassNameType,
+  WithIconsType,
+  WrapperClassNameType,
+} from '@/types';
 import clsx from 'clsx';
-import { forwardRef } from 'react';
+import { forwardRef, useState } from 'react';
 
-type BaseSwitchProps = ComponentType & LabelPlaceType & CheckedType & DisabledType & WithIconsType & SMSizeType;
+type BaseSwitchProps = Omit<InputHTMLAttrs, 'size' | 'onChange' | 'children'> &
+  ChildrenType &
+  SMSizeType &
+  LabelPlaceType &
+  WithIconsType &
+  WrapperClassNameType &
+  TextClassNameType;
 
 export interface SwitchProps extends BaseSwitchProps {
-  onChange?: (value: boolean, event: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: string;
+  onChange?: (checked: boolean, value: string, event: InputEvent) => void;
 }
 
 const Switch = forwardRef<InputType, SwitchProps>((props, ref) => {
   const {
     children,
     className,
-    onChange,
+    wrapperClassName,
+    textClassName,
+    onChange = () => {},
     labelPlace = 'right',
     size = 'm',
     checked = false,
@@ -24,13 +43,15 @@ const Switch = forwardRef<InputType, SwitchProps>((props, ref) => {
     rightIcon,
     ...rest
   } = props;
+  const { value: externalValue } = rest;
+  const [value] = useState<string>(externalValue || children || '');
 
   return (
     <label
       className={clsx(
         'pbc pbc-inline-flex pbc-w-max pbc-cursor-pointer pbc-flex-nowrap pbc-group pbc-gap-8',
         disabled && '!pbc-cursor-default',
-        className,
+        wrapperClassName,
       )}
     >
       <div className={clsx('pbc pbc-relative', size === 's' && 'pbc-w-32 pbc-h-16', size === 'm' && 'pbc-w-48 pbc-h-24')}>
@@ -38,6 +59,7 @@ const Switch = forwardRef<InputType, SwitchProps>((props, ref) => {
           {...rest}
           ref={ref}
           type='checkbox'
+          value={value}
           checked={checked}
           disabled={disabled}
           className={clsx(
@@ -46,10 +68,9 @@ const Switch = forwardRef<InputType, SwitchProps>((props, ref) => {
             'disabled:!pbc-cursor-default disabled:!pbc-bg-basic-lighter group-hover:disabled:!pbc-bg-basic-lighter',
             'checked:pbc-bg-primary-main group-hover:checked:pbc-bg-primary-darker disabled:checked:!pbc-bg-primary-light group-hover:disabled:checked:!pbc-bg-primary-light',
             'indeterminate:pbc-bg-primary-main group-hover:indeterminate:pbc-bg-primary-darker disabled:indeterminate:!pbc-bg-primary-light group-hover:disabled:indeterminate:!pbc-bg-primary-light',
+            className,
           )}
-          onChange={(event) => {
-            if (onChange) onChange(event.target.checked, event);
-          }}
+          onChange={(event) => onChange(event.target.checked, value, event)}
         />
         <div
           className={clsx(
@@ -67,6 +88,7 @@ const Switch = forwardRef<InputType, SwitchProps>((props, ref) => {
             labelPlace === 'left' && 'pbc-order-first',
             labelPlace === 'right' && 'pbc-order-last',
             disabled ? 'pbc-text-basic-light' : 'pbc-text-basic-main',
+            textClassName,
           )}
           size={size}
           leftIcon={leftIcon}

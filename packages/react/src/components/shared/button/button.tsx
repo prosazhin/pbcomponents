@@ -3,12 +3,12 @@
 import Content from '@/components/helpers/content';
 import Icon from '@/components/helpers/icon';
 import {
-  ButtonOrLinkHTMLAttributes,
+  ButtonOrLinkHTMLAttrs,
   ButtonOrLinkType,
   ColorType,
-  DisabledType,
   LoadingType,
   SizeType,
+  TextClassNameType,
   ThemeType,
   WithIconsType,
 } from '@/types';
@@ -16,14 +16,23 @@ import { ArrowPathIcon } from '@heroicons/react/24/solid';
 import clsx from 'clsx';
 import { forwardRef, useEffect, useRef, useState } from 'react';
 
-type BaseButtonProps = ButtonOrLinkHTMLAttributes & LoadingType & DisabledType & WithIconsType & ColorType & SizeType & ThemeType;
+type BaseButtonProps = Omit<ButtonOrLinkHTMLAttrs, 'children'> &
+  LoadingType &
+  ColorType &
+  SizeType &
+  ThemeType &
+  WithIconsType &
+  TextClassNameType;
 
-export interface ButtonProps extends BaseButtonProps {}
+export interface ButtonProps extends BaseButtonProps {
+  children?: string;
+}
 
 const Button = forwardRef<ButtonOrLinkType, ButtonProps>((props, ref) => {
   const {
     children,
     className,
+    textClassName,
     size = 'm',
     theme = 'filled',
     color = 'primary',
@@ -52,7 +61,7 @@ const Button = forwardRef<ButtonOrLinkType, ButtonProps>((props, ref) => {
       {...rest}
       ref={buttonRef as any}
       className={clsx(
-        'pbc pbc-flex-inline pbc-transition-colors',
+        'pbc pbc-inline-flex pbc-w-max pbc-flex-nowrap pbc-items-center pbc-justify-center pbc-transition-colors',
         size === 'xs' && 'pbc-py-4 pbc-px-8 pbc-rounded-6 pbc-h-26',
         size === 's' && 'pbc-py-8 pbc-px-12 pbc-rounded-8 pbc-h-[34px]',
         size === 'm' && 'pbc-py-12 pbc-px-16 pbc-rounded-12 pbc-h-48',
@@ -98,7 +107,7 @@ const Button = forwardRef<ButtonOrLinkType, ButtonProps>((props, ref) => {
       {loading ? (
         <Icon tag={ArrowPathIcon} size={size === 'xs' ? 's' : size} className={clsx('pbc-animate-spin pbc-transition')} />
       ) : (
-        <Content size={size === 'xs' ? 's' : size} leftIcon={leftIcon} rightIcon={rightIcon} medium={true}>
+        <Content size={size === 'xs' ? 's' : size} leftIcon={leftIcon} rightIcon={rightIcon} medium={true} className={textClassName}>
           {children}
         </Content>
       )}

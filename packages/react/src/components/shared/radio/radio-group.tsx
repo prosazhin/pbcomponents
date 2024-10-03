@@ -1,14 +1,22 @@
 'use client';
 
-import Radio, { RadioProps } from '@/components/shared/radio-group/radio';
-import { ComponentWrapperType, FieldSetType, RadioGroupType, SMSizeType } from '@/types';
+import Radio, { RadioProps } from '@/components/shared/radio/radio';
+import { FieldSetHTMLAttrs, FieldSetType, InputEvent, SMSizeType } from '@/types';
 import clsx from 'clsx';
 import { forwardRef, useState } from 'react';
 
-export interface RadioGroupProps<T> extends ComponentWrapperType<T>, RadioGroupType, SMSizeType {}
+type RadioGroupTType = React.ReactElement<RadioProps>;
+type BaseRadioGroupProps<T> = Omit<FieldSetHTMLAttrs, 'onChange' | 'children'> & {
+  children?: T[];
+} & SMSizeType;
 
-const RadioGroup = forwardRef<FieldSetType, RadioGroupProps<React.ReactElement<RadioProps>>>((props, ref) => {
-  const { children, className, defaultValue, size, onChange, ...rest } = props;
+export interface RadioGroupProps extends BaseRadioGroupProps<RadioGroupTType> {
+  defaultValue?: string;
+  onChange?: (checked: boolean, value: string, event: InputEvent) => void;
+}
+
+const RadioGroup = forwardRef<FieldSetType, RadioGroupProps>((props, ref) => {
+  const { children, className, defaultValue, size, onChange = () => {}, ...rest } = props;
   const { name, disabled } = rest;
   const [activeValue, setActiveValue] = useState<string | undefined>(defaultValue);
 
@@ -32,9 +40,9 @@ const RadioGroup = forwardRef<FieldSetType, RadioGroupProps<React.ReactElement<R
             size={size}
             checked={activeValue === itemProps.value}
             disabled={disabled ? disabled : undefined}
-            onChange={(value, event) => {
+            onChange={(checked, value, event) => {
               setActiveValue(value);
-              if (onChange) onChange(value, event);
+              onChange(checked, value, event);
             }}
           />
         ))}

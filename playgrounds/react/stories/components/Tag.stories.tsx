@@ -1,44 +1,52 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 import * as heroicons from '@heroicons/react/24/solid';
-import { InlineRadio as Component } from '@pbcomponents/react';
-import { radioArg } from '../../args';
+import { Tag as Component } from '@pbcomponents/react';
+import { tagArg } from '../args';
 
 const meta = {
-  title: 'Components/Inline Radio Group/Inline Radio',
+  title: 'Components/Tag',
   component: Component,
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
   argTypes: {
-    ...Object.assign(radioArg),
+    ...Object.assign(tagArg),
   },
   args: {
-    children: 'Label',
+    // @ts-expect-error: Unreachable code error
+    as: 'button',
+    children: 'Tag',
     size: 'm',
+    theme: 'light',
     checked: false,
     disabled: false,
-    value: '',
-    name: '',
-    onChange: () => {},
+    loading: false,
+    href: '#',
+    type: 'button',
+    onClick: () => {},
     leftIcon: undefined,
     rightIcon: undefined,
     className: '',
+    textClassName: '',
   },
-  render: ({ children, value, leftIcon, rightIcon, size, checked, disabled, onChange, className, name }) => (
+  render: ({ children, leftIcon, rightIcon, size, theme, checked, disabled, loading, href, type, onClick, className, textClassName }) => (
     <Component
-      value={value}
       size={size}
+      theme={theme}
       checked={checked}
       disabled={disabled}
+      loading={loading}
+      type={type}
+      href={href}
       // @ts-expect-error: Unreachable code error
       leftIcon={leftIcon ? heroicons[leftIcon] : leftIcon}
       // @ts-expect-error: Unreachable code error
       rightIcon={rightIcon ? heroicons[rightIcon] : rightIcon}
       className={className ? className : undefined}
-      name={name ? name : undefined}
-      onChange={onChange}
+      textClassName={textClassName ? textClassName : undefined}
+      onClick={onClick}
     >
       {children}
     </Component>

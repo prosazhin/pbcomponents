@@ -2,23 +2,35 @@
 
 import Icon from '@/components/helpers/icon';
 import Text from '@/components/helpers/text';
-import { MediumType, SMLSizeType, SpanHTMLAttributes, SpanType, WithIconsType } from '@/types';
+import { MediumType, PolymorphicProps, SMLSizeType, TextClassNameType, WithIconsType } from '@/types';
 import clsx from 'clsx';
-import { forwardRef } from 'react';
 
-type BaseContentProps = SpanHTMLAttributes & WithIconsType & MediumType & SMLSizeType;
+const defaultElement = 'span';
 
-export interface ContentProps extends BaseContentProps {}
+type BaseContentProps = WithIconsType & MediumType & SMLSizeType & TextClassNameType;
 
-const Content = forwardRef<SpanType, ContentProps>((props, ref) => {
-  const { children, className, size = 'm', medium = false, leftIcon: LeftIcon, rightIcon: RightIcon, ...rest } = props;
+export interface ContentProps extends BaseContentProps {
+  children?: string;
+}
+
+const Content = <Element extends React.ElementType = typeof defaultElement>(props: PolymorphicProps<Element, ContentProps>) => {
+  const {
+    as: Component = defaultElement,
+    children,
+    className,
+    textClassName,
+    size = 'm',
+    medium = false,
+    leftIcon: LeftIcon,
+    rightIcon: RightIcon,
+    ...rest
+  } = props;
 
   return (
-    <span
-      ref={ref}
+    <Component
       {...rest}
       className={clsx(
-        'pbc pbc-flex-inline',
+        'pbc pbc-inline-flex pbc-w-max pbc-flex-nowrap pbc-items-center pbc-justify-center',
         size === 's' && 'pbc-gap-x-4',
         size === 'm' && 'pbc-gap-x-6',
         size === 'l' && 'pbc-gap-x-8',
@@ -27,14 +39,14 @@ const Content = forwardRef<SpanType, ContentProps>((props, ref) => {
     >
       {LeftIcon && <Icon tag={LeftIcon} size={size} />}
       {children && (
-        <Text size={size} medium={medium}>
+        <Text size={size} medium={medium} className={textClassName}>
           {children}
         </Text>
       )}
       {RightIcon && <Icon tag={RightIcon} size={size} />}
-    </span>
+    </Component>
   );
-});
+};
 
 Content.displayName = 'Content';
 

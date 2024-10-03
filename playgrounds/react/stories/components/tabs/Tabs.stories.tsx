@@ -10,6 +10,7 @@ const meta = {
   argTypes: {
     ...Object.assign(classNameArg),
     children: {
+      control: 'object',
       type: 'Tab[]',
       defaultValue: { summary: undefined },
     },
@@ -18,8 +19,9 @@ const meta = {
       defaultValue: { summary: 0 },
     },
     onChange: {
+      control: 'object',
       defaultValue: { summary: undefined },
-      type: '(index, event) => void',
+      type: '(index: number, event: Event) => void',
     },
   },
   args: {

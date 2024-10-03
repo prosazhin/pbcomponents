@@ -12,11 +12,11 @@ const ICON_SIZE = {
 
 type BaseIconProps = React.SVGProps<SVGSVGElement> & SMLSizeType;
 
-export interface IconProps<T> extends BaseIconProps {
-  tag: T;
+export interface IconProps extends BaseIconProps {
+  tag: SvgType;
 }
 
-const Icon = forwardRef<SVGSVGElement, IconProps<SvgType>>((props, ref) => {
+const Icon = forwardRef<SVGSVGElement, IconProps>((props, ref) => {
   const { className, tag: TagName, size = 'm', ...rest } = props;
 
   return (

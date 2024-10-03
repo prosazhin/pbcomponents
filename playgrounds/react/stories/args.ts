@@ -3,13 +3,29 @@ import * as heroicons from '@heroicons/react/24/solid';
 export const childrenArg = {
   children: {
     control: 'text',
-    type: 'React.ReactNode',
+    type: 'string',
     defaultValue: { summary: undefined },
   },
 };
 
 export const classNameArg = {
   className: {
+    control: 'text',
+    type: 'string',
+    defaultValue: { summary: undefined },
+  },
+};
+
+export const wrapperClassNameTypeArg = {
+  wrapperClassName: {
+    control: 'text',
+    type: 'string',
+    defaultValue: { summary: undefined },
+  },
+};
+
+export const textClassNameTypeArg = {
+  textClassName: {
     control: 'text',
     type: 'string',
     defaultValue: { summary: undefined },
@@ -97,6 +113,13 @@ export const disabledArg = {
   },
 };
 
+export const errorArg = {
+  error: {
+    control: 'boolean',
+    defaultValue: { summary: 'false' },
+  },
+};
+
 export const loadingArg = {
   loading: {
     control: 'boolean',
@@ -104,17 +127,48 @@ export const loadingArg = {
   },
 };
 
+export const valueArg = {
+  value: {
+    control: 'text',
+    type: 'string',
+    defaultValue: { summary: undefined },
+  },
+};
+
+export const placeholderArg = {
+  placeholder: {
+    control: 'text',
+    type: 'string',
+    defaultValue: { summary: undefined },
+  },
+};
+
+export const asArg = {
+  as: {
+    options: ['button', 'a'],
+    control: 'radio',
+    defaultValue: { summary: 'button' },
+    description:
+      'This parameter is used for demonstration purposes only. Switching between a button and a link is done via the `href` prop.',
+    type: 'string',
+  },
+};
+
 export const typeArg = {
   type: {
-    control: 'text',
+    options: ['button', 'reset', 'submit'],
+    control: 'radio',
     defaultValue: { summary: undefined },
+    type: 'string',
+    if: { arg: 'as', eq: 'button' },
   },
 };
 
 export const onClickArg = {
   onClick: {
     defaultValue: { summary: undefined },
-    type: '(event) => void',
+    type: '(event: Event) => void',
+    if: { arg: 'as', eq: 'button' },
   },
 };
 
@@ -122,15 +176,21 @@ export const hrefArg = {
   href: {
     control: 'text',
     defaultValue: { summary: undefined },
+    if: { arg: 'as', eq: 'a' },
   },
 };
 
 export const buttonArg = {
   ...defaultArgs,
+  ...textClassNameTypeArg,
   ...sizeArg,
   ...iconsArg,
   ...loadingArg,
   ...disabledArg,
+  ...asArg,
+  ...typeArg,
+  ...onClickArg,
+  ...hrefArg,
   theme: {
     options: ['filled', 'light', 'border', 'ghost'],
     control: { type: 'radio' },
@@ -145,11 +205,16 @@ export const buttonArg = {
 
 export const tagArg = {
   ...defaultArgs,
+  ...textClassNameTypeArg,
   ...SMSizeArg,
   ...iconsArg,
   ...checkedArg,
   ...loadingArg,
   ...disabledArg,
+  ...asArg,
+  ...typeArg,
+  ...onClickArg,
+  ...hrefArg,
   theme: {
     options: ['light', 'border'],
     control: { type: 'radio' },
@@ -159,36 +224,49 @@ export const tagArg = {
 
 export const checkboxArg = {
   ...defaultArgs,
+  ...wrapperClassNameTypeArg,
+  ...textClassNameTypeArg,
   ...iconsArg,
   ...labelPlaceArg,
   ...SMSizeArg,
   ...checkedArg,
   ...disabledArg,
+  ...valueArg,
   onChange: {
+    control: 'object',
     defaultValue: { summary: undefined },
-    type: '(value, event) => void',
+    type: '(checked: boolean, value: string, event: Event) => void',
+  },
+};
+
+export const checkboxGroupArg = {
+  ...classNameArg,
+  ...SMSizeArg,
+  ...disabledArg,
+  defaultValue: {
+    control: 'object',
+    defaultValue: { summary: undefined },
+    type: 'string[]',
+  },
+  onChange: {
+    control: 'object',
+    defaultValue: { summary: undefined },
+    type: '(value: string[]) => void',
   },
 };
 
 export const radioArg = {
   ...defaultArgs,
+  ...textClassNameTypeArg,
   ...iconsArg,
   ...SMSizeArg,
   ...checkedArg,
   ...disabledArg,
-  value: {
-    control: 'text',
-    type: 'string',
-    defaultValue: { summary: undefined },
-  },
-  name: {
-    control: 'text',
-    type: 'string',
-    defaultValue: { summary: undefined },
-  },
+  ...valueArg,
   onChange: {
+    control: 'object',
     defaultValue: { summary: undefined },
-    type: '(value, event) => void',
+    type: '(checked: boolean, value: string, event: Event) => void',
   },
 };
 
@@ -200,27 +278,80 @@ export const radioGroupArg = {
     control: 'text',
     defaultValue: { summary: undefined },
   },
-  name: {
-    control: 'text',
-    defaultValue: { summary: undefined },
-  },
-  form: {
-    control: 'text',
-    defaultValue: { summary: undefined },
-  },
   onChange: {
+    control: 'object',
     defaultValue: { summary: undefined },
-    type: '(value, event) => void',
+    type: '(checked: boolean, value: string, event: Event) => void',
   },
 };
 
 export const tabArg = {
   ...classNameArg,
+  ...textClassNameTypeArg,
   ...iconsArg,
   ...activeArg,
   ...disabledArg,
+  ...asArg,
+  ...typeArg,
+  ...onClickArg,
+  ...hrefArg,
   label: {
     control: 'text',
     defaultValue: { summary: undefined },
+  },
+};
+
+export const fieldArg = {
+  ...classNameArg,
+  ...errorArg,
+  label: {
+    control: 'text',
+    defaultValue: { summary: undefined },
+  },
+  description: {
+    control: 'text',
+    defaultValue: { summary: undefined },
+  },
+};
+
+export const inputArg = {
+  ...classNameArg,
+  ...wrapperClassNameTypeArg,
+  ...SMSizeArg,
+  ...iconsArg,
+  ...disabledArg,
+  ...errorArg,
+  ...valueArg,
+  ...placeholderArg,
+  button: {
+    options: ['left', 'right'],
+    control: 'radio',
+    defaultValue: { summary: 'left' },
+  },
+  type: {
+    options: ['text', 'number', 'email', 'password', 'url', 'tel', 'search', 'date', 'datetime-local', 'month', 'week', 'time'],
+    control: 'select',
+    defaultValue: { summary: 'text' },
+    type: 'string',
+  },
+  onChange: {
+    control: 'object',
+    defaultValue: { summary: undefined },
+    type: '(value: string, event: Event) => void',
+  },
+};
+
+export const textareaArg = {
+  ...classNameArg,
+  ...wrapperClassNameTypeArg,
+  ...SMSizeArg,
+  ...disabledArg,
+  ...errorArg,
+  ...valueArg,
+  ...placeholderArg,
+  onChange: {
+    control: 'object',
+    defaultValue: { summary: undefined },
+    type: '(value: string, event: Event) => void',
   },
 };

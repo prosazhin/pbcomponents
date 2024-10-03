@@ -1,25 +1,25 @@
 'use client';
 
 import Content from '@/components/helpers/content';
-import { ColorType, SMSizeType, SpanHTMLAttributes, SpanType, WithIconsType } from '@/types';
+import { ChildrenType, ColorType, SMSizeType, SpanHTMLAttrs, SpanType, TextClassNameType, WithIconsType } from '@/types';
 import clsx from 'clsx';
 import { forwardRef } from 'react';
 
-type BaseBadgeProps = SpanHTMLAttributes & WithIconsType & SMSizeType & ColorType;
+type BaseBadgeProps = Omit<SpanHTMLAttrs, 'children'> & WithIconsType & SMSizeType & ColorType & ChildrenType & TextClassNameType;
 
 export interface BadgeProps extends BaseBadgeProps {
   theme?: 'filled' | 'light' | 'border';
 }
 
 const Badge = forwardRef<SpanType, BadgeProps>((props, ref) => {
-  const { children, className, size = 'm', theme = 'filled', color = 'primary', leftIcon, rightIcon, ...rest } = props;
+  const { children, className, textClassName, size = 'm', theme = 'filled', color = 'primary', leftIcon, rightIcon, ...rest } = props;
 
   return (
     <span
       ref={ref}
       {...rest}
       className={clsx(
-        'pbc pbc-rounded-999 pbc-flex-inline !pbc-cursor-default',
+        'pbc pbc-rounded-999 pbc-inline-flex pbc-w-max pbc-flex-nowrap pbc-items-center pbc-justify-center !pbc-cursor-default',
         size === 's' && 'pbc-py-4 pbc-px-8 pbc-h-26',
         size === 'm' && 'pbc-py-8 pbc-px-12 pbc-h-[34px]',
         theme === 'filled' && 'pbc-text-white',
@@ -43,7 +43,7 @@ const Badge = forwardRef<SpanType, BadgeProps>((props, ref) => {
         className,
       )}
     >
-      <Content size='s' leftIcon={leftIcon} rightIcon={rightIcon} medium={true}>
+      <Content size='s' leftIcon={leftIcon} rightIcon={rightIcon} medium={true} className={textClassName}>
         {children}
       </Content>
     </span>

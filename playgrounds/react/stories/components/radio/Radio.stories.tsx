@@ -1,10 +1,10 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 import { Radio as Component } from '@pbcomponents/react';
-import { labelPlaceArg, radioArg } from '../../args';
+import { labelPlaceArg, radioArg, textClassNameTypeArg, wrapperClassNameTypeArg } from '../../args';
 
 const meta = {
-  title: 'Components/Radio Group/Radio',
+  title: 'Components/Radio/Radio',
   component: Component,
   parameters: {
     layout: 'centered',
@@ -13,6 +13,8 @@ const meta = {
   argTypes: {
     ...Object.assign(radioArg),
     ...Object.assign(labelPlaceArg),
+    ...Object.assign(wrapperClassNameTypeArg),
+    ...Object.assign(textClassNameTypeArg),
   },
   args: {
     children: 'Label',
@@ -21,13 +23,28 @@ const meta = {
     checked: false,
     disabled: false,
     value: '',
-    name: '',
     onChange: () => {},
     leftIcon: undefined,
     rightIcon: undefined,
     className: '',
+    wrapperClassName: '',
+    textClassName: '',
   },
-  render: ({ children, checked, value, labelPlace, leftIcon, rightIcon, size, disabled, className, name, onChange }) => (
+  render: ({
+    children,
+    checked,
+    value,
+    labelPlace,
+    leftIcon,
+    rightIcon,
+    size,
+    disabled,
+    className,
+    wrapperClassName,
+    textClassName,
+    name,
+    onChange,
+  }) => (
     <Component
       value={value}
       size={size}
@@ -39,6 +56,8 @@ const meta = {
       // @ts-expect-error: Unreachable code error
       rightIcon={rightIcon ? heroicons[rightIcon] : rightIcon}
       className={className ? className : undefined}
+      wrapperClassName={wrapperClassName ? wrapperClassName : undefined}
+      textClassName={textClassName ? textClassName : undefined}
       name={name ? name : undefined}
       onChange={onChange}
     >

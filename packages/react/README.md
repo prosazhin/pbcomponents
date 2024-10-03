@@ -15,8 +15,6 @@ npm install @pbcomponents/react
 ## Usage
 
 ```javascript
-'use client';
-
 import { Button } from '@pbcomponents/react';
 
 const Page = () => (
@@ -30,37 +28,36 @@ const Page = () => (
 
 ## Components
 
-| Name                   | Preview                                                                                                          |
-| :--------------------- | :--------------------------------------------------------------------------------------------------------------- |
-| Button                 | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-buttons-button-button--docs)                 |
-| Button Link            | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-buttons-button-button-link--docs)            |
-| Button Group           | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-buttons-button-group--docs)                  |
-| Badge                  | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-badge--docs)                                 |
-| Tag Button             | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tag-tag-button--docs)                        |
-| Tag Link               | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tag-tag-link--docs)                          |
-| Checkbox               | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-checkbox--docs)                              |
-| Switch                 | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-switch--docs)                                |
-| Radio                  | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-radio-group-radio--docs)                     |
-| Radio Group            | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-radio-group-radio-group--docs)               |
-| Inline Radio           | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-inline-radio-group-inline-radio--docs)       |
-| Inline Radio Group     | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-inline-radio-group-inline-radio-group--docs) |
-| Input                  | -                                                                                                                |
-| Textarea               | -                                                                                                                |
-| Select                 | -                                                                                                                |
-| Field                  | -                                                                                                                |
-| Dropdown               | -                                                                                                                |
-| Dropdown Item          | -                                                                                                                |
-| Dropdown Item Checkbox | -                                                                                                                |
-| Dropdown Item Switch   | -                                                                                                                |
-| Dropdown Item Radio    | -                                                                                                                |
-| Tabs                   | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tabs-tabs--docs)                             |
-| Tab Button             | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tabs-tab-tab-button--docs)                   |
-| Tab Link               | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tabs-tab-tab-link--docs)                     |
-| Collapse               | -                                                                                                                |
-| Collapse Item          | -                                                                                                                |
-| Alert                  | -                                                                                                                |
-| Modal                  | -                                                                                                                |
-| Notification           | -                                                                                                                |
+| Name                   | Preview                                                                                                    |
+| :--------------------- | :--------------------------------------------------------------------------------------------------------- |
+| Button                 | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-button-button--docs)                   |
+| Button Group           | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-button-button-group--docs)             |
+| Badge                  | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-badge--docs)                           |
+| Tag                    | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tag--docs)                             |
+| Checkbox               | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-checkbox-checkbox--docs)               |
+| Checkbox Group         | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-checkbox-checkbox-group--docs)         |
+| Switch                 | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-checkbox-switch--docs)                 |
+| Radio                  | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-radio-radio--docs)                     |
+| Radio Group            | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-radio-radio-group--docs)               |
+| Inline Radio           | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-inline-radio-inline-radio--docs)       |
+| Inline Radio Group     | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-inline-radio-inline-radio-group--docs) |
+| Input                  | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-input--docs)                           |
+| Textarea               | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-textarea--docs)                        |
+| Select                 | -                                                                                                          |
+| Field                  | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-field--docs)                           |
+| Field Group            | -                                                                                                          |
+| Dropdown               | -                                                                                                          |
+| Dropdown Item          | -                                                                                                          |
+| Dropdown Item Checkbox | -                                                                                                          |
+| Dropdown Item Switch   | -                                                                                                          |
+| Dropdown Item Radio    | -                                                                                                          |
+| Tabs                   | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tabs-tabs--docs)                       |
+| Tab                    | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tabs-tab--docs)                        |
+| Collapse               | -                                                                                                          |
+| Collapse Item          | -                                                                                                          |
+| Alert                  | -                                                                                                          |
+| Modal                  | -                                                                                                          |
+| Notification           | -                                                                                                          |
 
 ## Helpers
 

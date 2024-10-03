@@ -1,19 +1,23 @@
 'use client';
 
-import { MediumType, SMLSizeType, SpanHTMLAttributes, SpanType } from '@/types';
+import { MediumType, PolymorphicProps, SMLSizeType } from '@/types';
 import clsx from 'clsx';
-import { forwardRef } from 'react';
 
-type BaseTextProps = SpanHTMLAttributes & MediumType & SMLSizeType;
+const defaultElement = 'span';
 
-export interface TextProps extends BaseTextProps {}
+type BaseTextProps = MediumType & SMLSizeType;
 
-const Text = forwardRef<SpanType, TextProps>((props, ref) => {
-  const { children, className, size = 'm', medium = false, ...rest } = props;
+export interface TextProps extends BaseTextProps {
+  children?: string;
+}
+
+const Text = <Element extends React.ElementType = typeof defaultElement>(props: PolymorphicProps<Element, TextProps>) => {
+  const { as: Component = defaultElement, children, className, size = 'm', medium = false, ...rest } = props;
+
+  if (!children) return null;
 
   return (
-    <span
-      ref={ref}
+    <Component
       {...rest}
       className={clsx(
         'pbc pbc-text-inherit pbc-select-none',
@@ -24,9 +28,9 @@ const Text = forwardRef<SpanType, TextProps>((props, ref) => {
       )}
     >
       {children}
-    </span>
+    </Component>
   );
-});
+};
 
 Text.displayName = 'Text';
 

@@ -1,0 +1,53 @@
+import { Meta, StoryObj } from '@storybook/react';
+
+import { Field as Component, Input, Textarea } from '@pbcomponents/react';
+import { fieldArg } from '../../args';
+import '../../index.css';
+
+const meta = {
+  title: 'Components/Field',
+  component: Component,
+  parameters: {
+    layout: 'centered',
+  },
+  tags: ['autodocs'],
+  argTypes: {
+    ...Object.assign(fieldArg),
+    children: {
+      options: ['Input', 'Textarea', 'X2', 'X3'],
+      control: 'select',
+      mapping: {
+        Input: <Input placeholder='Placeholder' />,
+        Textarea: <Textarea placeholder='Placeholder' />,
+        X2: ['One', 'Two'].map((value, index) => <Input key={index} placeholder={`Placeholder ${value}`} />),
+        X3: ['One', 'Two', 'Three'].map((value, index) => <Input key={index} placeholder={`Placeholder ${value}`} />),
+      },
+      defaultValue: { summary: undefined },
+      type: 'Input | Textarea',
+    },
+  },
+  args: {
+    // @ts-expect-error: Unreachable code error
+    children: 'Input',
+    label: 'Label',
+    description: 'Description',
+    error: false,
+    className: '',
+  },
+  render: ({ children, className, label, description, error }) => (
+    <Component
+      label={label ? label : undefined}
+      description={description ? description : undefined}
+      error={error}
+      className={className ? `filed-width ${className}` : `filed-width`}
+    >
+      {children}
+    </Component>
+  ),
+} satisfies Meta<typeof Component>;
+
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const S: Story = {};

@@ -1,10 +1,10 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import { RadioGroup as Component, Radio } from '@pbcomponents/react';
+import { InlineRadioGroup as Component, InlineRadio } from '@pbcomponents/react';
 import { radioGroupArg } from '../../args';
 
 const meta = {
-  title: 'Components/Radio Group/Radio Group',
+  title: 'Components/Inline Radio/Inline Radio Group',
   component: Component,
   parameters: {
     layout: 'centered',
@@ -13,25 +13,24 @@ const meta = {
   argTypes: {
     ...Object.assign(radioGroupArg),
     children: {
-      type: 'Radio[]',
+      control: 'object',
+      type: 'InlineRadio[]',
       defaultValue: { summary: undefined },
     },
   },
   args: {
     children: ['One', 'Two', 'Three', 'Four', 'Five'].map((value, index) => (
-      <Radio key={index} value={value}>
+      <InlineRadio key={index} value={value}>
         {value}
-      </Radio>
+      </InlineRadio>
     )),
     size: 'm',
     disabled: false,
     defaultValue: 'One',
-    name: '',
-    form: '',
     onChange: () => {},
     className: '',
   },
-  render: ({ children, size, className, disabled, defaultValue, onChange, name, form }) => (
+  render: ({ children, size, className, defaultValue, disabled, onChange, name, form }) => (
     <Component
       size={size}
       name={name ? name : undefined}

@@ -1,14 +1,22 @@
 'use client';
 
-import InlineRadio, { InlineRadioProps } from '@/components/shared/inline-radio-group/inline-radio';
-import { ComponentWrapperType, FieldSetType, RadioGroupType, SMSizeType } from '@/types';
+import InlineRadio, { InlineRadioProps } from '@/components/shared/inline-radio/inline-radio';
+import { FieldSetHTMLAttrs, FieldSetType, InputEvent, SMSizeType } from '@/types';
 import clsx from 'clsx';
 import { forwardRef, useState } from 'react';
 
-export interface InlineRadioGroupProps<T> extends ComponentWrapperType<T>, RadioGroupType, SMSizeType {}
+type InlineRadioGroupTType = React.ReactElement<InlineRadioProps>;
+type BaseInlineRadioGroupProps<T> = Omit<FieldSetHTMLAttrs, 'onChange' | 'children'> & {
+  children?: T[];
+} & SMSizeType;
 
-const InlineRadioGroup = forwardRef<FieldSetType, InlineRadioGroupProps<React.ReactElement<InlineRadioProps>>>((props, ref) => {
-  const { children, className, defaultValue, size, onChange, ...rest } = props;
+export interface InlineRadioGroupProps extends BaseInlineRadioGroupProps<InlineRadioGroupTType> {
+  defaultValue?: string;
+  onChange?: (checked: boolean, value: string, event: InputEvent) => void;
+}
+
+const InlineRadioGroup = forwardRef<FieldSetType, InlineRadioGroupProps>((props, ref) => {
+  const { children, className, defaultValue, size, onChange = () => {}, ...rest } = props;
   const { name, disabled } = rest;
   const [activeValue, setActiveValue] = useState<string | undefined>(defaultValue);
 
@@ -33,9 +41,9 @@ const InlineRadioGroup = forwardRef<FieldSetType, InlineRadioGroupProps<React.Re
               size={size}
               checked={activeValue === itemProps.value}
               disabled={disabled ? disabled : undefined}
-              onChange={(value, event) => {
+              onChange={(checked, value, event) => {
                 setActiveValue(value);
-                if (onChange) onChange(value, event);
+                onChange(checked, value, event);
               }}
             />
           ))}

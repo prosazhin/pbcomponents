@@ -28,41 +28,41 @@ import { Button } from '@pbcomponents/vue';
 
 ## Components
 
-| Name                   | Ready to use | Preview |
-| :--------------------- | :----------- | :------ |
-| Button                 | -            | -       |
-| Button Link            | -            | -       |
-| Button Group           | -            | -       |
-| Badge                  | -            | -       |
-| Tag Button             | -            | -       |
-| Tag Link               | -            | -       |
-| Checkbox               | -            | -       |
-| Switch                 | -            | -       |
-| Radio                  | -            | -       |
-| Inline Radio           | -            | -       |
-| Inline Radio Item      | -            | -       |
-| Input                  | -            | -       |
-| Textarea               | -            | -       |
-| Select                 | -            | -       |
-| Field                  | -            | -       |
-| Dropdown               | -            | -       |
-| Dropdown Item          | -            | -       |
-| Dropdown Item Checkbox | -            | -       |
-| Dropdown Item Switch   | -            | -       |
-| Dropdown Item Radio    | -            | -       |
-| Tabs                   | -            | -       |
-| Tab Button             | -            | -       |
-| Tab Link               | -            | -       |
-| Collapse               | -            | -       |
-| Collapse Item          | -            | -       |
-| Alert                  | -            | -       |
-| Modal                  | -            | -       |
-| Notification           | -            | -       |
+| Name                   | Preview |
+| :--------------------- | :------ |
+| Button                 | -       |
+| Button Group           | -       |
+| Badge                  | -       |
+| Tag                    | -       |
+| Checkbox               | -       |
+| Checkbox Group         | -       |
+| Switch                 | -       |
+| Radio                  | -       |
+| Radio Group            | -       |
+| Inline Radio           | -       |
+| Inline Radio Group     | -       |
+| Input                  | -       |
+| Textarea               | -       |
+| Select                 | -       |
+| Field                  | -       |
+| Field Group            | -       |
+| Dropdown               | -       |
+| Dropdown Item          | -       |
+| Dropdown Item Checkbox | -       |
+| Dropdown Item Switch   | -       |
+| Dropdown Item Radio    | -       |
+| Tabs                   | -       |
+| Tab                    | -       |
+| Collapse               | -       |
+| Collapse Item          | -       |
+| Alert                  | -       |
+| Modal                  | -       |
+| Notification           | -       |
 
 ## Helpers
 
-| Name    | Ready to use | Preview |
-| :------ | :----------- | :------ |
-| Text    | -            | -       |
-| Icon    | -            | -       |
-| Content | -            | -       |
+| Name    | Preview |
+| :------ | :------ |
+| Text    | -       |
+| Icon    | -       |
+| Content | -       |

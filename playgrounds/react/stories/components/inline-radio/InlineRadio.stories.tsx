@@ -1,48 +1,45 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 import * as heroicons from '@heroicons/react/24/solid';
-import { Button as Component } from '@pbcomponents/react';
-import { buttonArg, onClickArg, typeArg } from '../../../args';
+import { InlineRadio as Component } from '@pbcomponents/react';
+import { radioArg } from '../../args';
 
 const meta = {
-  title: 'Components/Buttons/Button/Button',
+  title: 'Components/Inline Radio/Inline Radio',
   component: Component,
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
   argTypes: {
-    ...Object.assign(buttonArg),
-    ...Object.assign(typeArg),
-    ...Object.assign(onClickArg),
+    ...Object.assign(radioArg),
   },
   args: {
-    children: 'Button',
+    children: 'Label',
     size: 'm',
-    theme: 'filled',
-    color: 'primary',
+    checked: false,
     disabled: false,
-    loading: false,
-    type: 'button',
-    onClick: () => {},
+    value: '',
+    onChange: () => {},
     leftIcon: undefined,
     rightIcon: undefined,
     className: '',
+    textClassName: '',
   },
-  render: ({ children, leftIcon, rightIcon, size, theme, color, disabled, loading, className, onClick, type }) => (
+  render: ({ children, value, leftIcon, rightIcon, size, checked, disabled, onChange, className, textClassName, name }) => (
     <Component
+      value={value}
       size={size}
-      theme={theme}
-      color={color}
+      checked={checked}
       disabled={disabled}
-      loading={loading}
-      type={type}
       // @ts-expect-error: Unreachable code error
       leftIcon={leftIcon ? heroicons[leftIcon] : leftIcon}
       // @ts-expect-error: Unreachable code error
       rightIcon={rightIcon ? heroicons[rightIcon] : rightIcon}
       className={className ? className : undefined}
-      onClick={onClick}
+      textClassName={textClassName ? textClassName : undefined}
+      name={name ? name : undefined}
+      onChange={onChange}
     >
       {children}
     </Component>

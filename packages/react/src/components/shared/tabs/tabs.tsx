@@ -1,28 +1,30 @@
 'use client';
 
 import Tab, { TabProps } from '@/components/shared/tabs/tab';
-import { ComponentWrapperType, DivType } from '@/types';
+import { DivHTMLAttrs, DivType } from '@/types';
 import clsx from 'clsx';
 import { forwardRef, useState } from 'react';
 
-export interface TabsProps<T> extends ComponentWrapperType<T> {
+type TabsTType = React.ReactElement<TabProps>;
+type BaseTabsProps<T> = Omit<DivHTMLAttrs, 'children' | 'onChange'> & {
+  children?: T[];
+};
+
+export interface TabsProps extends BaseTabsProps<TabsTType> {
   defaultIndex?: number;
   onChange?: (index: number, event: React.MouseEvent<HTMLElement>) => void;
 }
 
-const Tabs = forwardRef<DivType, TabsProps<React.ReactElement<TabProps>>>((props, ref) => {
-  const { children, className, defaultIndex = 0, onChange, ...rest } = props;
+const Tabs = forwardRef<DivType, TabsProps>((props, ref) => {
+  const { children, className, defaultIndex = 0, onChange = () => {}, ...rest } = props;
   const [activeIndex, setActiveIndex] = useState<number>(defaultIndex);
 
   return (
-    <div>
+    <div {...rest} ref={ref} className={clsx('pbc pbc-w-full', className)}>
       <div
-        {...rest}
-        ref={ref}
         className={clsx(
           'pbc pbc-relative pbc-w-full after:pbc-absolute after:pbc-inset-x-0 after:pbc-bottom-0 after:pbc-z-[1]',
           'after:pbc-bg-secondary-lighter after:pbc-h-2 after:pbc-w-full after:pbc-rounded-999',
-          className,
         )}
       >
         <div
@@ -39,7 +41,7 @@ const Tabs = forwardRef<DivType, TabsProps<React.ReactElement<TabProps>>>((props
                 active={activeIndex === index}
                 onClick={(event) => {
                   setActiveIndex(index);
-                  if (onChange) onChange(index, event);
+                  onChange(index, event);
                 }}
               />
             ))}

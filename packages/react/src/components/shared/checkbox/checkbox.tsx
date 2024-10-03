@@ -2,22 +2,42 @@
 
 import Content from '@/components/helpers/content';
 import Icon from '@/components/helpers/icon';
-import { CheckedType, ComponentType, DisabledType, IndeterminateType, InputType, LabelPlaceType, SMSizeType, WithIconsType } from '@/types';
+import {
+  ChildrenType,
+  InputEvent,
+  InputHTMLAttrs,
+  InputType,
+  LabelPlaceType,
+  SMSizeType,
+  TextClassNameType,
+  WithIconsType,
+  WrapperClassNameType,
+} from '@/types';
 import { CheckIcon, MinusIcon } from '@heroicons/react/24/solid';
 import clsx from 'clsx';
-import { forwardRef, useEffect, useRef } from 'react';
+import { forwardRef, useEffect, useRef, useState } from 'react';
 
-type BaseCheckboxProps = ComponentType & LabelPlaceType & CheckedType & IndeterminateType & DisabledType & WithIconsType & SMSizeType;
+type BaseCheckboxProps = Omit<InputHTMLAttrs, 'size' | 'onChange' | 'children'> &
+  ChildrenType &
+  SMSizeType &
+  LabelPlaceType &
+  WithIconsType &
+  WrapperClassNameType &
+  TextClassNameType;
 
 export interface CheckboxProps extends BaseCheckboxProps {
-  onChange?: (value: boolean, event: React.ChangeEvent<HTMLInputElement>) => void;
+  indeterminate?: boolean;
+  value?: string;
+  onChange?: (checked: boolean, value: string, event: InputEvent) => void;
 }
 
 const Checkbox = forwardRef<InputType, CheckboxProps>((props, ref) => {
   const {
     children,
     className,
-    onChange,
+    wrapperClassName,
+    textClassName,
+    onChange = () => {},
     labelPlace = 'right',
     size = 'm',
     checked = false,
@@ -27,6 +47,8 @@ const Checkbox = forwardRef<InputType, CheckboxProps>((props, ref) => {
     rightIcon,
     ...rest
   } = props;
+  const { value: externalValue } = rest;
+  const [value] = useState<string>(externalValue || children || '');
 
   const internalRef = useRef<InputType>(null);
   const checkboxRef = (ref || internalRef) as React.MutableRefObject<InputType>;
@@ -48,7 +70,7 @@ const Checkbox = forwardRef<InputType, CheckboxProps>((props, ref) => {
       className={clsx(
         'pbc pbc-inline-flex pbc-w-max pbc-cursor-pointer pbc-flex-nowrap pbc-group pbc-gap-8',
         disabled && '!pbc-cursor-default',
-        className,
+        wrapperClassName,
       )}
     >
       <div className={clsx('pbc pbc-relative', size === 's' && 'pbc-size-16', size === 'm' && 'pbc-size-24')}>
@@ -56,6 +78,7 @@ const Checkbox = forwardRef<InputType, CheckboxProps>((props, ref) => {
           {...rest}
           ref={checkboxRef}
           type='checkbox'
+          value={value}
           checked={checked}
           disabled={disabled}
           className={clsx(
@@ -64,10 +87,9 @@ const Checkbox = forwardRef<InputType, CheckboxProps>((props, ref) => {
             'disabled:!pbc-cursor-default disabled:!pbc-bg-basic-lighter disabled:!pbc-border-secondary-light group-hover:disabled:!pbc-border-secondary-light group-hover:disabled:!pbc-bg-basic-lighter',
             'checked:pbc-bg-primary-main checked:pbc-border-transparent group-hover:checked:pbc-bg-primary-darker disabled:checked:!pbc-bg-primary-light disabled:checked:!pbc-border-transparent group-hover:disabled:checked:!pbc-bg-primary-light',
             'indeterminate:pbc-bg-primary-main indeterminate:pbc-border-transparent group-hover:indeterminate:pbc-bg-primary-darker disabled:indeterminate:!pbc-bg-primary-light disabled:indeterminate:!pbc-border-transparent group-hover:disabled:indeterminate:!pbc-bg-primary-light',
+            className,
           )}
-          onChange={(event) => {
-            if (onChange) onChange(event.target.checked, event);
-          }}
+          onChange={(event) => onChange(event.target.checked, value, event)}
         />
         {(checked || indeterminate) && (
           <Icon
@@ -84,6 +106,7 @@ const Checkbox = forwardRef<InputType, CheckboxProps>((props, ref) => {
             labelPlace === 'left' && 'pbc-order-first',
             labelPlace === 'right' && 'pbc-order-last',
             disabled ? 'pbc-text-basic-light' : 'pbc-text-basic-main',
+            textClassName,
           )}
           size={size}
           leftIcon={leftIcon}

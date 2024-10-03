@@ -1,19 +1,40 @@
 'use client';
 
 import Content from '@/components/helpers/content';
-import { CheckedType, ComponentType, DisabledType, InputType, LabelPlaceType, RadioType, SMSizeType, WithIconsType } from '@/types';
+import {
+  ChildrenType,
+  InputEvent,
+  InputHTMLAttrs,
+  InputType,
+  LabelPlaceType,
+  SMSizeType,
+  TextClassNameType,
+  WithIconsType,
+  WrapperClassNameType,
+} from '@/types';
 import clsx from 'clsx';
-import { forwardRef } from 'react';
+import { forwardRef, useState } from 'react';
 
-type BaseRadioProps = ComponentType & RadioType & LabelPlaceType & CheckedType & DisabledType & WithIconsType & SMSizeType;
+type BaseRadioProps = Omit<InputHTMLAttrs, 'size' | 'onChange' | 'value' | 'children'> &
+  ChildrenType &
+  LabelPlaceType &
+  SMSizeType &
+  WithIconsType &
+  WrapperClassNameType &
+  TextClassNameType;
 
-export interface RadioProps extends BaseRadioProps {}
+export interface RadioProps extends BaseRadioProps {
+  value?: string;
+  onChange?: (checked: boolean, value: string, event: InputEvent) => void;
+}
 
 const Radio = forwardRef<InputType, RadioProps>((props, ref) => {
   const {
     children,
     className,
-    onChange,
+    wrapperClassName,
+    textClassName,
+    onChange = () => {},
     labelPlace = 'right',
     size = 'm',
     checked = false,
@@ -22,20 +43,22 @@ const Radio = forwardRef<InputType, RadioProps>((props, ref) => {
     rightIcon,
     ...rest
   } = props;
-  const { value } = rest;
+  const { value: externalValue } = rest;
+  const [value] = useState<string>(externalValue || children || '');
 
   return (
     <label
       className={clsx(
         'pbc pbc-inline-flex pbc-w-max pbc-cursor-pointer pbc-flex-nowrap pbc-group pbc-gap-8',
         disabled && '!pbc-cursor-default',
-        className,
+        wrapperClassName,
       )}
     >
       <input
         {...rest}
         ref={ref}
         type='radio'
+        value={value}
         checked={checked}
         disabled={disabled}
         className={clsx(
@@ -46,10 +69,9 @@ const Radio = forwardRef<InputType, RadioProps>((props, ref) => {
           'before:pbc-absolute before:pbc-bg-transparent before:pbc-rounded-999 checked:before:pbc-bg-white before:pbc-inset-0 before:pbc-m-auto',
           size === 's' && 'pbc-size-16 before:pbc-size-6',
           size === 'm' && 'pbc-size-24 before:pbc-size-10',
+          className,
         )}
-        onChange={(event) => {
-          if (onChange) onChange(value, event);
-        }}
+        onChange={(event) => onChange(event.target.checked, value, event)}
       />
       {children && (
         <Content
@@ -58,6 +80,7 @@ const Radio = forwardRef<InputType, RadioProps>((props, ref) => {
             labelPlace === 'left' && 'pbc-order-first',
             labelPlace === 'right' && 'pbc-order-last',
             disabled ? 'pbc-text-basic-light' : 'pbc-text-basic-main',
+            textClassName,
           )}
           size={size}
           leftIcon={leftIcon}

@@ -1,37 +1,32 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import { InlineRadioGroup as Component, InlineRadio } from '@pbcomponents/react';
-import { radioGroupArg } from '../../args';
+import { Checkbox, CheckboxGroup as Component } from '@pbcomponents/react';
+import { checkboxGroupArg } from '../../args';
 
 const meta = {
-  title: 'Components/Inline Radio Group/Inline Radio Group',
+  title: 'Components/Checkbox/Checkbox Group',
   component: Component,
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
   argTypes: {
-    ...Object.assign(radioGroupArg),
+    ...Object.assign(checkboxGroupArg),
     children: {
-      type: 'InlineRadio[]',
+      control: 'object',
+      type: 'Checkbox[]',
       defaultValue: { summary: undefined },
     },
   },
   args: {
-    children: ['One', 'Two', 'Three', 'Four', 'Five'].map((value, index) => (
-      <InlineRadio key={index} value={value}>
-        {value}
-      </InlineRadio>
-    )),
+    children: ['One', 'Two', 'Three', 'Four', 'Five'].map((value, index) => <Checkbox key={index}>{value}</Checkbox>),
     size: 'm',
     disabled: false,
-    defaultValue: 'One',
-    name: '',
-    form: '',
+    defaultValue: ['One'],
     onChange: () => {},
     className: '',
   },
-  render: ({ children, size, className, defaultValue, disabled, onChange, name, form }) => (
+  render: ({ children, size, className, disabled, defaultValue, onChange, name, form }) => (
     <Component
       size={size}
       name={name ? name : undefined}

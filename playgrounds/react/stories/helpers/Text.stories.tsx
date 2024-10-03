@@ -14,15 +14,21 @@ const meta = {
     ...Object.assign(defaultArgs),
     ...Object.assign(SMLSizeArg),
     ...Object.assign(mediumArg),
+    as: {
+      control: 'text',
+      type: 'string',
+      defaultValue: { summary: 'span' },
+    },
   },
   args: {
-    children: 'label',
+    as: 'span',
+    children: 'Label',
     size: 'm',
     medium: false,
     className: '',
   },
-  render: ({ children, size, medium, className }) => (
-    <Component size={size} medium={medium} className={className ? className : undefined}>
+  render: ({ as, children, size, medium, className }) => (
+    <Component as={as} size={size} medium={medium} className={className ? className : undefined}>
       {children}
     </Component>
   ),
