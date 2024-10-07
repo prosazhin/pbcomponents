@@ -45,4 +45,4 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const S: Story = {};
+export const C: Story = {};

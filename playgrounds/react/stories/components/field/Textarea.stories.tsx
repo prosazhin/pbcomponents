@@ -3,14 +3,10 @@ import { Meta, StoryObj } from '@storybook/react';
 import { Textarea as Component } from '@pbcomponents/react';
 import { useArgs } from '@storybook/preview-api';
 import { textareaArg } from '../../args';
-import '../../index.css';
 
 const meta = {
-  title: 'Components/Textarea',
+  title: 'Components/Field/Textarea',
   component: Component,
-  parameters: {
-    layout: 'centered',
-  },
   tags: ['autodocs'],
   argTypes: {
     ...Object.assign(textareaArg),
@@ -37,7 +33,7 @@ const meta = {
         disabled={disabled}
         error={error}
         className={className ? className : undefined}
-        wrapperClassName={wrapperClassName ? `input-width ${wrapperClassName}` : `input-width`}
+        wrapperClassName={wrapperClassName ? wrapperClassName : undefined}
         onChange={(v) => {
           setArgs({ value: v });
         }}
@@ -50,4 +46,4 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const S: Story = {};
+export const C: Story = {};

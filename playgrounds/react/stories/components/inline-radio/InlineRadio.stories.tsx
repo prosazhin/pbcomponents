@@ -7,9 +7,6 @@ import { radioArg } from '../../args';
 const meta = {
   title: 'Components/Inline Radio/Inline Radio',
   component: Component,
-  parameters: {
-    layout: 'centered',
-  },
   tags: ['autodocs'],
   argTypes: {
     ...Object.assign(radioArg),
@@ -50,4 +47,4 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const S: Story = {};
+export const C: Story = {};

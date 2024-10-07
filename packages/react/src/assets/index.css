@@ -26,16 +26,6 @@
     text-decoration: underline dotted;
   }
 
-  h1.pbc,
-  h2.pbc,
-  h3.pbc,
-  h4.pbc,
-  h5.pbc,
-  h6.pbc {
-    font-size: inherit;
-    font-weight: inherit;
-  }
-
   a.pbc {
     text-decoration: inherit;
     cursor: pointer;

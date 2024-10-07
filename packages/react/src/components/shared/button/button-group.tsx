@@ -20,7 +20,7 @@ const ButtonGroup = forwardRef<DivType, ButtonGroupProps>((props, ref) => {
       {...rest}
       ref={ref}
       className={clsx(
-        'pbc pbc-inline-flex pbc-w-max pbc-flex-nowrap pbc-items-center pbc-justify-center -pbc-space-x-1 pbc-relative',
+        'pbc pbc-inline-flex pbc-w-max mobile:pbc-w-full pbc-flex-nowrap pbc-items-center pbc-justify-center -pbc-space-x-1 pbc-relative',
         className,
       )}
     >
@@ -35,7 +35,7 @@ const ButtonGroup = forwardRef<DivType, ButtonGroupProps>((props, ref) => {
               key={index}
               size={size}
               className={clsx(
-                'pbc-z-0 hover:pbc-z-[1] focus:pbc-z-[2]',
+                'pbc-z-0 hover:pbc-z-[1] focus:pbc-z-[2] mobile:pbc-w-full',
                 first && size === 'xs' && '!pbc-rounded-l-6 !pbc-rounded-r-0',
                 first && size === 's' && '!pbc-rounded-l-8 !pbc-rounded-r-0',
                 first && size === 'm' && '!pbc-rounded-l-12 !pbc-rounded-r-0',

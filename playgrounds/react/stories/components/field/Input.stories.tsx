@@ -4,14 +4,10 @@ import * as heroicons from '@heroicons/react/24/solid';
 import { Button, Input as Component } from '@pbcomponents/react';
 import { useArgs } from '@storybook/preview-api';
 import { inputArg } from '../../args';
-import '../../index.css';
 
 const meta = {
-  title: 'Components/Input',
+  title: 'Components/Field/Input',
   component: Component,
-  parameters: {
-    layout: 'centered',
-  },
   tags: ['autodocs'],
   argTypes: {
     ...Object.assign(inputArg),
@@ -65,7 +61,7 @@ const meta = {
         // @ts-expect-error: Unreachable code error
         rightIcon={rightIcon ? heroicons[rightIcon] : rightIcon}
         className={className ? className : undefined}
-        wrapperClassName={wrapperClassName ? `input-width ${wrapperClassName}` : `input-width`}
+        wrapperClassName={wrapperClassName ? wrapperClassName : undefined}
         button={button}
         onChange={(v) => {
           setArgs({ value: v });
@@ -81,4 +77,4 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const S: Story = {};
+export const C: Story = {};

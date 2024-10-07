@@ -7,9 +7,6 @@ import { tagArg } from '../args';
 const meta = {
   title: 'Components/Tag',
   component: Component,
-  parameters: {
-    layout: 'centered',
-  },
   tags: ['autodocs'],
   argTypes: {
     ...Object.assign(tagArg),
@@ -57,4 +54,4 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const S: Story = {};
+export const C: Story = {};

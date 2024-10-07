@@ -29,7 +29,7 @@ const CheckboxGroup = forwardRef<FieldSetType, CheckboxGroupProps>((props, ref) 
       {...rest}
       ref={ref}
       className={clsx(
-        'pbc pbc-relative pbc-w-max pbc-appearance-none pbc-flex pbc-flex-col',
+        'pbc pbc-relative pbc-w-full pbc-appearance-none pbc-flex pbc-flex-col',
         size === 's' && 'pbc-gap-8',
         size === 'm' && 'pbc-gap-16',
         className,
@@ -44,6 +44,7 @@ const CheckboxGroup = forwardRef<FieldSetType, CheckboxGroupProps>((props, ref) 
             size={size}
             checked={activeValue.some((item) => item === itemProps.value || item === itemProps.children)}
             disabled={disabled ? disabled : undefined}
+            wrapperClassName={clsx('pbc-w-full', itemProps.wrapperClassName)}
             onChange={(_, value) => {
               let result = [...activeValue];
               if (activeValue.some((item) => item === value)) {

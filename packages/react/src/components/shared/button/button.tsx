@@ -61,7 +61,7 @@ const Button = forwardRef<ButtonOrLinkType, ButtonProps>((props, ref) => {
       {...rest}
       ref={buttonRef as any}
       className={clsx(
-        'pbc pbc-inline-flex pbc-w-max pbc-flex-nowrap pbc-items-center pbc-justify-center pbc-transition-colors',
+        'pbc pbc-inline-flex pbc-w-max xs:pbc-w-full pbc-flex-nowrap pbc-items-center pbc-justify-center pbc-transition-colors',
         size === 'xs' && 'pbc-py-4 pbc-px-8 pbc-rounded-6 pbc-h-26',
         size === 's' && 'pbc-py-8 pbc-px-12 pbc-rounded-8 pbc-h-[34px]',
         size === 'm' && 'pbc-py-12 pbc-px-16 pbc-rounded-12 pbc-h-48',
@@ -81,7 +81,7 @@ const Button = forwardRef<ButtonOrLinkType, ButtonProps>((props, ref) => {
         theme === 'light' && color === 'success' && 'pbc-bg-success-lighter hover:pbc-bg-success-light',
         theme === 'light' && color === 'danger' && 'pbc-bg-danger-lighter hover:pbc-bg-danger-light',
         theme === 'light' && disabled && !loading && '!pbc-bg-secondary-lighter !pbc-text-basic-light',
-        theme === 'border' && 'pbc-border-1 hover:pbc-border-transparent',
+        theme === 'border' && 'pbc-border-1 pbc-border-solid hover:pbc-border-transparent',
         theme === 'border' && color === 'primary' && 'pbc-border-primary-light hover:pbc-bg-primary-lighter',
         theme === 'border' && color === 'secondary' && 'pbc-border-secondary-light hover:pbc-bg-secondary-lighter',
         theme === 'border' && color === 'success' && 'pbc-border-success-light hover:pbc-bg-success-lighter',

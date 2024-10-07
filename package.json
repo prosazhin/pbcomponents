@@ -64,14 +64,14 @@
     "@pbcomponents/vue": "*"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.4.0",
-    "@commitlint/config-conventional": "^19.2.2",
-    "lint-staged": "^15.2.9",
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
+    "lint-staged": "^15.2.10",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.3.3",
-    "prettier-plugin-organize-imports": "^4.0.0",
-    "prettier-plugin-tailwindcss": "^0.6.6",
-    "rimraf": "^3.0.2",
+    "prettier-plugin-organize-imports": "^4.1.0",
+    "prettier-plugin-tailwindcss": "^0.6.8",
+    "rimraf": "^6.0.1",
     "simple-git-hooks": "^2.11.1"
   }
 }

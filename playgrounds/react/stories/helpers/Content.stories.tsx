@@ -7,9 +7,6 @@ import { defaultArgs, iconsArg, mediumArg, SMLSizeArg, textClassNameTypeArg } fr
 const meta = {
   title: 'Helpers/Content',
   component: Component,
-  parameters: {
-    layout: 'centered',
-  },
   tags: ['autodocs'],
   argTypes: {
     ...Object.assign(defaultArgs),
@@ -54,4 +51,4 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const S: Story = {};
+export const C: Story = {};

@@ -6,9 +6,6 @@ import { checkboxGroupArg } from '../../args';
 const meta = {
   title: 'Components/Checkbox/Checkbox Group',
   component: Component,
-  parameters: {
-    layout: 'centered',
-  },
   tags: ['autodocs'],
   argTypes: {
     ...Object.assign(checkboxGroupArg),
@@ -45,4 +42,4 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const S: Story = {};
+export const C: Story = {};

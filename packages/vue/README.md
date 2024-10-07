@@ -45,7 +45,6 @@ import { Button } from '@pbcomponents/vue';
 | Textarea               | -       |
 | Select                 | -       |
 | Field                  | -       |
-| Field Group            | -       |
 | Dropdown               | -       |
 | Dropdown Item          | -       |
 | Dropdown Item Checkbox | -       |
@@ -58,6 +57,8 @@ import { Button } from '@pbcomponents/vue';
 | Alert                  | -       |
 | Modal                  | -       |
 | Notification           | -       |
+| Headline               | -       |
+| Container              | -       |
 
 ## Helpers
 

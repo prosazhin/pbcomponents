@@ -25,7 +25,7 @@ const RadioGroup = forwardRef<FieldSetType, RadioGroupProps>((props, ref) => {
       {...rest}
       ref={ref}
       className={clsx(
-        'pbc pbc-relative pbc-w-max pbc-appearance-none pbc-flex pbc-flex-col',
+        'pbc pbc-relative pbc-w-full pbc-appearance-none pbc-flex pbc-flex-col',
         size === 's' && 'pbc-gap-8',
         size === 'm' && 'pbc-gap-16',
         className,
@@ -40,6 +40,7 @@ const RadioGroup = forwardRef<FieldSetType, RadioGroupProps>((props, ref) => {
             size={size}
             checked={activeValue === itemProps.value}
             disabled={disabled ? disabled : undefined}
+            wrapperClassName={clsx('pbc-w-full', itemProps.wrapperClassName)}
             onChange={(checked, value, event) => {
               setActiveValue(value);
               onChange(checked, value, event);

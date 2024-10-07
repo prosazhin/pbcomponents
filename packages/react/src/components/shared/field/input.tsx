@@ -44,9 +44,7 @@ const Input = forwardRef<InputType, InputProps>((props, ref) => {
   }
 
   return (
-    <div
-      className={clsx('pbc pbc-relative pbc-inline-flex pbc-flex-nowrap pbc-items-center pbc-justify-center pbc-w-full', wrapperClassName)}
-    >
+    <div className={clsx('pbc pbc-relative pbc-flex pbc-flex-nowrap pbc-items-center pbc-justify-center pbc-w-full', wrapperClassName)}>
       <div className={clsx('pbc pbc-relative pbc-w-full pbc-z-0 hover:pbc-z-[1]')}>
         {leftIcon && (
           <Icon

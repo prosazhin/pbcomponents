@@ -24,6 +24,9 @@ export type SMSizeType = { size?: 's' | 'm' };
 export type ColorType = { color?: 'primary' | 'secondary' | 'success' | 'danger' };
 export type ThemeType = { theme?: 'filled' | 'light' | 'border' | 'ghost' };
 
+export type HeadlineType = HTMLHeadingElement;
+export type HeadlineHTMLAttrs = React.HTMLAttributes<HeadlineType>;
+
 export type SpanType = HTMLSpanElement;
 export type SpanHTMLAttrs = React.HTMLAttributes<SpanType>;
 
@@ -44,7 +47,7 @@ export type InputHTMLAttrs = React.InputHTMLAttributes<HTMLElement>;
 export type InputEvent = React.ChangeEvent<HTMLInputElement>;
 
 export type LabelType = HTMLLabelElement;
-export type LabelHTMLAttrs = React.HTMLAttributes<LabelType>;
+export type LabelHTMLAttrs = React.LabelHTMLAttributes<HTMLElement>;
 
 export type FieldSetType = HTMLFieldSetElement;
 export type FieldSetHTMLAttrs = React.FieldsetHTMLAttributes<HTMLElement>;

@@ -355,3 +355,55 @@ export const textareaArg = {
     type: '(value: string, event: Event) => void',
   },
 };
+
+export const headlineArg = {
+  ...classNameArg,
+  as: {
+    options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+    control: 'select',
+    defaultValue: { summary: 'h1' },
+    type: 'string',
+  },
+  children: {
+    control: 'text',
+    type: 'React.ReactNode',
+    defaultValue: { summary: undefined },
+  },
+};
+
+export const alertArg = {
+  ...classNameArg,
+  as: {
+    options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+    control: 'select',
+    defaultValue: { summary: 'h3' },
+    type: 'string',
+  },
+  headline: {
+    control: 'text',
+    defaultValue: { summary: undefined },
+  },
+  description: {
+    control: 'text',
+    defaultValue: { summary: undefined },
+  },
+  color: {
+    options: ['primary', 'secondary', 'success', 'danger'],
+    control: { type: 'radio' },
+    defaultValue: { summary: 'primary' },
+  },
+};
+
+export const containerArg = {
+  ...classNameArg,
+  children: {
+    control: 'object',
+    type: 'React.ReactNode',
+    defaultValue: { summary: undefined },
+  },
+  size: {
+    options: ['full', 'm', 's'],
+    control: 'radio',
+    defaultValue: { summary: 'full' },
+  },
+};

@@ -30,7 +30,7 @@ const Content = <Element extends React.ElementType = typeof defaultElement>(prop
     <Component
       {...rest}
       className={clsx(
-        'pbc pbc-inline-flex pbc-w-max pbc-flex-nowrap pbc-items-center pbc-justify-center',
+        'pbc pbc-inline-flex pbc-flex-nowrap pbc-items-center pbc-pointer-events-none pbc-select-none',
         size === 's' && 'pbc-gap-x-4',
         size === 'm' && 'pbc-gap-x-6',
         size === 'l' && 'pbc-gap-x-8',

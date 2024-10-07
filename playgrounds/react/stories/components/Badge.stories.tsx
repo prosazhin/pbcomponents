@@ -7,9 +7,6 @@ import { defaultArgs, iconsArg, SMSizeArg, textClassNameTypeArg } from '../args'
 const meta = {
   title: 'Components/Badge',
   component: Component,
-  parameters: {
-    layout: 'centered',
-  },
   tags: ['autodocs'],
   argTypes: {
     ...Object.assign(defaultArgs),
@@ -58,4 +55,4 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const S: Story = {};
+export const C: Story = {};

@@ -2,14 +2,10 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { Field as Component, Input, Textarea } from '@pbcomponents/react';
 import { fieldArg } from '../../args';
-import '../../index.css';
 
 const meta = {
-  title: 'Components/Field',
+  title: 'Components/Field/Field',
   component: Component,
-  parameters: {
-    layout: 'centered',
-  },
   tags: ['autodocs'],
   argTypes: {
     ...Object.assign(fieldArg),
@@ -39,7 +35,7 @@ const meta = {
       label={label ? label : undefined}
       description={description ? description : undefined}
       error={error}
-      className={className ? `filed-width ${className}` : `filed-width`}
+      className={className ? className : undefined}
     >
       {children}
     </Component>
@@ -50,4 +46,4 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const S: Story = {};
+export const C: Story = {};

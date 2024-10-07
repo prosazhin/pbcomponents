@@ -7,9 +7,6 @@ import { tabArg } from '../../args';
 const meta = {
   title: 'Components/Tabs/Tab',
   component: Component,
-  parameters: {
-    layout: 'centered',
-  },
   tags: ['autodocs'],
   argTypes: {
     ...Object.assign(tabArg),
@@ -50,4 +47,4 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const S: Story = {};
+export const C: Story = {};

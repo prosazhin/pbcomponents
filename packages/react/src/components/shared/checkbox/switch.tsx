@@ -49,7 +49,7 @@ const Switch = forwardRef<InputType, SwitchProps>((props, ref) => {
   return (
     <label
       className={clsx(
-        'pbc pbc-inline-flex pbc-w-max pbc-cursor-pointer pbc-flex-nowrap pbc-group pbc-gap-8',
+        'pbc pbc-inline-flex pbc-cursor-pointer pbc-flex-nowrap pbc-group pbc-gap-8',
         disabled && '!pbc-cursor-default',
         wrapperClassName,
       )}
@@ -85,8 +85,8 @@ const Switch = forwardRef<InputType, SwitchProps>((props, ref) => {
         <Content
           className={clsx(
             'pbc-flex-1 pbc-transition-colors',
-            labelPlace === 'left' && 'pbc-order-first',
-            labelPlace === 'right' && 'pbc-order-last',
+            labelPlace === 'left' && 'pbc-order-first pbc-justify-end',
+            labelPlace === 'right' && 'pbc-order-last pbc-justify-start',
             disabled ? 'pbc-text-basic-light' : 'pbc-text-basic-main',
             textClassName,
           )}

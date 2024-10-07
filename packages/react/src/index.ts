@@ -1,13 +1,16 @@
 import '@/assets/index.css';
 
 export {
+  Alert,
   Badge,
   Button,
   ButtonGroup,
   Checkbox,
   CheckboxGroup,
+  Container,
   Content,
   Field,
+  Headline,
   Icon,
   InlineRadio,
   InlineRadioGroup,

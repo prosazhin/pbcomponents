@@ -6,9 +6,6 @@ import { labelPlaceArg, radioArg, textClassNameTypeArg, wrapperClassNameTypeArg 
 const meta = {
   title: 'Components/Radio/Radio',
   component: Component,
-  parameters: {
-    layout: 'centered',
-  },
   tags: ['autodocs'],
   argTypes: {
     ...Object.assign(radioArg),
@@ -70,4 +67,4 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const S: Story = {};
+export const C: Story = {};

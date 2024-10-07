@@ -6,9 +6,6 @@ import { classNameArg, sizeArg } from '../../args';
 const meta = {
   title: 'Components/Button/Button Group',
   component: Component,
-  parameters: {
-    layout: 'centered',
-  },
   tags: ['autodocs'],
   argTypes: {
     ...Object.assign(classNameArg),
@@ -39,4 +36,4 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const S: Story = {};
+export const C: Story = {};
