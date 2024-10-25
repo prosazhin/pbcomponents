@@ -1,7 +1,7 @@
 'use client';
 
 import Text from '@/components/helpers/text';
-import { ButtonProps } from '@/components/shared/button/button';
+import { ButtonProps } from '@/components/shared/button';
 import Headline from '@/components/shared/headline';
 import { ColorType, DivHTMLAttrs } from '@/types';
 import clsx from 'clsx';

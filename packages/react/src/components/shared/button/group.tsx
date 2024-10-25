@@ -1,9 +1,8 @@
 'use client';
 
-import Button, { ButtonProps } from '@/components/shared/button/button';
-import { DivHTMLAttrs, DivType, SizeType } from '@/types';
+import Button, { ButtonProps } from '@/components/shared/button';
+import { DivHTMLAttrs, SizeType } from '@/types';
 import clsx from 'clsx';
-import { forwardRef } from 'react';
 
 type ButtonGroupTType = React.ReactElement<ButtonProps>;
 type BaseButtonGroupProps<T> = Omit<DivHTMLAttrs, 'children'> & {
@@ -12,13 +11,12 @@ type BaseButtonGroupProps<T> = Omit<DivHTMLAttrs, 'children'> & {
 
 export interface ButtonGroupProps extends BaseButtonGroupProps<ButtonGroupTType> {}
 
-const ButtonGroup = forwardRef<DivType, ButtonGroupProps>((props, ref) => {
+const ButtonGroup = (props: ButtonGroupProps) => {
   const { children, className, size = 'm', ...rest } = props;
 
   return (
     <div
       {...rest}
-      ref={ref}
       className={clsx(
         'pbc pbc-inline-flex pbc-w-max mobile:pbc-w-full pbc-flex-nowrap pbc-items-center pbc-justify-center -pbc-space-x-1 pbc-relative',
         className,
@@ -52,7 +50,7 @@ const ButtonGroup = forwardRef<DivType, ButtonGroupProps>((props, ref) => {
         })}
     </div>
   );
-});
+};
 
 ButtonGroup.displayName = 'ButtonGroup';
 

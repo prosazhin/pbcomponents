@@ -8,7 +8,7 @@ const defaultElement = 'span';
 type BaseTextProps = MediumType & SMLSizeType;
 
 export interface TextProps extends BaseTextProps {
-  children?: string;
+  children?: React.ReactNode;
 }
 
 const Text = <Element extends React.ElementType = typeof defaultElement>(props: PolymorphicProps<Element, TextProps>) => {

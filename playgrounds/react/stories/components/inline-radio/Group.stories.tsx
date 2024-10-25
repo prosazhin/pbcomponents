@@ -4,7 +4,7 @@ import { InlineRadioGroup as Component, InlineRadio } from '@pbcomponents/react'
 import { radioGroupArg } from '../../args';
 
 const meta = {
-  title: 'Components/Inline Radio/Inline Radio Group',
+  title: 'Components/Inline Radio/InlineRadioGroup',
   component: Component,
   tags: ['autodocs'],
   argTypes: {

@@ -1,6 +1,6 @@
 'use client';
 
-import Radio, { RadioProps } from '@/components/shared/radio/radio';
+import Radio, { RadioProps } from '@/components/shared/radio';
 import { FieldSetHTMLAttrs, FieldSetType, InputEvent, SMSizeType } from '@/types';
 import clsx from 'clsx';
 import { forwardRef, useState } from 'react';

@@ -1,6 +1,6 @@
 'use client';
 
-import Tab, { TabProps } from '@/components/shared/tabs/tab';
+import Tab, { TabProps } from '@/components/shared/tabs/item';
 import { DivHTMLAttrs, DivType } from '@/types';
 import clsx from 'clsx';
 import { forwardRef, useState } from 'react';

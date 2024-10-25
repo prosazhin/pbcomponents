@@ -13,7 +13,18 @@ export interface TabProps extends BaseTabProps {
 }
 
 const Tab = forwardRef<ButtonOrLinkType, TabProps>((props, ref) => {
-  const { label, className, textClassName, active = false, disabled = false, leftIcon, rightIcon, ...rest } = props;
+  const {
+    label,
+    className,
+    textClassName,
+    active = false,
+    disabled = false,
+    leftIcon,
+    leftIconClassName,
+    rightIcon,
+    rightIconClassName,
+    ...rest
+  } = props;
   const { href } = rest;
   const TagName = href ? 'a' : 'button';
 
@@ -42,7 +53,9 @@ const Tab = forwardRef<ButtonOrLinkType, TabProps>((props, ref) => {
         )}
         size='m'
         leftIcon={leftIcon}
+        leftIconClassName={leftIconClassName}
         rightIcon={rightIcon}
+        rightIconClassName={rightIconClassName}
         medium={true}
       >
         {label}

@@ -21,11 +21,26 @@ const meta = {
     type: 'button',
     onClick: () => {},
     leftIcon: undefined,
+    leftIconClassName: '',
     rightIcon: undefined,
+    rightIconClassName: '',
     className: '',
     textClassName: '',
   },
-  render: ({ label, leftIcon, rightIcon, active, disabled, href, type, onClick, className, textClassName }) => (
+  render: ({
+    label,
+    leftIcon,
+    leftIconClassName,
+    rightIcon,
+    rightIconClassName,
+    active,
+    disabled,
+    href,
+    type,
+    onClick,
+    className,
+    textClassName,
+  }) => (
     <Component
       label={label}
       active={active}
@@ -34,8 +49,10 @@ const meta = {
       href={href}
       // @ts-expect-error: Unreachable code error
       leftIcon={leftIcon ? heroicons[leftIcon] : leftIcon}
+      leftIconClassName={leftIconClassName ? leftIconClassName : undefined}
       // @ts-expect-error: Unreachable code error
       rightIcon={rightIcon ? heroicons[rightIcon] : rightIcon}
+      rightIconClassName={rightIconClassName ? rightIconClassName : undefined}
       className={className ? className : undefined}
       textClassName={textClassName ? textClassName : undefined}
       onClick={onClick}

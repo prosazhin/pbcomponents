@@ -5,7 +5,7 @@ import { InlineRadio as Component } from '@pbcomponents/react';
 import { radioArg } from '../../args';
 
 const meta = {
-  title: 'Components/Inline Radio/Inline Radio',
+  title: 'Components/Inline Radio/InlineRadio',
   component: Component,
   tags: ['autodocs'],
   argTypes: {
@@ -19,11 +19,27 @@ const meta = {
     value: '',
     onChange: () => {},
     leftIcon: undefined,
+    leftIconClassName: '',
     rightIcon: undefined,
+    rightIconClassName: '',
     className: '',
     textClassName: '',
   },
-  render: ({ children, value, leftIcon, rightIcon, size, checked, disabled, onChange, className, textClassName, name }) => (
+  render: ({
+    children,
+    value,
+    leftIcon,
+    leftIconClassName,
+    rightIcon,
+    rightIconClassName,
+    size,
+    checked,
+    disabled,
+    onChange,
+    className,
+    textClassName,
+    name,
+  }) => (
     <Component
       value={value}
       size={size}
@@ -31,8 +47,10 @@ const meta = {
       disabled={disabled}
       // @ts-expect-error: Unreachable code error
       leftIcon={leftIcon ? heroicons[leftIcon] : leftIcon}
+      leftIconClassName={leftIconClassName ? leftIconClassName : undefined}
       // @ts-expect-error: Unreachable code error
       rightIcon={rightIcon ? heroicons[rightIcon] : rightIcon}
+      rightIconClassName={rightIconClassName ? rightIconClassName : undefined}
       className={className ? className : undefined}
       textClassName={textClassName ? textClassName : undefined}
       name={name ? name : undefined}

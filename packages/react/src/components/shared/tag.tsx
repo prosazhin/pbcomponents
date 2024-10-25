@@ -26,7 +26,9 @@ const Tag = forwardRef<ButtonOrLinkType, TagProps>((props, ref) => {
     loading = false,
     disabled = false,
     leftIcon,
+    leftIconClassName,
     rightIcon,
+    rightIconClassName,
     ...rest
   } = props;
   const { href } = rest;
@@ -66,7 +68,15 @@ const Tag = forwardRef<ButtonOrLinkType, TagProps>((props, ref) => {
       {loading ? (
         <Icon tag={ArrowPathIcon} size='s' className={clsx('pbc-animate-spin pbc-transition')} />
       ) : (
-        <Content size='s' leftIcon={leftIcon} rightIcon={rightIcon} medium={true} className={textClassName}>
+        <Content
+          size='s'
+          leftIcon={leftIcon}
+          leftIconClassName={leftIconClassName}
+          rightIcon={rightIcon}
+          rightIconClassName={rightIconClassName}
+          medium={true}
+          className={textClassName}
+        >
           {children}
         </Content>
       )}

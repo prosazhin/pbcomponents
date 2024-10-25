@@ -4,7 +4,7 @@ import { RadioGroup as Component, Radio } from '@pbcomponents/react';
 import { radioGroupArg } from '../../args';
 
 const meta = {
-  title: 'Components/Radio/Radio Group',
+  title: 'Components/Radio/RadioGroup',
   component: Component,
   tags: ['autodocs'],
   argTypes: {

@@ -1,6 +1,6 @@
 'use client';
 
-import Checkbox, { CheckboxProps } from '@/components/shared/checkbox/checkbox';
+import Checkbox, { CheckboxProps } from '@/components/shared/checkbox';
 import { FieldSetHTMLAttrs, FieldSetType, SMSizeType } from '@/types';
 import clsx from 'clsx';
 import { forwardRef, useEffect, useState } from 'react';

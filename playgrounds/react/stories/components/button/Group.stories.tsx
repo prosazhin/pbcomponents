@@ -4,7 +4,7 @@ import { Button, ButtonGroup as Component } from '@pbcomponents/react';
 import { classNameArg, sizeArg } from '../../args';
 
 const meta = {
-  title: 'Components/Button/Button Group',
+  title: 'Components/Button/ButtonGroup',
   component: Component,
   tags: ['autodocs'],
   argTypes: {

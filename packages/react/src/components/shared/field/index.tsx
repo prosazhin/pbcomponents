@@ -35,7 +35,7 @@ const Field = forwardRef<LabelType | FieldSetType, FieldProps>((props, ref) => {
   const fieldRef = (ref || internalRef) as React.MutableRefObject<LabelType | FieldSetType>;
 
   return (
-    <Component ref={fieldRef as any} {...rest} className={clsx('pbc pbc-flex pbc-flex-col pbc-w-full', className)}>
+    <Component {...rest} ref={fieldRef as any} className={clsx('pbc pbc-flex pbc-flex-col pbc-w-full', className)}>
       <Text as={isArray ? 'legend' : 'span'} size='s' className={clsx('pbc-text-basic-main pbc-w-full pbc-mb-4')}>
         {label}
       </Text>

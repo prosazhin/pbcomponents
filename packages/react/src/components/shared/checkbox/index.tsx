@@ -3,7 +3,6 @@
 import Content from '@/components/helpers/content';
 import Icon from '@/components/helpers/icon';
 import {
-  ChildrenType,
   InputEvent,
   InputHTMLAttrs,
   InputType,
@@ -18,7 +17,6 @@ import clsx from 'clsx';
 import { forwardRef, useEffect, useRef, useState } from 'react';
 
 type BaseCheckboxProps = Omit<InputHTMLAttrs, 'size' | 'onChange' | 'children'> &
-  ChildrenType &
   SMSizeType &
   LabelPlaceType &
   WithIconsType &
@@ -26,6 +24,7 @@ type BaseCheckboxProps = Omit<InputHTMLAttrs, 'size' | 'onChange' | 'children'> 
   TextClassNameType;
 
 export interface CheckboxProps extends BaseCheckboxProps {
+  children?: string;
   indeterminate?: boolean;
   value?: string;
   onChange?: (checked: boolean, value: string, event: InputEvent) => void;
@@ -44,7 +43,9 @@ const Checkbox = forwardRef<InputType, CheckboxProps>((props, ref) => {
     indeterminate = false,
     disabled = false,
     leftIcon,
+    leftIconClassName,
     rightIcon,
+    rightIconClassName,
     ...rest
   } = props;
   const { value: externalValue } = rest;
@@ -110,7 +111,9 @@ const Checkbox = forwardRef<InputType, CheckboxProps>((props, ref) => {
           )}
           size={size}
           leftIcon={leftIcon}
+          leftIconClassName={leftIconClassName}
           rightIcon={rightIcon}
+          rightIconClassName={rightIconClassName}
         >
           {children}
         </Content>

@@ -28,37 +28,34 @@ import { Button } from '@pbcomponents/vue';
 
 ## Components
 
-| Name                   | Preview |
-| :--------------------- | :------ |
-| Button                 | -       |
-| Button Group           | -       |
-| Badge                  | -       |
-| Tag                    | -       |
-| Checkbox               | -       |
-| Checkbox Group         | -       |
-| Switch                 | -       |
-| Radio                  | -       |
-| Radio Group            | -       |
-| Inline Radio           | -       |
-| Inline Radio Group     | -       |
-| Input                  | -       |
-| Textarea               | -       |
-| Select                 | -       |
-| Field                  | -       |
-| Dropdown               | -       |
-| Dropdown Item          | -       |
-| Dropdown Item Checkbox | -       |
-| Dropdown Item Switch   | -       |
-| Dropdown Item Radio    | -       |
-| Tabs                   | -       |
-| Tab                    | -       |
-| Collapse               | -       |
-| Collapse Item          | -       |
-| Alert                  | -       |
-| Modal                  | -       |
-| Notification           | -       |
-| Headline               | -       |
-| Container              | -       |
+| Name             | Preview |
+| :--------------- | :------ |
+| Button           | -       |
+| ButtonGroup      | -       |
+| Badge            | -       |
+| Tag              | -       |
+| Checkbox         | -       |
+| CheckboxGroup    | -       |
+| Switch           | -       |
+| Radio            | -       |
+| RadioGroup       | -       |
+| InlineRadio      | -       |
+| InlineRadioGroup | -       |
+| Input            | -       |
+| Textarea         | -       |
+| Select           | -       |
+| Field            | -       |
+| Dropdown         | -       |
+| DropdownItem     | -       |
+| Tabs             | -       |
+| Tab              | -       |
+| Collapse         | -       |
+| CollapseGroup    | -       |
+| Alert            | -       |
+| Modal            | -       |
+| Notification     | -       |
+| Headline         | -       |
+| Container        | -       |
 
 ## Helpers
 

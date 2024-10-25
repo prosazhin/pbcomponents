@@ -24,11 +24,29 @@ const meta = {
     type: 'button',
     onClick: () => {},
     leftIcon: undefined,
+    leftIconClassName: '',
     rightIcon: undefined,
+    rightIconClassName: '',
     className: '',
     textClassName: '',
   },
-  render: ({ children, leftIcon, rightIcon, size, theme, checked, disabled, loading, href, type, onClick, className, textClassName }) => (
+  render: ({
+    children,
+    leftIcon,
+    leftIconClassName,
+    rightIcon,
+    rightIconClassName,
+    size,
+    theme,
+    checked,
+    disabled,
+    loading,
+    href,
+    type,
+    onClick,
+    className,
+    textClassName,
+  }) => (
     <Component
       size={size}
       theme={theme}
@@ -39,8 +57,10 @@ const meta = {
       href={href}
       // @ts-expect-error: Unreachable code error
       leftIcon={leftIcon ? heroicons[leftIcon] : leftIcon}
+      leftIconClassName={leftIconClassName ? leftIconClassName : undefined}
       // @ts-expect-error: Unreachable code error
       rightIcon={rightIcon ? heroicons[rightIcon] : rightIcon}
+      rightIconClassName={rightIconClassName ? rightIconClassName : undefined}
       className={className ? className : undefined}
       textClassName={textClassName ? textClassName : undefined}
       onClick={onClick}

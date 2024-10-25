@@ -30,19 +30,23 @@ const meta = {
     theme: 'filled',
     color: 'primary',
     leftIcon: undefined,
+    leftIconClassName: '',
     rightIcon: undefined,
+    rightIconClassName: '',
     className: '',
     textClassName: '',
   },
-  render: ({ children, className, textClassName, size, theme, color, leftIcon, rightIcon }) => (
+  render: ({ children, className, textClassName, size, theme, color, leftIcon, leftIconClassName, rightIcon, rightIconClassName }) => (
     <Component
       size={size}
       theme={theme}
       color={color}
       // @ts-expect-error: Unreachable code error
       leftIcon={leftIcon ? heroicons[leftIcon] : leftIcon}
+      leftIconClassName={leftIconClassName ? leftIconClassName : undefined}
       // @ts-expect-error: Unreachable code error
       rightIcon={rightIcon ? heroicons[rightIcon] : rightIcon}
+      rightIconClassName={rightIconClassName ? rightIconClassName : undefined}
       className={className ? className : undefined}
       textClassName={textClassName ? textClassName : undefined}
     >

@@ -4,7 +4,7 @@ import { Checkbox, CheckboxGroup as Component } from '@pbcomponents/react';
 import { checkboxGroupArg } from '../../args';
 
 const meta = {
-  title: 'Components/Checkbox/Checkbox Group',
+  title: 'Components/Checkbox/CheckboxGroup',
   component: Component,
   tags: ['autodocs'],
   argTypes: {

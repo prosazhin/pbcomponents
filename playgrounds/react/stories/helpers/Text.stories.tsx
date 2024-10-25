@@ -1,20 +1,25 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 import { Text as Component } from '@pbcomponents/react';
-import { defaultArgs, mediumArg, SMLSizeArg } from '../args';
+import { classNameArg, mediumArg, SMLSizeArg } from '../args';
 
 const meta = {
   title: 'Helpers/Text',
   component: Component,
   tags: ['autodocs'],
   argTypes: {
-    ...Object.assign(defaultArgs),
+    ...Object.assign(classNameArg),
     ...Object.assign(SMLSizeArg),
     ...Object.assign(mediumArg),
     as: {
       control: 'text',
       type: 'string',
       defaultValue: { summary: 'span' },
+    },
+    children: {
+      control: 'text',
+      type: 'React.ReactNode',
+      defaultValue: { summary: undefined },
     },
   },
   args: {

@@ -1,7 +1,7 @@
 'use client';
 
 import Icon from '@/components/helpers/icon';
-import Button, { ButtonProps } from '@/components/shared/button/button';
+import Button, { ButtonProps } from '@/components/shared/button';
 import { ErrorType, InputEvent, InputHTMLAttrs, InputType, SMSizeType, WithIconsType, WrapperClassNameType } from '@/types';
 import clsx from 'clsx';
 import { forwardRef, useState } from 'react';
@@ -32,7 +32,9 @@ const Input = forwardRef<InputType, InputProps>((props, ref) => {
     button = 'left',
     type = 'text',
     leftIcon,
+    leftIconClassName,
     rightIcon,
+    rightIconClassName,
     ...rest
   } = props;
   const { value: externalValue } = rest;
@@ -55,6 +57,7 @@ const Input = forwardRef<InputType, InputProps>((props, ref) => {
               'pbc-absolute pbc-inset-y-0 pbc-m-auto',
               size === 's' && 'pbc-left-8',
               size === 'm' && 'pbc-left-12',
+              leftIconClassName,
             )}
           />
         )}
@@ -90,6 +93,7 @@ const Input = forwardRef<InputType, InputProps>((props, ref) => {
               'pbc-absolute pbc-inset-y-0 pbc-m-auto',
               size === 's' && 'pbc-right-8',
               size === 'm' && 'pbc-right-12',
+              rightIconClassName,
             )}
           />
         )}

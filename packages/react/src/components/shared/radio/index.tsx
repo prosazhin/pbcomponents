@@ -2,7 +2,6 @@
 
 import Content from '@/components/helpers/content';
 import {
-  ChildrenType,
   InputEvent,
   InputHTMLAttrs,
   InputType,
@@ -16,7 +15,6 @@ import clsx from 'clsx';
 import { forwardRef, useState } from 'react';
 
 type BaseRadioProps = Omit<InputHTMLAttrs, 'size' | 'onChange' | 'value' | 'children'> &
-  ChildrenType &
   LabelPlaceType &
   SMSizeType &
   WithIconsType &
@@ -24,6 +22,7 @@ type BaseRadioProps = Omit<InputHTMLAttrs, 'size' | 'onChange' | 'value' | 'chil
   TextClassNameType;
 
 export interface RadioProps extends BaseRadioProps {
+  children?: string;
   value?: string;
   onChange?: (checked: boolean, value: string, event: InputEvent) => void;
 }
@@ -40,7 +39,9 @@ const Radio = forwardRef<InputType, RadioProps>((props, ref) => {
     checked = false,
     disabled = false,
     leftIcon,
+    leftIconClassName,
     rightIcon,
+    rightIconClassName,
     ...rest
   } = props;
   const { value: externalValue } = rest;
@@ -84,7 +85,9 @@ const Radio = forwardRef<InputType, RadioProps>((props, ref) => {
           )}
           size={size}
           leftIcon={leftIcon}
+          leftIconClassName={leftIconClassName}
           rightIcon={rightIcon}
+          rightIconClassName={rightIconClassName}
         >
           {children}
         </Content>

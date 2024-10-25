@@ -2,7 +2,6 @@
 
 import Content from '@/components/helpers/content';
 import {
-  ChildrenType,
   InputEvent,
   InputHTMLAttrs,
   InputType,
@@ -16,7 +15,6 @@ import clsx from 'clsx';
 import { forwardRef, useState } from 'react';
 
 type BaseSwitchProps = Omit<InputHTMLAttrs, 'size' | 'onChange' | 'children'> &
-  ChildrenType &
   SMSizeType &
   LabelPlaceType &
   WithIconsType &
@@ -24,6 +22,7 @@ type BaseSwitchProps = Omit<InputHTMLAttrs, 'size' | 'onChange' | 'children'> &
   TextClassNameType;
 
 export interface SwitchProps extends BaseSwitchProps {
+  children?: string;
   value?: string;
   onChange?: (checked: boolean, value: string, event: InputEvent) => void;
 }
@@ -40,7 +39,9 @@ const Switch = forwardRef<InputType, SwitchProps>((props, ref) => {
     checked = false,
     disabled = false,
     leftIcon,
+    leftIconClassName,
     rightIcon,
+    rightIconClassName,
     ...rest
   } = props;
   const { value: externalValue } = rest;
@@ -92,7 +93,9 @@ const Switch = forwardRef<InputType, SwitchProps>((props, ref) => {
           )}
           size={size}
           leftIcon={leftIcon}
+          leftIconClassName={leftIconClassName}
           rightIcon={rightIcon}
+          rightIconClassName={rightIconClassName}
         >
           {children}
         </Content>

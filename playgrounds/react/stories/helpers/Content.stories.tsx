@@ -2,14 +2,14 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import * as heroicons from '@heroicons/react/24/solid';
 import { Content as Component } from '@pbcomponents/react';
-import { defaultArgs, iconsArg, mediumArg, SMLSizeArg, textClassNameTypeArg } from '../args';
+import { classNameArg, iconsArg, mediumArg, SMLSizeArg, textClassNameTypeArg } from '../args';
 
 const meta = {
   title: 'Helpers/Content',
   component: Component,
   tags: ['autodocs'],
   argTypes: {
-    ...Object.assign(defaultArgs),
+    ...Object.assign(classNameArg),
     ...Object.assign(iconsArg),
     ...Object.assign(SMLSizeArg),
     ...Object.assign(mediumArg),
@@ -19,6 +19,11 @@ const meta = {
       type: 'string',
       defaultValue: { summary: 'span' },
     },
+    children: {
+      control: 'text',
+      type: 'React.ReactNode',
+      defaultValue: { summary: undefined },
+    },
   },
   args: {
     as: 'span',
@@ -26,19 +31,23 @@ const meta = {
     size: 'm',
     medium: false,
     leftIcon: undefined,
+    leftIconClassName: '',
     rightIcon: undefined,
+    rightIconClassName: '',
     className: '',
     textClassName: '',
   },
-  render: ({ as, children, leftIcon, rightIcon, size, medium, className, textClassName }) => (
+  render: ({ as, children, leftIcon, leftIconClassName, rightIcon, rightIconClassName, size, medium, className, textClassName }) => (
     <Component
       as={as}
       size={size}
       medium={medium}
       // @ts-expect-error: Unreachable code error
       leftIcon={leftIcon ? heroicons[leftIcon] : leftIcon}
+      leftIconClassName={leftIconClassName ? leftIconClassName : undefined}
       // @ts-expect-error: Unreachable code error
       rightIcon={rightIcon ? heroicons[rightIcon] : rightIcon}
+      rightIconClassName={rightIconClassName ? rightIconClassName : undefined}
       className={className ? className : undefined}
       textClassName={textClassName ? textClassName : undefined}
     >

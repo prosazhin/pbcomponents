@@ -44,12 +44,26 @@ export const iconArg = {
   type: 'svg',
 };
 
-export const leftIcon = { ...iconArg };
-export const rightIcon = { ...iconArg };
+export const leftIcon = {
+  ...iconArg,
+};
+export const rightIcon = {
+  ...iconArg,
+};
 
 export const iconsArg = {
   leftIcon,
+  leftIconClassName: {
+    control: 'text',
+    type: 'string',
+    defaultValue: { summary: undefined },
+  },
   rightIcon,
+  rightIconClassName: {
+    control: 'text',
+    type: 'string',
+    defaultValue: { summary: undefined },
+  },
 };
 
 export const sizeArg = {
@@ -405,5 +419,41 @@ export const containerArg = {
     options: ['full', 'm', 's'],
     control: 'radio',
     defaultValue: { summary: 'full' },
+  },
+  leftAside: {
+    control: 'boolean',
+    defaultValue: { summary: undefined },
+  },
+  leftAsideClassName: {
+    control: 'text',
+    type: 'string',
+    defaultValue: { summary: undefined },
+  },
+  rightAside: {
+    control: 'boolean',
+    defaultValue: { summary: undefined },
+  },
+  rightAsideClassName: {
+    control: 'text',
+    type: 'string',
+    defaultValue: { summary: undefined },
+  },
+};
+
+export const modalArg = {
+  ...classNameArg,
+  children: {
+    control: 'object',
+    type: 'React.ReactNode',
+    defaultValue: { summary: undefined },
+  },
+  open: {
+    control: 'boolean',
+    defaultValue: { summary: undefined },
+  },
+  onClose: {
+    control: 'object',
+    defaultValue: { summary: undefined },
+    type: '(value: boolean) => void',
   },
 };

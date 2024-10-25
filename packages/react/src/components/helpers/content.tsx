@@ -10,7 +10,7 @@ const defaultElement = 'span';
 type BaseContentProps = WithIconsType & MediumType & SMLSizeType & TextClassNameType;
 
 export interface ContentProps extends BaseContentProps {
-  children?: string;
+  children?: React.ReactNode;
 }
 
 const Content = <Element extends React.ElementType = typeof defaultElement>(props: PolymorphicProps<Element, ContentProps>) => {
@@ -22,7 +22,9 @@ const Content = <Element extends React.ElementType = typeof defaultElement>(prop
     size = 'm',
     medium = false,
     leftIcon: LeftIcon,
+    leftIconClassName,
     rightIcon: RightIcon,
+    rightIconClassName,
     ...rest
   } = props;
 
@@ -37,13 +39,13 @@ const Content = <Element extends React.ElementType = typeof defaultElement>(prop
         className,
       )}
     >
-      {LeftIcon && <Icon tag={LeftIcon} size={size} />}
+      {LeftIcon && <Icon tag={LeftIcon} size={size} className={leftIconClassName} />}
       {children && (
-        <Text size={size} medium={medium} className={textClassName}>
+        <Text size={size} medium={medium} className={clsx('pbc-flex-1', textClassName)}>
           {children}
         </Text>
       )}
-      {RightIcon && <Icon tag={RightIcon} size={size} />}
+      {RightIcon && <Icon tag={RightIcon} size={size} className={rightIconClassName} />}
     </Component>
   );
 };

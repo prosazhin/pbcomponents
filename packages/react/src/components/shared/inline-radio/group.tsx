@@ -1,6 +1,6 @@
 'use client';
 
-import InlineRadio, { InlineRadioProps } from '@/components/shared/inline-radio/inline-radio';
+import InlineRadio, { InlineRadioProps } from '@/components/shared/inline-radio';
 import { FieldSetHTMLAttrs, FieldSetType, InputEvent, SMSizeType } from '@/types';
 import clsx from 'clsx';
 import { forwardRef, useState } from 'react';

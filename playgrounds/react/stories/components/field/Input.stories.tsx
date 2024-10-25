@@ -40,12 +40,28 @@ const meta = {
     placeholder: 'Placeholder',
     onChange: () => {},
     leftIcon: undefined,
+    leftIconClassName: '',
     rightIcon: undefined,
+    rightIconClassName: '',
     className: '',
     wrapperClassName: '',
   },
   render: function Render(args) {
-    const { children, button, placeholder, size, disabled, error, leftIcon, rightIcon, className, wrapperClassName, type } = args;
+    const {
+      children,
+      button,
+      placeholder,
+      size,
+      disabled,
+      error,
+      leftIcon,
+      leftIconClassName,
+      rightIcon,
+      rightIconClassName,
+      className,
+      wrapperClassName,
+      type,
+    } = args;
     const [{ value }, setArgs] = useArgs();
 
     return (
@@ -58,8 +74,10 @@ const meta = {
         type={type}
         // @ts-expect-error: Unreachable code error
         leftIcon={leftIcon ? heroicons[leftIcon] : leftIcon}
+        leftIconClassName={leftIconClassName ? leftIconClassName : undefined}
         // @ts-expect-error: Unreachable code error
         rightIcon={rightIcon ? heroicons[rightIcon] : rightIcon}
+        rightIconClassName={rightIconClassName ? rightIconClassName : undefined}
         className={className ? className : undefined}
         wrapperClassName={wrapperClassName ? wrapperClassName : undefined}
         button={button}

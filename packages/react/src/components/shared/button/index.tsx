@@ -39,7 +39,9 @@ const Button = forwardRef<ButtonOrLinkType, ButtonProps>((props, ref) => {
     loading = false,
     disabled = false,
     leftIcon,
+    leftIconClassName,
     rightIcon,
+    rightIconClassName,
     ...rest
   } = props;
   const { href } = rest;
@@ -107,7 +109,15 @@ const Button = forwardRef<ButtonOrLinkType, ButtonProps>((props, ref) => {
       {loading ? (
         <Icon tag={ArrowPathIcon} size={size === 'xs' ? 's' : size} className={clsx('pbc-animate-spin pbc-transition')} />
       ) : (
-        <Content size={size === 'xs' ? 's' : size} leftIcon={leftIcon} rightIcon={rightIcon} medium={true} className={textClassName}>
+        <Content
+          size={size === 'xs' ? 's' : size}
+          leftIcon={leftIcon}
+          leftIconClassName={leftIconClassName}
+          rightIcon={rightIcon}
+          rightIconClassName={rightIconClassName}
+          medium={true}
+          className={textClassName}
+        >
           {children}
         </Content>
       )}

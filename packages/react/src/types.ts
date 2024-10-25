@@ -5,11 +5,16 @@ export type SvgType = React.ComponentType<
   }
 >;
 
-export type WithLeftIconType = { leftIcon?: SvgType | never };
-export type WithRightIconType = { rightIcon?: SvgType | never };
+export type WithLeftIconType = {
+  leftIcon?: SvgType | never;
+  leftIconClassName?: string;
+};
+export type WithRightIconType = {
+  rightIcon?: SvgType | never;
+  rightIconClassName?: string;
+};
 export type WithIconsType = WithLeftIconType & WithRightIconType;
 
-export type ChildrenType = { children?: string };
 export type LabelPlaceType = { labelPlace?: 'right' | 'left' };
 export type LoadingType = { loading?: boolean };
 export type ErrorType = { error?: boolean };
@@ -55,6 +60,10 @@ export type FieldSetHTMLAttrs = React.FieldsetHTMLAttributes<HTMLElement>;
 export type TextareaType = HTMLTextAreaElement;
 export type TextareaHTMLAttrs = React.TextareaHTMLAttributes<HTMLElement>;
 export type TextareaEvent = React.ChangeEvent<HTMLTextAreaElement>;
+
+export type DetailsType = HTMLDetailsElement;
+export type DetailsHTMLAttrs = React.DetailsHTMLAttributes<HTMLElement>;
+// export type TextareasdfsdfEvent = React.to;
 
 export type PolymorphicProps<Element extends React.ElementType, Props> = Props &
   Omit<React.ComponentProps<Element>, 'as'> & {

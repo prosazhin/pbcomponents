@@ -1,17 +1,17 @@
 'use client';
 
 import Content from '@/components/helpers/content';
-import { ChildrenType, InputEvent, InputHTMLAttrs, InputType, SMSizeType, TextClassNameType, WithIconsType } from '@/types';
+import { InputEvent, InputHTMLAttrs, InputType, SMSizeType, TextClassNameType, WithIconsType } from '@/types';
 import clsx from 'clsx';
 import { forwardRef, useState } from 'react';
 
 type BaseInlineRadioProps = Omit<InputHTMLAttrs, 'size' | 'onChange' | 'value' | 'children'> &
-  ChildrenType &
   SMSizeType &
   WithIconsType &
   TextClassNameType;
 
 export interface InlineRadioProps extends BaseInlineRadioProps {
+  children?: string;
   value?: string;
   onChange?: (checked: boolean, value: string, event: InputEvent) => void;
 }
@@ -26,7 +26,9 @@ const InlineRadio = forwardRef<InputType, InlineRadioProps>((props, ref) => {
     checked = false,
     disabled = false,
     leftIcon,
+    leftIconClassName,
     rightIcon,
+    rightIconClassName,
     ...rest
   } = props;
   const { value: externalValue } = rest;
@@ -56,7 +58,15 @@ const InlineRadio = forwardRef<InputType, InlineRadioProps>((props, ref) => {
         className='pbc pbc-hidden pbc-appearance-none'
         onChange={(event) => onChange(event.target.checked, value, event)}
       />
-      <Content size={size} leftIcon={leftIcon} rightIcon={rightIcon} medium={true} className={textClassName}>
+      <Content
+        size={size}
+        leftIcon={leftIcon}
+        leftIconClassName={leftIconClassName}
+        rightIcon={rightIcon}
+        rightIconClassName={rightIconClassName}
+        medium={true}
+        className={textClassName}
+      >
         {children}
       </Content>
     </label>
