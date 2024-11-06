@@ -2,12 +2,14 @@
 
 import Text from '@/components/helpers/text';
 import { InputProps } from '@/components/shared/field/input';
+import { SearchProps } from '@/components/shared/field/search';
+import { SelectProps } from '@/components/shared/field/select';
 import { TextareaProps } from '@/components/shared/field/textarea';
 import { ErrorType, FieldSetHTMLAttrs, FieldSetType, LabelHTMLAttrs, LabelType } from '@/types';
 import clsx from 'clsx';
 import { forwardRef, useMemo, useRef } from 'react';
 
-type FieldTType = React.ReactElement<InputProps | TextareaProps>;
+type FieldTType = React.ReactElement<InputProps | TextareaProps | SelectProps | SearchProps>;
 type BaseFieldProps = Omit<LabelHTMLAttrs & FieldSetHTMLAttrs, 'children'> & ErrorType;
 
 export interface FieldProps extends BaseFieldProps {

@@ -55,7 +55,7 @@ const Input = forwardRef<InputType, InputProps>((props, ref) => {
           type={type}
           disabled={disabled}
           className={clsx(
-            'pbc pbc-w-full pbc-border-solid pbc-border-1 pbc-overflow-hidden pbc-appearance-none pbc-transition-colors focus:pbc-ring-0 focus:pbc-ring-offset-0 pbc-text-basic-main placeholder:pbc-text-basic-light',
+            'pbc pbc-w-full pbc-border-solid pbc-border-1 pbc-appearance-none pbc-transition-colors focus:pbc-ring-0 focus:pbc-ring-offset-0 pbc-text-basic-main placeholder:pbc-text-basic-light',
             !error && 'pbc-border-secondary-light hover:pbc-border-primary-main focus:pbc-border-primary-main pbc-outline-primary',
             error && 'pbc-border-danger-main hover:pbc-border-danger-main focus:pbc-border-danger-main pbc-outline-danger',
             'disabled:!pbc-cursor-default disabled:!pbc-bg-basic-lighter disabled:!pbc-border-secondary-light hover:disabled:!pbc-border-secondary-light hover:disabled:!pbc-bg-basic-lighter',

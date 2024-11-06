@@ -117,7 +117,7 @@ const Search = (props: SearchProps) => {
   );
 
   return (
-    <div className={clsx('pbc pbc-relative', wrapperClassName)}>
+    <div className={clsx('pbc pbc-relative pbc-w-full', wrapperClassName)}>
       <Input
         {...rest}
         ref={inputRef}
