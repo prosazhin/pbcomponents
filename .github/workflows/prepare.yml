@@ -1,0 +1,79 @@
+name: Prepare
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  check_versions:
+    name: Check versions
+    runs-on: ubuntu-latest
+    outputs:
+      react_version: ${{ steps.react_version.outputs.current-version }}
+      check_react_version: ${{ steps.check_react_version.outputs.changed }}
+      vue_version: ${{ steps.vue_version.outputs.current-version }}
+      check_vue_version: ${{ steps.check_vue_version.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get React version
+        id: react_version
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
+        with:
+          path: packages/@pbcomponents-react
+
+      - name: Check React version
+        id: check_react_version
+        uses: EndBug/version-check@v2
+        with:
+          file-name: ./packages/@pbcomponents-react/package.json
+          file-url: https://unpkg.com/@pbcomponents/react@latest/package.json
+          static-checking: localIsNew
+
+      - name: Get Vue version
+        id: vue_version
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
+        with:
+          path: packages/@pbcomponents-vue
+
+      - name: Check Vue version
+        id: check_vue_version
+        uses: EndBug/version-check@v2
+        with:
+          file-name: ./packages/@pbcomponents-vue/package.json
+          file-url: https://unpkg.com/@pbcomponents/vue@latest/package.json
+          static-checking: localIsNew
+
+  create_react_prerelease:
+    name: Create React prerelease
+    if: needs.check_versions.outputs.check_react_version == 'true'
+    needs: [check_versions]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "REACT_TAG_NAME=@pbcomponents/react@v${{ needs.check_versions.outputs.react_version }}" >> $GITHUB_ENV
+      - uses: softprops/action-gh-release@v2
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+          tag_name: ${{ env.REACT_TAG_NAME }}
+          draft: false
+          prerelease: true
+
+  create_vue_prerelease:
+    name: Create Vue prerelease
+    if: needs.check_versions.outputs.check_vue_version == 'true'
+    needs: [check_versions]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "VUE_TAG_NAME=@pbcomponents/vue@v${{ needs.check_versions.outputs.vue_version }}" >> $GITHUB_ENV
+      - uses: softprops/action-gh-release@v2
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+          tag_name: ${{ env.VUE_TAG_NAME }}
+          draft: false
+          prerelease: true

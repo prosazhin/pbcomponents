@@ -27,7 +27,7 @@ const Collapse = forwardRef<DetailsType, CollapseProps>((props, ref) => {
       )}
       onToggle={(event) => setOpen((event.currentTarget as DetailsType).open)}
     >
-      <summary className='pbc-list-none pbc-w-full pbc-py-12'>
+      <summary className='pbc-list-none pbc-w-full pbc-py-12 pbc-summary'>
         <Content
           size='l'
           medium={true}

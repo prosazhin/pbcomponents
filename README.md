@@ -10,7 +10,7 @@ UI component library for React and Vue with Typescript and Tailwind.
 
 ### React
 
-[GitHub React](https://github.com/prosazhin/pbcomponents/tree/main/packages/react)
+[GitHub React](https://github.com/prosazhin/pbcomponents/tree/main/packages/%40pbcomponents-react)
 
 ```bash
 npm install @pbcomponents/react
@@ -30,7 +30,7 @@ const Page = () => (
 
 ### Vue
 
-[GitHub Vue](https://github.com/prosazhin/pbcomponents/tree/main/packages/vue)
+[GitHub Vue](https://github.com/prosazhin/pbcomponents/tree/main/packages/%40pbcomponents-vue)
 
 ```bash
 npm install @pbcomponents/vue

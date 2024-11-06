@@ -8,3 +8,5 @@ package-lock.json
 .gitignore
 
 *.svg
+
+LICENSE

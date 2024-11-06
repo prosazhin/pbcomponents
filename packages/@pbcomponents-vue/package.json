@@ -36,6 +36,7 @@
     "./css": "./dist/index.css"
   },
   "files": [
+    "README.md",
     "dist"
   ],
   "sideEffects": [

@@ -263,4 +263,8 @@
     @apply pbc-size-20 -pbc-mr-[calc(20px+12px)];
     background: url('./x-mark-20.svg') no-repeat 50% 50%;
   }
+
+  .pbc-summary::-webkit-details-marker {
+    @apply !pbc-appearance-none !pbc-hidden !pbc-opacity-0 !pbc-size-0 !pbc-bg-transparent;
+  }
 }
