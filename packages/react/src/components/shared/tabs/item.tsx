@@ -15,24 +15,28 @@ export interface TabProps extends BaseTabProps {
 const Tab = forwardRef<ButtonOrLinkType, TabProps>((props, ref) => {
   const {
     label,
-    className,
-    textClassName,
     active = false,
     disabled = false,
+    type = 'button',
+    target = '_self',
+    href: externalHref,
     leftIcon,
     leftIconClassName,
     rightIcon,
     rightIconClassName,
+    className,
+    textClassName,
     ...rest
   } = props;
-  const { href } = rest;
-  const TagName = href ? 'a' : 'button';
+  const Component = externalHref ? 'a' : 'button';
+  let href = externalHref ? externalHref : undefined;
+  if (disabled) href = undefined;
 
   const internalRef = useRef<ButtonOrLinkType>(null);
   const tabRef = (ref || internalRef) as React.MutableRefObject<ButtonOrLinkType>;
 
   return (
-    <TagName
+    <Component
       {...rest}
       ref={tabRef as any}
       className={clsx(
@@ -42,6 +46,9 @@ const Tab = forwardRef<ButtonOrLinkType, TabProps>((props, ref) => {
         disabled && '!pbc-text-basic-light after:!pbc-hidden',
         className,
       )}
+      type={externalHref ? undefined : type}
+      href={href}
+      target={externalHref ? target : undefined}
       disabled={disabled}
       aria-disabled={disabled}
     >
@@ -60,7 +67,7 @@ const Tab = forwardRef<ButtonOrLinkType, TabProps>((props, ref) => {
       >
         {label}
       </Content>
-    </TagName>
+    </Component>
   );
 });
 

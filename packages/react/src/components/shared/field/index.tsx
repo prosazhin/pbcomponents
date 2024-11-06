@@ -8,17 +8,16 @@ import clsx from 'clsx';
 import { forwardRef, useMemo, useRef } from 'react';
 
 type FieldTType = React.ReactElement<InputProps | TextareaProps>;
-type BaseFieldProps<T> = Omit<LabelHTMLAttrs & FieldSetHTMLAttrs, 'children'> & {
-  children: T | T[];
-} & ErrorType;
+type BaseFieldProps = Omit<LabelHTMLAttrs & FieldSetHTMLAttrs, 'children'> & ErrorType;
 
-export interface FieldProps extends BaseFieldProps<FieldTType> {
+export interface FieldProps extends BaseFieldProps {
+  children: FieldTType | FieldTType[];
   label?: string;
   description?: string;
 }
 
 const Field = forwardRef<LabelType | FieldSetType, FieldProps>((props, ref) => {
-  const { children: childn, className, label, description, error = false, ...rest } = props;
+  const { label, description, error = false, children: childn, className, ...rest } = props;
   const isArray = Array.isArray(childn);
 
   const children = useMemo(

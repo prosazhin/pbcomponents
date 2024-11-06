@@ -13,9 +13,6 @@ export interface BadgeProps extends BaseBadgeProps {
 
 const Badge = forwardRef<SpanType, BadgeProps>((props, ref) => {
   const {
-    children,
-    className,
-    textClassName,
     size = 'm',
     theme = 'filled',
     color = 'primary',
@@ -23,6 +20,9 @@ const Badge = forwardRef<SpanType, BadgeProps>((props, ref) => {
     leftIconClassName,
     rightIcon,
     rightIconClassName,
+    children,
+    className,
+    textClassName,
     ...rest
   } = props;
 

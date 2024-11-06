@@ -17,10 +17,10 @@ export interface IconProps extends BaseIconProps {
 }
 
 const Icon = forwardRef<SVGSVGElement, IconProps>((props, ref) => {
-  const { className, tag: TagName, size = 'm', ...rest } = props;
+  const { tag: Component, size = 'm', className, ...rest } = props;
 
   return (
-    <TagName
+    <Component
       ref={ref}
       {...rest}
       width={ICON_SIZE[size]}

@@ -30,22 +30,26 @@ export interface ButtonProps extends BaseButtonProps {
 
 const Button = forwardRef<ButtonOrLinkType, ButtonProps>((props, ref) => {
   const {
-    children,
-    className,
-    textClassName,
     size = 'm',
     theme = 'filled',
     color = 'primary',
     loading = false,
     disabled = false,
+    type = 'button',
+    target = '_self',
+    href: externalHref,
     leftIcon,
     leftIconClassName,
     rightIcon,
     rightIconClassName,
+    children,
+    className,
+    textClassName,
     ...rest
   } = props;
-  const { href } = rest;
-  const TagName = href ? 'a' : 'button';
+  const Component = externalHref ? 'a' : 'button';
+  let href = externalHref ? externalHref : undefined;
+  if (disabled) href = undefined;
 
   const internalRef = useRef<ButtonOrLinkType>(null);
   const buttonRef = (ref || internalRef) as React.MutableRefObject<ButtonOrLinkType>;
@@ -59,7 +63,7 @@ const Button = forwardRef<ButtonOrLinkType, ButtonProps>((props, ref) => {
   }, [buttonRef, children, size, leftIcon, rightIcon]);
 
   return (
-    <TagName
+    <Component
       {...rest}
       ref={buttonRef as any}
       className={clsx(
@@ -102,6 +106,9 @@ const Button = forwardRef<ButtonOrLinkType, ButtonProps>((props, ref) => {
         loading && 'pbc-cursor-default',
         className,
       )}
+      type={externalHref ? undefined : type}
+      href={href}
+      target={externalHref ? target : undefined}
       disabled={disabled || loading}
       aria-disabled={disabled || loading}
       style={{ width: loading ? width : undefined }}
@@ -121,7 +128,7 @@ const Button = forwardRef<ButtonOrLinkType, ButtonProps>((props, ref) => {
           {children}
         </Content>
       )}
-    </TagName>
+    </Component>
   );
 });
 

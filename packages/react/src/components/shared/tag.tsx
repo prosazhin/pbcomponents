@@ -17,22 +17,26 @@ export interface TagProps extends BaseTagProps {
 
 const Tag = forwardRef<ButtonOrLinkType, TagProps>((props, ref) => {
   const {
-    children,
-    className,
-    textClassName,
     size = 'm',
     theme = 'light',
     checked = false,
     loading = false,
     disabled = false,
+    type = 'button',
+    target = '_self',
+    href: externalHref,
     leftIcon,
     leftIconClassName,
     rightIcon,
     rightIconClassName,
+    children,
+    className,
+    textClassName,
     ...rest
   } = props;
-  const { href } = rest;
-  const TagName = href ? 'a' : 'button';
+  const Component = externalHref ? 'a' : 'button';
+  let href = externalHref ? externalHref : undefined;
+  if (disabled) href = undefined;
 
   const internalRef = useRef<ButtonOrLinkType>(null);
   const tagRef = (ref || internalRef) as React.MutableRefObject<ButtonOrLinkType>;
@@ -46,7 +50,7 @@ const Tag = forwardRef<ButtonOrLinkType, TagProps>((props, ref) => {
   }, [tagRef, children, size, leftIcon, rightIcon]);
 
   return (
-    <TagName
+    <Component
       {...rest}
       ref={tagRef as any}
       className={clsx(
@@ -61,6 +65,9 @@ const Tag = forwardRef<ButtonOrLinkType, TagProps>((props, ref) => {
         loading && 'pbc-cursor-default',
         className,
       )}
+      type={externalHref ? undefined : type}
+      href={href}
+      target={externalHref ? target : undefined}
       disabled={disabled || loading}
       aria-disabled={disabled || loading}
       style={{ width: loading ? width : undefined }}
@@ -80,7 +87,7 @@ const Tag = forwardRef<ButtonOrLinkType, TagProps>((props, ref) => {
           {children}
         </Content>
       )}
-    </TagName>
+    </Component>
   );
 });
 

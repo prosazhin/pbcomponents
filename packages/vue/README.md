@@ -44,6 +44,7 @@ import { Button } from '@pbcomponents/vue';
 | Input            | -       |
 | Textarea         | -       |
 | Select           | -       |
+| Search           | -       |
 | Field            | -       |
 | Dropdown         | -       |
 | DropdownItem     | -       |

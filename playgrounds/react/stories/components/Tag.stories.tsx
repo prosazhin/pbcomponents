@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import * as heroicons from '@heroicons/react/24/solid';
+import * as heroicons from '@heroicons/react/24/outline';
 import { Tag as Component } from '@pbcomponents/react';
 import { tagArg } from '../args';
 
@@ -21,6 +21,7 @@ const meta = {
     disabled: false,
     loading: false,
     href: '#',
+    target: '_self',
     type: 'button',
     onClick: () => {},
     leftIcon: undefined,
@@ -42,6 +43,7 @@ const meta = {
     disabled,
     loading,
     href,
+    target,
     type,
     onClick,
     className,
@@ -55,6 +57,7 @@ const meta = {
       loading={loading}
       type={type}
       href={href}
+      target={target}
       // @ts-expect-error: Unreachable code error
       leftIcon={leftIcon ? heroicons[leftIcon] : leftIcon}
       leftIconClassName={leftIconClassName ? leftIconClassName : undefined}

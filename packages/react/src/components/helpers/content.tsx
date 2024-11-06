@@ -17,14 +17,14 @@ const Content = <Element extends React.ElementType = typeof defaultElement>(prop
   const {
     as: Component = defaultElement,
     children,
-    className,
-    textClassName,
     size = 'm',
     medium = false,
     leftIcon: LeftIcon,
     leftIconClassName,
     rightIcon: RightIcon,
     rightIconClassName,
+    className,
+    textClassName,
     ...rest
   } = props;
 

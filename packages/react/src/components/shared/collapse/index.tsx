@@ -7,14 +7,12 @@ import { PlusIcon } from '@heroicons/react/24/solid';
 import clsx from 'clsx';
 import { forwardRef, useState } from 'react';
 
-type BaseCollapseProps = DetailsHTMLAttrs;
-
-export interface CollapseProps extends BaseCollapseProps {
+export interface CollapseProps extends DetailsHTMLAttrs {
   summary: string;
 }
 
 const Collapse = forwardRef<DetailsType, CollapseProps>((props, ref) => {
-  const { children, className, summary, open: defaultOpen, ...rest } = props;
+  const { open: defaultOpen, summary, children, className, ...rest } = props;
   const [open, setOpen] = useState<boolean>(defaultOpen || false);
 
   return (
@@ -24,7 +22,7 @@ const Collapse = forwardRef<DetailsType, CollapseProps>((props, ref) => {
       open={open}
       className={clsx(
         'pbc pbc-flex pbc-flex-col pbc-w-full pbc-px-20 pbc-cursor-pointer pbc-group pbc-transition-colors',
-        'pbc-rounded-8 pbc-border-1 pbc-border-solid pbc-border-secondary-lighter hover:pbc-bg-basic-lightest',
+        'pbc-rounded-8 pbc-border-1 pbc-border-solid pbc-border-secondary-lighter hover:pbc-bg-basic-lighter',
         className,
       )}
       onToggle={(event) => setOpen((event.currentTarget as DetailsType).open)}
@@ -36,10 +34,10 @@ const Collapse = forwardRef<DetailsType, CollapseProps>((props, ref) => {
           rightIcon={PlusIcon}
           // eslint-disable-next-line tailwindcss/no-contradicting-classname
           rightIconClassName={clsx(
-            'pbc-transition-transform pbc-transition-colors pbc-text-basic-light group-hover:pbc-text-primary-darker',
+            'pbc-transition-transform pbc-transition-colors pbc-text-basic-light group-hover:pbc-text-basic-main',
             open && 'pbc-rotate-45',
           )}
-          className='pbc-transition-colors pbc-w-full pbc-text-basic-main group-hover:pbc-text-primary-darker'
+          className='pbc-transition-colors pbc-w-full pbc-text-basic-main'
         >
           {summary}
         </Content>

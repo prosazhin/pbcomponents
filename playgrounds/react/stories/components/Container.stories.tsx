@@ -13,11 +13,11 @@ const meta = {
   args: {
     children: <div>Container</div>,
     size: 'full',
-    className: '',
     leftAside: <div>Left Aside</div>,
     leftAsideClassName: '',
     rightAside: <div>Right Aside</div>,
     rightAsideClassName: '',
+    className: '',
   },
   render: ({ children, className, size, leftAside, leftAsideClassName, rightAside, rightAsideClassName }) => (
     <Component

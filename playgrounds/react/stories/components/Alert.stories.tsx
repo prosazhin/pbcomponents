@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 import { Button, Alert as Component } from '@pbcomponents/react';
+import { useArgs } from '@storybook/preview-api';
 import { alertArg } from '../args';
 
 const meta = {
@@ -35,19 +36,31 @@ const meta = {
     as: 'h3',
     color: 'primary',
     children: undefined,
+    open: true,
+    onClose: () => {},
     className: '',
   },
-  render: ({ children, className, color, headline, description, as }) => (
-    <Component
-      as={as}
-      color={color}
-      headline={headline ? headline : undefined}
-      description={description ? description : undefined}
-      className={className ? className : undefined}
-    >
-      {children}
-    </Component>
-  ),
+  render: function Render(args) {
+    const { children, className, color, headline, description, as, onClose } = args;
+    const [{ open }, setArgs] = useArgs();
+
+    return (
+      <Component
+        as={as}
+        color={color}
+        open={open}
+        headline={headline ? headline : undefined}
+        description={description ? description : undefined}
+        className={className ? className : undefined}
+        onClose={(value) => {
+          if (onClose) onClose(value);
+          setArgs({ open: value });
+        }}
+      >
+        {children}
+      </Component>
+    );
+  },
 } satisfies Meta<typeof Component>;
 
 export default meta;

@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import * as heroicons from '@heroicons/react/24/solid';
+import * as heroicons from '@heroicons/react/24/outline';
 import { Tab as Component } from '@pbcomponents/react';
 import { tabArg } from '../../args';
 
@@ -18,6 +18,7 @@ const meta = {
     active: false,
     disabled: false,
     href: '#',
+    target: '_self',
     type: 'button',
     onClick: () => {},
     leftIcon: undefined,
@@ -36,6 +37,7 @@ const meta = {
     active,
     disabled,
     href,
+    target,
     type,
     onClick,
     className,
@@ -47,6 +49,7 @@ const meta = {
       disabled={disabled}
       type={type}
       href={href}
+      target={target}
       // @ts-expect-error: Unreachable code error
       leftIcon={leftIcon ? heroicons[leftIcon] : leftIcon}
       leftIconClassName={leftIconClassName ? leftIconClassName : undefined}

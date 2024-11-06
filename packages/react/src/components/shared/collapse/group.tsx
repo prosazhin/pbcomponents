@@ -4,17 +4,13 @@ import Collapse, { CollapseProps } from '@/components/shared/collapse';
 import { DivHTMLAttrs } from '@/types';
 import clsx from 'clsx';
 
-type CollapseGroupTType = React.ReactElement<CollapseProps>;
-type BaseCollapseGroupProps<T> = Omit<DivHTMLAttrs, 'children'> & {
-  children?: T[];
-};
-
-export interface CollapseGroupProps extends BaseCollapseGroupProps<CollapseGroupTType> {
+export interface CollapseGroupProps extends Omit<DivHTMLAttrs, 'children'> {
+  children?: React.ReactElement<CollapseProps>[];
   name?: string;
 }
 
 const CollapseGroup = (props: CollapseGroupProps) => {
-  const { children, className, name, ...rest } = props;
+  const { name, children, className, ...rest } = props;
 
   return (
     <div {...rest} className={clsx('pbc pbc-w-full pbc-flex pbc-flex-col pbc-items-start pbc-gap-y-8', className)}>

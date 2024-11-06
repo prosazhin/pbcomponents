@@ -49,7 +49,7 @@ export type ButtonOrLinkHTMLAttrs = React.HTMLAttributes<HTMLElement> & ButtonHT
 
 export type InputType = HTMLInputElement;
 export type InputHTMLAttrs = React.InputHTMLAttributes<HTMLElement>;
-export type InputEvent = React.ChangeEvent<HTMLInputElement>;
+export type InputEvent = React.ChangeEvent<InputType>;
 
 export type LabelType = HTMLLabelElement;
 export type LabelHTMLAttrs = React.LabelHTMLAttributes<HTMLElement>;
@@ -59,11 +59,17 @@ export type FieldSetHTMLAttrs = React.FieldsetHTMLAttributes<HTMLElement>;
 
 export type TextareaType = HTMLTextAreaElement;
 export type TextareaHTMLAttrs = React.TextareaHTMLAttributes<HTMLElement>;
-export type TextareaEvent = React.ChangeEvent<HTMLTextAreaElement>;
+export type TextareaEvent = React.ChangeEvent<TextareaType>;
+
+export type SelectDropdownOptionType<T> = {
+  display: string;
+  value?: string;
+  disabled?: boolean;
+  badge?: T;
+};
 
 export type DetailsType = HTMLDetailsElement;
 export type DetailsHTMLAttrs = React.DetailsHTMLAttributes<HTMLElement>;
-// export type TextareasdfsdfEvent = React.to;
 
 export type PolymorphicProps<Element extends React.ElementType, Props> = Props &
   Omit<React.ComponentProps<Element>, 'as'> & {

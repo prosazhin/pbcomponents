@@ -5,18 +5,16 @@ import { FieldSetHTMLAttrs, FieldSetType, SMSizeType } from '@/types';
 import clsx from 'clsx';
 import { forwardRef, useEffect, useState } from 'react';
 
-type CheckboxGroupTType = React.ReactElement<CheckboxProps>;
-type BaseCheckboxGroupProps<T> = Omit<FieldSetHTMLAttrs, 'onChange' | 'children'> & {
-  children?: T[];
-} & SMSizeType;
+type BaseCheckboxGroupProps = Omit<FieldSetHTMLAttrs, 'onChange' | 'children'> & SMSizeType;
 
-export interface CheckboxGroupProps extends BaseCheckboxGroupProps<CheckboxGroupTType> {
+export interface CheckboxGroupProps extends BaseCheckboxGroupProps {
+  children?: React.ReactElement<CheckboxProps>[];
   defaultValue?: string[];
   onChange?: (value: string[]) => void;
 }
 
 const CheckboxGroup = forwardRef<FieldSetType, CheckboxGroupProps>((props, ref) => {
-  const { children, className, defaultValue = [], size, onChange = () => {}, ...rest } = props;
+  const { size, defaultValue = [], onChange = () => {}, children, className, ...rest } = props;
   const { name, disabled } = rest;
   const [activeValue, setActiveValue] = useState<string[]>(defaultValue);
 

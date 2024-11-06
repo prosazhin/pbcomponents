@@ -1,16 +1,17 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import * as heroicons from '@heroicons/react/24/outline';
-import { Button, Input as Component } from '@pbcomponents/react';
+import { Button, Select as Component } from '@pbcomponents/react';
 import { useArgs } from '@storybook/preview-api';
-import { inputArg } from '../../args';
+import { selectArg } from '../../args';
+
+import '../../main.css';
 
 const meta = {
-  title: 'Components/Field/Input',
+  title: 'Components/Field/Select',
   component: Component,
   tags: ['autodocs'],
   argTypes: {
-    ...Object.assign(inputArg),
+    ...Object.assign(selectArg),
     button: {
       options: [
         undefined,
@@ -33,18 +34,19 @@ const meta = {
     size: 'm',
     disabled: false,
     error: false,
-    type: 'text',
-    value: '',
+    value: undefined,
     placeholder: 'Placeholder',
     onChange: () => {},
-    leftIcon: undefined,
-    leftIconClassName: '',
-    rightIcon: undefined,
-    rightIconClassName: '',
+    options: ['One', 'Two', 'Three', 'Four', 'Five'].map((value, index) => ({ display: value, value: String(index) })),
+    multiple: false,
+    search: false,
+    searchPlaceholder: 'Placeholder',
     button: undefined,
     buttonAlign: 'left',
     className: '',
     wrapperClassName: '',
+    dropdownClassName: '',
+    dropdownItemClassName: '',
   },
   render: function Render(args) {
     const {
@@ -53,39 +55,39 @@ const meta = {
       error,
       placeholder,
       onChange,
-      leftIcon,
-      leftIconClassName,
-      rightIcon,
-      rightIconClassName,
+      options,
+      multiple,
+      search,
+      searchPlaceholder,
       button,
       buttonAlign,
       className,
       wrapperClassName,
-      type,
+      dropdownClassName,
+      dropdownItemClassName,
     } = args;
     const [{ value }, setArgs] = useArgs();
 
     return (
       <Component
-        value={value ? value : undefined}
-        placeholder={placeholder ? placeholder : undefined}
         size={size}
         disabled={disabled}
         error={error}
-        type={type}
-        // @ts-expect-error: Unreachable code error
-        leftIcon={leftIcon ? heroicons[leftIcon] : leftIcon}
-        leftIconClassName={leftIconClassName ? leftIconClassName : undefined}
-        // @ts-expect-error: Unreachable code error
-        rightIcon={rightIcon ? heroicons[rightIcon] : rightIcon}
-        rightIconClassName={rightIconClassName ? rightIconClassName : undefined}
-        className={className ? className : undefined}
-        wrapperClassName={wrapperClassName ? wrapperClassName : undefined}
+        value={value}
+        placeholder={placeholder ? placeholder : undefined}
+        options={options}
+        multiple={multiple}
+        search={search}
+        searchPlaceholder={searchPlaceholder}
         button={button}
         buttonAlign={buttonAlign}
-        onChange={(v, event) => {
+        className={className ? className : undefined}
+        wrapperClassName={wrapperClassName ? wrapperClassName : undefined}
+        dropdownClassName={dropdownClassName ? dropdownClassName : undefined}
+        dropdownItemClassName={dropdownItemClassName ? dropdownItemClassName : undefined}
+        onChange={(v) => {
           setArgs({ value: v });
-          if (onChange) onChange(v, event);
+          if (onChange) onChange(v);
         }}
       />
     );

@@ -18,9 +18,7 @@ export interface InlineRadioProps extends BaseInlineRadioProps {
 
 const InlineRadio = forwardRef<InputType, InlineRadioProps>((props, ref) => {
   const {
-    children,
-    className,
-    textClassName,
+    value: externalValue,
     onChange = () => {},
     size = 'm',
     checked = false,
@@ -29,9 +27,11 @@ const InlineRadio = forwardRef<InputType, InlineRadioProps>((props, ref) => {
     leftIconClassName,
     rightIcon,
     rightIconClassName,
+    children,
+    className,
+    textClassName,
     ...rest
   } = props;
-  const { value: externalValue } = rest;
   const [value] = useState<string>(externalValue || children || '');
 
   return (

@@ -12,7 +12,7 @@ export interface TextProps extends BaseTextProps {
 }
 
 const Text = <Element extends React.ElementType = typeof defaultElement>(props: PolymorphicProps<Element, TextProps>) => {
-  const { as: Component = defaultElement, children, className, size = 'm', medium = false, ...rest } = props;
+  const { as: Component = defaultElement, size = 'm', medium = false, children, className, ...rest } = props;
 
   if (!children) return null;
 

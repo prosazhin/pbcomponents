@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import * as heroicons from '@heroicons/react/24/solid';
+import * as heroicons from '@heroicons/react/24/outline';
 import { Badge as Component } from '@pbcomponents/react';
 import { defaultArgs, iconsArg, SMSizeArg, textClassNameTypeArg } from '../args';
 

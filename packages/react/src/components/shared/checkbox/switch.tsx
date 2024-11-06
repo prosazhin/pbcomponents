@@ -1,23 +1,13 @@
 'use client';
 
 import Content from '@/components/helpers/content';
-import {
-  InputEvent,
-  InputHTMLAttrs,
-  InputType,
-  LabelPlaceType,
-  SMSizeType,
-  TextClassNameType,
-  WithIconsType,
-  WrapperClassNameType,
-} from '@/types';
+import { InputEvent, InputHTMLAttrs, InputType, LabelPlaceType, SMSizeType, TextClassNameType, WrapperClassNameType } from '@/types';
 import clsx from 'clsx';
 import { forwardRef, useState } from 'react';
 
 type BaseSwitchProps = Omit<InputHTMLAttrs, 'size' | 'onChange' | 'children'> &
   SMSizeType &
   LabelPlaceType &
-  WithIconsType &
   WrapperClassNameType &
   TextClassNameType;
 
@@ -29,33 +19,31 @@ export interface SwitchProps extends BaseSwitchProps {
 
 const Switch = forwardRef<InputType, SwitchProps>((props, ref) => {
   const {
-    children,
-    className,
-    wrapperClassName,
-    textClassName,
+    value: externalValue,
     onChange = () => {},
     labelPlace = 'right',
     size = 'm',
     checked = false,
     disabled = false,
-    leftIcon,
-    leftIconClassName,
-    rightIcon,
-    rightIconClassName,
+    children,
+    className,
+    wrapperClassName,
+    textClassName,
     ...rest
   } = props;
-  const { value: externalValue } = rest;
   const [value] = useState<string>(externalValue || children || '');
 
   return (
     <label
       className={clsx(
-        'pbc pbc-inline-flex pbc-cursor-pointer pbc-flex-nowrap pbc-group pbc-gap-8',
+        'pbc pbc-inline-flex pbc-items-center pbc-cursor-pointer pbc-flex-nowrap pbc-group',
+        size === 's' && 'pbc-gap-4',
+        size === 'm' && 'pbc-gap-6',
         disabled && '!pbc-cursor-default',
         wrapperClassName,
       )}
     >
-      <div className={clsx('pbc pbc-relative', size === 's' && 'pbc-w-32 pbc-h-16', size === 'm' && 'pbc-w-48 pbc-h-24')}>
+      <div className={clsx('pbc pbc-relative', size === 's' && 'pbc-w-32 pbc-h-16', size === 'm' && 'pbc-w-40 pbc-h-20')}>
         <input
           {...rest}
           ref={ref}
@@ -77,7 +65,7 @@ const Switch = forwardRef<InputType, SwitchProps>((props, ref) => {
           className={clsx(
             'pbc pbc-bg-white pbc-absolute pbc-inset-y-0 pbc-rounded-999 pbc-m-auto pbc-pointer-events-none pbc-select-none',
             size === 's' && 'pbc-size-12',
-            size === 'm' && 'pbc-size-20',
+            size === 'm' && 'pbc-size-16',
             checked ? 'pbc-right-2' : 'pbc-left-2',
           )}
         />
@@ -92,10 +80,6 @@ const Switch = forwardRef<InputType, SwitchProps>((props, ref) => {
             textClassName,
           )}
           size={size}
-          leftIcon={leftIcon}
-          leftIconClassName={leftIconClassName}
-          rightIcon={rightIcon}
-          rightIconClassName={rightIconClassName}
         >
           {children}
         </Content>

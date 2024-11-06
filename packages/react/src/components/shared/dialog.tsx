@@ -2,10 +2,12 @@
 
 import Button from '@/components/shared/button';
 import { DivHTMLAttrs } from '@/types';
-import { Dialog, DialogBackdrop, DialogPanel } from '@headlessui/react';
+import { DialogBackdrop, DialogPanel, Dialog as DialogWrapper } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import clsx from 'clsx';
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
+
+import useKeydown from '@/hooks/use-keydown';
 
 type BaseDialogProps = DivHTMLAttrs;
 
@@ -14,17 +16,8 @@ export interface DialogProps extends BaseDialogProps {
   onClose: (value: boolean) => void;
 }
 
-const Modal = (props: DialogProps) => {
-  const { children, open, onClose } = props;
-
-  const handleWindowKeyDown = useCallback(
-    (e: { key: string }) => {
-      if (e.key === 'Escape') {
-        onClose(false);
-      }
-    },
-    [onClose],
-  );
+const Dialog = (props: DialogProps) => {
+  const { open = false, onClose, children } = props;
 
   useEffect(() => {
     if (open) {
@@ -36,14 +29,10 @@ const Modal = (props: DialogProps) => {
     }
   }, [open]);
 
-  useEffect(() => {
-    window.addEventListener('keydown', handleWindowKeyDown);
-
-    return () => window.removeEventListener('keydown', handleWindowKeyDown);
-  }, [handleWindowKeyDown]);
+  useKeydown(['Escape'], () => onClose(false));
 
   return (
-    <Dialog
+    <DialogWrapper
       as='div'
       open={open}
       className={clsx(
@@ -79,10 +68,10 @@ const Modal = (props: DialogProps) => {
         </div>
         <div className='pbc-px-24 pbc-pb-40 pbc-pt-8 desktop:pbc-px-80 desktop:pbc-pb-80 desktop:pbc-pt-24'>{children}</div>
       </DialogPanel>
-    </Dialog>
+    </DialogWrapper>
   );
 };
 
-Modal.displayName = 'Modal';
+Dialog.displayName = 'Dialog';
 
-export default Modal;
+export default Dialog;

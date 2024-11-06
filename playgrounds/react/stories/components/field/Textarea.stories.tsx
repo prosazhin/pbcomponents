@@ -12,30 +12,31 @@ const meta = {
     ...Object.assign(textareaArg),
   },
   args: {
-    value: '',
-    placeholder: 'Placeholder',
     size: 'm',
     disabled: false,
     error: false,
+    value: '',
+    placeholder: 'Placeholder',
     onChange: () => {},
     className: '',
     wrapperClassName: '',
   },
   render: function Render(args) {
-    const { placeholder, size, disabled, error, className, wrapperClassName } = args;
+    const { size, disabled, error, placeholder, onChange, className, wrapperClassName } = args;
     const [{ value }, setArgs] = useArgs();
 
     return (
       <Component
-        value={value ? value : undefined}
-        placeholder={placeholder ? placeholder : undefined}
         size={size}
         disabled={disabled}
         error={error}
+        value={value ? value : undefined}
+        placeholder={placeholder ? placeholder : undefined}
         className={className ? className : undefined}
         wrapperClassName={wrapperClassName ? wrapperClassName : undefined}
-        onChange={(v) => {
+        onChange={(v, event) => {
           setArgs({ value: v });
+          if (onChange) onChange(v, event);
         }}
       />
     );

@@ -1,4 +1,4 @@
-import * as heroicons from '@heroicons/react/24/solid';
+import * as heroicons from '@heroicons/react/24/outline';
 
 export const childrenArg = {
   children: {
@@ -172,7 +172,7 @@ export const typeArg = {
   type: {
     options: ['button', 'reset', 'submit'],
     control: 'radio',
-    defaultValue: { summary: undefined },
+    defaultValue: { summary: 'button' },
     type: 'string',
     if: { arg: 'as', eq: 'button' },
   },
@@ -190,6 +190,12 @@ export const hrefArg = {
   href: {
     control: 'text',
     defaultValue: { summary: undefined },
+    if: { arg: 'as', eq: 'a' },
+  },
+  target: {
+    options: ['_self', '_blank'],
+    control: 'radio',
+    defaultValue: { summary: '_self' },
     if: { arg: 'as', eq: 'a' },
   },
 };
@@ -240,7 +246,6 @@ export const checkboxArg = {
   ...defaultArgs,
   ...wrapperClassNameTypeArg,
   ...textClassNameTypeArg,
-  ...iconsArg,
   ...labelPlaceArg,
   ...SMSizeArg,
   ...checkedArg,
@@ -272,7 +277,6 @@ export const checkboxGroupArg = {
 export const radioArg = {
   ...defaultArgs,
   ...textClassNameTypeArg,
-  ...iconsArg,
   ...SMSizeArg,
   ...checkedArg,
   ...disabledArg,
@@ -337,7 +341,7 @@ export const inputArg = {
   ...errorArg,
   ...valueArg,
   ...placeholderArg,
-  button: {
+  buttonAlign: {
     options: ['left', 'right'],
     control: 'radio',
     defaultValue: { summary: 'left' },
@@ -367,6 +371,96 @@ export const textareaArg = {
     control: 'object',
     defaultValue: { summary: undefined },
     type: '(value: string, event: Event) => void',
+  },
+};
+
+export const selectArg = {
+  ...classNameArg,
+  ...wrapperClassNameTypeArg,
+  ...SMSizeArg,
+  ...disabledArg,
+  ...errorArg,
+  ...placeholderArg,
+  value: {
+    control: 'object',
+    defaultValue: { summary: undefined },
+    type: 'Option | Option[]',
+  },
+  options: {
+    control: 'object',
+    defaultValue: { summary: undefined },
+    type: '{ display: string; value?: string; disabled?: boolean; badge?: Badge; }[]',
+  },
+  buttonAlign: {
+    options: ['left', 'right'],
+    control: 'radio',
+    defaultValue: { summary: 'left' },
+  },
+  onChange: {
+    control: 'object',
+    defaultValue: { summary: undefined },
+    type: '(value: Option | Option[]) => void',
+  },
+  dropdownClassName: {
+    control: 'text',
+    type: 'string',
+    defaultValue: { summary: undefined },
+  },
+  dropdownItemClassName: {
+    control: 'text',
+    type: 'string',
+    defaultValue: { summary: undefined },
+  },
+  multiple: {
+    control: 'boolean',
+    defaultValue: { summary: false },
+  },
+  search: {
+    control: 'boolean',
+    defaultValue: { summary: false },
+  },
+  searchPlaceholder: {
+    control: 'text',
+    type: 'string',
+    defaultValue: { summary: 'Placeholder' },
+  },
+};
+
+export const searchArg = {
+  ...classNameArg,
+  ...wrapperClassNameTypeArg,
+  ...SMSizeArg,
+  ...disabledArg,
+  ...errorArg,
+  ...placeholderArg,
+  value: {
+    control: 'object',
+    defaultValue: { summary: undefined },
+    type: 'Option | Option[]',
+  },
+  options: {
+    control: 'object',
+    defaultValue: { summary: undefined },
+    type: '{ display: string; value?: string; disabled?: boolean; badge?: Badge; }[]',
+  },
+  onChange: {
+    control: 'object',
+    defaultValue: { summary: undefined },
+    type: '(value: Option | Option[]) => void',
+  },
+  dropdownClassName: {
+    control: 'text',
+    type: 'string',
+    defaultValue: { summary: undefined },
+  },
+  dropdownItemClassName: {
+    control: 'text',
+    type: 'string',
+    defaultValue: { summary: undefined },
+  },
+  multiple: {
+    control: 'boolean',
+    defaultValue: { summary: false },
   },
 };
 
@@ -406,6 +500,15 @@ export const alertArg = {
     control: { type: 'radio' },
     defaultValue: { summary: 'primary' },
   },
+  open: {
+    control: 'boolean',
+    defaultValue: { summary: true },
+  },
+  onClose: {
+    control: 'object',
+    defaultValue: { summary: undefined },
+    type: '(value: boolean) => void',
+  },
 };
 
 export const containerArg = {
@@ -440,7 +543,7 @@ export const containerArg = {
   },
 };
 
-export const modalArg = {
+export const dialogArg = {
   ...classNameArg,
   children: {
     control: 'object',
@@ -449,11 +552,41 @@ export const modalArg = {
   },
   open: {
     control: 'boolean',
-    defaultValue: { summary: undefined },
+    defaultValue: { summary: false },
   },
   onClose: {
     control: 'object',
     defaultValue: { summary: undefined },
     type: '(value: boolean) => void',
+  },
+};
+
+export const dropdownArg = {
+  ...defaultArgs,
+  ...wrapperClassNameTypeArg,
+  align: {
+    options: ['left', 'right'],
+    control: 'radio',
+    defaultValue: { summary: 'left' },
+  },
+};
+
+export const dropdownItemArg = {
+  ...defaultArgs,
+  ...wrapperClassNameTypeArg,
+  ...textClassNameTypeArg,
+  ...iconsArg,
+  ...disabledArg,
+  ...asArg,
+  ...typeArg,
+  ...onClickArg,
+  ...hrefArg,
+  borderTop: {
+    control: 'boolean',
+    defaultValue: { summary: false },
+  },
+  borderBottom: {
+    control: 'boolean',
+    defaultValue: { summary: false },
   },
 };

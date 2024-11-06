@@ -2,16 +2,7 @@
 
 import Content from '@/components/helpers/content';
 import Icon from '@/components/helpers/icon';
-import {
-  InputEvent,
-  InputHTMLAttrs,
-  InputType,
-  LabelPlaceType,
-  SMSizeType,
-  TextClassNameType,
-  WithIconsType,
-  WrapperClassNameType,
-} from '@/types';
+import { InputEvent, InputHTMLAttrs, InputType, LabelPlaceType, SMSizeType, TextClassNameType, WrapperClassNameType } from '@/types';
 import { CheckIcon, MinusIcon } from '@heroicons/react/24/solid';
 import clsx from 'clsx';
 import { forwardRef, useEffect, useRef, useState } from 'react';
@@ -19,7 +10,6 @@ import { forwardRef, useEffect, useRef, useState } from 'react';
 type BaseCheckboxProps = Omit<InputHTMLAttrs, 'size' | 'onChange' | 'children'> &
   SMSizeType &
   LabelPlaceType &
-  WithIconsType &
   WrapperClassNameType &
   TextClassNameType;
 
@@ -32,25 +22,20 @@ export interface CheckboxProps extends BaseCheckboxProps {
 
 const Checkbox = forwardRef<InputType, CheckboxProps>((props, ref) => {
   const {
-    children,
-    className,
-    wrapperClassName,
-    textClassName,
+    value: externalValue,
     onChange = () => {},
     labelPlace = 'right',
     size = 'm',
     checked = false,
     indeterminate = false,
     disabled = false,
-    leftIcon,
-    leftIconClassName,
-    rightIcon,
-    rightIconClassName,
+    children,
+    className,
+    wrapperClassName,
+    textClassName,
     ...rest
   } = props;
-  const { value: externalValue } = rest;
   const [value] = useState<string>(externalValue || children || '');
-
   const internalRef = useRef<InputType>(null);
   const checkboxRef = (ref || internalRef) as React.MutableRefObject<InputType>;
 
@@ -60,21 +45,23 @@ const Checkbox = forwardRef<InputType, CheckboxProps>((props, ref) => {
     }
   }, [checkboxRef, indeterminate]);
 
-  let IconIcon = CheckIcon;
+  let ComponentIcon = CheckIcon;
 
   if (indeterminate) {
-    IconIcon = MinusIcon;
+    ComponentIcon = MinusIcon;
   }
 
   return (
     <label
       className={clsx(
-        'pbc pbc-inline-flex pbc-cursor-pointer pbc-flex-nowrap pbc-group pbc-gap-8',
+        'pbc pbc-inline-flex pbc-items-center pbc-cursor-pointer pbc-flex-nowrap pbc-group',
+        size === 's' && 'pbc-gap-4',
+        size === 'm' && 'pbc-gap-6',
         disabled && '!pbc-cursor-default',
         wrapperClassName,
       )}
     >
-      <div className={clsx('pbc pbc-relative', size === 's' && 'pbc-size-16', size === 'm' && 'pbc-size-24')}>
+      <div className={clsx('pbc pbc-relative', size === 's' && 'pbc-size-16', size === 'm' && 'pbc-size-20')}>
         <input
           {...rest}
           ref={checkboxRef}
@@ -94,7 +81,7 @@ const Checkbox = forwardRef<InputType, CheckboxProps>((props, ref) => {
         />
         {(checked || indeterminate) && (
           <Icon
-            tag={IconIcon}
+            tag={ComponentIcon}
             size={size}
             className='pbc-absolute pbc-inset-0 pbc-m-auto pbc-text-white pbc-pointer-events-none pbc-select-none'
           />
@@ -110,10 +97,6 @@ const Checkbox = forwardRef<InputType, CheckboxProps>((props, ref) => {
             textClassName,
           )}
           size={size}
-          leftIcon={leftIcon}
-          leftIconClassName={leftIconClassName}
-          rightIcon={rightIcon}
-          rightIconClassName={rightIconClassName}
         >
           {children}
         </Content>

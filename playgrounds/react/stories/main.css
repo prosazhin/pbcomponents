@@ -1,0 +1,9 @@
+.sbdocs-preview,
+.sbdocs-preview > .docs-story,
+.sbdocs-preview > .docs-story > .css-xzp052 {
+  overflow: visible !important;
+}
+
+.sbdocs-preview > .docs-story > .css-xzp052 {
+  z-index: 2;
+}

@@ -5,18 +5,16 @@ import { FieldSetHTMLAttrs, FieldSetType, InputEvent, SMSizeType } from '@/types
 import clsx from 'clsx';
 import { forwardRef, useState } from 'react';
 
-type InlineRadioGroupTType = React.ReactElement<InlineRadioProps>;
-type BaseInlineRadioGroupProps<T> = Omit<FieldSetHTMLAttrs, 'onChange' | 'children'> & {
-  children?: T[];
-} & SMSizeType;
+type BaseInlineRadioGroupProps = Omit<FieldSetHTMLAttrs, 'onChange' | 'children'> & SMSizeType;
 
-export interface InlineRadioGroupProps extends BaseInlineRadioGroupProps<InlineRadioGroupTType> {
+export interface InlineRadioGroupProps extends BaseInlineRadioGroupProps {
+  children?: React.ReactElement<InlineRadioProps>[];
   defaultValue?: string;
   onChange?: (checked: boolean, value: string, event: InputEvent) => void;
 }
 
 const InlineRadioGroup = forwardRef<FieldSetType, InlineRadioGroupProps>((props, ref) => {
-  const { children, className, defaultValue, size, onChange = () => {}, ...rest } = props;
+  const { size, defaultValue, onChange = () => {}, children, className, ...rest } = props;
   const { name, disabled } = rest;
   const [activeValue, setActiveValue] = useState<string | undefined>(defaultValue);
 

@@ -65,10 +65,11 @@ import { Button } from '@pbcomponents/vue';
 | InlineRadioGroup | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-inline-radio-inlineradiogroup--docs) | -           |
 | Input            | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-field-input--docs)                   | -           |
 | Textarea         | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-field-textarea--docs)                | -           |
-| Select           | -                                                                                                        | -           |
+| Select           | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-field-select--docs)                  | -           |
+| Search           | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-field-search--docs)                  | -           |
 | Field            | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-field-field--docs)                   | -           |
-| Dropdown         | -                                                                                                        | -           |
-| DropdownItem     | -                                                                                                        | -           |
+| Dropdown         | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-dropdown-dropdown--docs)             | -           |
+| DropdownItem     | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-dropdown-dropdownitem--docs)         | -           |
 | Tabs             | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tabs-tabs--docs)                     | -           |
 | Tab              | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tabs-tab--docs)                      | -           |
 | Collapse         | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-collapse-collapse--docs)             | -           |

@@ -1,6 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import * as heroicons from '@heroicons/react/24/solid';
 import { Checkbox as Component } from '@pbcomponents/react';
 import { useArgs } from '@storybook/preview-api';
 import { checkboxArg } from '../../args';
@@ -25,29 +24,12 @@ const meta = {
     disabled: false,
     value: '',
     onChange: () => {},
-    leftIcon: undefined,
-    leftIconClassName: '',
-    rightIcon: undefined,
-    rightIconClassName: '',
     className: '',
     wrapperClassName: '',
     textClassName: '',
   },
   render: function Render(args) {
-    const {
-      value,
-      children,
-      labelPlace,
-      leftIcon,
-      leftIconClassName,
-      rightIcon,
-      rightIconClassName,
-      size,
-      disabled,
-      className,
-      wrapperClassName,
-      textClassName,
-    } = args;
+    const { value, children, labelPlace, size, disabled, className, wrapperClassName, textClassName } = args;
     const [{ checked, indeterminate }, setArgs] = useArgs();
 
     return (
@@ -58,12 +40,6 @@ const meta = {
         checked={checked}
         indeterminate={indeterminate}
         disabled={disabled}
-        // @ts-expect-error: Unreachable code error
-        leftIcon={leftIcon ? heroicons[leftIcon] : leftIcon}
-        leftIconClassName={leftIconClassName ? leftIconClassName : undefined}
-        // @ts-expect-error: Unreachable code error
-        rightIcon={rightIcon ? heroicons[rightIcon] : rightIcon}
-        rightIconClassName={rightIconClassName ? rightIconClassName : undefined}
         className={className ? className : undefined}
         wrapperClassName={wrapperClassName ? wrapperClassName : undefined}
         textClassName={textClassName ? textClassName : undefined}

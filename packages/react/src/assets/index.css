@@ -237,4 +237,30 @@
   .pbc-scrollbar-hidden::-webkit-scrollbar {
     display: none;
   }
+
+  .pbc-search::-webkit-search-cancel-button {
+    @apply pbc-appearance-none pbc-bg-transparent pbc-cursor-pointer pbc-relative pbc-m-auto pbc-pointer-events-none pbc-opacity-0 pbc-bg-contain;
+  }
+
+  .pbc-search:focus::-webkit-search-cancel-button {
+    @apply !pbc-pointer-events-auto !pbc-opacity-100;
+  }
+
+  .pbc-search-s {
+    @apply !pbc-pr-32;
+  }
+
+  .pbc-search-s::-webkit-search-cancel-button {
+    @apply pbc-size-16 -pbc-mr-[calc(16px+8px)];
+    background: url('./x-mark-16.svg') no-repeat 50% 50%;
+  }
+
+  .pbc-search-m {
+    @apply !pbc-pr-[42px];
+  }
+
+  .pbc-search-m::-webkit-search-cancel-button {
+    @apply pbc-size-20 -pbc-mr-[calc(20px+12px)];
+    background: url('./x-mark-20.svg') no-repeat 50% 50%;
+  }
 }

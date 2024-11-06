@@ -1,18 +1,18 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import { Button, Modal as Component } from '@pbcomponents/react';
+import { Button, Dialog as Component } from '@pbcomponents/react';
 import { useArgs } from '@storybook/preview-api';
-import { modalArg } from '../args';
+import { dialogArg } from '../args';
 
 const meta = {
-  title: 'Components/Modal',
+  title: 'Components/Dialog',
   component: Component,
   tags: ['autodocs'],
   argTypes: {
-    ...Object.assign(modalArg),
+    ...Object.assign(dialogArg),
   },
   args: {
-    children: <div>Modal content</div>,
+    children: <div>Dialog content</div>,
     open: false,
     onClose: () => {},
     className: '',
@@ -23,7 +23,7 @@ const meta = {
 
     return (
       <div>
-        <Button onClick={() => setArgs({ open: !open })}>Toggle modal</Button>
+        <Button onClick={() => setArgs({ open: !open })}>Toggle Dialog</Button>
         <Component
           open={open}
           className={className ? className : undefined}

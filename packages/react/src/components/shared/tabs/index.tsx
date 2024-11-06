@@ -5,18 +5,14 @@ import { DivHTMLAttrs, DivType } from '@/types';
 import clsx from 'clsx';
 import { forwardRef, useState } from 'react';
 
-type TabsTType = React.ReactElement<TabProps>;
-type BaseTabsProps<T> = Omit<DivHTMLAttrs, 'children' | 'onChange'> & {
-  children?: T[];
-};
-
-export interface TabsProps extends BaseTabsProps<TabsTType> {
+export interface TabsProps extends Omit<DivHTMLAttrs, 'children' | 'onChange'> {
+  children?: React.ReactElement<TabProps>[];
   defaultIndex?: number;
   onChange?: (index: number, event: React.MouseEvent<HTMLElement>) => void;
 }
 
 const Tabs = forwardRef<DivType, TabsProps>((props, ref) => {
-  const { children, className, defaultIndex = 0, onChange = () => {}, ...rest } = props;
+  const { defaultIndex = 0, onChange = () => {}, children, className, ...rest } = props;
   const [activeIndex, setActiveIndex] = useState<number>(defaultIndex);
 
   return (

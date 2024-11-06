@@ -1,25 +1,36 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 import * as heroicons from '@heroicons/react/24/outline';
-import { Button as Component } from '@pbcomponents/react';
-import { buttonArg } from '../../args';
+import { Badge, DropdownItem as Component } from '@pbcomponents/react';
+import { dropdownItemArg } from '../../args';
 
 const meta = {
-  title: 'Components/Button/Button',
+  title: 'Components/Dropdown/DropdownItem',
   component: Component,
   tags: ['autodocs'],
   argTypes: {
-    ...Object.assign(buttonArg),
+    ...Object.assign(dropdownItemArg),
+    badge: {
+      options: [undefined, <Badge color='secondary'>badge</Badge>],
+      control: {
+        type: 'select',
+        labels: {
+          undefined,
+          '[object Object]': 'Badge',
+        },
+      },
+      defaultValue: { summary: undefined },
+      type: 'Button',
+    },
   },
   args: {
     // @ts-expect-error: Unreachable code error
     as: 'button',
-    children: 'Button',
-    size: 'm',
-    theme: 'filled',
-    color: 'primary',
+    children: 'Dropdown Item',
+    borderTop: false,
+    borderBottom: false,
+    badge: undefined,
     disabled: false,
-    loading: false,
     href: '#',
     target: '_self',
     type: 'button',
@@ -29,20 +40,21 @@ const meta = {
     rightIcon: undefined,
     rightIconClassName: '',
     className: '',
+    wrapperClassName: '',
     textClassName: '',
   },
   render: ({
     children,
+    borderTop,
+    borderBottom,
+    badge,
     leftIcon,
     leftIconClassName,
     rightIcon,
     rightIconClassName,
-    size,
-    theme,
-    color,
     disabled,
-    loading,
     className,
+    wrapperClassName,
     textClassName,
     onClick,
     type,
@@ -50,14 +62,12 @@ const meta = {
     target,
   }) => (
     <Component
-      size={size}
-      theme={theme}
-      color={color}
       disabled={disabled}
-      loading={loading}
       type={type}
       href={href}
       target={target}
+      borderTop={borderTop}
+      borderBottom={borderBottom}
       // @ts-expect-error: Unreachable code error
       leftIcon={leftIcon ? heroicons[leftIcon] : leftIcon}
       leftIconClassName={leftIconClassName ? leftIconClassName : undefined}
@@ -65,7 +75,9 @@ const meta = {
       rightIcon={rightIcon ? heroicons[rightIcon] : rightIcon}
       rightIconClassName={rightIconClassName ? rightIconClassName : undefined}
       className={className ? className : undefined}
+      wrapperClassName={wrapperClassName ? wrapperClassName : undefined}
       textClassName={textClassName ? textClassName : undefined}
+      badge={badge}
       onClick={onClick}
     >
       {children}

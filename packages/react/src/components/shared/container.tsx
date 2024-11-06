@@ -15,14 +15,14 @@ export interface ContainerProps extends BaseContainerProps {
 
 const Container = (props: ContainerProps) => {
   const {
-    children,
-    className,
-    wrapperClassName,
     size = 'full',
     leftAside,
     leftAsideClassName,
     rightAside,
     rightAsideClassName,
+    children,
+    className,
+    wrapperClassName,
     ...rest
   } = props;
   const hasAside = leftAside || rightAside;
