@@ -6,3 +6,5 @@ package-lock.json
 .editorconfig
 .prettierignore
 .gitignore
+
+*.svg
