@@ -48,32 +48,32 @@ jobs:
           file-url: https://unpkg.com/@pbcomponents/vue@latest/package.json
           static-checking: localIsNew
 
-  create_react_prerelease:
-    name: Create React prerelease
+  create_react_tag:
+    name: Create React tag
     if: needs.check_versions.outputs.check_react_version == 'true'
     needs: [check_versions]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - run: echo "REACT_TAG_NAME=@pbcomponents/react@v${{ needs.check_versions.outputs.react_version }}" >> $GITHUB_ENV
-      - uses: softprops/action-gh-release@v2
+      - uses: joutvhu/create-tag@v1
         with:
-          token: ${{ secrets.ACCESS_TOKEN }}
           tag_name: ${{ env.REACT_TAG_NAME }}
-          draft: false
-          prerelease: true
+          message: ${{ github.event.head_commit.message }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
-  create_vue_prerelease:
-    name: Create Vue prerelease
+  create_vue_tag:
+    name: Create Vue tag
     if: needs.check_versions.outputs.check_vue_version == 'true'
     needs: [check_versions]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - run: echo "VUE_TAG_NAME=@pbcomponents/vue@v${{ needs.check_versions.outputs.vue_version }}" >> $GITHUB_ENV
-      - uses: softprops/action-gh-release@v2
+      - uses: joutvhu/create-tag@v1
         with:
-          token: ${{ secrets.ACCESS_TOKEN }}
           tag_name: ${{ env.VUE_TAG_NAME }}
-          draft: false
-          prerelease: true
+          message: ${{ github.event.head_commit.message }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
