@@ -68,7 +68,7 @@ const Notification = (props: NotificationProps) => {
             className={clsx(
               'pbc pbc-notification-mobile desktop:pbc-notification-desktop pbc-z-[999] pbc-cursor-pointer pbc-group',
               'pbc-border-1 pbc-border-solid pbc-rounded-8 pbc-w-[calc(100%-32px)] desktop:pbc-w-400 pbc-m-auto pbc-px-24 pbc-py-16',
-              'pbc-transition pbc-border-secondary-lighter hover:pbc-border-primary-main pbc-bg-white',
+              'pbc-border-secondary-lighter hover:pbc-border-primary-main pbc-bg-white pbc-transition-[border-color,box-shadow]',
               'pbc-shadow-lg hover:pbc-shadow-xxl pbc-flex pbc-flex-row pbc-gap-x-16 pbc-items-center',
               className,
             )}
