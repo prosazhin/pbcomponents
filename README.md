@@ -75,8 +75,8 @@ import { Button } from '@pbcomponents/vue';
 | Collapse         | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-collapse-collapse--docs)             | -           |
 | CollapseGroup    | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-collapse-collapsegroup--docs)        | -           |
 | Alert            | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-alert--docs)                         | -           |
-| Modal            | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-modal--docs)                         | -           |
-| Notification     | -                                                                                                        | -           |
+| Dialog           | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-dialog--docs)                        | -           |
+| Notification     | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-notification--docs)                  | -           |
 | Headline         | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-headline--docs)                      | -           |
 | Container        | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-container--docs)                     | -           |
 

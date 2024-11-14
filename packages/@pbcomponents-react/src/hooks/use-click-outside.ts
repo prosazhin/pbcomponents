@@ -6,15 +6,12 @@ type RefObject<T> = {
 
 const events = [`mousedown`, `touchstart`] as const;
 
-export default function useClickOutside<T extends HTMLElement>(
-  refs: RefObject<T>[],
-  onClickOutside: (event?: MouseEvent | TouchEvent) => void,
-) {
+export default function useClickOutside<T extends HTMLElement>(refs: RefObject<T>[], callback: (event?: MouseEvent | TouchEvent) => void) {
   const isOutside = (element: EventTarget | null) => refs.every((ref) => !ref.current || !ref.current.contains(element as Node));
 
   const onClick = (event: MouseEvent | TouchEvent) => {
     if (isOutside(event.target)) {
-      onClickOutside();
+      callback();
     }
   };
 

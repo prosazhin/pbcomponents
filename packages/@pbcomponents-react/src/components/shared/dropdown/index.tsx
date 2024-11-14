@@ -35,6 +35,7 @@ const Dropdown = (props: DropdownProps) => {
         <AnimatePresence>
           {open && (
             <m.div
+              ref={dropdownRef}
               className={clsx(
                 'pbc-absolute pbc-mx-auto pbc-z-10 pbc-box-border pbc-w-280 xs:pbc-w-full pbc-max-h-300 pbc-bottom-0 pbc-translate-y-[calc(100%+6px)]',
                 'pbc-bg-white pbc-rounded-16 pbc-border-1 pbc-border-solid pbc-border-secondary-lighter pbc-p-8 pbc-scrollbar-hidden pbc-overflow-y-auto',
@@ -42,11 +43,9 @@ const Dropdown = (props: DropdownProps) => {
                 align === 'right' && 'pbc-right-0',
                 className,
               )}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              ref={dropdownRef}
+              initial={{ opacity: 0, bottom: 6 }}
+              animate={{ opacity: 1, bottom: 0, transition: { duration: 0.2, ease: 'easeIn' } }}
+              exit={{ opacity: 0, bottom: 6, transition: { duration: 0.2, ease: 'easeOut' } }}
             >
               <ul className='pbc-flex pbc-flex-col pbc-list-none pbc-m-0 pbc-p-0'>
                 {children &&

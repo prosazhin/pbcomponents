@@ -267,4 +267,32 @@
   .pbc-summary::-webkit-details-marker {
     @apply !pbc-appearance-none !pbc-hidden !pbc-opacity-0 !pbc-size-0 !pbc-bg-transparent;
   }
+
+  .pbc-dialog-mobile {
+    inset-block-start: auto;
+    inset-block-end: 0;
+    inset-inline-start: 0;
+    inset-inline-end: 0;
+  }
+
+  .pbc-dialog-desktop {
+    inset-block-start: 0;
+    inset-block-end: 0;
+    inset-inline-start: 0;
+    inset-inline-end: 0;
+  }
+
+  .pbc-notification-mobile {
+    inset-block-start: 0;
+    inset-block-end: auto;
+    inset-inline-start: 16px;
+    inset-inline-end: 16px;
+  }
+
+  .pbc-notification-desktop {
+    inset-block-start: 0;
+    inset-block-end: auto;
+    inset-inline-start: auto;
+    inset-inline-end: 16px;
+  }
 }

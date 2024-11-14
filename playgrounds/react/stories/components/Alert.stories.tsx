@@ -37,11 +37,13 @@ const meta = {
     color: 'primary',
     children: undefined,
     open: true,
+    initialOpacity: 0,
+    initialHeight: 0,
     onClose: () => {},
     className: '',
   },
   render: function Render(args) {
-    const { children, className, color, headline, description, as, onClose } = args;
+    const { children, className, color, headline, description, as, initialOpacity, initialHeight, onClose } = args;
     const [{ open }, setArgs] = useArgs();
 
     return (
@@ -49,6 +51,8 @@ const meta = {
         as={as}
         color={color}
         open={open}
+        initialOpacity={initialOpacity}
+        initialHeight={initialHeight}
         headline={headline ? headline : undefined}
         description={description ? description : undefined}
         className={className ? className : undefined}

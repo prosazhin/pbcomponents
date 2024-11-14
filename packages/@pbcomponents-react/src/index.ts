@@ -20,6 +20,7 @@ export {
   InlineRadio,
   InlineRadioGroup,
   Input,
+  Notification,
   Radio,
   RadioGroup,
   Search,

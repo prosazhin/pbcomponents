@@ -4,7 +4,7 @@ import Content from '@/components/helpers/content';
 import Badge, { BadgeProps } from '@/components/shared/badge';
 import Input, { InputProps } from '@/components/shared/field/input';
 import { DivType, InputType, SelectDropdownOptionType } from '@/types';
-import { CheckIcon, ChevronUpDownIcon, MagnifyingGlassIcon } from '@heroicons/react/24/solid';
+import { CheckIcon, ChevronUpDownIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import { AnimatePresence, LazyMotion, domAnimation, m } from 'framer-motion';
 import { useEffect, useMemo, useRef, useState } from 'react';
@@ -145,11 +145,10 @@ const Select = (props: SelectProps) => {
                 buttonAlign === 'right' && 'pbc-left-0',
                 dropdownClassName,
               )}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
               style={{ width }}
+              initial={{ opacity: 0, bottom: 6 }}
+              animate={{ opacity: 1, bottom: 0, transition: { duration: 0.2, ease: 'easeIn' } }}
+              exit={{ opacity: 0, bottom: 6, transition: { duration: 0.2, ease: 'easeOut' } }}
             >
               <ul className='pbc-flex pbc-flex-col pbc-list-none pbc-m-0 pbc-p-0'>
                 {search && (

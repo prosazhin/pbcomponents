@@ -53,7 +53,7 @@ import { Button } from '@pbcomponents/vue';
 | Collapse         | -       |
 | CollapseGroup    | -       |
 | Alert            | -       |
-| Modal            | -       |
+| Dialog           | -       |
 | Notification     | -       |
 | Headline         | -       |
 | Container        | -       |

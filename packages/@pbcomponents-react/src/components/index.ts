@@ -22,6 +22,7 @@ export { default as Textarea } from '@/components/shared/field/textarea';
 export { default as Headline } from '@/components/shared/headline';
 export { default as InlineRadio } from '@/components/shared/inline-radio';
 export { default as InlineRadioGroup } from '@/components/shared/inline-radio/group';
+export { default as Notification } from '@/components/shared/notification';
 export { default as Radio } from '@/components/shared/radio';
 export { default as RadioGroup } from '@/components/shared/radio/group';
 export { default as Tabs } from '@/components/shared/tabs';

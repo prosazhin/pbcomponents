@@ -509,6 +509,15 @@ export const alertArg = {
     defaultValue: { summary: undefined },
     type: '(value: boolean) => void',
   },
+  initialOpacity: {
+    control: 'number',
+    defaultValue: { summary: 0 },
+  },
+  initialHeight: {
+    options: [0, 'auto'],
+    control: { type: 'radio' },
+    defaultValue: { summary: 0 },
+  },
 };
 
 export const containerArg = {
@@ -588,5 +597,42 @@ export const dropdownItemArg = {
   borderBottom: {
     control: 'boolean',
     defaultValue: { summary: false },
+  },
+};
+
+export const notificationArg = {
+  ...classNameArg,
+  headline: {
+    control: 'text',
+    type: 'string',
+    defaultValue: { summary: undefined },
+  },
+  description: {
+    control: 'text',
+    type: 'string',
+    defaultValue: { summary: undefined },
+  },
+  open: {
+    control: 'boolean',
+    defaultValue: { summary: false },
+  },
+  delay: {
+    control: 'number',
+    defaultValue: { summary: 3000 },
+  },
+  top: {
+    control: 'number',
+    defaultValue: { summary: 0 },
+  },
+  onClose: {
+    control: 'object',
+    defaultValue: { summary: undefined },
+    type: '(value: boolean) => void',
+  },
+  icon: iconArg,
+  iconClassName: {
+    control: 'text',
+    type: 'string',
+    defaultValue: { summary: undefined },
   },
 };
