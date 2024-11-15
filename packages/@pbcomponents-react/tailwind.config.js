@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
 import theme from 'pbstyles/styles/tailwind-theme';
+import plugin from 'tailwindcss/plugin';
 
 export default {
   mode: 'jit',
@@ -37,5 +38,11 @@ export default {
       },
     },
   },
-  plugins: [require('@tailwindcss/forms')({ strategy: 'class' }), require('@tailwindcss/typography')],
+  plugins: [
+    require('@tailwindcss/forms')({ strategy: 'class' }),
+    require('@tailwindcss/typography'),
+    plugin(function ({ addVariant }) {
+      addVariant('hover', ['@media (hover: hover) and (pointer: fine) { &:hover }', '@media (hover: none) { &:active }']);
+    }),
+  ],
 };
