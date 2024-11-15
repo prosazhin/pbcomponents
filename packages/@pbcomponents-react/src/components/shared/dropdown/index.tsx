@@ -6,13 +6,12 @@ import { DivHTMLAttrs, WrapperClassNameType } from '@/types';
 import { ChevronUpDownIcon } from '@heroicons/react/24/solid';
 import clsx from 'clsx';
 import { AnimatePresence, LazyMotion, domAnimation, m } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 
 import useClickOutside from '@/hooks/use-click-outside';
 import useKeydown from '@/hooks/use-keydown';
 
 type BaseDropdownProps = Omit<DivHTMLAttrs, 'children'> & WrapperClassNameType;
-
 export interface DropdownProps extends BaseDropdownProps {
   children: React.ReactElement<DropdownItemProps>[];
   button?: React.ReactElement<ButtonProps>;
@@ -20,10 +19,11 @@ export interface DropdownProps extends BaseDropdownProps {
 }
 
 const Dropdown = (props: DropdownProps) => {
-  const { align = 'left', button, children, className, wrapperClassName, ...rest } = props;
+  const { align = 'left', button, children: childn, className, wrapperClassName, ...rest } = props;
   const dropdownRef = useRef(null);
   const buttonRef = useRef(null);
   const [open, setOpen] = useState<boolean>(false);
+  const children = useMemo(() => (childn ? [...childn] : []), [childn]);
 
   useClickOutside([dropdownRef, buttonRef], () => setOpen(false));
   useKeydown(['Escape'], () => setOpen(false));
@@ -48,20 +48,19 @@ const Dropdown = (props: DropdownProps) => {
               exit={{ opacity: 0, bottom: 6, transition: { duration: 0.2, ease: 'easeOut' } }}
             >
               <ul className='pbc-flex pbc-flex-col pbc-list-none pbc-m-0 pbc-p-0'>
-                {children &&
-                  children.map(({ props: itemProps }, index) => {
-                    return (
-                      <li key={index} className='pbc-w-full'>
-                        <DropdownItem
-                          {...itemProps}
-                          onClick={(event) => {
-                            if (itemProps.onClick) itemProps.onClick(event);
-                            setOpen(false);
-                          }}
-                        />
-                      </li>
-                    );
-                  })}
+                {children.map(({ props: itemProps }, index) => {
+                  return (
+                    <li key={index} className='pbc-w-full'>
+                      <DropdownItem
+                        {...itemProps}
+                        onClick={(event) => {
+                          if (itemProps.onClick) itemProps.onClick(event);
+                          setOpen(false);
+                        }}
+                      />
+                    </li>
+                  );
+                })}
               </ul>
             </m.div>
           )}

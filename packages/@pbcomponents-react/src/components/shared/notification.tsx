@@ -12,7 +12,6 @@ import useDebounce from '@/hooks/use-debounce';
 import useKeydown from '@/hooks/use-keydown';
 
 type BaseNotificationProps = Omit<DialogHTMLAttrs, 'onClose'>;
-
 export interface NotificationProps extends BaseNotificationProps {
   icon?: SvgType | never;
   iconClassName?: string;

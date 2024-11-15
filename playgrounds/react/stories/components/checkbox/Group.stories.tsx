@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import { Checkbox, CheckboxGroup as Component } from '@pbcomponents/react';
+import { Checkbox, CheckboxGroup as Component, Switch } from '@pbcomponents/react';
 import { checkboxGroupArg } from '../../args';
 
 const meta = {
@@ -10,13 +10,19 @@ const meta = {
   argTypes: {
     ...Object.assign(checkboxGroupArg),
     children: {
-      control: 'object',
-      type: 'Checkbox[]',
+      options: ['Checkbox', 'Switch'],
+      control: 'select',
+      mapping: {
+        Checkbox: ['One', 'Two', 'Three', 'Four', 'Five'].map((value, index) => <Checkbox key={index}>{value}</Checkbox>),
+        Switch: ['One', 'Two', 'Three', 'Four', 'Five'].map((value, index) => <Switch key={index}>{value}</Switch>),
+      },
       defaultValue: { summary: undefined },
+      type: 'Checkbox[] | Switch[]',
     },
   },
   args: {
-    children: ['One', 'Two', 'Three', 'Four', 'Five'].map((value, index) => <Checkbox key={index}>{value}</Checkbox>),
+    // @ts-expect-error: Unreachable code error
+    children: 'Checkbox',
     size: 'm',
     disabled: false,
     defaultValue: ['One'],

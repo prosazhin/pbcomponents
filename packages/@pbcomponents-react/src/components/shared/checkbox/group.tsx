@@ -1,26 +1,29 @@
 'use client';
 
 import Checkbox, { CheckboxProps } from '@/components/shared/checkbox';
+import Switch, { SwitchProps } from '@/components/shared/checkbox/switch';
 import { FieldSetHTMLAttrs, FieldSetType, SMSizeType } from '@/types';
 import clsx from 'clsx';
-import { forwardRef, useEffect, useState } from 'react';
+import { forwardRef, useEffect, useMemo, useState } from 'react';
 
 type BaseCheckboxGroupProps = Omit<FieldSetHTMLAttrs, 'onChange' | 'children'> & SMSizeType;
-
 export interface CheckboxGroupProps extends BaseCheckboxGroupProps {
-  children?: React.ReactElement<CheckboxProps>[];
+  children: React.ReactElement<CheckboxProps | SwitchProps>[];
   defaultValue?: string[];
   onChange?: (value: string[]) => void;
 }
 
 const CheckboxGroup = forwardRef<FieldSetType, CheckboxGroupProps>((props, ref) => {
-  const { size, defaultValue = [], onChange = () => {}, children, className, ...rest } = props;
+  const { size, defaultValue = [], onChange = () => {}, children: childn, className, ...rest } = props;
   const { name, disabled } = rest;
   const [activeValue, setActiveValue] = useState<string[]>(defaultValue);
+  const children = useMemo(() => (childn ? [...childn] : []), [childn, activeValue, size, disabled, name, onChange]);
 
   useEffect(() => {
     onChange(activeValue);
   }, [activeValue]);
+
+  if (!children.length) return null;
 
   return (
     <fieldset
@@ -33,9 +36,12 @@ const CheckboxGroup = forwardRef<FieldSetType, CheckboxGroupProps>((props, ref) 
         className,
       )}
     >
-      {children &&
-        children.map(({ props: itemProps }, index) => (
-          <Checkbox
+      {children.map(({ type, props: itemProps }, index) => {
+        // @ts-expect-error: Unreachable code error
+        const Component = type?.displayName === 'Switch' ? Switch : Checkbox;
+
+        return (
+          <Component
             {...itemProps}
             key={index}
             name={name ? name : undefined}
@@ -53,7 +59,8 @@ const CheckboxGroup = forwardRef<FieldSetType, CheckboxGroupProps>((props, ref) 
               setActiveValue(result);
             }}
           />
-        ))}
+        );
+      })}
     </fieldset>
   );
 });

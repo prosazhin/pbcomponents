@@ -12,7 +12,6 @@ import useDebounce from '@/hooks/use-debounce';
 import useKeydown from '@/hooks/use-keydown';
 
 type BaseDialogProps = Omit<DialogHTMLAttrs, 'onClose'>;
-
 export interface DialogProps extends BaseDialogProps {
   open: boolean;
   onClose: (value: boolean) => void;

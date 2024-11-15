@@ -6,7 +6,6 @@ import clsx from 'clsx';
 import { forwardRef } from 'react';
 
 type BaseBadgeProps = SpanHTMLAttrs & WithIconsType & SMSizeType & ColorType & TextClassNameType;
-
 export interface BadgeProps extends BaseBadgeProps {
   theme?: 'filled' | 'light' | 'border';
 }

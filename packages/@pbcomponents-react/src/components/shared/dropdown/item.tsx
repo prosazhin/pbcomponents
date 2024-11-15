@@ -6,7 +6,6 @@ import { ButtonOrLinkHTMLAttrs, TextClassNameType, WithIconsType, WrapperClassNa
 import clsx from 'clsx';
 
 type BaseDropdownItemProps = Omit<ButtonOrLinkHTMLAttrs, 'children'> & WithIconsType & WrapperClassNameType & TextClassNameType;
-
 export interface DropdownItemProps extends BaseDropdownItemProps {
   children?: string;
   badge?: React.ReactElement<BadgeProps>;

@@ -5,7 +5,6 @@ import clsx from 'clsx';
 import { forwardRef } from 'react';
 
 type BaseTextareaProps = Omit<TextareaHTMLAttrs, 'onChange' | 'value'> & ErrorType & SMSizeType & WrapperClassNameType;
-
 export interface TextareaProps extends BaseTextareaProps {
   value: string;
   onChange?: (value: string, event: TextareaEvent) => void;

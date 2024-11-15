@@ -10,7 +10,6 @@ import { AnimatePresence, LazyMotion, domAnimation, m } from 'framer-motion';
 
 type AlertButtonType = React.ReactElement<ButtonProps>;
 type BaseAlertProps = Omit<DivHTMLAttrs, 'children'> & ColorType;
-
 export interface AlertProps extends BaseAlertProps {
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   headline?: string;

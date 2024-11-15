@@ -7,7 +7,6 @@ import clsx from 'clsx';
 import { forwardRef } from 'react';
 
 type BaseInputProps = Omit<InputHTMLAttrs, 'size' | 'onChange' | 'value'> & WithIconsType & ErrorType & SMSizeType & WrapperClassNameType;
-
 export interface InputProps extends BaseInputProps {
   button?: React.ReactElement<ButtonProps>;
   buttonAlign?: 'left' | 'right';
