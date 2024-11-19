@@ -6,7 +6,6 @@ import clsx from 'clsx';
 const defaultElement = 'span';
 
 type BaseTextProps = MediumType & SMLSizeType;
-
 export interface TextProps extends BaseTextProps {
   children?: React.ReactNode;
 }

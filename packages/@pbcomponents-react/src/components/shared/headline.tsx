@@ -6,7 +6,6 @@ import clsx from 'clsx';
 const defaultElement = 'h1';
 
 type BaseHeadlineProps = HeadlineHTMLAttrs;
-
 export interface HeadlineProps extends BaseHeadlineProps {
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 }

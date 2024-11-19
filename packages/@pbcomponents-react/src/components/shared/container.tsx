@@ -4,7 +4,6 @@ import { DivHTMLAttrs, WrapperClassNameType } from '@/types';
 import clsx from 'clsx';
 
 type BaseContainerProps = DivHTMLAttrs & WrapperClassNameType;
-
 export interface ContainerProps extends BaseContainerProps {
   size?: 'full' | 'm' | 's';
   leftAside?: React.ReactNode;

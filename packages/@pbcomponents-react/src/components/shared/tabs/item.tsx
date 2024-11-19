@@ -6,7 +6,6 @@ import clsx from 'clsx';
 import { forwardRef, useRef } from 'react';
 
 type BaseTabProps = ButtonOrLinkHTMLAttrs & WithIconsType & TextClassNameType;
-
 export interface TabProps extends BaseTabProps {
   label?: string;
   active?: boolean;

@@ -8,7 +8,6 @@ import clsx from 'clsx';
 const defaultElement = 'span';
 
 type BaseContentProps = WithIconsType & MediumType & SMLSizeType & TextClassNameType;
-
 export interface ContentProps extends BaseContentProps {
   children?: React.ReactNode;
 }

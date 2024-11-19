@@ -11,7 +11,6 @@ import { forwardRef, useMemo, useRef } from 'react';
 
 type FieldTType = React.ReactElement<InputProps | TextareaProps | SelectProps | SearchProps>;
 type BaseFieldProps = Omit<LabelHTMLAttrs & FieldSetHTMLAttrs, 'children'> & ErrorType;
-
 export interface FieldProps extends BaseFieldProps {
   children: FieldTType | FieldTType[];
   label?: string;

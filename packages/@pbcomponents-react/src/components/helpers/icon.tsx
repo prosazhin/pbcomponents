@@ -11,7 +11,6 @@ const ICON_SIZE = {
 } as const;
 
 type BaseIconProps = React.SVGProps<SVGSVGElement> & SMLSizeType;
-
 export interface IconProps extends BaseIconProps {
   tag: SvgType;
 }

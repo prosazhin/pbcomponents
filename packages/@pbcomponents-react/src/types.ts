@@ -71,6 +71,9 @@ export type SelectDropdownOptionType<T> = {
 export type DetailsType = HTMLDetailsElement;
 export type DetailsHTMLAttrs = React.DetailsHTMLAttributes<HTMLElement>;
 
+export type DialogType = HTMLDialogElement;
+export type DialogHTMLAttrs = React.DialogHTMLAttributes<HTMLElement>;
+
 export type PolymorphicProps<Element extends React.ElementType, Props> = Props &
   Omit<React.ComponentProps<Element>, 'as'> & {
     as?: Element;

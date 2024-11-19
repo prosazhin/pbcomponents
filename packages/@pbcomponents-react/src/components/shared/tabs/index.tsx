@@ -3,17 +3,20 @@
 import Tab, { TabProps } from '@/components/shared/tabs/item';
 import { DivHTMLAttrs, DivType } from '@/types';
 import clsx from 'clsx';
-import { forwardRef, useState } from 'react';
+import { forwardRef, useMemo, useState } from 'react';
 
 export interface TabsProps extends Omit<DivHTMLAttrs, 'children' | 'onChange'> {
-  children?: React.ReactElement<TabProps>[];
+  children: React.ReactElement<TabProps>[];
   defaultIndex?: number;
   onChange?: (index: number, event: React.MouseEvent<HTMLElement>) => void;
 }
 
 const Tabs = forwardRef<DivType, TabsProps>((props, ref) => {
-  const { defaultIndex = 0, onChange = () => {}, children, className, ...rest } = props;
+  const { defaultIndex = 0, onChange = () => {}, children: childn, className, ...rest } = props;
   const [activeIndex, setActiveIndex] = useState<number>(defaultIndex);
+  const children = useMemo(() => (childn ? [...childn] : []), [childn, activeIndex, onChange]);
+
+  if (!children.length) return null;
 
   return (
     <div {...rest} ref={ref} className={clsx('pbc pbc-w-full', className)}>
@@ -29,21 +32,20 @@ const Tabs = forwardRef<DivType, TabsProps>((props, ref) => {
             'pbc-flex-nowrap pbc-items-center pbc-gap-x-16 pbc-overflow-x-auto',
           )}
         >
-          {children &&
-            children.map(({ props: itemProps }, index) => (
-              <Tab
-                {...itemProps}
-                key={index}
-                active={activeIndex === index}
-                onClick={(event) => {
-                  setActiveIndex(index);
-                  onChange(index, event);
-                }}
-              />
-            ))}
+          {children.map(({ props: itemProps }, index) => (
+            <Tab
+              {...itemProps}
+              key={index}
+              active={activeIndex === index}
+              onClick={(event) => {
+                setActiveIndex(index);
+                onChange(index, event);
+              }}
+            />
+          ))}
         </div>
       </div>
-      {children && children[activeIndex].props.children}
+      {children[activeIndex].props.children}
     </div>
   );
 });

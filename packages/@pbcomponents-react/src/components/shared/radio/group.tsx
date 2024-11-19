@@ -3,20 +3,22 @@
 import Radio, { RadioProps } from '@/components/shared/radio';
 import { FieldSetHTMLAttrs, FieldSetType, InputEvent, SMSizeType } from '@/types';
 import clsx from 'clsx';
-import { forwardRef, useState } from 'react';
+import { forwardRef, useMemo, useState } from 'react';
 
 type BaseRadioGroupProps = Omit<FieldSetHTMLAttrs, 'onChange' | 'children'> & SMSizeType;
-
 export interface RadioGroupProps extends BaseRadioGroupProps {
-  children?: React.ReactElement<RadioProps>[];
+  children: React.ReactElement<RadioProps>[];
   defaultValue?: string;
   onChange?: (checked: boolean, value: string, event: InputEvent) => void;
 }
 
 const RadioGroup = forwardRef<FieldSetType, RadioGroupProps>((props, ref) => {
-  const { size, defaultValue, onChange = () => {}, children, className, ...rest } = props;
+  const { size, defaultValue, onChange = () => {}, children: childn, className, ...rest } = props;
   const { name, disabled } = rest;
   const [activeValue, setActiveValue] = useState<string | undefined>(defaultValue);
+  const children = useMemo(() => (childn ? [...childn] : []), [childn, activeValue, size, disabled, name, onChange]);
+
+  if (!children.length) return null;
 
   return (
     <fieldset
@@ -29,22 +31,21 @@ const RadioGroup = forwardRef<FieldSetType, RadioGroupProps>((props, ref) => {
         className,
       )}
     >
-      {children &&
-        children.map(({ props: itemProps }, index) => (
-          <Radio
-            {...itemProps}
-            key={index}
-            name={name ? name : undefined}
-            size={size}
-            checked={activeValue === itemProps.value}
-            disabled={disabled ? disabled : undefined}
-            wrapperClassName={clsx('pbc-w-full', itemProps.wrapperClassName)}
-            onChange={(checked, value, event) => {
-              setActiveValue(value);
-              onChange(checked, value, event);
-            }}
-          />
-        ))}
+      {children.map(({ props: itemProps }, index) => (
+        <Radio
+          {...itemProps}
+          key={index}
+          name={name ? name : undefined}
+          size={size}
+          checked={activeValue === itemProps.value}
+          disabled={disabled ? disabled : undefined}
+          wrapperClassName={clsx('pbc-w-full', itemProps.wrapperClassName)}
+          onChange={(checked, value, event) => {
+            setActiveValue(value);
+            onChange(checked, value, event);
+          }}
+        />
+      ))}
     </fieldset>
   );
 });

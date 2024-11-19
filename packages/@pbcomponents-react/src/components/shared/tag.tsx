@@ -8,7 +8,6 @@ import clsx from 'clsx';
 import { forwardRef, useEffect, useRef, useState } from 'react';
 
 type BaseTagProps = Omit<ButtonOrLinkHTMLAttrs, 'children'> & LoadingType & SMSizeType & WithIconsType & TextClassNameType;
-
 export interface TagProps extends BaseTagProps {
   children?: string;
   checked?: boolean;

@@ -206,6 +206,21 @@
   }
 
   .pbc {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  .pbc,
+  .pbc * {
     @apply pbc-font-sans pbc-box-border pbc-border-0 pbc-border-solid pbc-border-transparent pbc-outline-transparent pbc-outline-4 !pbc-outline-offset-0 !pbc-outline pbc-outline-transition;
   }
 
@@ -239,11 +254,11 @@
   }
 
   .pbc-search::-webkit-search-cancel-button {
-    @apply pbc-appearance-none pbc-bg-transparent pbc-cursor-pointer pbc-relative pbc-m-auto pbc-pointer-events-none pbc-opacity-0 pbc-bg-contain;
+    @apply pbc-appearance-none pbc-bg-transparent pbc-cursor-pointer pbc-relative pbc-m-auto pbc-pointer-events-none pbc-bg-contain;
   }
 
   .pbc-search:focus::-webkit-search-cancel-button {
-    @apply !pbc-pointer-events-auto !pbc-opacity-100;
+    @apply !pbc-pointer-events-auto;
   }
 
   .pbc-search-s {
@@ -266,5 +281,33 @@
 
   .pbc-summary::-webkit-details-marker {
     @apply !pbc-appearance-none !pbc-hidden !pbc-opacity-0 !pbc-size-0 !pbc-bg-transparent;
+  }
+
+  .pbc-dialog-mobile {
+    inset-block-start: auto;
+    inset-block-end: 0;
+    inset-inline-start: 0;
+    inset-inline-end: 0;
+  }
+
+  .pbc-dialog-desktop {
+    inset-block-start: 0;
+    inset-block-end: 0;
+    inset-inline-start: 0;
+    inset-inline-end: 0;
+  }
+
+  .pbc-notification {
+    inset-block-start: 0;
+    inset-block-end: auto;
+    inset-inline-start: 0;
+    inset-inline-end: 0;
+  }
+
+  .pbc-notification-desktop {
+    inset-block-start: 0;
+    inset-block-end: auto;
+    inset-inline-start: auto;
+    inset-inline-end: 0;
   }
 }
