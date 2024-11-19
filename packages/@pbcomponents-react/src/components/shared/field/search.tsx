@@ -11,6 +11,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 
 import useClickOutside from '@/hooks/use-click-outside';
 import useKeydown from '@/hooks/use-keydown';
+import useScreenSize from '@/hooks/use-screen-size';
 
 type SearchOptionType = SelectDropdownOptionType<React.ReactElement<BadgeProps>>;
 type SearchMultipleProps =
@@ -51,6 +52,7 @@ const Search = (props: SearchProps) => {
   const [width, setWidth] = useState<number>(0);
   const { button } = rest;
 
+  const screenSize = useScreenSize();
   useClickOutside([dropdownRef, inputRef], () => setOpen(false));
   useKeydown(['Escape'], () => setOpen(false));
 
@@ -58,7 +60,7 @@ const Search = (props: SearchProps) => {
     if (inputRef.current) {
       setWidth(inputRef.current.offsetWidth);
     }
-  }, [inputRef, button]);
+  }, [inputRef, button, screenSize.width]);
 
   useEffect(() => {
     if (!open) setQuery('');

@@ -116,7 +116,7 @@ const Notification = forwardRef<DialogType, NotificationProps>((props, ref) => {
             </button>
             {!isMouseInside && open && (
               <m.div
-                className='pbc-absolute pbc-h-2 pbc-bottom-0 pbc-inset-x-0 pbc-m-auto pbc-w-full pbc-bg-primary-main'
+                className='pbc-absolute pbc-h-1 pbc-bottom-0 pbc-inset-x-0 pbc-m-auto pbc-w-full pbc-bg-primary-main'
                 initial={{ opacity: 1, x: '-100%' }}
                 animate={{ opacity: 1, x: 0, transition: { duration: delay / 1000, ease: 'easeIn' } }}
                 exit={{ opacity: 0, x: '-100%', transition: { duration: 0.05 } }}
