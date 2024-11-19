@@ -297,17 +297,17 @@
     inset-inline-end: 0;
   }
 
-  .pbc-notification-mobile {
+  .pbc-notification {
     inset-block-start: 0;
     inset-block-end: auto;
-    inset-inline-start: 16px;
-    inset-inline-end: 16px;
+    inset-inline-start: 0;
+    inset-inline-end: 0;
   }
 
   .pbc-notification-desktop {
     inset-block-start: 0;
     inset-block-end: auto;
     inset-inline-start: auto;
-    inset-inline-end: 16px;
+    inset-inline-end: 0;
   }
 }

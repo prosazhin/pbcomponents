@@ -5,7 +5,7 @@ import { DialogHTMLAttrs, DialogType } from '@/types';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import clsx from 'clsx';
 import { AnimatePresence, LazyMotion, domAnimation, m } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
+import { forwardRef, useEffect, useRef, useState } from 'react';
 
 import useClickOutside from '@/hooks/use-click-outside';
 import useDebounce from '@/hooks/use-debounce';
@@ -13,15 +13,17 @@ import useKeydown from '@/hooks/use-keydown';
 
 type BaseDialogProps = Omit<DialogHTMLAttrs, 'onClose'>;
 export interface DialogProps extends BaseDialogProps {
-  open: boolean;
-  onClose: (value: boolean) => void;
+  open?: boolean;
+  onClose?: (value: boolean, id?: string) => void;
 }
 
-const Dialog = (props: DialogProps) => {
-  const { open: defaultOpen = false, onClose, children, className } = props;
-  const ref = useRef<DialogType>(null);
+const Dialog = forwardRef<DialogType, DialogProps>((props, ref) => {
+  const { open: defaultOpen = false, onClose = () => {}, children, className, ...rest } = props;
+  const internalRef = useRef<DialogType>(null);
+  const dialogRef = (ref || internalRef) as React.MutableRefObject<DialogType>;
   const [open, setOpen] = useState<boolean>(defaultOpen);
   const animationDuration = 200;
+  const { id } = rest;
 
   useEffect(() => {
     if (defaultOpen !== open) {
@@ -31,23 +33,23 @@ const Dialog = (props: DialogProps) => {
 
   useEffect(() => {
     if (open) {
-      ref.current?.removeAttribute('open');
-      ref.current?.showModal();
+      dialogRef.current?.removeAttribute('open');
+      dialogRef.current?.showModal();
       document.body.style.overflow = 'hidden';
       document.body.style.touchAction = 'none';
     } else {
-      ref.current?.classList.add('backdrop:!pbc-animate-hide');
+      dialogRef.current?.classList.add('backdrop:!pbc-animate-hide');
     }
   }, [open]);
 
   useDebounce(!open, animationDuration, () => {
-    ref.current?.close();
-    onClose(false);
+    dialogRef.current?.close();
+    onClose(false, id);
     document.body.style.overflow = '';
     document.body.style.touchAction = '';
   });
 
-  useClickOutside([ref], () => setOpen(false));
+  useClickOutside([dialogRef], () => setOpen(false));
   useKeydown(['Escape'], () => setOpen(false));
 
   return (
@@ -55,10 +57,11 @@ const Dialog = (props: DialogProps) => {
       <AnimatePresence>
         {open && (
           <m.dialog
-            ref={ref}
+            ref={dialogRef}
+            id={id}
             open={open}
             className={clsx(
-              'pbc pbc-dialog pbc-dialog-mobile desktop:pbc-dialog-desktop pbc-pt-0 pbc-px-0 pbc-z-[900] pbc-m-auto pbc-box-border',
+              'pbc pbc-dialog pbc-dialog-mobile desktop:pbc-dialog-desktop pbc-pt-0 pbc-px-0 pbc-z-[999] pbc-m-auto pbc-box-border',
               'pbc-w-full desktop:pbc-w-736 pbc-max-w-full pbc-max-h-[calc(100vh-40px)] desktop:pbc-max-h-[calc(100vh-160px)]',
               'pbc-scrollbar-hidden pbc-overflow-x-hidden pbc-overflow-y-auto pbc-flex pbc-flex-col pbc-pb-40 desktop:pbc-pb-80',
               'pbc-bg-white pbc-rounded-t-16 desktop:pbc-rounded-16 pbc-shadow-xxxxl pbc-border-1 pbc-border-solid pbc-border-secondary-lighter',
@@ -78,7 +81,7 @@ const Dialog = (props: DialogProps) => {
       </AnimatePresence>
     </LazyMotion>
   );
-};
+});
 
 Dialog.displayName = 'Dialog';
 
