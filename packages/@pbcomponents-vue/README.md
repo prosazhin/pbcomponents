@@ -1,6 +1,8 @@
 # @pbcomponents/vue
 
-[NPM](https://www.npmjs.com/package/@pbcomponents/vue) | [Preview](https://pbcomponents-vue.vercel.app/?path=/docs/intro--docs) | [Figma community](https://www.figma.com/community/file/1214486013859546496/pbcomponents) | [@pbcomponents](https://github.com/prosazhin/pbcomponents)
+[NPM](https://www.npmjs.com/package/@pbcomponents/vue) | [Preview](https://pbcomponents-vue.vercel.app/?path=/docs/intro--docs) | [@pbcomponents](https://github.com/prosazhin/pbcomponents)
+
+[Figma community](https://www.figma.com/community/file/1214486013859546496/pbcomponents) | [Behance](https://www.behance.net/gallery/206064847/pbcomponents)
 
 ## prosazhin basic components for vue
 
