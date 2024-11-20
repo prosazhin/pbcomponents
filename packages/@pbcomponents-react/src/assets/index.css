@@ -221,7 +221,7 @@
 
   .pbc,
   .pbc * {
-    @apply pbc-font-sans pbc-box-border pbc-border-0 pbc-border-solid pbc-border-transparent pbc-outline-transparent pbc-outline-4 !pbc-outline-offset-0 !pbc-outline pbc-outline-transition;
+    @apply pbc-font-sans pbc-box-border pbc-border-0 pbc-border-solid pbc-border-transparent pbc-outline-transition !pbc-outline !pbc-outline-4 !pbc-outline-offset-0 !pbc-outline-transparent;
   }
 
   .pbc-text-inherit {
@@ -229,19 +229,19 @@
   }
 
   .pbc-outline-primary {
-    @apply focus:pbc-outline-primary-main/20 active:pbc-outline-none;
+    @apply focus:!pbc-outline-primary-main/20 active:!pbc-outline-none;
   }
 
   .pbc-outline-secondary {
-    @apply focus:pbc-outline-secondary-main/20 active:pbc-outline-none;
+    @apply focus:!pbc-outline-secondary-main/20 active:!pbc-outline-none;
   }
 
   .pbc-outline-success {
-    @apply focus:pbc-outline-success-main/20 active:pbc-outline-none;
+    @apply focus:!pbc-outline-success-main/20 active:!pbc-outline-none;
   }
 
   .pbc-outline-danger {
-    @apply focus:pbc-outline-danger-main/20 active:pbc-outline-none;
+    @apply focus:!pbc-outline-danger-main/20 active:!pbc-outline-none;
   }
 
   .pbc-scrollbar-hidden {
