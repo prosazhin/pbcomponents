@@ -206,6 +206,7 @@
   }
 
   .pbc {
+    @apply pbc-font-sans pbc-box-border pbc-border-0 pbc-border-solid pbc-border-transparent pbc-outline-transition !pbc-outline !pbc-outline-4 !pbc-outline-offset-0 !pbc-outline-transparent;
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -217,11 +218,6 @@
     -moz-osx-font-smoothing: grayscale;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
-  }
-
-  .pbc,
-  .pbc * {
-    @apply pbc-font-sans pbc-box-border pbc-border-0 pbc-border-solid pbc-border-transparent pbc-outline-transition !pbc-outline !pbc-outline-4 !pbc-outline-offset-0 !pbc-outline-transparent;
   }
 
   .pbc-text-inherit {
