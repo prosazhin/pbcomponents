@@ -129,7 +129,7 @@ const Select = (props: SelectProps) => {
         ref={inputRef}
         value={value}
         type='text'
-        className={className}
+        className={clsx('pbc-cursor-pointer', className)}
         leftIcon={undefined}
         rightIcon={ChevronUpDownIcon}
         readOnly

@@ -102,7 +102,7 @@ const Notification = forwardRef<DialogType, NotificationProps>((props, ref) => {
               )}
             </div>
             <button
-              className='pbc-cursor-pointer !pbc-bg-transparent pbc-h-48 pbc-p-0 pbc-m-0'
+              className='pbc-cursor-pointer !pbc-bg-transparent pbc-h-48 pbc-p-0 pbc-m-0 !pbc-outline-none pbc-border-0'
               type='button'
               onClick={() => setOpen(false)}
             >
