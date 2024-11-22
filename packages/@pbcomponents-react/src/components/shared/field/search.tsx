@@ -11,7 +11,6 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 
 import useClickOutside from '@/hooks/use-click-outside';
 import useKeydown from '@/hooks/use-keydown';
-import useScreenSize from '@/hooks/use-screen-size';
 
 type SearchOptionType = SelectDropdownOptionType<React.ReactElement<BadgeProps>>;
 type SearchMultipleProps =
@@ -49,18 +48,9 @@ const Search = (props: SearchProps) => {
   const [query, setQuery] = useState<string>('');
   const [selected, setSelected] = useState<SearchOptionType[]>([]);
   const [value, setValue] = useState<string>('');
-  const [width, setWidth] = useState<number>(0);
-  const { button } = rest;
 
-  const screenSize = useScreenSize();
   useClickOutside([dropdownRef, inputRef], () => setOpen(false));
   useKeydown(['Escape'], () => setOpen(false));
-
-  useEffect(() => {
-    if (inputRef.current) {
-      setWidth(inputRef.current.offsetWidth);
-    }
-  }, [inputRef, button, screenSize.width]);
 
   useEffect(() => {
     if (!open) setQuery('');
@@ -138,11 +128,10 @@ const Search = (props: SearchProps) => {
             <m.div
               ref={dropdownRef}
               className={clsx(
-                'pbc-absolute pbc-mx-auto pbc-z-10 pbc-box-border pbc-w-full pbc-max-h-[309px] pbc-bottom-0 pbc-translate-y-[calc(100%+6px)] pbc-left-0',
+                'pbc-absolute pbc-inset-x-0 pbc-mx-auto pbc-z-10 pbc-box-border pbc-w-full pbc-max-h-[309px] pbc-bottom-0 pbc-translate-y-[calc(100%+6px)]',
                 'pbc-bg-white pbc-rounded-16 pbc-border-1 pbc-border-solid pbc-border-secondary-lighter pbc-p-8 pbc-scrollbar-hidden pbc-overflow-y-auto',
                 dropdownClassName,
               )}
-              style={{ width }}
               initial={{ opacity: 0, bottom: 6 }}
               animate={{ opacity: 1, bottom: 0, transition: { duration: 0.2, ease: 'easeIn' } }}
               exit={{ opacity: 0, bottom: 6, transition: { duration: 0.2, ease: 'easeOut' } }}
