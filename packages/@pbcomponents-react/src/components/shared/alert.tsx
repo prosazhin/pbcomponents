@@ -60,7 +60,7 @@ const Alert = (props: AlertProps) => {
             >
               {onClose && (
                 <Button
-                  className='pbc-absolute pbc-top-4 pbc-right-4'
+                  className='pbc-absolute pbc-top-4 pbc-right-4 !pbc-w-auto'
                   size='xs'
                   theme='ghost'
                   color={color}

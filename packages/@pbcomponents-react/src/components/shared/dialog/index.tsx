@@ -73,7 +73,15 @@ const Dialog = forwardRef<DialogType, DialogProps>((props, ref) => {
             exit={{ opacity: 0, y: '100%', transition: { duration: animationDuration / 1000, ease: 'easeOut' } }}
           >
             <div className='pbc-sticky pbc-top-0 pbc-px-8 pbc-pt-8 pbc-z-10 pbc-flex pbc-justify-end pbc-bg-white'>
-              <Button size='m' theme='ghost' color='secondary' leftIcon={XMarkIcon} autoFocus={false} onClick={() => setOpen(false)} />
+              <Button
+                size='m'
+                theme='ghost'
+                color='secondary'
+                leftIcon={XMarkIcon}
+                autoFocus={false}
+                className='!pbc-w-auto'
+                onClick={() => setOpen(false)}
+              />
             </div>
             <div className='pbc-px-24 pbc-pt-8 desktop:pbc-px-80 desktop:pbc-pt-24'>{children}</div>
           </m.dialog>

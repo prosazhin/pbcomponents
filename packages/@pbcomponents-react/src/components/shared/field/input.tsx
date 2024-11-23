@@ -95,7 +95,7 @@ const Input = forwardRef<InputType, InputProps>((props, ref) => {
           size={size}
           disabled={disabled}
           className={clsx(
-            'pbc-relative pbc-z-0 hover:pbc-z-20 focus:pbc-z-20',
+            'pbc-relative pbc-z-0 hover:pbc-z-20 focus:pbc-z-20 !pbc-w-auto',
             buttonAlign === 'left' && 'pbc-order-first !-pbc-mr-1 !pbc-rounded-r-0',
             buttonAlign === 'right' && 'pbc-order-last !-pbc-ml-1 !pbc-rounded-l-0',
             button.props.className,
