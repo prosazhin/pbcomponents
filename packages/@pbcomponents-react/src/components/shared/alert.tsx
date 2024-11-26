@@ -28,7 +28,7 @@ const Alert = (props: AlertProps) => {
     headline,
     description,
     as = 'h3',
-    color,
+    color = 'primary',
     open = true,
     initialOpacity = 0,
     initialHeight = 0,
