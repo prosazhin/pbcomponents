@@ -62,7 +62,7 @@ const Dialog = forwardRef<DialogType, DialogProps>((props, ref) => {
             open={open}
             className={clsx(
               'pbc pbc-dialog pbc-dialog-mobile desktop:pbc-dialog-desktop pbc-pt-0 pbc-px-0 pbc-z-[999] pbc-m-auto pbc-box-border',
-              'pbc-w-full desktop:pbc-w-736 pbc-max-w-full pbc-max-h-[calc(100vh-40px)] desktop:pbc-max-h-[calc(100vh-160px)]',
+              'pbc-w-full desktop:pbc-w-736 pbc-max-w-full pbc-max-h-[calc(100dvh-40px)] desktop:pbc-max-h-[calc(100dvh-160px)]',
               'pbc-scrollbar-hidden pbc-overflow-x-hidden pbc-overflow-y-auto pbc-flex pbc-flex-col pbc-pb-40 desktop:pbc-pb-80',
               'pbc-bg-white pbc-rounded-t-16 desktop:pbc-rounded-16 pbc-shadow-xxxxl pbc-border-1 pbc-border-solid pbc-border-secondary-lighter',
               'backdrop:!pbc-appearance-none backdrop:pbc-pointer-events-none backdrop:pbc-bg-basic-main/50 backdrop:pbc-animate-show',

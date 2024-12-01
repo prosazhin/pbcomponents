@@ -20,7 +20,7 @@ const Textarea = forwardRef<TextareaType, TextareaProps>((props, ref) => {
         ref={ref}
         disabled={disabled}
         className={clsx(
-          'pbc pbc-border-solid pbc-block pbc-border-1 pbc-w-full pbc-scrollbar-hidden pbc-appearance-none pbc-transition-colors placeholder:pbc-text-basic-light pbc-text-basic-main focus:pbc-ring-0 focus:pbc-ring-offset-0',
+          'pbc pbc-border-solid pbc-block pbc-border-1 pbc-bg-transparent pbc-w-full pbc-scrollbar-hidden pbc-appearance-none pbc-transition-colors placeholder:pbc-text-basic-light pbc-text-basic-main focus:pbc-ring-0 focus:pbc-ring-offset-0',
           !error && 'pbc-border-secondary-light hover:pbc-border-primary-main focus:pbc-border-primary-main pbc-outline-primary',
           error && 'pbc-border-danger-main hover:pbc-border-danger-main focus:pbc-border-danger-main pbc-outline-danger',
           'disabled:!pbc-cursor-default disabled:!pbc-bg-basic-lighter disabled:!pbc-border-secondary-light hover:disabled:!pbc-border-secondary-light hover:disabled:!pbc-bg-basic-lighter',
