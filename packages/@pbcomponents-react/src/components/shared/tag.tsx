@@ -55,14 +55,19 @@ const Tag = (props: TagProps) => {
       {...rest}
       ref={tagRef as any}
       className={clsx(
-        'pbc pbc:rounded-999 pbc:inline-flex pbc:w-max pbc:flex-nowrap pbc:cursor-pointer pbc:items-center pbc:justify-center pbc:transition-colors pbc:duration-150 pbc:focus:outline-outline-primary pbc:outline-4 pbc:outline-offset-0 pbc:border-1',
+        'pbc pbc:rounded-999 pbc:inline-flex pbc:w-max pbc:flex-nowrap pbc:cursor-pointer pbc:items-center pbc:justify-center pbc:transition-colors pbc:duration-150 pbc:focus:outline-outline-primary pbc:outline-4 pbc:outline-offset-0 pbc:border-1 pbc:border-transparent',
         size === 's' && 'pbc:h-26 pbc:px-8 pbc:py-4',
         size === 'm' && 'pbc:h-[34px] pbc:px-12 pbc:py-8',
         theme === 'light' && !checked && 'pbc:bg-primary-lighter pbc:text-basic-main pbc:hover:bg-primary-light',
-        theme === 'border' && !checked && 'pbc:border-secondary-light pbc:text-basic-main pbc:hover:border-primary-main pbc:bg-transparent',
+        theme === 'border' &&
+          !checked &&
+          'pbc:!border-secondary-light pbc:text-basic-main pbc:hover:!border-primary-main pbc:bg-transparent',
         checked && 'pbc:bg-primary-main pbc:hover:bg-primary-darker pbc:text-white',
         (theme === 'light' || checked) && disabled && !loading && 'pbc:!bg-secondary-lighter pbc:!text-basic-light',
-        theme === 'border' && disabled && !loading && 'pbc:!border-secondary-lighter pbc:!text-basic-light',
+        theme === 'border' &&
+          disabled &&
+          !loading &&
+          'pbc:!border-secondary-lighter pbc:hover:!border-secondary-lighter pbc:!text-basic-light',
         (disabled || loading) && 'pbc:!cursor-default',
         className,
       )}
