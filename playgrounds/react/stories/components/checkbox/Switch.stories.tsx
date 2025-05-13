@@ -37,7 +37,7 @@ const meta = {
         className={className ? className : undefined}
         wrapperClassName={wrapperClassName ? wrapperClassName : undefined}
         textClassName={textClassName ? textClassName : undefined}
-        onChange={(newValue) => {
+        onChange={(newValue: boolean) => {
           setArgs({ checked: newValue });
         }}
       >

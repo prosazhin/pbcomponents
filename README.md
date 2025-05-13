@@ -4,7 +4,7 @@
 
 ## prosazhin basic components
 
-UI component library for React and Vue with Typescript and Tailwind.
+UI component library for React with Typescript and Tailwind.
 
 ## Installation & Usage
 
@@ -26,24 +26,4 @@ const Page = () => (
     </Button>
   </>
 );
-```
-
-### Vue
-
-[Preview](https://pbcomponents-vue.vercel.app/?path=/docs/intro--docs) | [GitHub](https://github.com/prosazhin/pbcomponents/tree/main/packages/%40pbcomponents-vue) | [NPM](https://www.npmjs.com/package/@pbcomponents/vue)
-
-```bash
-npm install @pbcomponents/vue
-```
-
-```javascript
-<script setup>
-import { Button } from '@pbcomponents/vue';
-</script>
-
-<template>
-  <Button size='m' color='primary' theme='filled' @click={() => {}}>
-    Button
-  </Button>
-</template>
 ```

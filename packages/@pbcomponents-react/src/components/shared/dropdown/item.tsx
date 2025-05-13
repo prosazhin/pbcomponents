@@ -39,18 +39,18 @@ const DropdownItem = (props: DropdownItemProps) => {
   return (
     <div
       className={clsx(
-        'pbc-border-1 pbc-border-solid pbc-border-transparent pbc-flex pbc-flex-col',
-        borderTop && 'pbc-border-t-secondary-lighter pbc-mt-8 pbc-pt-8',
-        borderBottom && 'pbc-border-b-secondary-lighter pbc-mb-8 pbc-pb-8',
+        'pbc:border-1 pbc:border-solid pbc:border-transparent pbc:flex pbc:flex-col',
+        borderTop && 'pbc:border-t-secondary-lighter pbc:mt-8 pbc:pt-8',
+        borderBottom && 'pbc:border-b-secondary-lighter pbc:mb-8 pbc:pb-8',
         wrapperClassName,
       )}
     >
       <Component
         {...rest}
         className={clsx(
-          'pbc pbc-w-full pbc-flex pbc-flex-row pbc-items-center pbc-gap-8 pbc-px-20 pbc-py-12 pbc-cursor-pointer pbc-transition-colors pbc-rounded-12 pbc-max-h-48',
-          'pbc-bg-transparent pbc-text-basic-main hover:pbc-bg-secondary-lighter',
-          disabled && '!pbc-cursor-default !pbc-text-basic-light !pbc-bg-transparent',
+          'pbc pbc:w-full pbc:flex pbc:flex-row pbc:items-center pbc:gap-8 pbc:px-20 pbc:py-12 pbc:cursor-pointer pbc:transition-colors pbc:duration-150 pbc:rounded-12 pbc:max-h-48',
+          'pbc:bg-transparent pbc:text-basic-main pbc:hover:bg-secondary-lighter',
+          disabled && 'pbc:!cursor-default pbc:!text-basic-light pbc:!bg-transparent',
           className,
         )}
         type={externalHref ? undefined : type}
@@ -65,7 +65,7 @@ const DropdownItem = (props: DropdownItemProps) => {
           leftIconClassName={leftIconClassName}
           rightIcon={rightIcon}
           rightIconClassName={rightIconClassName}
-          className={clsx('pbc-w-full pbc-items-start pbc-text-left', textClassName)}
+          className={clsx('pbc:w-full pbc:text-left', textClassName)}
         >
           {children}
         </Content>

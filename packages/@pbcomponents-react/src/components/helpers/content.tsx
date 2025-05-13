@@ -31,16 +31,16 @@ const Content = <Element extends React.ElementType = typeof defaultElement>(prop
     <Component
       {...rest}
       className={clsx(
-        'pbc pbc-inline-flex pbc-flex-nowrap pbc-items-center pbc-pointer-events-none pbc-select-none',
-        size === 's' && 'pbc-gap-x-4',
-        size === 'm' && 'pbc-gap-x-6',
-        size === 'l' && 'pbc-gap-x-8',
+        'pbc pbc:inline-flex pbc:flex-nowrap pbc:items-center pbc:pointer-events-none pbc:select-none',
+        size === 's' && 'pbc:gap-x-4',
+        size === 'm' && 'pbc:gap-x-6',
+        size === 'l' && 'pbc:gap-x-8',
         className,
       )}
     >
       {LeftIcon && <Icon tag={LeftIcon} size={size} className={leftIconClassName} />}
       {children && (
-        <Text size={size} medium={medium} className={clsx('pbc-flex-1', textClassName)}>
+        <Text size={size} medium={medium} className={clsx('pbc:flex-1', textClassName)}>
           {children}
         </Text>
       )}

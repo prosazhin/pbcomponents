@@ -6,7 +6,7 @@ import Headline from '@/components/shared/headline';
 import { ColorType, DivHTMLAttrs } from '@/types';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import clsx from 'clsx';
-import { AnimatePresence, LazyMotion, domAnimation, m } from 'framer-motion';
+import { AnimatePresence, LazyMotion, domAnimation, m } from 'motion/react';
 
 type AlertButtonType = React.ReactElement<ButtonProps>;
 type BaseAlertProps = Omit<DivHTMLAttrs, 'children'> & ColorType;
@@ -40,7 +40,7 @@ const Alert = (props: AlertProps) => {
 
   return (
     <LazyMotion features={domAnimation}>
-      <AnimatePresence>
+      <AnimatePresence initial={false}>
         {open && (
           <m.div
             initial={{ opacity, height }}
@@ -50,17 +50,17 @@ const Alert = (props: AlertProps) => {
             <div
               {...rest}
               className={clsx(
-                'pbc pbc-w-full pbc-relative pbc-flex pbc-flex-col pbc-gap-y-16 pbc-px-24 pbc-py-16 pbc-border-1 pbc-border-solid pbc-rounded-8 pbc-h-auto',
-                color === 'primary' && 'pbc-border-primary-light pbc-bg-primary-lighter/50',
-                color === 'secondary' && 'pbc-border-secondary-lighter pbc-bg-basic-lightest/50',
-                color === 'success' && 'pbc-border-success-light pbc-bg-success-lighter/50',
-                color === 'danger' && 'pbc-border-danger-light pbc-bg-danger-lighter/50',
+                'pbc pbc:w-full pbc:relative pbc:flex pbc:flex-col pbc:gap-y-16 pbc:px-24 pbc:py-16 pbc:border-1 pbc:border-solid pbc:rounded-8 pbc:h-auto',
+                color === 'primary' && 'pbc:border-primary-light pbc:bg-primary-lighter/50',
+                color === 'secondary' && 'pbc:border-secondary-lighter pbc:bg-basic-lightest/50',
+                color === 'success' && 'pbc:border-success-light pbc:bg-success-lighter/50',
+                color === 'danger' && 'pbc:border-danger-light pbc:bg-danger-lighter/50',
                 className,
               )}
             >
               {onClose && (
                 <Button
-                  className='pbc-absolute pbc-top-4 pbc-right-4 !pbc-w-auto'
+                  className='pbc:absolute pbc:top-4 pbc:right-4 pbc:!w-auto'
                   size='xs'
                   theme='ghost'
                   color={color}
@@ -69,20 +69,20 @@ const Alert = (props: AlertProps) => {
                 />
               )}
               {(headline || description) && (
-                <div className='pbc pbc-w-full pbc-flex pbc-flex-col pbc-gap-y-4'>
+                <div className='pbc pbc:w-full pbc:flex pbc:flex-col pbc:gap-y-4'>
                   {headline && (
-                    <Headline as={as} className={clsx('pbc-w-full !pbc-text-h20')}>
+                    <Headline as={as} className={clsx('pbc:w-full pbc:!text-h20')}>
                       {headline}
                     </Headline>
                   )}
                   {description && (
-                    <Text size='m' className={clsx('pbc-w-full')}>
+                    <Text size='m' className={clsx('pbc:w-full')}>
                       {description}
                     </Text>
                   )}
                 </div>
               )}
-              {children && <div className='pbc pbc-w-full pbc-flex pbc-gap-x-6'>{children}</div>}
+              {children && <div className='pbc pbc:w-full pbc:flex pbc:gap-x-6'>{children}</div>}
             </div>
           </m.div>
         )}

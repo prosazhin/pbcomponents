@@ -17,7 +17,7 @@ const CollapseGroup = (props: CollapseGroupProps) => {
   if (!children.length) return null;
 
   return (
-    <div {...rest} className={clsx('pbc pbc-w-full pbc-flex pbc-flex-col pbc-items-start pbc-gap-y-8', className)}>
+    <div {...rest} className={clsx('pbc pbc:w-full pbc:flex pbc:flex-col pbc:items-start pbc:gap-y-8', className)}>
       {children.map(({ props: itemProps }, index) => (
         <Collapse {...itemProps} key={index} name={name} />
       ))}

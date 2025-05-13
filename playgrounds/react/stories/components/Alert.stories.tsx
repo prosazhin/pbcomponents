@@ -56,7 +56,7 @@ const meta = {
         headline={headline ? headline : undefined}
         description={description ? description : undefined}
         className={className ? className : undefined}
-        onClose={(value) => {
+        onClose={(value: boolean) => {
           if (onClose) onClose(value);
           setArgs({ open: value });
         }}

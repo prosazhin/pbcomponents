@@ -24,7 +24,6 @@ const meta = {
     },
   },
   args: {
-    // @ts-expect-error: Unreachable code error
     as: 'button',
     children: 'Dropdown Item',
     borderTop: false,

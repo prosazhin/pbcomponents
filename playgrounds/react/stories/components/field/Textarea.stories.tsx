@@ -34,7 +34,7 @@ const meta = {
         placeholder={placeholder ? placeholder : undefined}
         className={className ? className : undefined}
         wrapperClassName={wrapperClassName ? wrapperClassName : undefined}
-        onChange={(v, event) => {
+        onChange={(v: string, event: React.ChangeEvent<HTMLTextAreaElement>) => {
           setArgs({ value: v });
           if (onChange) onChange(v, event);
         }}

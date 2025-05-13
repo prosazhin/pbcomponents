@@ -79,7 +79,6 @@ const meta = {
     },
   },
   args: {
-    // @ts-expect-error: Unreachable code error
     children: 'Input',
     label: 'Label',
     description: 'Description',

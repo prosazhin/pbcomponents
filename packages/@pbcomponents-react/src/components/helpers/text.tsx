@@ -19,10 +19,10 @@ const Text = <Element extends React.ElementType = typeof defaultElement>(props: 
     <Component
       {...rest}
       className={clsx(
-        'pbc pbc-text-inherit pbc-pointer-events-none pbc-select-none',
-        size === 's' && (medium ? 'pbc-text-tm12' : 'pbc-text-t12'),
-        size === 'm' && (medium ? 'pbc-text-tm16' : 'pbc-text-t16'),
-        size === 'l' && (medium ? 'pbc-text-tm20' : 'pbc-text-t20'),
+        'pbc pbc:text-inherit pbc:pointer-events-none pbc:select-none',
+        size === 's' && (medium ? 'pbc:text-tm12' : 'pbc:text-t12'),
+        size === 'm' && (medium ? 'pbc:text-tm16' : 'pbc:text-t16'),
+        size === 'l' && (medium ? 'pbc:text-tm20' : 'pbc:text-t20'),
         className,
       )}
     >

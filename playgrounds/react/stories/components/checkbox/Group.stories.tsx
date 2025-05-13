@@ -21,7 +21,6 @@ const meta = {
     },
   },
   args: {
-    // @ts-expect-error: Unreachable code error
     children: 'Checkbox',
     size: 'm',
     disabled: false,

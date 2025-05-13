@@ -30,15 +30,15 @@ const Container = (props: ContainerProps) => {
     <div
       {...rest}
       className={clsx(
-        'pbc pbc-relative pbc-m-auto pbc-w-full pbc-px-16 pbc-grid pbc-grid-cols-1 pbc-gap-16 lg:pbc-gap-24 xl:pbc-gap-24',
-        size === 'full' && 'lg:pbc-px-24 xl:pbc-px-24',
-        (size === 'm' || size === 's') && 'desktop:pbc-px-0',
-        !hasAside && size === 'm' && 'md:pbc-w-736 lg:pbc-w-4/5 xl:pbc-w-1152',
-        !hasAside && size === 's' && 'desktop:pbc-w-736',
-        hasAside && size === 'full' && 'xl:pbc-grid-cols-[theme(width.aside),1fr,theme(width.aside)]',
-        hasAside && (size === 'm' || size === 's') && 'xl:pbc-grid-cols-[theme(width.aside),theme(width.736),theme(width.aside)]',
-        hasAside && size === 'm' && 'md:pbc-w-736 lg:pbc-w-4/5 xl:pbc-w-1152',
-        hasAside && size === 's' && 'md:pbc-w-736 lg:pbc-w-736 xl:pbc-w-1152',
+        'pbc pbc:relative pbc:m-auto pbc:w-full pbc:px-16 pbc:grid pbc:grid-cols-1 pbc:gap-16 pbc:lg-min:gap-24',
+        size === 'full' && 'pbc:lg-min:px-24',
+        (size === 'm' || size === 's') && 'pbc:desktop:px-0',
+        !hasAside && size === 'm' && 'pbc:md-min:w-736 pbc:lg-min:w-4/5 pbc:xl:w-1152',
+        !hasAside && size === 's' && 'pbc:desktop:w-736',
+        hasAside && size === 'full' && 'pbc:xl:grid-cols-[184px_1fr_184px]',
+        hasAside && (size === 'm' || size === 's') && 'pbc:xl:grid-cols-[184px_736px_184px]',
+        hasAside && size === 'm' && 'pbc:md-min:w-736 pbc:lg-min:w-4/5 pbc:xl:w-1152',
+        hasAside && size === 's' && 'pbc:md-min:w-736 pbc:lg-min:w-736 pbc:xl:w-1152',
         wrapperClassName,
       )}
     >
@@ -46,8 +46,8 @@ const Container = (props: ContainerProps) => {
       {children && (
         <div
           className={clsx(
-            hasAside && !leftAside && size === 's' && 'xl:pbc-col-start-2',
-            ((!rightAside && leftAside) || (rightAside && !leftAside)) && size !== 's' && 'xl:pbc-col-span-2',
+            hasAside && !leftAside && size === 's' && 'pbc:xl:col-start-2',
+            ((!rightAside && leftAside) || (rightAside && !leftAside)) && size !== 's' && 'pbc:xl:col-span-2',
             className,
           )}
         >

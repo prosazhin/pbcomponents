@@ -6,22 +6,14 @@ import Input, { InputProps } from '@/components/shared/field/input';
 import { DivType, InputType, SelectDropdownOptionType } from '@/types';
 import { CheckIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
-import { AnimatePresence, LazyMotion, domAnimation, m } from 'framer-motion';
+import { AnimatePresence, LazyMotion, domAnimation, m } from 'motion/react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 import useClickOutside from '@/hooks/use-click-outside';
 import useKeydown from '@/hooks/use-keydown';
 
 type SearchOptionType = SelectDropdownOptionType<React.ReactElement<BadgeProps>>;
-type SearchMultipleProps =
-  | {
-      multiple?: true;
-      value?: SearchOptionType[];
-    }
-  | {
-      multiple?: false;
-      value?: SearchOptionType;
-    };
+type SearchMultipleProps = { multiple?: true; value?: SearchOptionType[] } | { multiple?: false; value?: SearchOptionType };
 
 export type SearchProps = Omit<InputProps, 'onChange' | 'value'> & {
   options: SearchOptionType[];
@@ -109,7 +101,7 @@ const Search = (props: SearchProps) => {
   );
 
   return (
-    <div className={clsx('pbc pbc-relative pbc-w-full', wrapperClassName)}>
+    <div className={clsx('pbc pbc:relative pbc:w-full', wrapperClassName)}>
       <Input
         {...rest}
         ref={inputRef}
@@ -123,30 +115,30 @@ const Search = (props: SearchProps) => {
         onChange={(v) => setQuery(v)}
       />
       <LazyMotion features={domAnimation}>
-        <AnimatePresence>
+        <AnimatePresence initial={false}>
           {open && (
             <m.div
               ref={dropdownRef}
               className={clsx(
-                'pbc-absolute pbc-inset-x-0 pbc-mx-auto pbc-z-10 pbc-box-border pbc-w-full pbc-max-h-[309px] pbc-bottom-0 pbc-translate-y-[calc(100%+6px)]',
-                'pbc-bg-white pbc-rounded-16 pbc-border-1 pbc-border-solid pbc-border-secondary-lighter pbc-p-8 pbc-scrollbar-hidden pbc-overflow-y-auto',
+                'pbc:absolute pbc:inset-x-0 pbc:mx-auto pbc:z-10 pbc:box-border pbc:w-full pbc:max-h-[309px] pbc:bottom-0 pbc:translate-y-[calc(100%+6px)]',
+                'pbc:bg-white pbc:rounded-16 pbc:border-1 pbc:border-solid pbc:border-secondary-lighter pbc:p-8 pbc-scrollbar-hidden pbc:overflow-y-auto',
                 dropdownClassName,
               )}
               initial={{ opacity: 0, bottom: 6 }}
               animate={{ opacity: 1, bottom: 0, transition: { duration: 0.2, ease: 'easeIn' } }}
               exit={{ opacity: 0, bottom: 6, transition: { duration: 0.2, ease: 'easeOut' } }}
             >
-              <ul className='pbc-flex pbc-flex-col pbc-list-none pbc-m-0 pbc-p-0'>
+              <ul className='pbc:flex pbc:flex-col pbc:list-none pbc:m-0 pbc:p-0'>
                 {filteredOptions.map((item, index) => {
                   const { display, disabled: disabledItem, badge } = item;
 
                   return (
-                    <li key={index} className='pbc-w-full'>
+                    <li key={index} className='pbc:w-full'>
                       <button
                         className={clsx(
-                          'pbc pbc-w-full pbc-flex pbc-flex-row pbc-items-center pbc-gap-8 pbc-px-20 pbc-py-12 pbc-cursor-pointer pbc-transition-colors pbc-rounded-12 pbc-max-h-48',
-                          'pbc-bg-transparent pbc-text-basic-main hover:pbc-bg-secondary-lighter',
-                          disabledItem && '!pbc-cursor-default !pbc-text-basic-light !pbc-bg-transparent',
+                          'pbc pbc:w-full pbc:flex pbc:flex-row pbc:items-center pbc:gap-8 pbc:px-20 pbc:py-12 pbc:cursor-pointer pbc:transition-colors pbc:duration-150 pbc:rounded-12 pbc:max-h-48',
+                          'pbc:bg-transparent pbc:text-basic-main pbc:hover:bg-secondary-lighter',
+                          disabledItem && 'pbc:!cursor-default pbc:!text-basic-light pbc:!bg-transparent',
                           dropdownItemClassName,
                         )}
                         type='button'
@@ -156,12 +148,12 @@ const Search = (props: SearchProps) => {
                       >
                         <Content
                           size='m'
-                          className={clsx('pbc-w-full pbc-items-start pbc-text-left')}
+                          className={clsx('pbc:w-full pbc:text-left')}
                           leftIcon={CheckIcon}
                           leftIconClassName={clsx(
-                            'pbc-invisible pbc-text-primary-darker',
-                            selected.some((i) => i.display === display) && '!pbc-visible',
-                            disabledItem && '!pbc-text-basic-light',
+                            'pbc:invisible pbc:text-primary-darker',
+                            selected.some((i) => i.display === display) && 'pbc:!visible',
+                            disabledItem && 'pbc:!text-basic-light',
                           )}
                         >
                           {display}

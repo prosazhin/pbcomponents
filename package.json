@@ -1,7 +1,7 @@
 {
   "name": "pbcomponents",
   "version": "0.0.0",
-  "description": "UI component library for React and Vue with Typescript and Tailwind",
+  "description": "UI component library for React with Typescript and Tailwind",
   "main": "index.js",
   "private": true,
   "workspaces": [
@@ -11,13 +11,10 @@
   "scripts": {
     "react-dev": "npm run --workspace=playground-react dev",
     "react-lib-dev": "npm run --workspace=@pbcomponents/react dev",
-    "vue-dev": "npm run --workspace=playground-vue dev",
-    "vue-lib-dev": "npm run --workspace=@pbcomponents/vue dev",
     "build:react": "npm run --workspace=@pbcomponents/react build",
-    "build:vue": "npm run --workspace=@pbcomponents/vue build",
     "build": "npm-run-all -p build:*",
     "lint": "npm run lint --workspaces --if-present",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,vue,md,mdx,json}\"",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,mdx,json}\"",
     "install-force": "npm install --force",
     "clean:all-build": "npm run clean:build --workspaces --if-present",
     "clean:all-modules": "npm run clean:modules --workspaces --if-present",
@@ -60,18 +57,17 @@
     ]
   },
   "dependencies": {
-    "@pbcomponents/react": "*",
-    "@pbcomponents/vue": "*"
+    "@pbcomponents/react": "*"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.5.0",
-    "@commitlint/config-conventional": "^19.5.0",
-    "lint-staged": "^15.2.10",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "lint-staged": "^16.0.0",
     "npm-run-all": "^4.1.5",
-    "prettier": "^3.3.3",
+    "prettier": "^3.5.3",
     "prettier-plugin-organize-imports": "^4.1.0",
-    "prettier-plugin-tailwindcss": "^0.6.8",
+    "prettier-plugin-tailwindcss": "^0.6.11",
     "rimraf": "^6.0.1",
-    "simple-git-hooks": "^2.11.1"
+    "simple-git-hooks": "^2.13.0"
   }
 }

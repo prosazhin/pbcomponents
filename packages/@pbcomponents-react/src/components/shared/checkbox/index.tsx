@@ -5,7 +5,7 @@ import Icon from '@/components/helpers/icon';
 import { InputEvent, InputHTMLAttrs, InputType, LabelPlaceType, SMSizeType, TextClassNameType, WrapperClassNameType } from '@/types';
 import { CheckIcon, MinusIcon } from '@heroicons/react/24/solid';
 import clsx from 'clsx';
-import { forwardRef, useEffect, useRef, useState } from 'react';
+import { Ref, useEffect, useRef, useState } from 'react';
 
 type BaseCheckboxProps = Omit<InputHTMLAttrs, 'size' | 'onChange' | 'children'> &
   SMSizeType &
@@ -18,9 +18,10 @@ export interface CheckboxProps extends BaseCheckboxProps {
   indeterminate?: boolean;
   value?: string;
   onChange?: (checked: boolean, value: string, event: InputEvent) => void;
+  ref?: Ref<InputType>;
 }
 
-const Checkbox = forwardRef<InputType, CheckboxProps>((props, ref) => {
+const Checkbox = (props: CheckboxProps) => {
   const {
     value: externalValue,
     onChange = () => {},
@@ -33,6 +34,7 @@ const Checkbox = forwardRef<InputType, CheckboxProps>((props, ref) => {
     className,
     wrapperClassName,
     textClassName,
+    ref,
     ...rest
   } = props;
   const [value] = useState<string>(externalValue || children || '');
@@ -54,14 +56,14 @@ const Checkbox = forwardRef<InputType, CheckboxProps>((props, ref) => {
   return (
     <label
       className={clsx(
-        'pbc pbc-inline-flex pbc-items-center pbc-cursor-pointer pbc-flex-nowrap pbc-group',
-        size === 's' && 'pbc-gap-4',
-        size === 'm' && 'pbc-gap-6',
-        disabled && '!pbc-cursor-default',
+        'pbc pbc:inline-flex pbc:items-center pbc:justify-center pbc:cursor-pointer pbc:flex-nowrap pbc:group',
+        size === 's' && 'pbc:gap-4',
+        size === 'm' && 'pbc:gap-6',
+        disabled && 'pbc:!cursor-default',
         wrapperClassName,
       )}
     >
-      <div className={clsx('pbc pbc-relative', size === 's' && 'pbc-size-16', size === 'm' && 'pbc-size-20')}>
+      <div className={clsx('pbc pbc:relative', size === 's' && 'pbc:size-16 pbc:-mt-3', size === 'm' && 'pbc:size-20')}>
         <input
           {...rest}
           ref={checkboxRef}
@@ -70,11 +72,11 @@ const Checkbox = forwardRef<InputType, CheckboxProps>((props, ref) => {
           checked={checked}
           disabled={disabled}
           className={clsx(
-            'pbc pbc-size-full pbc-cursor-pointer pbc-appearance-none pbc-transition-colors focus:pbc-ring-0 focus:pbc-ring-offset-0 pbc-outline-primary !pbc-m-0',
-            'pbc-rounded-4 pbc-border-secondary-light group-hover:pbc-border-primary-main pbc-border-1 pbc-border-solid',
-            'disabled:!pbc-cursor-default disabled:!pbc-bg-basic-lighter disabled:!pbc-border-secondary-light group-hover:disabled:!pbc-border-secondary-light group-hover:disabled:!pbc-bg-basic-lighter',
-            'checked:pbc-bg-primary-main checked:pbc-border-transparent group-hover:checked:pbc-bg-primary-darker disabled:checked:!pbc-bg-primary-light disabled:checked:!pbc-border-transparent group-hover:disabled:checked:!pbc-bg-primary-light',
-            'indeterminate:pbc-bg-primary-main indeterminate:pbc-border-transparent group-hover:indeterminate:pbc-bg-primary-darker disabled:indeterminate:!pbc-bg-primary-light disabled:indeterminate:!pbc-border-transparent group-hover:disabled:indeterminate:!pbc-bg-primary-light',
+            'pbc pbc:size-full pbc:cursor-pointer pbc:appearance-none pbc:transition-colors pbc:duration-150 pbc:focus:ring-0 pbc:focus:ring-offset-0 pbc:focus:outline-outline-primary pbc:outline-4 pbc:outline-offset-0 pbc:!m-0',
+            'pbc:rounded-4 pbc:border-secondary-light pbc:group-hover:border-primary-main pbc:border-1 pbc:border-solid',
+            'pbc:disabled:!cursor-default pbc:disabled:!bg-basic-lighter pbc:disabled:!border-secondary-light pbc:group-hover:disabled:!border-secondary-light pbc:group-hover:disabled:!bg-basic-lighter',
+            'pbc:checked:bg-primary-main pbc:checked:border-transparent pbc:group-hover:checked:bg-primary-darker pbc:disabled:checked:!bg-primary-light pbc:disabled:checked:!border-transparent pbc:group-hover:disabled:checked:!bg-primary-light',
+            'pbc:indeterminate:bg-primary-main pbc:indeterminate:border-transparent pbc:group-hover:indeterminate:bg-primary-darker pbc:disabled:indeterminate:!bg-primary-light pbc:disabled:indeterminate:!border-transparent pbc:group-hover:disabled:indeterminate:!bg-primary-light',
             className,
           )}
           onChange={(event) => onChange(event.target.checked, value, event)}
@@ -83,17 +85,20 @@ const Checkbox = forwardRef<InputType, CheckboxProps>((props, ref) => {
           <Icon
             tag={ComponentIcon}
             size={size}
-            className='pbc-absolute pbc-inset-0 pbc-m-auto pbc-text-white pbc-pointer-events-none pbc-select-none'
+            className={clsx(
+              'pbc:absolute pbc:inset-0 pbc:m-auto pbc:text-white pbc:pointer-events-none pbc:select-none',
+              size === 's' && 'pbc:top-3',
+            )}
           />
         )}
       </div>
       {children && (
         <Content
           className={clsx(
-            'pbc-flex-1 pbc-transition-colors',
-            labelPlace === 'left' && 'pbc-order-first pbc-justify-end',
-            labelPlace === 'right' && 'pbc-order-last pbc-justify-start',
-            disabled ? 'pbc-text-basic-light' : 'pbc-text-basic-main',
+            'pbc:flex-1 pbc:transition-colors pbc:duration-150',
+            labelPlace === 'left' && 'pbc:order-first pbc:justify-end',
+            labelPlace === 'right' && 'pbc:order-last pbc:justify-start',
+            disabled ? 'pbc:text-basic-light' : 'pbc:text-basic-main',
             textClassName,
           )}
           size={size}
@@ -103,7 +108,7 @@ const Checkbox = forwardRef<InputType, CheckboxProps>((props, ref) => {
       )}
     </label>
   );
-});
+};
 
 Checkbox.displayName = 'Checkbox';
 

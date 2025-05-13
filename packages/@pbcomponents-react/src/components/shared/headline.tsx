@@ -17,13 +17,13 @@ const Headline = ({ as: Component = defaultElement, children, className, ...rest
     <Component
       {...rest}
       className={clsx(
-        'pbc pbc-w-full pbc-block',
-        Component === 'h1' && 'pbc-text-h64',
-        Component === 'h2' && 'pbc-text-h48',
-        Component === 'h3' && 'pbc-text-h32',
-        Component === 'h4' && 'pbc-text-h24',
-        Component === 'h5' && 'pbc-text-h20',
-        Component === 'h6' && 'pbc-text-h16',
+        'pbc pbc:w-full pbc:block',
+        Component === 'h1' && 'pbc:text-h64',
+        Component === 'h2' && 'pbc:text-h48',
+        Component === 'h3' && 'pbc:text-h32',
+        Component === 'h4' && 'pbc:text-h24',
+        Component === 'h5' && 'pbc:text-h20',
+        Component === 'h6' && 'pbc:text-h16',
         className,
       )}
     >

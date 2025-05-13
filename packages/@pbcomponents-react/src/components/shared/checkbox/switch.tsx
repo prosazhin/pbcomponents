@@ -3,7 +3,7 @@
 import Content from '@/components/helpers/content';
 import { InputEvent, InputHTMLAttrs, InputType, LabelPlaceType, SMSizeType, TextClassNameType, WrapperClassNameType } from '@/types';
 import clsx from 'clsx';
-import { forwardRef, useState } from 'react';
+import { Ref, useState } from 'react';
 
 type BaseSwitchProps = Omit<InputHTMLAttrs, 'size' | 'onChange' | 'children'> &
   SMSizeType &
@@ -15,9 +15,10 @@ export interface SwitchProps extends BaseSwitchProps {
   children?: string;
   value?: string;
   onChange?: (checked: boolean, value: string, event: InputEvent) => void;
+  ref?: Ref<InputType>;
 }
 
-const Switch = forwardRef<InputType, SwitchProps>((props, ref) => {
+const Switch = (props: SwitchProps) => {
   const {
     value: externalValue,
     onChange = () => {},
@@ -29,6 +30,7 @@ const Switch = forwardRef<InputType, SwitchProps>((props, ref) => {
     className,
     wrapperClassName,
     textClassName,
+    ref,
     ...rest
   } = props;
   const [value] = useState<string>(externalValue || children || '');
@@ -36,14 +38,14 @@ const Switch = forwardRef<InputType, SwitchProps>((props, ref) => {
   return (
     <label
       className={clsx(
-        'pbc pbc-inline-flex pbc-items-center pbc-cursor-pointer pbc-flex-nowrap pbc-group',
-        size === 's' && 'pbc-gap-4',
-        size === 'm' && 'pbc-gap-6',
-        disabled && '!pbc-cursor-default',
+        'pbc pbc:inline-flex pbc:items-center pbc:cursor-pointer pbc:flex-nowrap pbc:group',
+        size === 's' && 'pbc:gap-4',
+        size === 'm' && 'pbc:gap-6',
+        disabled && 'pbc:!cursor-default',
         wrapperClassName,
       )}
     >
-      <div className={clsx('pbc pbc-relative', size === 's' && 'pbc-w-32 pbc-h-16', size === 'm' && 'pbc-w-40 pbc-h-20')}>
+      <div className={clsx('pbc pbc:relative', size === 's' && 'pbc:w-32 pbc:h-16 pbc:-mt-3', size === 'm' && 'pbc:w-40 pbc:h-20')}>
         <input
           {...rest}
           ref={ref}
@@ -52,31 +54,31 @@ const Switch = forwardRef<InputType, SwitchProps>((props, ref) => {
           checked={checked}
           disabled={disabled}
           className={clsx(
-            'pbc pbc-size-full pbc-cursor-pointer pbc-appearance-none pbc-transition-colors focus:pbc-ring-0 focus:pbc-ring-offset-0 pbc-outline-primary !pbc-m-0',
-            'pbc-rounded-999 pbc-bg-secondary-lighter group-hover:pbc-bg-secondary-light',
-            'disabled:!pbc-cursor-default disabled:!pbc-bg-basic-lighter group-hover:disabled:!pbc-bg-basic-lighter',
-            'checked:pbc-bg-primary-main group-hover:checked:pbc-bg-primary-darker disabled:checked:!pbc-bg-primary-light group-hover:disabled:checked:!pbc-bg-primary-light',
-            'indeterminate:pbc-bg-primary-main group-hover:indeterminate:pbc-bg-primary-darker disabled:indeterminate:!pbc-bg-primary-light group-hover:disabled:indeterminate:!pbc-bg-primary-light',
+            'pbc pbc:size-full pbc:cursor-pointer pbc:appearance-none pbc:transition-colors pbc:duration-150 pbc:focus:ring-0 pbc:focus:ring-offset-0 pbc:focus:outline-outline-primary pbc:outline-4 pbc:outline-offset-0 pbc:!m-0',
+            'pbc:rounded-999 pbc:bg-secondary-lighter pbc:group-hover:bg-secondary-light',
+            'pbc:disabled:!cursor-default pbc:disabled:!bg-basic-lighter pbc:group-hover:disabled:!bg-basic-lighter',
+            'pbc:checked:bg-primary-main pbc:group-hover:checked:bg-primary-darker pbc:disabled:checked:!bg-primary-light pbc:group-hover:disabled:checked:!bg-primary-light',
+            'pbc:indeterminate:bg-primary-main pbc:group-hover:indeterminate:bg-primary-darker pbc:disabled:indeterminate:!bg-primary-light pbc:group-hover:disabled:indeterminate:!bg-primary-light',
             className,
           )}
           onChange={(event) => onChange(event.target.checked, value, event)}
         />
         <div
           className={clsx(
-            'pbc pbc-bg-white pbc-absolute pbc-inset-y-0 pbc-rounded-999 pbc-m-auto pbc-pointer-events-none pbc-select-none',
-            size === 's' && 'pbc-size-12',
-            size === 'm' && 'pbc-size-16',
-            checked ? 'pbc-right-2' : 'pbc-left-2',
+            'pbc pbc:bg-white pbc:absolute pbc:inset-y-0 pbc:rounded-999 pbc:m-auto pbc:pointer-events-none pbc:select-none',
+            size === 's' && 'pbc:size-12 pbc:top-3',
+            size === 'm' && 'pbc:size-16',
+            checked ? 'pbc:right-2' : 'pbc:left-2',
           )}
         />
       </div>
       {children && (
         <Content
           className={clsx(
-            'pbc-flex-1 pbc-transition-colors',
-            labelPlace === 'left' && 'pbc-order-first pbc-justify-end',
-            labelPlace === 'right' && 'pbc-order-last pbc-justify-start',
-            disabled ? 'pbc-text-basic-light' : 'pbc-text-basic-main',
+            'pbc:flex-1 pbc:transition-colors pbc:duration-150',
+            labelPlace === 'left' && 'pbc:order-first pbc:justify-end',
+            labelPlace === 'right' && 'pbc:order-last pbc:justify-start',
+            disabled ? 'pbc:text-basic-light' : 'pbc:text-basic-main',
             textClassName,
           )}
           size={size}
@@ -86,7 +88,7 @@ const Switch = forwardRef<InputType, SwitchProps>((props, ref) => {
       )}
     </label>
   );
-});
+};
 
 Switch.displayName = 'Switch';
 

@@ -1,18 +1,11 @@
-export type SvgType = React.ComponentType<
-  React.ComponentProps<'svg'> & {
-    title?: string | undefined | never;
-    titleId?: string | undefined | never;
-  }
->;
+export type SvgType =
+  | React.ComponentType<React.SVGProps<SVGSVGElement> & { title?: string | undefined | never; titleId?: string | undefined | never }>
+  | React.ForwardRefExoticComponent<
+      React.SVGProps<SVGSVGElement> & { title?: string | undefined | never; titleId?: string | undefined | never }
+    >;
 
-export type WithLeftIconType = {
-  leftIcon?: SvgType | never;
-  leftIconClassName?: string;
-};
-export type WithRightIconType = {
-  rightIcon?: SvgType | never;
-  rightIconClassName?: string;
-};
+export type WithLeftIconType = { leftIcon?: SvgType | never; leftIconClassName?: string };
+export type WithRightIconType = { rightIcon?: SvgType | never; rightIconClassName?: string };
 export type WithIconsType = WithLeftIconType & WithRightIconType;
 
 export type LabelPlaceType = { labelPlace?: 'right' | 'left' };
@@ -61,12 +54,7 @@ export type TextareaType = HTMLTextAreaElement;
 export type TextareaHTMLAttrs = React.TextareaHTMLAttributes<HTMLElement>;
 export type TextareaEvent = React.ChangeEvent<TextareaType>;
 
-export type SelectDropdownOptionType<T> = {
-  display: string;
-  value?: string;
-  disabled?: boolean;
-  badge?: T;
-};
+export type SelectDropdownOptionType<T> = { display: string; value?: string; disabled?: boolean; badge?: T };
 
 export type DetailsType = HTMLDetailsElement;
 export type DetailsHTMLAttrs = React.DetailsHTMLAttributes<HTMLElement>;
@@ -75,6 +63,4 @@ export type DialogType = HTMLDialogElement;
 export type DialogHTMLAttrs = React.DialogHTMLAttributes<HTMLElement>;
 
 export type PolymorphicProps<Element extends React.ElementType, Props> = Props &
-  Omit<React.ComponentProps<Element>, 'as'> & {
-    as?: Element;
-  };
+  Omit<React.ComponentProps<Element>, 'as'> & { as?: Element };

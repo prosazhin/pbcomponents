@@ -83,7 +83,7 @@ const meta = {
         wrapperClassName={wrapperClassName ? wrapperClassName : undefined}
         button={button}
         buttonAlign={buttonAlign}
-        onChange={(v, event) => {
+        onChange={(v: string, event: React.ChangeEvent<HTMLInputElement>) => {
           setArgs({ value: v });
           if (onChange) onChange(v, event);
         }}

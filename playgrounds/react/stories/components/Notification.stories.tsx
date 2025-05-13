@@ -42,7 +42,7 @@ const meta = {
           icon={icon ? heroicons[icon] : icon}
           iconClassName={iconClassName ? iconClassName : undefined}
           className={className ? className : undefined}
-          onClose={(value) => setArgs({ open: value })}
+          onClose={(value: boolean) => setArgs({ open: value })}
         />
       </div>
     );

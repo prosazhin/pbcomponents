@@ -14,7 +14,6 @@ const meta = {
     tag: { ...iconArg },
   },
   args: {
-    // @ts-expect-error: Unreachable code error
     tag: 'CheckIcon',
     size: 'm',
     className: '',

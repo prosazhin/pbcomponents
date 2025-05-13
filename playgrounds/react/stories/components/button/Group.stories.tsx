@@ -1,7 +1,11 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import { Button, ButtonGroup as Component } from '@pbcomponents/react';
+import { Button, ButtonGroup as Component, Dropdown, DropdownItem } from '@pbcomponents/react';
 import { classNameArg, sizeArg } from '../../args';
+
+import '../../main.css';
+
+const data = ['One', 'Two', 'Three'];
 
 const meta = {
   title: 'Components/Button/ButtonGroup',
@@ -12,16 +16,28 @@ const meta = {
     ...Object.assign(sizeArg),
     children: {
       control: 'object',
-      type: 'Button[]',
+      type: 'Button[] | Dropdown[]',
       defaultValue: { summary: undefined },
     },
   },
   args: {
-    children: ['One', 'Two', 'Three'].map((value, index) => (
-      <Button key={index} theme='border'>
-        {value}
-      </Button>
-    )),
+    children: data.map((value, index) => {
+      if (index === data.length - 1) {
+        return (
+          <Dropdown key={index} button={<Button theme='border'>{value}</Button>}>
+            <DropdownItem>One</DropdownItem>
+            <DropdownItem>Two</DropdownItem>
+            <DropdownItem>Three</DropdownItem>
+          </Dropdown>
+        );
+      }
+
+      return (
+        <Button key={index} theme='border'>
+          {value}
+        </Button>
+      );
+    }),
     size: 'm',
     className: '',
   },

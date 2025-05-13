@@ -1,6 +1,6 @@
 {
   "name": "@pbcomponents/react",
-  "version": "0.0.13",
+  "version": "0.1.0",
   "description": "UI component library for React with Typescript and Tailwind",
   "license": "MIT",
   "author": "Evgenii Sazhin <prosazhin@gmail.com> (https://prosazhin.ru)",
@@ -29,9 +29,12 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs",
-      "styles": "./dist/index.css"
+      "require": {
+        "default": "./dist/index.cjs"
+      },
+      "import": {
+        "default": "./dist/index.js"
+      }
     },
     "./css": "./dist/index.css"
   },
@@ -47,7 +50,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=22.x"
   },
   "scripts": {
     "dev": "vite build --watch",
@@ -58,41 +61,40 @@
     "clean": "npm-run-all -p clean:*"
   },
   "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.14.0",
-    "@heroicons/react": "^2.1.5",
-    "@tailwindcss/forms": "^0.5.9",
-    "@tailwindcss/typography": "^0.5.15",
-    "@types/node": "^22.9.0",
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
-    "@vitejs/plugin-react-swc": "^3.7.1",
-    "autoprefixer": "^10.4.20",
+    "@eslint/js": "^9.26.0",
+    "@heroicons/react": "^2.2.0",
+    "@tailwindcss/postcss": "^4.1.6",
+    "@tailwindcss/vite": "^4.1.6",
+    "@types/node": "^22.15.17",
+    "@types/react": "^19.1.3",
+    "@types/react-dom": "^19.1.4",
+    "@vitejs/plugin-react-swc": "^3.9.0",
+    "autoprefixer": "^10.4.21",
     "clsx": "^2.1.1",
-    "eslint": "^9.14.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.2.1",
-    "eslint-plugin-react": "^7.37.2",
-    "eslint-plugin-react-hooks": "^5.0.0",
-    "eslint-plugin-react-refresh": "^0.4.14",
-    "eslint-plugin-tailwindcss": "^3.17.5",
-    "globals": "^15.12.0",
-    "pbstyles": "^2.0.4",
-    "postcss": "^8.4.49",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "tailwindcss": "^3.4.14",
+    "eslint": "^9.26.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.4.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "eslint-plugin-tailwindcss": "^3.18.0",
+    "globals": "^16.1.0",
+    "motion": "^12.11.0",
+    "pbstyles": "^3.0.2",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "rollup-preserve-directives": "^1.1.3",
+    "tailwindcss": "^4.1.6",
     "tslib": "^2.8.1",
-    "typescript": "^5.6.3",
-    "typescript-eslint": "^8.14.0",
-    "vite": "^5.4.11",
-    "vite-plugin-lib-inject-css": "^2.1.1",
-    "vite-plugin-dts": "^4.3.0",
-    "rollup-preserve-directives": "^1.1.2",
-    "framer-motion": "^11.11.15"
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.32.0",
+    "vite": "^6.3.5",
+    "vite-plugin-dts": "^4.5.3",
+    "vite-plugin-lib-inject-css": "^2.2.2"
   },
   "contributors": [
     {

@@ -5,8 +5,8 @@ import Text from '@/components/helpers/text';
 import { DialogHTMLAttrs, DialogType, SvgType } from '@/types';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
-import { AnimatePresence, LazyMotion, domAnimation, m } from 'framer-motion';
-import { forwardRef, useEffect, useRef, useState } from 'react';
+import { AnimatePresence, LazyMotion, domAnimation, m } from 'motion/react';
+import { Ref, useEffect, useRef, useState } from 'react';
 
 import useDebounce from '@/hooks/use-debounce';
 import useKeydown from '@/hooks/use-keydown';
@@ -21,9 +21,10 @@ export interface NotificationProps extends BaseNotificationProps {
   delay?: number;
   top?: number;
   onClose?: (value: boolean, id?: string) => void;
+  ref?: Ref<DialogType>;
 }
 
-const Notification = forwardRef<DialogType, NotificationProps>((props, ref) => {
+const Notification = (props: NotificationProps) => {
   const {
     headline,
     description,
@@ -34,6 +35,7 @@ const Notification = forwardRef<DialogType, NotificationProps>((props, ref) => {
     icon,
     iconClassName,
     className,
+    ref,
     ...rest
   } = props;
   const internalRef = useRef<DialogType>(null);
@@ -51,6 +53,7 @@ const Notification = forwardRef<DialogType, NotificationProps>((props, ref) => {
 
   useEffect(() => {
     if (open) {
+      dialogRef.current?.removeAttribute('open');
       dialogRef.current?.show();
     }
   }, [open]);
@@ -65,17 +68,17 @@ const Notification = forwardRef<DialogType, NotificationProps>((props, ref) => {
 
   return (
     <LazyMotion features={domAnimation}>
-      <AnimatePresence>
+      <AnimatePresence initial={false}>
         {open && (
           <m.dialog
             ref={dialogRef}
             id={id}
             open={open}
             className={clsx(
-              'pbc pbc-notification-mobile desktop:pbc-notification-desktop pbc-z-[999] pbc-cursor-default pbc-group pbc-pointer-events-auto pbc-overflow-hidden',
-              'pbc-border-1 pbc-border-solid pbc-rounded-8 pbc-w-[calc(100%-32px)] desktop:pbc-w-400 pbc-min-h-80 pbc-m-auto pbc-px-24 pbc-py-16',
-              'pbc-border-secondary-lighter pbc-bg-white pbc-flex pbc-flex-row pbc-gap-x-16 pbc-items-center',
-              'pbc-shadow-sm hover:pbc-shadow-xxl pbc-transition-shadow',
+              'pbc pbc-notification pbc:z-[999] pbc:cursor-default pbc:group pbc:pointer-events-auto pbc:overflow-hidden',
+              'pbc:border-1 pbc:border-solid pbc:rounded-8 pbc:w-[calc(100%-32px)] pbc:desktop:w-400 pbc:min-h-80 pbc:m-auto pbc:px-24 pbc:py-16',
+              'pbc:border-secondary-lighter pbc:bg-white pbc:flex pbc:flex-row pbc:gap-x-16 pbc:items-center',
+              'pbc:shadow-sm pbc:hover:shadow-xxl pbc:transition-shadow pbc:duration-150',
               className,
             )}
             onMouseEnter={() => setIsMouseInside(true)}
@@ -88,21 +91,21 @@ const Notification = forwardRef<DialogType, NotificationProps>((props, ref) => {
               <Icon
                 tag={icon}
                 size='l'
-                className={clsx('pbc-size-32 pbc-pointer-events-none pbc-select-none pbc-text-basic-light', iconClassName)}
+                className={clsx('pbc:size-32 pbc:pointer-events-none pbc:select-none pbc:text-basic-light', iconClassName)}
               />
             )}
-            <div className='pbc-flex pbc-flex-col pbc-w-full pbc-gap-y-4'>
-              <Text size='m' medium className={clsx('pbc-w-full pbc-text-basic-main')}>
+            <div className='pbc:flex pbc:flex-col pbc:w-full pbc:gap-y-4'>
+              <Text size='m' medium className={clsx('pbc:w-full pbc:text-basic-main')}>
                 {headline}
               </Text>
               {description && (
-                <Text size='s' className={clsx('pbc-w-full pbc-text-basic-light')}>
+                <Text size='s' className={clsx('pbc:w-full pbc:text-basic-light')}>
                   {description}
                 </Text>
               )}
             </div>
             <button
-              className='pbc-cursor-pointer !pbc-bg-transparent pbc-h-48 pbc-p-0 pbc-m-0 !pbc-outline-none pbc-border-0'
+              className='pbc:cursor-pointer pbc:!bg-transparent pbc:h-48 pbc:p-0 pbc:m-0 pbc:!outline-none pbc:border-0'
               type='button'
               onClick={() => setOpen(false)}
             >
@@ -110,13 +113,13 @@ const Notification = forwardRef<DialogType, NotificationProps>((props, ref) => {
                 tag={XMarkIcon}
                 size='l'
                 className={clsx(
-                  'pbc-text-basic-main pbc-pointer-events-none pbc-select-none group-hover:pbc-text-primary-darker pbc-transition-colors',
+                  'pbc:text-basic-main pbc:pointer-events-none pbc:select-none pbc:group-hover:text-primary-darker pbc:transition-colors pbc:duration-150',
                 )}
               />
             </button>
             {!isMouseInside && open && (
               <m.div
-                className='pbc-absolute pbc-h-1 pbc-bottom-0 pbc-inset-x-0 pbc-m-auto pbc-w-full pbc-bg-primary-main'
+                className='pbc:absolute pbc:h-1 pbc:bottom-0 pbc:inset-x-0 pbc:m-auto pbc:w-full pbc:bg-primary-main'
                 initial={{ opacity: 1, x: '-100%' }}
                 animate={{ opacity: 1, x: 0, transition: { duration: delay / 1000, ease: 'easeIn' } }}
                 exit={{ opacity: 0, x: '-100%', transition: { duration: 0.05 } }}
@@ -127,7 +130,7 @@ const Notification = forwardRef<DialogType, NotificationProps>((props, ref) => {
       </AnimatePresence>
     </LazyMotion>
   );
-});
+};
 
 Notification.displayName = 'Notification';
 

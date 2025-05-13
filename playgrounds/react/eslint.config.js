@@ -43,11 +43,6 @@ export default tseslint.config(
         ...globals.es2021,
       },
     },
-    settings: {
-      vue: {
-        version: 'detect',
-      },
-    },
     rules: {
       ...reactHooks.configs.recommended.rules,
       curly: 'error',

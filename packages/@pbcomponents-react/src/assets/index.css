@@ -1,212 +1,18 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss' prefix(pbc);
+@import 'pbstyles/styles/tailwind/theme.css';
+
+@theme {
+  --animate-spin: spin 1s linear infinite;
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
 
 @layer base {
-  *.pbc,
-  .pbc::before,
-  .pbc::after {
-    box-sizing: border-box;
-    border-width: 0;
-    border-style: solid;
-    border-color: theme('borderColor.DEFAULT', currentColor);
-  }
-  .pbc::before,
-  .pbc::after {
-    --tw-content: '';
-  }
-
-  hr.pbc {
-    height: 0;
-    color: inherit;
-    border-top-width: 1px;
-  }
-
-  abbr:where([title]).pbc {
-    text-decoration: underline dotted;
-  }
-
-  a.pbc {
-    text-decoration: inherit;
-    cursor: pointer;
-  }
-
-  b.pbc,
-  strong.pbc {
-    font-weight: bolder;
-  }
-
-  small.pbc {
-    font-size: 80%;
-  }
-
-  sub.pbc,
-  sup.pbc {
-    font-size: 75%;
-    line-height: 0;
-    position: relative;
-    vertical-align: baseline;
-  }
-  sub.pbc {
-    bottom: -0.25em;
-  }
-  sup.pbc {
-    top: -0.5em;
-  }
-
-  table.pbc {
-    text-indent: 0;
-    border-color: inherit;
-    border-collapse: collapse;
-  }
-
-  button.pbc,
-  input.pbc,
-  optgroup.pbc,
-  select.pbc,
-  textarea.pbc {
-    font-family: inherit;
-    font-size: 100%;
-    line-height: inherit;
-    margin: 0;
-  }
-
-  button.pbc,
-  select.pbc {
-    text-transform: none;
-  }
-
-  button.pbc,
-  [type='button'].pbc,
-  [type='reset'].pbc,
-  [type='submit'].pbc {
-    -webkit-appearance: button;
-    background-image: none;
-  }
-
-  .pbc:-moz-focusring {
-    outline: auto;
-  }
-
-  .pbc:-moz-ui-invalid {
-    box-shadow: none;
-  }
-  progress.pbc {
-    vertical-align: baseline;
-  }
-  .pbc::-webkit-inner-spin-button,
-  .pbc::-webkit-outer-spin-button {
-    height: auto;
-  }
-
-  [type='search'].pbc {
-    -webkit-appearance: textfield;
-    outline-offset: -2px;
-  }
-  .pbc::-webkit-search-decoration {
-    -webkit-appearance: none;
-  }
-
-  .pbc::-webkit-file-upload-button {
-    -webkit-appearance: button;
-    font: inherit;
-  }
-
-  summary.pbc {
-    display: list-item;
-  }
-
-  blockquote.pbc,
-  dl.pbc,
-  dd.pbc,
-  h1.pbc,
-  h2.pbc,
-  h3.pbc,
-  h4.pbc,
-  h5.pbc,
-  h6.pbc,
-  hr.pbc,
-  figure.pbc,
-  p.pbc,
-  pre.pbc {
-    margin: 0;
-  }
-  fieldset.pbc {
-    margin: 0;
-    padding: 0;
-  }
-  legend.pbc {
-    padding: 0;
-  }
-  ol.pbc,
-  ul.pbc,
-  menu.pbc {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  textarea.pbc {
-    resize: vertical;
-  }
-
-  button.pbc,
-  [role='button'].pbc {
-    cursor: pointer;
-  }
-
-  .pbc:disabled {
-    cursor: default;
-  }
-
-  img.pbc,
-  svg.pbc,
-  video.pbc,
-  canvas.pbc,
-  audio.pbc,
-  iframe.pbc,
-  embed.pbc,
-  object.pbc {
-    display: block;
-    vertical-align: middle;
-  }
-
-  img.pbc,
-  video.pbc {
-    max-width: 100%;
-    height: auto;
-  }
-
-  [hidden].pbc {
-    display: none;
-  }
-
-  .pbc-font-sans {
-    font-family: theme(
-      'fontFamily.sans',
-      ui-sans-serif,
-      system-ui,
-      -apple-system,
-      BlinkMacSystemFont,
-      'Segoe UI',
-      Roboto,
-      'Helvetica Neue',
-      Arial,
-      'Noto Sans',
-      sans-serif,
-      'Apple Color Emoji',
-      'Segoe UI Emoji',
-      'Segoe UI Symbol',
-      'Noto Color Emoji'
-    );
-  }
-
-  .pbc-outline-transition {
-    transition: outline-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
   .pbc {
-    @apply pbc-font-sans pbc-box-border pbc-border-0 pbc-border-solid pbc-border-transparent pbc-outline-transition !pbc-outline !pbc-outline-4 !pbc-outline-offset-0 !pbc-outline-transparent;
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -218,26 +24,8 @@
     -moz-osx-font-smoothing: grayscale;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
-  }
-
-  .pbc-text-inherit {
-    color: inherit;
-  }
-
-  .pbc-outline-primary {
-    @apply focus:!pbc-outline-primary-main/20 active:!pbc-outline-none;
-  }
-
-  .pbc-outline-secondary {
-    @apply focus:!pbc-outline-secondary-main/20 active:!pbc-outline-none;
-  }
-
-  .pbc-outline-success {
-    @apply focus:!pbc-outline-success-main/20 active:!pbc-outline-none;
-  }
-
-  .pbc-outline-danger {
-    @apply focus:!pbc-outline-danger-main/20 active:!pbc-outline-none;
+    outline-color: transparent;
+    font-family: var(--pbc-font-sans);
   }
 
   .pbc-scrollbar-hidden {
@@ -249,48 +37,62 @@
     display: none;
   }
 
-  .pbc-search::-webkit-search-cancel-button {
-    @apply pbc-appearance-none pbc-bg-transparent pbc-cursor-pointer pbc-relative pbc-m-auto pbc-pointer-events-none pbc-bg-contain;
+  [type='search'].pbc {
+    -webkit-appearance: textfield;
+    outline-offset: -2px;
   }
 
-  .pbc-search:focus::-webkit-search-cancel-button {
-    @apply !pbc-pointer-events-auto;
+  .pbc-search::-webkit-search-cancel-button {
+    appearance: none;
+    background-color: transparent;
+    cursor: pointer !important;
+    position: relative;
+    margin: auto;
+    pointer-events: auto;
+    background-size: contain;
   }
 
   .pbc-search-s {
-    @apply !pbc-pr-32;
+    padding-right: 32px;
   }
 
   .pbc-search-s::-webkit-search-cancel-button {
-    @apply pbc-size-16 -pbc-mr-[calc(16px+8px)];
+    width: 16px;
+    height: 16px;
     background: url('./x-mark-16.svg') no-repeat 50% 50%;
   }
 
   .pbc-search-m {
-    @apply !pbc-pr-[42px];
+    padding-right: 42px;
   }
 
   .pbc-search-m::-webkit-search-cancel-button {
-    @apply pbc-size-20 -pbc-mr-[calc(20px+12px)];
+    width: 20px;
+    height: 20px;
     background: url('./x-mark-20.svg') no-repeat 50% 50%;
   }
 
   .pbc-summary::-webkit-details-marker {
-    @apply !pbc-appearance-none !pbc-hidden !pbc-opacity-0 !pbc-size-0 !pbc-bg-transparent;
+    appearance: none !important;
+    display: none !important;
+    opacity: 0% !important;
+    width: 0px !important;
+    height: 0px !important;
+    background-color: transparent !important;
   }
 
-  .pbc-dialog-mobile {
+  .pbc-dialog {
     inset-block-start: auto;
     inset-block-end: 0;
     inset-inline-start: 0;
     inset-inline-end: 0;
-  }
 
-  .pbc-dialog-desktop {
-    inset-block-start: 0;
-    inset-block-end: 0;
-    inset-inline-start: 0;
-    inset-inline-end: 0;
+    @media (width >= 769px) {
+      inset-block-start: 0;
+      inset-block-end: 0;
+      inset-inline-start: 0;
+      inset-inline-end: 0;
+    }
   }
 
   .pbc-notification {
@@ -298,12 +100,12 @@
     inset-block-end: auto;
     inset-inline-start: 0;
     inset-inline-end: 0;
-  }
 
-  .pbc-notification-desktop {
-    inset-block-start: 0;
-    inset-block-end: auto;
-    inset-inline-start: auto;
-    inset-inline-end: 0;
+    @media (width >= 769px) {
+      inset-block-start: 0;
+      inset-block-end: auto;
+      inset-inline-start: auto;
+      inset-inline-end: 0;
+    }
   }
 }

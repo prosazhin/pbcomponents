@@ -3,7 +3,7 @@
 import Content from '@/components/helpers/content';
 import { InputEvent, InputHTMLAttrs, InputType, LabelPlaceType, SMSizeType, TextClassNameType, WrapperClassNameType } from '@/types';
 import clsx from 'clsx';
-import { forwardRef, useState } from 'react';
+import { Ref, useState } from 'react';
 
 type BaseRadioProps = Omit<InputHTMLAttrs, 'size' | 'onChange' | 'value' | 'children'> &
   LabelPlaceType &
@@ -15,9 +15,10 @@ export interface RadioProps extends BaseRadioProps {
   children?: string;
   value?: string;
   onChange?: (checked: boolean, value: string, event: InputEvent) => void;
+  ref?: Ref<InputType>;
 }
 
-const Radio = forwardRef<InputType, RadioProps>((props, ref) => {
+const Radio = (props: RadioProps) => {
   const {
     value: externalValue,
     onChange = () => {},
@@ -29,6 +30,7 @@ const Radio = forwardRef<InputType, RadioProps>((props, ref) => {
     className,
     wrapperClassName,
     textClassName,
+    ref,
     ...rest
   } = props;
   const [value] = useState<string>(externalValue || children || '');
@@ -36,10 +38,10 @@ const Radio = forwardRef<InputType, RadioProps>((props, ref) => {
   return (
     <label
       className={clsx(
-        'pbc pbc-inline-flex pbc-items-center pbc-cursor-pointer pbc-flex-nowrap pbc-group',
-        size === 's' && 'pbc-gap-4',
-        size === 'm' && 'pbc-gap-6',
-        disabled && '!pbc-cursor-default',
+        'pbc pbc:inline-flex pbc:items-center pbc:cursor-pointer pbc:flex-nowrap pbc:group',
+        size === 's' && 'pbc:gap-4',
+        size === 'm' && 'pbc:gap-6',
+        disabled && 'pbc:!cursor-default',
         wrapperClassName,
       )}
     >
@@ -51,13 +53,13 @@ const Radio = forwardRef<InputType, RadioProps>((props, ref) => {
         checked={checked}
         disabled={disabled}
         className={clsx(
-          'pbc pbc-relative pbc-cursor-pointer pbc-appearance-none pbc-transition-colors focus:pbc-ring-0 focus:pbc-ring-offset-0 pbc-outline-primary !pbc-m-0',
-          'pbc-rounded-999 pbc-border-secondary-light group-hover:pbc-border-primary-main pbc-border-1 pbc-border-solid',
-          'disabled:!pbc-cursor-default disabled:!pbc-bg-basic-lighter disabled:!pbc-border-secondary-light group-hover:disabled:!pbc-border-secondary-light group-hover:disabled:!pbc-bg-basic-lighter',
-          'checked:pbc-bg-primary-main checked:pbc-border-transparent group-hover:checked:pbc-bg-primary-darker disabled:checked:!pbc-bg-primary-light disabled:checked:!pbc-border-transparent group-hover:disabled:checked:!pbc-bg-primary-light',
-          'before:pbc-absolute before:pbc-bg-transparent before:pbc-rounded-999 checked:before:pbc-bg-white before:pbc-inset-0 before:pbc-m-auto',
-          size === 's' && 'pbc-size-16 before:pbc-size-6',
-          size === 'm' && 'pbc-size-20 before:pbc-size-8',
+          'pbc pbc:relative pbc:cursor-pointer pbc:appearance-none pbc:transition-colors pbc:duration-150 pbc:focus:ring-0 pbc:focus:ring-offset-0 pbc:focus:outline-outline-primary pbc:outline-4 pbc:outline-offset-0 pbc:!m-0',
+          'pbc:rounded-999 pbc:border-secondary-light pbc:group-hover:border-primary-main pbc:border-1 pbc:border-solid',
+          'pbc:disabled:!cursor-default pbc:disabled:!bg-basic-lighter pbc:disabled:!border-secondary-light pbc:group-hover:disabled:!border-secondary-light pbc:group-hover:disabled:!bg-basic-lighter',
+          'pbc:checked:bg-primary-main pbc:checked:border-transparent pbc:group-hover:checked:bg-primary-darker pbc:disabled:checked:!bg-primary-light pbc:disabled:checked:!border-transparent pbc:group-hover:disabled:checked:!bg-primary-light',
+          'pbc:before:absolute pbc:before:bg-transparent pbc:before:rounded-999 pbc:checked:before:bg-white pbc:before:inset-0 pbc:before:m-auto',
+          size === 's' && 'pbc:size-16 pbc:before:size-6',
+          size === 'm' && 'pbc:size-20 pbc:before:size-8',
           className,
         )}
         onChange={(event) => onChange(event.target.checked, value, event)}
@@ -65,10 +67,10 @@ const Radio = forwardRef<InputType, RadioProps>((props, ref) => {
       {children && (
         <Content
           className={clsx(
-            'pbc-flex-1 pbc-transition-colors',
-            labelPlace === 'left' && 'pbc-order-first pbc-justify-end',
-            labelPlace === 'right' && 'pbc-order-last pbc-justify-start',
-            disabled ? 'pbc-text-basic-light' : 'pbc-text-basic-main',
+            'pbc:flex-1 pbc:transition-colors pbc:duration-150',
+            labelPlace === 'left' && 'pbc:order-first pbc:justify-end',
+            labelPlace === 'right' && 'pbc:order-last pbc:justify-start',
+            disabled ? 'pbc:text-basic-light' : 'pbc:text-basic-main',
             textClassName,
           )}
           size={size}
@@ -78,7 +80,7 @@ const Radio = forwardRef<InputType, RadioProps>((props, ref) => {
       )}
     </label>
   );
-});
+};
 
 Radio.displayName = 'Radio';
 

@@ -23,14 +23,7 @@ export const NotificationProvider = (props: NotificationProviderProps) => {
   const refs = useRef<DialogType[]>([]);
 
   const showNotification = (value: NotificationProps) => {
-    setList([
-      ...list,
-      {
-        ...value,
-        open: true,
-        id: String(id),
-      },
-    ]);
+    setList([...list, { ...value, open: true, id: String(id) }]);
     setId(id + 1);
   };
 
@@ -38,10 +31,10 @@ export const NotificationProvider = (props: NotificationProviderProps) => {
     <NotificationContext.Provider value={{ notifications: list, showNotification }}>
       {children}
       <div
-        className='pbc-fixed pbc-z-[999] pbc-inset-0 pbc-m-auto pbc-px-0 desktop:pbc-px-16 pbc-pointer-events-none'
+        className='pbc:fixed pbc:z-[999] pbc:inset-0 pbc:m-auto pbc:px-0 pbc:desktop:px-16 pbc:pointer-events-none'
         aria-live='assertive'
       >
-        <div className='pbc-relative pbc-w-full'>
+        <div className='pbc:relative pbc:w-full'>
           {list.map((notification) => {
             let notificationTop = top;
             const filteredRefs =
@@ -59,7 +52,9 @@ export const NotificationProvider = (props: NotificationProviderProps) => {
             return (
               <Notification
                 {...notification}
-                ref={(item) => item && refs.current.push(item)}
+                ref={(item) => {
+                  if (item) refs.current.push(item);
+                }}
                 key={notification.id}
                 top={notificationTop}
                 onClose={(v, currentId) => {

@@ -12,7 +12,6 @@ const meta = {
     ...Object.assign(tagArg),
   },
   args: {
-    // @ts-expect-error: Unreachable code error
     as: 'button',
     children: 'Tag',
     size: 'm',

@@ -4,6 +4,9 @@ import { Button, Dialog as Component } from '@pbcomponents/react';
 import { useArgs } from '@storybook/preview-api';
 import { dialogArg } from '../args';
 
+import '../dialog.css';
+import '../main.css';
+
 const meta = {
   title: 'Components/Dialog',
   component: Component,
@@ -27,8 +30,10 @@ const meta = {
         <Component
           open={open}
           className={className ? className : undefined}
-          onClose={(value) => {
-            onClose(value);
+          onClose={(value: boolean) => {
+            if (onClose) {
+              onClose(value);
+            }
             setArgs({ open: value });
           }}
         >

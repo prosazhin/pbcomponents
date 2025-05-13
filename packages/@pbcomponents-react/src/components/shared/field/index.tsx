@@ -7,7 +7,7 @@ import { SelectProps } from '@/components/shared/field/select';
 import { TextareaProps } from '@/components/shared/field/textarea';
 import { ErrorType, FieldSetHTMLAttrs, FieldSetType, LabelHTMLAttrs, LabelType } from '@/types';
 import clsx from 'clsx';
-import { forwardRef, useMemo, useRef } from 'react';
+import { Ref, useMemo, useRef } from 'react';
 
 type FieldTType = React.ReactElement<InputProps | TextareaProps | SelectProps | SearchProps>;
 type BaseFieldProps = Omit<LabelHTMLAttrs & FieldSetHTMLAttrs, 'children'> & ErrorType;
@@ -15,10 +15,11 @@ export interface FieldProps extends BaseFieldProps {
   children: FieldTType | FieldTType[];
   label?: string;
   description?: string;
+  ref?: Ref<LabelType | FieldSetType>;
 }
 
-const Field = forwardRef<LabelType | FieldSetType, FieldProps>((props, ref) => {
-  const { label, description, error = false, children: childn, className, ...rest } = props;
+const Field = (props: FieldProps) => {
+  const { label, description, error = false, children: childn, className, ref, ...rest } = props;
   const isArray = Array.isArray(childn);
 
   const children = useMemo(
@@ -35,25 +36,25 @@ const Field = forwardRef<LabelType | FieldSetType, FieldProps>((props, ref) => {
   const fieldRef = (ref || internalRef) as React.MutableRefObject<LabelType | FieldSetType>;
 
   return (
-    <Component {...rest} ref={fieldRef as any} className={clsx('pbc pbc-flex pbc-flex-col pbc-w-full', className)}>
-      <Text as={isArray ? 'legend' : 'span'} size='s' className={clsx('pbc-text-basic-main pbc-w-full pbc-mb-4')}>
+    <Component {...rest} ref={fieldRef as any} className={clsx('pbc pbc:flex pbc:flex-col pbc:w-full', className)}>
+      <Text as={isArray ? 'legend' : 'span'} size='s' className={clsx('pbc:text-basic-main pbc:w-full pbc:mb-4')}>
         {label}
       </Text>
       <div
         className={clsx(
-          'pbc pbc-flex pbc-flex-row pbc-gap-8',
-          isArray && childn.length === 2 && 'xs:pbc-flex-col',
-          isArray && childn.length >= 3 && 'mobile:pbc-flex-col',
+          'pbc pbc:flex pbc:flex-col pbc:gap-8',
+          isArray && childn.length === 2 && 'pbc:desktop:flex-row',
+          isArray && childn.length >= 3 && 'pbc:desktop:flex-row',
         )}
       >
         {children}
       </div>
-      <Text size='s' className={clsx('pbc-w-full pbc-mt-4', error ? 'pbc-text-danger-main' : 'pbc-text-basic-light')}>
+      <Text size='s' className={clsx('pbc:w-full pbc:mt-4', error ? 'pbc:text-danger-main' : 'pbc:text-basic-light')}>
         {description}
       </Text>
     </Component>
   );
-});
+};
 
 Field.displayName = 'Field';
 

@@ -12,7 +12,6 @@ const meta = {
     ...Object.assign(tabArg),
   },
   args: {
-    // @ts-expect-error: Unreachable code error
     as: 'button',
     label: 'Tab',
     active: false,

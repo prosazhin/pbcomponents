@@ -85,7 +85,7 @@ const meta = {
         wrapperClassName={wrapperClassName ? wrapperClassName : undefined}
         dropdownClassName={dropdownClassName ? dropdownClassName : undefined}
         dropdownItemClassName={dropdownItemClassName ? dropdownItemClassName : undefined}
-        onChange={(v) => {
+        onChange={(v: unknown) => {
           setArgs({ value: v });
           if (onChange) onChange(v);
         }}
