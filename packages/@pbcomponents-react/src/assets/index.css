@@ -81,20 +81,6 @@
     background-color: transparent !important;
   }
 
-  .pbc-dialog {
-    inset-block-start: auto;
-    inset-block-end: 0;
-    inset-inline-start: 0;
-    inset-inline-end: 0;
-
-    @media (width >= 769px) {
-      inset-block-start: 0;
-      inset-block-end: 0;
-      inset-inline-start: 0;
-      inset-inline-end: 0;
-    }
-  }
-
   .pbc-notification {
     inset-block-start: 0;
     inset-block-end: auto;

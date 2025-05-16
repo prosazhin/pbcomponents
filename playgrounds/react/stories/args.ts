@@ -559,6 +559,10 @@ export const dialogArg = {
     type: 'React.ReactNode',
     defaultValue: { summary: undefined },
   },
+  id: {
+    control: 'text',
+    defaultValue: { summary: undefined },
+  },
   open: {
     control: 'boolean',
     defaultValue: { summary: false },

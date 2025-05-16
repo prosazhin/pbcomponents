@@ -75,7 +75,7 @@ const Notification = (props: NotificationProps) => {
             id={id}
             open={open}
             className={clsx(
-              'pbc pbc-notification pbc:z-[999] pbc:cursor-default pbc:group pbc:pointer-events-auto pbc:overflow-hidden',
+              'pbc pbc-notification pbc:z-999 pbc:cursor-default pbc:group pbc:pointer-events-auto pbc:overflow-hidden',
               'pbc:border-1 pbc:border-solid pbc:rounded-8 pbc:w-[calc(100%-32px)] pbc:desktop:w-400 pbc:min-h-80 pbc:m-auto pbc:px-24 pbc:py-16',
               'pbc:border-secondary-lighter pbc:bg-white pbc:flex pbc:flex-row pbc:gap-x-16 pbc:items-center',
               'pbc:shadow-sm pbc:hover:shadow-xxl pbc:transition-shadow pbc:duration-150',

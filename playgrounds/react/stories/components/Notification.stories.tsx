@@ -5,6 +5,7 @@ import { Button, Notification as Component } from '@pbcomponents/react';
 import { useArgs } from '@storybook/preview-api';
 import { notificationArg } from '../args';
 
+import '../dialog.css';
 import '../main.css';
 
 const meta = {

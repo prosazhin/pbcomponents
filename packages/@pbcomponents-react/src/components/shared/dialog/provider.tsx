@@ -5,6 +5,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 
 export interface DialogContextProps {
   showDialog: (value: DialogProps) => void;
+  closeDialog: (id: string) => void;
 }
 
 const DialogContext = createContext<DialogContextProps>(null!);
@@ -20,8 +21,18 @@ export const DialogProvider = (props: DialogProviderProps) => {
   const delay = 210;
 
   const showDialog = (value: DialogProps) => {
-    if (currentDialog !== undefined) setCurrentDialog({ ...currentDialog, open: false });
+    if (!!currentDialog) {
+      setCurrentDialog({ ...currentDialog, open: false });
+    }
     setNextDialog({ ...value, open: true });
+  };
+
+  const closeDialog = (id: string) => {
+    if (!!currentDialog) {
+      if (currentDialog.id === id) {
+        setCurrentDialog({ ...currentDialog, open: false });
+      }
+    }
   };
 
   useEffect(() => {
@@ -46,17 +57,24 @@ export const DialogProvider = (props: DialogProviderProps) => {
   }, [nextDialog, currentDialog]);
 
   return (
-    <DialogContext.Provider value={{ showDialog }}>
+    <DialogContext.Provider value={{ showDialog, closeDialog }}>
       {children}
-      {currentDialog && (
-        <Dialog
-          {...currentDialog}
-          onClose={(v, currentId) => {
-            if (currentDialog.onClose) currentDialog.onClose(v, currentId);
-            if (!v) setCurrentDialog(undefined);
-          }}
-        />
-      )}
+      <div
+        className='pbc:fixed pbc:z-800 pbc:inset-0 pbc:size-full pbc:m-auto pbc:p-0 pbc:pointer-events-none'
+        aria-live='assertive'
+        id='pbc-dialogs-provider'
+      >
+        {currentDialog && (
+          <Dialog
+            {...currentDialog}
+            onClose={(v, currentId) => {
+              if (currentDialog.onClose) currentDialog.onClose(v, currentId);
+              if (!v) setCurrentDialog(undefined);
+            }}
+            className='pbc:absolute'
+          />
+        )}
+      </div>
     </DialogContext.Provider>
   );
 };

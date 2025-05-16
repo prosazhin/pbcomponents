@@ -121,12 +121,13 @@ const App = () => <PBCProvider>{children}</PBCProvider>;
 import { Button, useDialog } from '@pbcomponents/react';
 
 const Component = () => {
-  const { showDialog } = useDialog();
+  const { showDialog, closeDialog } = useDialog();
 
   return (
-    <Button onClick={() => showDialog({ children: <p>Dialog content</p> }}>
-      Button
-    </Button>
+    <>
+      <Button onClick={() => showDialog({ children: <p>Dialog content</p>, id: 'my-dialog' })}>Open Button</Button>
+      <Button onClick={() => closeDialog('my-dialog')}>Close Button</Button>
+    </>
   );
 };
 ```

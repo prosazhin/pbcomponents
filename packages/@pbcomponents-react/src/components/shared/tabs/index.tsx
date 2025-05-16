@@ -23,13 +23,13 @@ const Tabs = (props: TabsProps) => {
     <div {...rest} ref={ref} className={clsx('pbc pbc:w-full', className)}>
       <div
         className={clsx(
-          'pbc pbc:relative pbc:w-full pbc:after:absolute pbc:after:inset-x-0 pbc:after:bottom-0 pbc:after:z-[1]',
+          'pbc pbc:relative pbc:w-full pbc:after:absolute pbc:after:inset-x-0 pbc:after:bottom-0 pbc:after:z-1',
           'pbc:after:bg-secondary-lighter pbc:after:h-2 pbc:after:w-full pbc:after:rounded-999',
         )}
       >
         <div
           className={clsx(
-            'pbc pbc-scrollbar-hidden pbc:relative pbc:z-[2] pbc:flex pbc:w-auto pbc:flex-row',
+            'pbc pbc-scrollbar-hidden pbc:relative pbc:z-2 pbc:flex pbc:w-auto pbc:flex-row',
             'pbc:flex-nowrap pbc:items-center pbc:gap-x-16 pbc:overflow-x-auto',
           )}
         >

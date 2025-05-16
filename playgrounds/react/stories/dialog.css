@@ -1,3 +1,9 @@
 .sb-story.sb-unstyled {
   height: 600px;
 }
+
+.sb-story.sb-unstyled > div,
+.sb-story.sb-unstyled > div > div {
+  height: 100%;
+  position: relative;
+}
