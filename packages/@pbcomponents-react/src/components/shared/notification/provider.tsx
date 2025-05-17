@@ -35,9 +35,10 @@ export const NotificationProvider = (props: NotificationProviderProps) => {
         aria-live='assertive'
         id='pbc-notifications-provider'
       >
-        <div className='pbc:relative pbc:w-full'>
+        <div className='pbc:relative pbc:w-full' style={{ top: top }}>
           {notifications.map((notification) => {
-            let notificationTop = top;
+            let notificationTop = 0;
+
             const filteredRefs =
               refs.current.length === notifications.length
                 ? refs.current.filter((_, index) => index !== refs.current.length - 1)
@@ -54,7 +55,13 @@ export const NotificationProvider = (props: NotificationProviderProps) => {
               <Notification
                 {...notification}
                 ref={(item) => {
-                  if (item) refs.current.push(item);
+                  if (item) {
+                    if (refs.current.some((refItem) => refItem.id === item.id)) {
+                      return;
+                    }
+
+                    refs.current.push(item);
+                  }
                 }}
                 key={notification.id}
                 top={notificationTop}
