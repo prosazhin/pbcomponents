@@ -109,11 +109,7 @@ import { Button, useNotification } from '@pbcomponents/react';
 const Component = () => {
   const { showNotification } = useNotification();
 
-  return (
-    <Button onClick={() => showNotification({ headline: 'Headline' }}>
-      Button
-    </Button>
-  );
+  return <Button onClick={() => showNotification({ headline: 'Headline' })}>Button</Button>;
 };
 ```
 

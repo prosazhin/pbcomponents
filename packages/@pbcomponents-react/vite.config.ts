@@ -8,7 +8,7 @@ import { libInjectCss } from 'vite-plugin-lib-inject-css';
 
 export default defineConfig({
   resolve: { alias: { '@': resolve(__dirname, 'src') } },
-  plugins: [react(), tailwindcss(), dts({ rollupTypes: true }), libInjectCss(), preserveDirectives()],
+  plugins: [react(), tailwindcss(), dts({ insertTypesEntry: true }), libInjectCss(), preserveDirectives()],
   build: {
     minify: true,
     cssCodeSplit: true,
