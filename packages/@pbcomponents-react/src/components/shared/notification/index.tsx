@@ -68,7 +68,7 @@ const Notification = (props: NotificationProps) => {
 
   return (
     <LazyMotion features={domAnimation}>
-      <AnimatePresence initial={false}>
+      <AnimatePresence>
         {open && (
           <m.dialog
             ref={dialogRef}
