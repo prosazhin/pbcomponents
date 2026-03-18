@@ -1,0 +1,114 @@
+{
+  "name": "@prosazhin/pbcomponents",
+  "version": "1.0.0",
+  "description": "UI component library for React with Typescript and Tailwind",
+  "license": "MIT",
+  "author": "Evgenii Sazhin <prosazhin@gmail.com> (https://prosazhin.ru)",
+  "keywords": [
+    "react",
+    "typescript",
+    "tailwindcss",
+    "ui",
+    "components",
+    "components-library",
+    "ui-components",
+    "library",
+    "design",
+    "tool"
+  ],
+  "homepage": "https://github.com/prosazhin/pbcomponents",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prosazhin/pbcomponents.git",
+    "directory": "workspaces/pbcomponents"
+  },
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": {
+        "default": "./dist/index.cjs"
+      },
+      "import": {
+        "default": "./dist/index.js"
+      }
+    },
+    "./css": "./dist/index.css",
+    "./types": "./dist/index.d.ts"
+  },
+  "files": [
+    "README.md",
+    "dist"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "engines": {
+    "node": ">=22.x"
+  },
+  "scripts": {
+    "dev": "vite build --watch",
+    "build": "tsc && vite build",
+    "lint": "eslint src",
+    "clean:build": "rimraf ./dist",
+    "clean:modules": "rimraf ./node_modules"
+  },
+  "dependencies": {
+    "@emotion/is-prop-valid": "^1.4.0"
+  },
+  "peerDependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@heroicons/react": "^2.2.0",
+    "@tailwindcss/postcss": "^4.2.1",
+    "@tailwindcss/vite": "^4.2.1",
+    "@types/node": "^25.3.5",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react-swc": "^4.2.3",
+    "autoprefixer": "^10.4.27",
+    "clsx": "^2.1.1",
+    "eslint": "^10.0.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.4.0",
+    "motion": "^12.35.0",
+    "pbstyles": "^3.0.3",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "nanoid": "^5.1.6",
+    "rollup-preserve-directives": "^1.1.3",
+    "tailwindcss": "^4.2.1",
+    "tslib": "^2.8.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.56.1",
+    "vite": "^7.3.1",
+    "vite-plugin-dts": "^4.5.4",
+    "vite-plugin-lib-inject-css": "^2.2.2"
+  },
+  "contributors": [
+    {
+      "name": "Evgenii Sazhin",
+      "email": "prosazhin@gmail.com",
+      "url": "https://github.com/prosazhin"
+    },
+    {
+      "name": "Katya Lebedeva",
+      "email": "le.ktrna@gmail.com",
+      "url": "https://github.com/klebedeva"
+    }
+  ]
+}

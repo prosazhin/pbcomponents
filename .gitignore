@@ -1,21 +1,22 @@
 # dependencies
-/node_modules
-/jspm_packages
-/packages/**/node_modules
-/packages/**/jspm_packages
-/playgrounds/**/node_modules
-/playgrounds/**/jspm_packages
+node_modules/
+**/node_modules/
+jspm_packages/
+**/jspm_packages/
 
-# production
-/dist
-/dist-ssr
-/packages/**/dist
-/packages/**/dist-ssr
-/playgrounds/**/dist
-/playgrounds/**/dist-ssr
+# production/build outputs
+dist/
+dist-ssr/
+**/dist/
+**/dist-ssr/
+storybook-static/
+**/storybook-static/
+coverage/
+**/coverage/
 
-/storybook-static
-/playgrounds/**/storybook-static
+# local bundler caches
+.vite/
+**/.vite/
 
 # misc
 .vscode/*
@@ -117,3 +118,7 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+*storybook.log
+
+.npm-cache/

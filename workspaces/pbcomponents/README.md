@@ -1,0 +1,167 @@
+# pbcomponents
+
+[NPM](https://www.npmjs.com/package/@prosazhin/pbcomponents) | [Preview](https://pbcomponents-react.vercel.app/?path=/docs/intro--docs) | [pbcomponents](https://github.com/prosazhin/pbcomponents)
+
+[Figma community](https://www.figma.com/community/file/1214486013859546496/pbcomponents) | [Behance](https://www.behance.net/gallery/206064847/pbcomponents)
+
+## prosazhin basic components for react
+
+UI component library for React with Typescript and Tailwind.
+
+## Installation
+
+```bash
+npm install @prosazhin/pbcomponents
+```
+
+## Usage example
+
+```javascript
+import { Button } from '@prosazhin/pbcomponents';
+
+const Page = () => (
+  <>
+    <Button size='m' color='primary' theme='filled' onClick={() => {}}>
+      Button
+    </Button>
+  </>
+);
+```
+
+## Components
+
+| Component name        | Import                                                             | Component preview and api                                                                                     |
+| :-------------------- | :----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| Button                | `import { Button } from '@prosazhin/pbcomponents';`                | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-button-button--docs)                      |
+| ButtonGroup           | `import { ButtonGroup } from '@prosazhin/pbcomponents';`           | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-button-buttongroup--docs)                 |
+| Badge                 | `import { Badge } from '@prosazhin/pbcomponents';`                 | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-badge--docs)                              |
+| Tag                   | `import { Tag } from '@prosazhin/pbcomponents';`                   | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tag--docs)                                |
+| Checkbox              | `import { Checkbox } from '@prosazhin/pbcomponents';`              | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-checkbox-checkbox--docs)                  |
+| CheckboxGroup         | `import { CheckboxGroup } from '@prosazhin/pbcomponents';`         | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-checkbox-checkboxgroup--docs)             |
+| Switch                | `import { Switch } from '@prosazhin/pbcomponents';`                | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-checkbox-switch--docs)                    |
+| Radio                 | `import { Radio } from '@prosazhin/pbcomponents';`                 | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-radio-radio--docs)                        |
+| RadioGroup            | `import { RadioGroup } from '@prosazhin/pbcomponents';`            | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-radio-radiogroup--docs)                   |
+| InlineRadio           | `import { InlineRadio } from '@prosazhin/pbcomponents';`           | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-inline-radio-inlineradio--docs)           |
+| InlineRadioGroup      | `import { InlineRadioGroup } from '@prosazhin/pbcomponents';`      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-inline-radio-inlineradiogroup--docs)      |
+| Input                 | `import { Input } from '@prosazhin/pbcomponents';`                 | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-field-input--docs)                        |
+| Textarea              | `import { Textarea } from '@prosazhin/pbcomponents';`              | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-field-textarea--docs)                     |
+| Select                | `import { Select } from '@prosazhin/pbcomponents';`                | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-field-select--docs)                       |
+| Search                | `import { Search } from '@prosazhin/pbcomponents';`                | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-field-search--docs)                       |
+| Field                 | `import { Field } from '@prosazhin/pbcomponents';`                 | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-field-field--docs)                        |
+| Dropdown              | `import { Dropdown } from '@prosazhin/pbcomponents';`              | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-dropdown-dropdown--docs)                  |
+| DropdownItem          | `import { DropdownItem } from '@prosazhin/pbcomponents';`          | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-dropdown-dropdownitem--docs)              |
+| Tabs                  | `import { Tabs } from '@prosazhin/pbcomponents';`                  | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tabs-tabs--docs)                          |
+| Tab                   | `import { Tab } from '@prosazhin/pbcomponents';`                   | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tabs-tab--docs)                           |
+| Collapse              | `import { Collapse } from '@prosazhin/pbcomponents';`              | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-collapse-collapse--docs)                  |
+| CollapseGroup         | `import { CollapseGroup } from '@prosazhin/pbcomponents';`         | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-collapse-collapsegroup--docs)             |
+| Alert                 | `import { Alert } from '@prosazhin/pbcomponents';`                 | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-alert--docs)                              |
+| Dialog                | `import { Dialog } from '@prosazhin/pbcomponents';`                | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-dialog-dialog--docs)                      |
+| DialogProvider        | `import { DialogProvider } from '@prosazhin/pbcomponents';`        | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-dialog-dialogprovider--docs)              |
+| useDialog             | `import { useDialog } from '@prosazhin/pbcomponents';`             | -                                                                                                             |
+| useShowDialog         | `import { useShowDialog } from '@prosazhin/pbcomponents';`         | -                                                                                                             |
+| Notification          | `import { Notification } from '@prosazhin/pbcomponents';`          | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-notification-notification--docs)          |
+| NotificationsProvider | `import { NotificationsProvider } from '@prosazhin/pbcomponents';` | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-notification-notificationsprovider--docs) |
+| useNotifications      | `import { useNotifications } from '@prosazhin/pbcomponents';`      | -                                                                                                             |
+| Headline              | `import { Headline } from '@prosazhin/pbcomponents';`              | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-headline--docs)                           |
+| Container             | `import { Container } from '@prosazhin/pbcomponents';`             | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-container--docs)                          |
+| PBCProvider           | `import { PBCProvider } from '@prosazhin/pbcomponents';`           | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-pbcprovider--docs)                        |
+
+## Helpers
+
+| Component name | Import                                               | Component preview and api                                                       |
+| :------------- | :--------------------------------------------------- | ------------------------------------------------------------------------------- |
+| Text           | `import { Text } from '@prosazhin/pbcomponents';`    | [Link](https://pbcomponents-react.vercel.app/?path=/docs/helpers-text--docs)    |
+| Icon           | `import { Icon } from '@prosazhin/pbcomponents';`    | [Link](https://pbcomponents-react.vercel.app/?path=/docs/helpers-icon--docs)    |
+| Content        | `import { Content } from '@prosazhin/pbcomponents';` | [Link](https://pbcomponents-react.vercel.app/?path=/docs/helpers-content--docs) |
+
+## Provider usage
+
+This is a wrapper for the notification and dialog provider to avoid calling them separately.
+
+```javascript
+import { PBCProvider } from '@prosazhin/pbcomponents';
+
+const App = () => (
+  <PBCProvider
+    notifications={{
+      top: 48,
+      onError: (error, context) => {
+        console.error('Notification callback error', error, context);
+      },
+    }}
+  >
+    {children}
+  </PBCProvider>
+);
+```
+
+## Notification usage
+
+```javascript
+import { NotificationsProvider, PBCProvider } from '@prosazhin/pbcomponents';
+
+const App = () => (
+  <NotificationsProvider
+    top={48}
+    onError={(error, context) => {
+      console.error('Notification callback error', error, context);
+    }}
+  >
+    {children}
+  </NotificationsProvider>
+);
+// or
+const App = () => <PBCProvider notifications={{ top: 48 }}>{children}</PBCProvider>;
+```
+
+```javascript
+import { Button, useNotifications } from '@prosazhin/pbcomponents';
+
+const Component = () => {
+  const { notifications, showNotification, hideNotification } = useNotifications();
+  const latestNotification = notifications[0];
+
+  return (
+    <>
+      <Button onClick={() => showNotification({ headline: 'Headline', children: 'Description' })}>Show Notification</Button>
+      <Button onClick={() => latestNotification && hideNotification(latestNotification.id)} disabled={!latestNotification}>
+        Hide Notification
+      </Button>
+    </>
+  );
+};
+```
+
+## Dialog usage
+
+```javascript
+import { DialogProvider, PBCProvider } from '@prosazhin/pbcomponents';
+
+const App = () => <DialogProvider>{children}</DialogProvider>;
+// or
+const App = () => <PBCProvider>{children}</PBCProvider>;
+```
+
+```javascript
+import { Button, Dialog, useDialog, useShowDialog } from '@prosazhin/pbcomponents';
+
+const DIALOG_ID = 'my-dialog';
+
+const Component = () => {
+  const { closeDialog } = useDialog();
+  const showDialog = useShowDialog(() => (
+    <Dialog id={DIALOG_ID}>
+      <div>Dialog content</div>
+      <Button color='primary' theme='filled' className='pbc:mt-24' onClick={() => closeDialog(DIALOG_ID)}>
+        Close Button
+      </Button>
+    </Dialog>
+  ));
+
+  return (
+    <>
+      <Button onClick={showDialog}>Open Dialog</Button>
+    </>
+  );
+};
+```

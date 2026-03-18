@@ -22,14 +22,14 @@ jobs:
         id: react_version
         uses: martinbeentjes/npm-get-version-action@v1.3.1
         with:
-          path: packages/@pbcomponents-react
+          path: workspaces/pbcomponents
 
       - name: Check React version
         id: check_react_version
         uses: EndBug/version-check@v2
         with:
-          file-name: ./packages/@pbcomponents-react/package.json
-          file-url: https://unpkg.com/@pbcomponents/react@latest/package.json
+          file-name: ./workspaces/pbcomponents/package.json
+          file-url: https://unpkg.com/@prosazhin/pbcomponents@latest/package.json
           static-checking: localIsNew
 
   create_react_tag:
@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: echo "REACT_TAG_NAME=@pbcomponents/react@v${{ needs.check_versions.outputs.react_version }}" >> $GITHUB_ENV
+      - run: echo "REACT_TAG_NAME=prosazhin-pbcomponents@v${{ needs.check_versions.outputs.react_version }}" >> $GITHUB_ENV
       - uses: joutvhu/create-tag@v1
         with:
           tag_name: ${{ env.REACT_TAG_NAME }}

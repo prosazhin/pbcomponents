@@ -1,26 +1,26 @@
 {
-  "name": "pbcomponents",
+  "name": "pbcomponents-monorepo",
   "version": "0.0.0",
   "description": "UI component library for React with Typescript and Tailwind",
   "main": "index.js",
   "private": true,
   "workspaces": [
-    "./packages/*",
-    "./playgrounds/*"
+    "./workspaces/*"
   ],
+  "engines": {
+    "node": ">=22.x"
+  },
   "scripts": {
-    "react-dev": "npm run --workspace=playground-react dev",
-    "react-lib-dev": "npm run --workspace=@pbcomponents/react dev",
-    "build:react": "npm run --workspace=@pbcomponents/react build",
+    "dev:components": "npm run --workspace=@prosazhin/pbcomponents dev",
+    "dev:storybook": "npm run --workspace=pbcomponents-storybook dev",
+    "dev": "npm-run-all -p dev:*",
+    "build:components": "npm run --workspace=@prosazhin/pbcomponents build",
+    "build:storybook": "npm run --workspace=pbcomponents-storybook build",
     "build": "npm-run-all -p build:*",
     "lint": "npm run lint --workspaces --if-present",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,mdx,json}\"",
     "install-force": "npm install --force",
-    "clean:all-build": "npm run clean:build --workspaces --if-present",
-    "clean:all-modules": "npm run clean:modules --workspaces --if-present",
-    "clean:all": "npm-run-all -s clean:all-build clean:all-modules",
-    "clean:lock": "rm package-lock.json",
-    "clean:modules": "rimraf ./node_modules",
+    "clean": "npm run clean:build --workspaces --if-present && npm run clean:modules --workspaces --if-present && rm package-lock.json && rimraf ./node_modules",
     "prepare": "npx simple-git-hooks"
   },
   "author": "Evgenii Sazhin <prosazhin@gmail.com> (https://prosazhin.ru)",
@@ -57,17 +57,18 @@
     ]
   },
   "dependencies": {
-    "@pbcomponents/react": "*"
+    "@prosazhin/pbcomponents": "*"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.8.1",
-    "@commitlint/config-conventional": "^19.8.1",
-    "lint-staged": "^16.0.0",
+    "@commitlint/cli": "^20.4.3",
+    "@commitlint/config-conventional": "^20.4.3",
+    "lint-staged": "^16.3.2",
     "npm-run-all": "^4.1.5",
-    "prettier": "^3.5.3",
-    "prettier-plugin-organize-imports": "^4.1.0",
-    "prettier-plugin-tailwindcss": "^0.6.11",
-    "rimraf": "^6.0.1",
-    "simple-git-hooks": "^2.13.0"
+    "prettier": "^3.8.1",
+    "prettier-plugin-organize-imports": "^4.3.0",
+    "prettier-plugin-tailwindcss": "^0.7.2",
+    "rimraf": "^6.1.3",
+    "simple-git-hooks": "^2.13.1",
+    "storybook": "^10.2.19"
   }
 }

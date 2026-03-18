@@ -1,0 +1,55 @@
+{
+  "name": "pbcomponents-storybook",
+  "private": true,
+  "version": "0.0.0",
+  "author": "Evgenii Sazhin <prosazhin@gmail.com> (https://prosazhin.ru)",
+  "type": "module",
+  "engines": {
+    "node": ">=22.x"
+  },
+  "scripts": {
+    "dev": "storybook dev -p 6006 --initial-path=/docs/intro--docs",
+    "build": "storybook build",
+    "preview": "vite preview",
+    "lint": "eslint stories",
+    "clean:build": "rimraf ./storybook-static",
+    "clean:modules": "rimraf ./node_modules"
+  },
+  "dependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "@prosazhin/pbcomponents": "*"
+  },
+  "devDependencies": {
+    "@chromatic-com/storybook": "^5.0.1",
+    "@eslint/js": "^10.0.1",
+    "@storybook/addon-a11y": "^10.2.19",
+    "@storybook/addon-docs": "^10.2.19",
+    "@storybook/addon-vitest": "^10.2.19",
+    "@storybook/react-vite": "^10.2.19",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.4",
+    "eslint": "^10.0.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "eslint-plugin-storybook": "^10.2.19",
+    "globals": "^17.4.0",
+    "storybook": "^10.2.19",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.56.1",
+    "vite": "^7.3.1",
+    "vitest": "^4.0.18",
+    "@vitest/browser": "^4.0.18",
+    "playwright": "^1.58.2",
+    "@vitest/coverage-v8": "^4.0.18"
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended"
+    ]
+  }
+}

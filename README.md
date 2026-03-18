@@ -10,14 +10,14 @@ UI component library for React with Typescript and Tailwind.
 
 ### React
 
-[Preview](https://pbcomponents-react.vercel.app/?path=/docs/intro--docs) | [GitHub](https://github.com/prosazhin/pbcomponents/tree/main/packages/%40pbcomponents-react) | [NPM](https://www.npmjs.com/package/@pbcomponents/react)
+[Preview](https://pbcomponents-react.vercel.app/?path=/docs/intro--docs) | [GitHub](https://github.com/prosazhin/pbcomponents/tree/main/workspaces/pbcomponents) | [NPM](https://www.npmjs.com/package/@prosazhin/pbcomponents)
 
 ```bash
-npm install @pbcomponents/react
+npm install @prosazhin/pbcomponents
 ```
 
 ```javascript
-import { Button } from '@pbcomponents/react';
+import { Button } from '@prosazhin/pbcomponents';
 
 const Page = () => (
   <>
