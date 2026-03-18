@@ -8,29 +8,48 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
   cancel-in-progress: true
 
+env:
+  NODE_VERSION: 22.x
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   check_versions:
     name: Check versions
     runs-on: ubuntu-latest
     outputs:
-      react_version: ${{ steps.react_version.outputs.current-version }}
       check_react_version: ${{ steps.check_react_version.outputs.changed }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: package-lock.json
 
-      - name: Get React version
+      - name: Get package version
         id: react_version
-        uses: martinbeentjes/npm-get-version-action@v1.3.1
-        with:
-          path: workspaces/pbcomponents
+        run: |
+          echo "current_version=$(node -p 'require(\"./workspaces/pbcomponents/package.json\").version')" >> $GITHUB_OUTPUT
 
-      - name: Check React version
+      - name: Check package version
         id: check_react_version
-        uses: EndBug/version-check@v2
-        with:
-          file-name: ./workspaces/pbcomponents/package.json
-          file-url: https://unpkg.com/@prosazhin/pbcomponents@latest/package.json
-          static-checking: localIsNew
+        run: |
+          CURRENT_VERSION="${{ steps.react_version.outputs.current_version }}"
+
+          PREV_VERSION="$(git show HEAD~1:workspaces/pbcomponents/package.json 2>/dev/null | node -p 'const fs=require(\"fs\"); const s=fs.readFileSync(0,\"utf8\"); JSON.parse(s).version' 2>/dev/null || true)"
+
+          echo "Current version: $CURRENT_VERSION"
+          echo "Previous version: ${PREV_VERSION:-<none>}"
+
+          if [ -z "$PREV_VERSION" ]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          elif [ "$CURRENT_VERSION" != "$PREV_VERSION" ]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
 
   create_react_tag:
     name: Create React tag
@@ -39,7 +58,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: echo "REACT_TAG_NAME=prosazhin-pbcomponents@v${{ needs.check_versions.outputs.react_version }}" >> $GITHUB_ENV
+      - name: Build release tag
+        run: |
+          VERSION="$(node -p 'require("./workspaces/pbcomponents/package.json").version')"
+          if [ -z "$VERSION" ]; then
+            echo "Version is empty. Stop tagging."
+            exit 1
+          fi
+          echo "REACT_TAG_NAME=@prosazhin/pbcomponents@v$VERSION" >> $GITHUB_ENV
       - uses: joutvhu/create-tag@v1
         with:
           tag_name: ${{ env.REACT_TAG_NAME }}

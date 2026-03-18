@@ -6,11 +6,11 @@
 
 Используем только новый формат:
 
-`prosazhin-pbcomponents@v<version>`
+`@prosazhin/pbcomponents@v<version>`
 
 Пример:
 
-`prosazhin-pbcomponents@v0.1.6`
+`@prosazhin/pbcomponents@v0.1.6`
 
 > Важно: теги в другом формате не запускают workflow релиза.
 
@@ -20,7 +20,7 @@ Workflow: `.github/workflows/release.yml`
 
 Триггер:
 
-- `push` тега `prosazhin-pbcomponents@v*`
+- `push` тега `@prosazhin/pbcomponents@v*`
 
 Что делает pipeline:
 
@@ -47,8 +47,8 @@ npm pack --dry-run --workspace=@prosazhin/pbcomponents --cache ./.npm-cache
 3. Создать и отправить релизный тег:
 
 ```bash
-git tag prosazhin-pbcomponents@v0.1.6
-git push origin prosazhin-pbcomponents@v0.1.6
+git tag @prosazhin/pbcomponents@v0.1.6
+git push origin @prosazhin/pbcomponents@v0.1.6
 ```
 
 4. Проверить выполнение workflow `Release` в GitHub Actions.

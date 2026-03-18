@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     tags:
-      - 'prosazhin-pbcomponents@v*'
+      - '@prosazhin/pbcomponents@v*'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
@@ -14,6 +14,7 @@ permissions:
 
 env:
   NODE_VERSION: 22.x
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   publish:
