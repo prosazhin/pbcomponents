@@ -1,6 +1,6 @@
 # pbcomponents
 
-[NPM](https://www.npmjs.com/package/@prosazhin/pbcomponents) | [Preview](https://pbcomponents-react.vercel.app/?path=/docs/intro--docs) | [pbcomponents](https://github.com/prosazhin/pbcomponents)
+[NPM](https://www.npmjs.com/package/@prosazhin/pbcomponents) | [Preview](https://pbcomponents.vercel.app/?path=/docs/intro--docs) | [pbcomponents](https://github.com/prosazhin/pbcomponents)
 
 [Figma community](https://www.figma.com/community/file/1214486013859546496/pbcomponents) | [Behance](https://www.behance.net/gallery/206064847/pbcomponents)
 
@@ -30,49 +30,49 @@ const Page = () => (
 
 ## Components
 
-| Component name        | Import                                                             | Component preview and api                                                                                     |
-| :-------------------- | :----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| Button                | `import { Button } from '@prosazhin/pbcomponents';`                | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-button-button--docs)                      |
-| ButtonGroup           | `import { ButtonGroup } from '@prosazhin/pbcomponents';`           | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-button-buttongroup--docs)                 |
-| Badge                 | `import { Badge } from '@prosazhin/pbcomponents';`                 | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-badge--docs)                              |
-| Tag                   | `import { Tag } from '@prosazhin/pbcomponents';`                   | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tag--docs)                                |
-| Checkbox              | `import { Checkbox } from '@prosazhin/pbcomponents';`              | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-checkbox-checkbox--docs)                  |
-| CheckboxGroup         | `import { CheckboxGroup } from '@prosazhin/pbcomponents';`         | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-checkbox-checkboxgroup--docs)             |
-| Switch                | `import { Switch } from '@prosazhin/pbcomponents';`                | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-checkbox-switch--docs)                    |
-| Radio                 | `import { Radio } from '@prosazhin/pbcomponents';`                 | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-radio-radio--docs)                        |
-| RadioGroup            | `import { RadioGroup } from '@prosazhin/pbcomponents';`            | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-radio-radiogroup--docs)                   |
-| InlineRadio           | `import { InlineRadio } from '@prosazhin/pbcomponents';`           | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-inline-radio-inlineradio--docs)           |
-| InlineRadioGroup      | `import { InlineRadioGroup } from '@prosazhin/pbcomponents';`      | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-inline-radio-inlineradiogroup--docs)      |
-| Input                 | `import { Input } from '@prosazhin/pbcomponents';`                 | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-field-input--docs)                        |
-| Textarea              | `import { Textarea } from '@prosazhin/pbcomponents';`              | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-field-textarea--docs)                     |
-| Select                | `import { Select } from '@prosazhin/pbcomponents';`                | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-field-select--docs)                       |
-| Search                | `import { Search } from '@prosazhin/pbcomponents';`                | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-field-search--docs)                       |
-| Field                 | `import { Field } from '@prosazhin/pbcomponents';`                 | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-field-field--docs)                        |
-| Dropdown              | `import { Dropdown } from '@prosazhin/pbcomponents';`              | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-dropdown-dropdown--docs)                  |
-| DropdownItem          | `import { DropdownItem } from '@prosazhin/pbcomponents';`          | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-dropdown-dropdownitem--docs)              |
-| Tabs                  | `import { Tabs } from '@prosazhin/pbcomponents';`                  | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tabs-tabs--docs)                          |
-| Tab                   | `import { Tab } from '@prosazhin/pbcomponents';`                   | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-tabs-tab--docs)                           |
-| Collapse              | `import { Collapse } from '@prosazhin/pbcomponents';`              | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-collapse-collapse--docs)                  |
-| CollapseGroup         | `import { CollapseGroup } from '@prosazhin/pbcomponents';`         | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-collapse-collapsegroup--docs)             |
-| Alert                 | `import { Alert } from '@prosazhin/pbcomponents';`                 | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-alert--docs)                              |
-| Dialog                | `import { Dialog } from '@prosazhin/pbcomponents';`                | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-dialog-dialog--docs)                      |
-| DialogProvider        | `import { DialogProvider } from '@prosazhin/pbcomponents';`        | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-dialog-dialogprovider--docs)              |
-| useDialog             | `import { useDialog } from '@prosazhin/pbcomponents';`             | -                                                                                                             |
-| useShowDialog         | `import { useShowDialog } from '@prosazhin/pbcomponents';`         | -                                                                                                             |
-| Notification          | `import { Notification } from '@prosazhin/pbcomponents';`          | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-notification-notification--docs)          |
-| NotificationsProvider | `import { NotificationsProvider } from '@prosazhin/pbcomponents';` | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-notification-notificationsprovider--docs) |
-| useNotifications      | `import { useNotifications } from '@prosazhin/pbcomponents';`      | -                                                                                                             |
-| Headline              | `import { Headline } from '@prosazhin/pbcomponents';`              | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-headline--docs)                           |
-| Container             | `import { Container } from '@prosazhin/pbcomponents';`             | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-container--docs)                          |
-| PBCProvider           | `import { PBCProvider } from '@prosazhin/pbcomponents';`           | [Link](https://pbcomponents-react.vercel.app/?path=/docs/components-pbcprovider--docs)                        |
+| Component name        | Import                                                             | Component preview and api                                                                                                  |
+| :-------------------- | :----------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| Button                | `import { Button } from '@prosazhin/pbcomponents';`                | [Link](https://pbcomponents.vercel.app/?path=/story/components-button-button--button)                                      |
+| ButtonGroup           | `import { ButtonGroup } from '@prosazhin/pbcomponents';`           | [Link](https://pbcomponents.vercel.app/?path=/story/components-button-buttongroup--button-group)                           |
+| Badge                 | `import { Badge } from '@prosazhin/pbcomponents';`                 | [Link](https://pbcomponents.vercel.app/?path=/story/components-badge--badge)                                               |
+| Tag                   | `import { Tag } from '@prosazhin/pbcomponents';`                   | [Link](https://pbcomponents.vercel.app/?path=/story/components-tag--tag)                                                   |
+| Checkbox              | `import { Checkbox } from '@prosazhin/pbcomponents';`              | [Link](https://pbcomponents.vercel.app/?path=/story/components-checkbox-checkbox--checkbox)                                |
+| CheckboxGroup         | `import { CheckboxGroup } from '@prosazhin/pbcomponents';`         | [Link](https://pbcomponents.vercel.app/?path=/story/components-checkbox-checkboxgroup--checkbox-group)                     |
+| Switch                | `import { Switch } from '@prosazhin/pbcomponents';`                | [Link](https://pbcomponents.vercel.app/?path=/story/components-checkbox-switch--switch)                                    |
+| Radio                 | `import { Radio } from '@prosazhin/pbcomponents';`                 | [Link](https://pbcomponents.vercel.app/?path=/story/components-radio-radio--radio)                                         |
+| RadioGroup            | `import { RadioGroup } from '@prosazhin/pbcomponents';`            | [Link](https://pbcomponents.vercel.app/?path=/story/components-radio-radiogroup--radio-group)                              |
+| InlineRadio           | `import { InlineRadio } from '@prosazhin/pbcomponents';`           | [Link](https://pbcomponents.vercel.app/?path=/story/components-inline-radio-inlineradio--inline-radio)                     |
+| InlineRadioGroup      | `import { InlineRadioGroup } from '@prosazhin/pbcomponents';`      | [Link](https://pbcomponents.vercel.app/?path=/story/components-inline-radio-inlineradiogroup--inline-radio-group)          |
+| Input                 | `import { Input } from '@prosazhin/pbcomponents';`                 | [Link](https://pbcomponents.vercel.app/?path=/story/components-field-input--input)                                         |
+| Textarea              | `import { Textarea } from '@prosazhin/pbcomponents';`              | [Link](https://pbcomponents.vercel.app/?path=/story/components-field-textarea--textarea)                                   |
+| Select                | `import { Select } from '@prosazhin/pbcomponents';`                | [Link](https://pbcomponents.vercel.app/?path=/story/components-field-select--select)                                       |
+| Search                | `import { Search } from '@prosazhin/pbcomponents';`                | [Link](https://pbcomponents.vercel.app/?path=/story/components-field-search--search)                                       |
+| Field                 | `import { Field } from '@prosazhin/pbcomponents';`                 | [Link](https://pbcomponents.vercel.app/?path=/story/components-field-field--field)                                         |
+| Dropdown              | `import { Dropdown } from '@prosazhin/pbcomponents';`              | [Link](https://pbcomponents.vercel.app/?path=/story/components-dropdown-dropdown--dropdown)                                |
+| DropdownItem          | `import { DropdownItem } from '@prosazhin/pbcomponents';`          | [Link](https://pbcomponents.vercel.app/?path=/story/components-dropdown-dropdownitem--dropdown-item)                       |
+| Tabs                  | `import { Tabs } from '@prosazhin/pbcomponents';`                  | [Link](https://pbcomponents.vercel.app/?path=/story/components-tabs-tabs--tabs)                                            |
+| Tab                   | `import { Tab } from '@prosazhin/pbcomponents';`                   | [Link](https://pbcomponents.vercel.app/?path=/story/components-tabs-tab--tab)                                              |
+| Collapse              | `import { Collapse } from '@prosazhin/pbcomponents';`              | [Link](https://pbcomponents.vercel.app/?path=/story/components-collapse-collapse--collapse)                                |
+| CollapseGroup         | `import { CollapseGroup } from '@prosazhin/pbcomponents';`         | [Link](https://pbcomponents.vercel.app/?path=/story/components-collapse-collapsegroup--collapse-group)                     |
+| Alert                 | `import { Alert } from '@prosazhin/pbcomponents';`                 | [Link](https://pbcomponents.vercel.app/?path=/story/components-alert--alert)                                               |
+| Dialog                | `import { Dialog } from '@prosazhin/pbcomponents';`                | [Link](https://pbcomponents.vercel.app/?path=/story/components-dialog-dialog--dialog)                                      |
+| DialogProvider        | `import { DialogProvider } from '@prosazhin/pbcomponents';`        | [Link](https://pbcomponents.vercel.app/?path=/story/components-dialog-dialogprovider--dialog-provider)                     |
+| useDialog             | `import { useDialog } from '@prosazhin/pbcomponents';`             | -                                                                                                                          |
+| useShowDialog         | `import { useShowDialog } from '@prosazhin/pbcomponents';`         | -                                                                                                                          |
+| Notification          | `import { Notification } from '@prosazhin/pbcomponents';`          | [Link](https://pbcomponents.vercel.app/?path=/story/components-notification-notification--notification)                    |
+| NotificationsProvider | `import { NotificationsProvider } from '@prosazhin/pbcomponents';` | [Link](https://pbcomponents.vercel.app/?path=/story/components-notification-notificationsprovider--notifications-provider) |
+| useNotifications      | `import { useNotifications } from '@prosazhin/pbcomponents';`      | -                                                                                                                          |
+| Headline              | `import { Headline } from '@prosazhin/pbcomponents';`              | [Link](https://pbcomponents.vercel.app/?path=/story/components-headline--headline)                                         |
+| Container             | `import { Container } from '@prosazhin/pbcomponents';`             | [Link](https://pbcomponents.vercel.app/?path=/story/components-container--container)                                       |
+| PBCProvider           | `import { PBCProvider } from '@prosazhin/pbcomponents';`           | [Link](https://pbcomponents.vercel.app/?path=/story/components-pbcprovider--pbc-provider)                                  |
 
 ## Helpers
 
-| Component name | Import                                               | Component preview and api                                                       |
-| :------------- | :--------------------------------------------------- | ------------------------------------------------------------------------------- |
-| Text           | `import { Text } from '@prosazhin/pbcomponents';`    | [Link](https://pbcomponents-react.vercel.app/?path=/docs/helpers-text--docs)    |
-| Icon           | `import { Icon } from '@prosazhin/pbcomponents';`    | [Link](https://pbcomponents-react.vercel.app/?path=/docs/helpers-icon--docs)    |
-| Content        | `import { Content } from '@prosazhin/pbcomponents';` | [Link](https://pbcomponents-react.vercel.app/?path=/docs/helpers-content--docs) |
+| Component name | Import                                               | Component preview and api                                                     |
+| :------------- | :--------------------------------------------------- | ----------------------------------------------------------------------------- |
+| Text           | `import { Text } from '@prosazhin/pbcomponents';`    | [Link](https://pbcomponents.vercel.app/?path=/story/helpers-text--text)       |
+| Icon           | `import { Icon } from '@prosazhin/pbcomponents';`    | [Link](https://pbcomponents.vercel.app/?path=/story/helpers-icon--icon)       |
+| Content        | `import { Content } from '@prosazhin/pbcomponents';` | [Link](https://pbcomponents.vercel.app/?path=/story/helpers-content--content) |
 
 ## Provider usage
 
