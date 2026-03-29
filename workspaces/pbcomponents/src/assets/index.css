@@ -1,5 +1,5 @@
 @import 'tailwindcss' prefix(pbc);
-@import 'pbstyles/styles/tailwind/theme.css';
+@import '@prosazhin/pbstyles/styles/tailwind/theme.css';
 
 @theme {
   --animate-spin: spin 1s linear infinite;

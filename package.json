@@ -18,7 +18,7 @@
     "build:storybook": "npm run --workspace=pbcomponents-storybook build",
     "build": "npm-run-all -p build:*",
     "lint": "npm run lint --workspaces --if-present",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,mdx,json}\"",
+    "format": "prettier --write \"**/*.{css,js,jsx,ts,tsx,md,mdx,json}\"",
     "install-force": "npm install --force",
     "clean": "npm run clean:build --workspaces --if-present && npm run clean:modules --workspaces --if-present && rm package-lock.json && rimraf ./node_modules",
     "prepare": "npx simple-git-hooks"
@@ -31,7 +31,7 @@
     "commit-msg": "npx --no-install commitlint --edit ${1}"
   },
   "lint-staged": {
-    "*": "npm run format"
+    "*": "prettier --write --ignore-unknown"
   },
   "prettier": {
     "bracketSpacing": true,
@@ -60,15 +60,15 @@
     "@prosazhin/pbcomponents": "*"
   },
   "devDependencies": {
-    "@commitlint/cli": "^20.4.3",
-    "@commitlint/config-conventional": "^20.4.3",
-    "lint-staged": "^16.3.2",
+    "@commitlint/cli": "^20.5.0",
+    "@commitlint/config-conventional": "^20.5.0",
+    "lint-staged": "^16.4.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.8.1",
     "prettier-plugin-organize-imports": "^4.3.0",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "rimraf": "^6.1.3",
     "simple-git-hooks": "^2.13.1",
-    "storybook": "^10.2.19"
+    "storybook": "^10.3.3"
   }
 }
