@@ -59,6 +59,16 @@
   "dependencies": {
     "@prosazhin/pbcomponents": "*"
   },
+  "overrides": {
+    "@microsoft/api-extractor": {
+      ".": "^7.58.2",
+      "lodash": "^4.18.1",
+      "minimatch": "10.2.3"
+    },
+    "flatted": "^3.4.2",
+    "vite": "^7.3.2",
+    "yaml": "^2.8.3"
+  },
   "devDependencies": {
     "@commitlint/cli": "^20.5.0",
     "@commitlint/config-conventional": "^20.5.0",
