@@ -8,7 +8,7 @@
     "node": ">=22.x"
   },
   "scripts": {
-    "dev": "storybook dev -p 6006 --initial-path=/docs/intro--docs",
+    "dev": "storybook dev -p 6006 --initial-path=/docs/intro--documentation",
     "build": "storybook build",
     "preview": "vite preview",
     "lint": "eslint stories",

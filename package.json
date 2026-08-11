@@ -16,7 +16,7 @@
     "dev": "npm-run-all -p dev:*",
     "build:components": "npm run --workspace=@prosazhin/pbcomponents build",
     "build:storybook": "npm run --workspace=pbcomponents-storybook build",
-    "build": "npm-run-all -p build:*",
+    "build": "npm-run-all -s build:components build:storybook",
     "lint": "npm run lint --workspaces --if-present",
     "format": "prettier --write \"**/*.{css,js,jsx,ts,tsx,md,mdx,json}\"",
     "install-force": "npm install --force",
@@ -74,8 +74,7 @@
     "shell-quote": "^1.8.4",
     "esbuild": "^0.28.1",
     "@babel/core": "^7.29.6",
-    "js-yaml": "^4.2.0",
-    "brace-expansion": "^5.0.7"
+    "js-yaml": "^4.2.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.5.0",

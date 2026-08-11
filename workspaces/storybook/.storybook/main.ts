@@ -16,6 +16,12 @@ const config: StorybookConfig = {
     name: getAbsolutePath('@storybook/react-vite'),
     options: {},
   },
+  // Крупные чанки (iframe.js, blocks.js) приходят из самого Storybook и не режутся
+  // код-сплитом на нашей стороне, поэтому просто поднимаем порог предупреждения.
+  viteFinal: async (config) => ({
+    ...config,
+    build: { ...config.build, chunkSizeWarningLimit: 2000 },
+  }),
 };
 
 export default config;

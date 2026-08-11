@@ -122,3 +122,5 @@ dist
 *storybook.log
 
 .npm-cache/
+
+.claude

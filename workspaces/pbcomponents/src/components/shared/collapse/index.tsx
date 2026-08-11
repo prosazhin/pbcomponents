@@ -1,11 +1,10 @@
 'use client';
 
 import Content from '@/components/helpers/content';
-import useControllableState from '@/hooks/use-controllable-state';
 import { PlusIcon } from '@heroicons/react/24/solid';
 import clsx from 'clsx';
 import { AnimatePresence, LazyMotion, domAnimation, m } from 'motion/react';
-import { DetailsHTMLAttributes, Ref } from 'react';
+import { DetailsHTMLAttributes, Ref, useEffect, useState } from 'react';
 
 export interface CollapseProps extends Omit<DetailsHTMLAttributes<HTMLDetailsElement>, 'open'> {
   summary: string;
@@ -27,25 +26,47 @@ const Collapse = (props: CollapseProps) => {
     onToggle,
     ...rest
   } = props;
-  const [open = false, setOpen] = useControllableState<boolean>({ value: externalOpen, defaultValue: defaultOpen });
+  const [open, setOpen] = useState<boolean>(externalOpen ?? defaultOpen);
+  const [visible, setVisible] = useState<boolean>(open);
+
+  // details прячет содержимое сразу же, как только закрывается, и обрывает анимацию
+  // ухода — поэтому держим элемент открытым, пока она не доиграет
+  if (open && !visible) setVisible(true);
+
+  useEffect(() => {
+    if (externalOpen === undefined) return;
+    setOpen(externalOpen);
+  }, [externalOpen]);
 
   return (
     <details
       {...rest}
       ref={externalRef}
-      open={open}
+      open={open || visible}
       className={clsx(
         'pbc pbc:flex pbc:flex-col pbc:w-full pbc:px-20 pbc:cursor-pointer pbc:group pbc:transition-colors pbc:duration-150',
         'pbc:rounded-8 pbc:border pbc:border-solid pbc:border-secondary-lighter pbc:hover:bg-basic-lighter',
         className,
       )}
       onToggle={(event) => {
-        const nextOpen = event.currentTarget.open;
-        setOpen(nextOpen);
+        // подстраховка на случай, когда элемент переключил сам браузер, в обход клика
+        // по summary — например соседний collapse из группы с тем же name
+        if (event.currentTarget.open) {
+          setOpen(true);
+        } else {
+          setOpen(false);
+          setVisible(false);
+        }
         onToggle?.(event);
       }}
     >
-      <summary className='pbc:list-none pbc:w-full pbc:py-12 pbc-summary'>
+      <summary
+        className='pbc:list-none pbc:w-full pbc:py-12 pbc-summary'
+        onClick={(event) => {
+          event.preventDefault();
+          setOpen((prev) => !prev);
+        }}
+      >
         <Content
           size='l'
           medium={true}
@@ -60,13 +81,13 @@ const Collapse = (props: CollapseProps) => {
         </Content>
       </summary>
       <LazyMotion features={domAnimation}>
-        <AnimatePresence initial={false}>
+        <AnimatePresence initial={false} onExitComplete={() => setVisible(false)}>
           {open && (
             <m.div
               className='pbc:overflow-hidden'
               initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto', transition: { duration: 0.2, ease: 'easeIn' } }}
-              exit={{ opacity: 0, height: 0, transition: { duration: 0.2, ease: 'easeOut' } }}
+              animate={{ opacity: 1, height: 'auto', transition: { duration: 0.2, ease: 'easeOut' } }}
+              exit={{ opacity: 0, height: 0, transition: { duration: 0.2, ease: 'easeIn' } }}
             >
               <div className={clsx('pbc:w-full pbc:pb-16', contentClassName)}>{children}</div>
             </m.div>
