@@ -13,7 +13,7 @@ export default tseslint.config(
   prettierRecommended,
   ...tseslint.configs.recommended,
   {
-    ignores: ['storybook-static', 'node_modules', '**/*.config.js', '**/*.d.ts'],
+    ignores: ['node_modules', '**/*.config.js'],
   },
   {
     files: ['**/*.{js,jsx,ts,tsx}'],

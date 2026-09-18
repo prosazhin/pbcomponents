@@ -1,9 +1,9 @@
 {
   "name": "@prosazhin/pbcomponents",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "UI component library for React with Typescript and Tailwind",
   "license": "MIT",
-  "author": "Evgenii Sazhin <prosazhin@gmail.com> (https://prosazhin.ru)",
+  "author": "Evgenii Sazhin <prosazhin@gmail.com> (https://prosazhin.dev)",
   "keywords": [
     "react",
     "typescript",
@@ -70,7 +70,7 @@
   "devDependencies": {
     "@eslint/js": "^9.39.4",
     "@heroicons/react": "^2.2.0",
-    "@prosazhin/pbstyles": "^1.3.0",
+    "@prosazhin/pbstyles": "^1.3.1",
     "@tailwindcss/postcss": "^4.2.2",
     "@tailwindcss/vite": "^4.2.2",
     "@types/node": "^25.5.0",

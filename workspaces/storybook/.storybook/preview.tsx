@@ -5,7 +5,7 @@ import React, { useEffect } from 'react';
 type Theme = 'light' | 'dark';
 
 // Светлая тема по умолчанию — принудительно, а не системная: атрибут ставим сразу при загрузке
-// превью, чтобы и страницы без историй (Intro) не зависели от prefers-color-scheme
+// превью, чтобы первый рендер не зависел от prefers-color-scheme
 if (typeof document !== 'undefined') {
   document.documentElement.dataset.theme = 'light';
 }
@@ -13,9 +13,6 @@ if (typeof document !== 'undefined') {
 const preview: Preview = {
   parameters: {
     layout: 'fullscreen',
-    docs: {
-      codePanel: true,
-    },
     actions: {
       disable: true,
     },

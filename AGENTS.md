@@ -7,7 +7,9 @@
 
 ## Назначение репозитория
 
-`pbcomponents` — монорепозиторий UI-библиотеки компонентов `pbcomponents` и playground на Storybook.
+`pbcomponents` — монорепозиторий UI-библиотеки компонентов `pbcomponents` и локального playground на Storybook.
+
+Документация библиотеки живёт на сайте: https://prosazhin.dev/docs/pbcomponents. Storybook никуда не публикуется и используется только локально для просмотра компонентов при разработке.
 
 ## Workspace-структура проекта
 
@@ -17,7 +19,6 @@
 - `package-lock.json` — lockfile npm.
 - `README.md` — краткая документация проекта.
 - `LICENSE` — лицензия.
-- `vercel.json` — конфиг деплоя.
 - `.github/` — CI/workflows.
 - `.vscode/` — локальные настройки IDE.
 
@@ -27,7 +28,7 @@
 
 ### Playground
 
-- `workspaces/storybook` — Storybook playground для демонстрации компонентов.
+- `workspaces/storybook` — локальный Storybook playground для просмотра компонентов при разработке (не собирается и не публикуется).
 
 ---
 
@@ -120,8 +121,6 @@
 
 ### Stories
 
-- `workspaces/storybook/stories/Intro.mdx`
-
 #### Components stories
 
 Одна история на файл: при нескольких `export const` Storybook разворачивает страницу компонента в папку.
@@ -172,7 +171,7 @@
 - `npm run dev` — параллельно библиотека + Storybook.
 - `npm run dev:components` — watch-сборка библиотеки.
 - `npm run dev:storybook` — запуск Storybook.
-- `npm run build` — сборка всего workspace.
+- `npm run build` — сборка библиотеки.
 - `npm run lint` — линт по всем workspace.
 
 ### Библиотека
@@ -184,7 +183,6 @@
 ### Storybook playground
 
 - `npm run --workspace=pbcomponents-storybook dev`
-- `npm run --workspace=pbcomponents-storybook build`
 - `npm run --workspace=pbcomponents-storybook lint`
 
 ---

@@ -3,25 +3,15 @@ import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const config: StorybookConfig = {
-  stories: ['../stories/**/*.mdx', '../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
-  addons: [getAbsolutePath('@storybook/addon-docs')],
+  stories: ['../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   features: {
     onboarding: false,
     sidebarOnboardingChecklist: false,
-  },
-  docs: {
-    defaultName: 'Documentation',
   },
   framework: {
     name: getAbsolutePath('@storybook/react-vite'),
     options: {},
   },
-  // Крупные чанки (iframe.js, blocks.js) приходят из самого Storybook и не режутся
-  // код-сплитом на нашей стороне, поэтому просто поднимаем порог предупреждения.
-  viteFinal: async (config) => ({
-    ...config,
-    build: { ...config.build, chunkSizeWarningLimit: 2000 },
-  }),
 };
 
 export default config;

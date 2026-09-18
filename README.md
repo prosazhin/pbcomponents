@@ -1,5 +1,7 @@
 # pbcomponents
 
+[Documentation](https://prosazhin.dev/docs/pbcomponents)
+
 [Figma community](https://www.figma.com/community/file/1214486013859546496/pbcomponents) | [Behance](https://www.behance.net/gallery/206064847/pbcomponents)
 
 ## prosazhin basic components
@@ -10,7 +12,7 @@ UI component library for React with Typescript and Tailwind.
 
 ### React
 
-[Preview](https://pbcomponents.vercel.app/?path=/docs/intro--documentation) | [GitHub](https://github.com/prosazhin/pbcomponents/tree/main/workspaces/pbcomponents) | [NPM](https://www.npmjs.com/package/@prosazhin/pbcomponents)
+[GitHub](https://github.com/prosazhin/pbcomponents/tree/main/workspaces/pbcomponents) | [NPM](https://www.npmjs.com/package/@prosazhin/pbcomponents)
 
 ```bash
 npm install @prosazhin/pbcomponents

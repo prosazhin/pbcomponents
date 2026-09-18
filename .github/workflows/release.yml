@@ -95,8 +95,3 @@ jobs:
           prerelease: false
           make_latest: true
           generate_release_notes: true
-
-      - name: Call React Vercel webhook
-        run: curl -fsS -X POST "$WEBHOOK_URL"
-        env:
-          WEBHOOK_URL: ${{ secrets.REACT_VERCEL_WEBHOOK_URL }}
