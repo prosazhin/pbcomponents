@@ -1,6 +1,9 @@
-import { Field as Component, Container, Input, Search, Select, Textarea } from '@prosazhin/pbcomponents';
-import type { Meta, StoryObj } from '@storybook/react';
+import { Field as Component, Container, type FieldProps, Input, Search, Select, Textarea } from '@prosazhin/pbcomponents';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { type ComponentProps, useState } from 'react';
+
+// label, description и errorMessage — содержимое Field.Label, Field.Description и Field.Error
+type StoryArgs = FieldProps & { label?: string; description?: string; errorMessage?: string };
 
 type FieldInputControlProps = { placeholder: string } & Omit<ComponentProps<typeof Input>, 'children'>;
 const FieldInputControl = ({ placeholder, ...inputProps }: FieldInputControlProps) => {
@@ -35,6 +38,11 @@ const meta = {
     ),
   ],
   argTypes: {
+    errorMessage: {
+      control: 'text',
+      type: 'string',
+      defaultValue: { summary: undefined },
+    },
     className: {
       control: 'text',
       type: 'string',
@@ -94,16 +102,18 @@ const meta = {
     label: 'Label',
     description: 'Description',
     error: false,
+    errorMessage: '',
     className: '',
   },
-  render: ({ children, className, label, description, error }) => (
+  render: ({ children, className, label, description, error, errorMessage }) => (
     <Component error={error} className={className ? className : undefined}>
       {label && <Component.Label>{label}</Component.Label>}
       <Component.Control>{children}</Component.Control>
       {description && <Component.Description>{description}</Component.Description>}
+      {errorMessage && <Component.Error>{errorMessage}</Component.Error>}
     </Component>
   ),
-} satisfies Meta<typeof Component>;
+} satisfies Meta<StoryArgs>;
 
 export default meta;
 

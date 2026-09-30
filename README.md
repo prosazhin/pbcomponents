@@ -42,7 +42,7 @@ Colors come from [pbstyles](https://github.com/prosazhin/pbstyles) tokens and su
 
 ### Links in Next.js
 
-Components that render as a link when `href` is set (`Button`, `Tab`, `DropdownItem`, `Tag`) accept a `linkComponent` prop to use a custom link, e.g. `next/link`:
+Components that render as a link when `href` is set (`Button`, `Tab`, `Popover.Item`, `Tag`) accept a `linkComponent` prop to use a custom link, e.g. `next/link`:
 
 ```javascript
 import NextLink from 'next/link';

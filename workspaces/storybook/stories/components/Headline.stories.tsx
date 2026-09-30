@@ -1,5 +1,5 @@
 import { Headline as Component, Container } from '@prosazhin/pbcomponents';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Components/Headline',

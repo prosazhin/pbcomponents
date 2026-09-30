@@ -1,5 +1,5 @@
-import { Checkbox, CheckboxGroup as Component, Container, Switch } from '@prosazhin/pbcomponents';
-import type { Meta, StoryObj } from '@storybook/react';
+import { Checkbox, CheckboxGroup as Component, Container, Toggle } from '@prosazhin/pbcomponents';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Components/Checkbox/CheckboxGroup',
@@ -14,6 +14,21 @@ const meta = {
     ),
   ],
   argTypes: {
+    label: {
+      control: 'text',
+      type: 'string',
+      defaultValue: { summary: undefined },
+    },
+    description: {
+      control: 'text',
+      type: 'string',
+      defaultValue: { summary: undefined },
+    },
+    errorMessage: {
+      control: 'text',
+      type: 'string',
+      defaultValue: { summary: undefined },
+    },
     className: {
       control: 'text',
       type: 'string',
@@ -39,17 +54,20 @@ const meta = {
       table: { type: { summary: '(value: string[]) => void' } },
     },
     children: {
-      options: ['Checkbox', 'Switch'],
+      options: ['Checkbox', 'Toggle'],
       control: 'select',
       mapping: {
         Checkbox: ['One', 'Two', 'Three', 'Four', 'Five'].map((value, index) => <Checkbox key={index}>{value}</Checkbox>),
-        Switch: ['One', 'Two', 'Three', 'Four', 'Five'].map((value, index) => <Switch key={index}>{value}</Switch>),
+        Toggle: ['One', 'Two', 'Three', 'Four', 'Five'].map((value, index) => <Toggle key={index}>{value}</Toggle>),
       },
       defaultValue: { summary: undefined },
-      table: { type: { summary: 'Checkbox[] | Switch[]' } },
+      table: { type: { summary: 'Checkbox[] | Toggle[]' } },
     },
   },
   args: {
+    label: 'Label',
+    description: 'Description',
+    errorMessage: '',
     children: ['One', 'Two', 'Three', 'Four', 'Five'].map((value, index) => <Checkbox key={index}>{value}</Checkbox>),
     size: 'm',
     disabled: false,
@@ -57,8 +75,11 @@ const meta = {
     onChange: () => {},
     className: '',
   },
-  render: ({ children, size, className, disabled, defaultValue, onChange, name, form }) => (
+  render: ({ label, description, errorMessage, children, size, className, disabled, defaultValue, onChange, name, form }) => (
     <Component
+      label={label ? label : undefined}
+      description={description ? description : undefined}
+      errorMessage={errorMessage ? errorMessage : undefined}
       size={size}
       name={name ? name : undefined}
       form={form ? form : undefined}

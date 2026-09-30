@@ -27,5 +27,6 @@ jobs:
           cache: npm
           cache-dependency-path: package-lock.json
       - run: npm ci --no-fund --no-audit
-      - run: npm run lint
+      # сначала сборка: tsc сторибука берёт типы библиотеки из dist
       - run: npm run build
+      - run: npm run lint

@@ -38,7 +38,7 @@ const Page = () => (
 | Tag                   | `import { Tag } from '@prosazhin/pbcomponents';`                   | [Link](https://prosazhin.dev/docs/pbcomponents/tag)                    |
 | Checkbox              | `import { Checkbox } from '@prosazhin/pbcomponents';`              | [Link](https://prosazhin.dev/docs/pbcomponents/checkbox)               |
 | CheckboxGroup         | `import { CheckboxGroup } from '@prosazhin/pbcomponents';`         | [Link](https://prosazhin.dev/docs/pbcomponents/checkbox-group)         |
-| Switch                | `import { Switch } from '@prosazhin/pbcomponents';`                | [Link](https://prosazhin.dev/docs/pbcomponents/switch)                 |
+| Toggle                | `import { Toggle } from '@prosazhin/pbcomponents';`                | [Link](https://prosazhin.dev/docs/pbcomponents/toggle)                 |
 | Radio                 | `import { Radio } from '@prosazhin/pbcomponents';`                 | [Link](https://prosazhin.dev/docs/pbcomponents/radio)                  |
 | RadioGroup            | `import { RadioGroup } from '@prosazhin/pbcomponents';`            | [Link](https://prosazhin.dev/docs/pbcomponents/radio-group)            |
 | InlineRadio           | `import { InlineRadio } from '@prosazhin/pbcomponents';`           | [Link](https://prosazhin.dev/docs/pbcomponents/inline-radio)           |

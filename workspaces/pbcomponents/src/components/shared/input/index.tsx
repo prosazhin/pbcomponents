@@ -179,12 +179,12 @@ const Input = (props: InputProps) => {
         {leftIcon && (
           <Icon
             tag={leftIcon}
-            size={size}
+            size={size === 's' ? 14 : 18}
             className={clsx(
               'pbc:text-text-secondary pbc:pointer-events-none pbc:select-none',
               'pbc:absolute pbc:inset-y-0 pbc:m-auto',
-              size === 's' && 'pbc:left-8',
-              size === 'm' && 'pbc:left-12',
+              size === 's' && 'pbc:left-12',
+              size === 'm' && 'pbc:left-16',
               leftIconClassName,
             )}
           />
@@ -201,15 +201,15 @@ const Input = (props: InputProps) => {
           aria-label={resolvedAriaLabel}
           aria-labelledby={resolvedAriaLabelledBy}
           className={clsx(
-            'pbc pbc:w-full pbc:border-solid pbc:border pbc:bg-transparent pbc:appearance-none pbc:transition-colors pbc:duration-150 pbc:focus:ring-0 pbc:focus:ring-offset-0 pbc:text-text-primary pbc:placeholder:text-text-secondary',
+            'pbc pbc:w-full pbc:inset-ring pbc:bg-basic-0 pbc:appearance-none pbc:transition pbc:duration-150 pbc:focus:ring-0 pbc:focus:ring-offset-0 pbc:text-text-primary pbc:placeholder:text-text-secondary',
             !error &&
-              'pbc:border-secondary-200 pbc:hover:border-primary-400 pbc:focus:border-primary-400 pbc:focus:outline-outline-primary pbc:outline-4 pbc:outline-offset-0',
+              'pbc:inset-ring-secondary-200 pbc:hover:inset-ring-primary-400 pbc:focus:inset-ring-primary-400 pbc:focus:outline-outline-primary pbc:outline-4 pbc:outline-offset-0',
             error &&
-              'pbc:border-danger-400 pbc:hover:border-danger-400 pbc:focus:border-danger-400 pbc:focus:outline-outline-danger pbc:outline-4 pbc:outline-offset-0',
-            'pbc:disabled:cursor-default! pbc:disabled:bg-secondary-50! pbc:disabled:border-secondary-200! pbc:hover:disabled:border-secondary-200! pbc:hover:disabled:bg-secondary-50!',
+              'pbc:inset-ring-danger-400 pbc:hover:inset-ring-danger-400 pbc:focus:inset-ring-danger-400 pbc:focus:outline-outline-danger pbc:outline-4 pbc:outline-offset-0',
+            'pbc:disabled:cursor-default! pbc:disabled:bg-secondary-50! pbc:disabled:inset-ring-secondary-200! pbc:hover:disabled:inset-ring-secondary-200! pbc:hover:disabled:bg-secondary-50!',
             size === 's' && 'pbc:py-8 pbc:px-12 pbc:h-34 pbc:text-t12! pbc:rounded-8',
-            size === 's' && leftIcon && 'pbc:pl-32',
-            size === 's' && rightIcon && 'pbc:pr-32',
+            size === 's' && leftIcon && 'pbc:pl-30',
+            size === 's' && rightIcon && 'pbc:pr-30',
             size === 's' && hasLeftAddon && 'pbc:rounded-l-0!',
             size === 's' && hasRightAddon && 'pbc:rounded-r-0!',
             size === 'm' && 'pbc:py-12 pbc:px-16 pbc:h-48 pbc:text-t16! pbc:rounded-12',
@@ -227,12 +227,12 @@ const Input = (props: InputProps) => {
         {rightIcon && (
           <Icon
             tag={rightIcon}
-            size={size}
+            size={size === 's' ? 14 : 18}
             className={clsx(
               'pbc:text-text-secondary pbc:pointer-events-none pbc:select-none',
               'pbc:absolute pbc:inset-y-0 pbc:m-auto',
-              size === 's' && 'pbc:right-8',
-              size === 'm' && 'pbc:right-12',
+              size === 's' && 'pbc:right-12',
+              size === 'm' && 'pbc:right-16',
               rightIconClassName,
             )}
           />

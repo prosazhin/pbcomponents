@@ -1,5 +1,5 @@
 import { RadioGroup as Component, Container, Radio } from '@prosazhin/pbcomponents';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Components/Radio/RadioGroup',
@@ -14,6 +14,21 @@ const meta = {
     ),
   ],
   argTypes: {
+    label: {
+      control: 'text',
+      type: 'string',
+      defaultValue: { summary: undefined },
+    },
+    description: {
+      control: 'text',
+      type: 'string',
+      defaultValue: { summary: undefined },
+    },
+    errorMessage: {
+      control: 'text',
+      type: 'string',
+      defaultValue: { summary: undefined },
+    },
     className: {
       control: 'text',
       type: 'string',
@@ -35,7 +50,7 @@ const meta = {
     onChange: {
       control: 'object',
       defaultValue: { summary: undefined },
-      table: { type: { summary: '(checked: boolean, value: string, event: Event) => void' } },
+      table: { type: { summary: '(value: string) => void' } },
     },
     children: {
       control: 'object',
@@ -44,6 +59,9 @@ const meta = {
     },
   },
   args: {
+    label: 'Label',
+    description: 'Description',
+    errorMessage: '',
     children: ['One', 'Two', 'Three', 'Four', 'Five'].map((value, index) => (
       <Radio key={index} value={value}>
         {value}
@@ -55,8 +73,11 @@ const meta = {
     onChange: () => {},
     className: '',
   },
-  render: ({ children, size, className, disabled, defaultValue, onChange, name, form }) => (
+  render: ({ label, description, errorMessage, children, size, className, disabled, defaultValue, onChange, name, form }) => (
     <Component
+      label={label ? label : undefined}
+      description={description ? description : undefined}
+      errorMessage={errorMessage ? errorMessage : undefined}
       size={size}
       name={name ? name : undefined}
       form={form ? form : undefined}

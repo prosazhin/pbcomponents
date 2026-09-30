@@ -1,7 +1,7 @@
 'use client';
 
 import { ButtonProps } from '@/components/shared/button';
-import Dropdown, { DropdownProps } from '@/components/shared/dropdown';
+import Popover, { PopoverProps, PopoverTriggerProps } from '@/components/shared/popover';
 import { SizeType } from '@/types';
 import clsx from 'clsx';
 import { Children, HTMLAttributes, ReactElement, cloneElement, isValidElement, useMemo } from 'react';
@@ -31,24 +31,24 @@ const ButtonGroup = (props: ButtonGroupProps) => {
               itemProps.className as string | undefined,
             );
 
-            if (type === Dropdown) {
-              const dropdownProps = itemProps as DropdownProps;
-              const dropdownChildren = Children.toArray(dropdownProps.children).map((child) => {
-                if (!isValidElement(child)) return child;
-                if (child.type !== Dropdown.Trigger) return child;
-                const triggerElement = child as ReactElement<Record<string, unknown>>;
+            // у Popover размер и скругления получает кнопка внутри Popover.Trigger
+            if (type === Popover) {
+              const popoverProps = itemProps as PopoverProps;
+              const popoverChildren = Children.toArray(popoverProps.children).map((child) => {
+                if (!isValidElement(child) || child.type !== Popover.Trigger) return child;
+                const trigger = child as ReactElement<PopoverTriggerProps>;
+                const button = trigger.props.children as ReactElement<ButtonProps>;
+                if (!isValidElement(button)) return child;
 
-                return cloneElement(triggerElement, {
-                  ...(triggerElement.props as object),
-                  size: (triggerElement.props.size as string | undefined) ?? size,
-                  className: clsx(itemClassName, triggerElement.props.className as string | undefined),
+                return cloneElement(trigger, {
+                  children: cloneElement(button, {
+                    size,
+                    className: clsx(itemClassName, button.props.className),
+                  }),
                 });
               });
 
-              return cloneElement(item as ReactElement<DropdownProps>, {
-                ...dropdownProps,
-                children: dropdownChildren,
-              });
+              return cloneElement(item as ReactElement<PopoverProps>, { children: popoverChildren });
             }
 
             return cloneElement(item as ReactElement<ButtonProps>, {

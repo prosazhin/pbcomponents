@@ -1,6 +1,9 @@
-import { Button, Alert as Component, Container } from '@prosazhin/pbcomponents';
-import type { Meta, StoryObj } from '@storybook/react';
+import { type AlertProps, Button, Alert as Component, Container, type HeadlineProps } from '@prosazhin/pbcomponents';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useArgs } from 'storybook/preview-api';
+
+// headline, description и as — не пропсы Alert, а содержимое Alert.Title и Alert.Description
+type StoryArgs = AlertProps & { headline?: string; description?: string; as?: HeadlineProps['as'] };
 
 const meta = {
   title: 'Components/Alert',
@@ -27,7 +30,7 @@ const meta = {
     headline: { control: 'text', defaultValue: { summary: undefined } },
     description: { control: 'text', defaultValue: { summary: undefined } },
     color: {
-      options: ['primary', 'secondary', 'success', 'danger'],
+      options: ['primary', 'secondary', 'success', 'danger', 'warning'],
       control: { type: 'radio' },
       defaultValue: { summary: 'primary' },
     },
@@ -80,7 +83,7 @@ const meta = {
       </Component>
     );
   },
-} satisfies Meta<typeof Component>;
+} satisfies Meta<StoryArgs>;
 
 export default meta;
 

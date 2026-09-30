@@ -1,17 +1,21 @@
 'use client';
 
+import GroupFrame from '@/components/helpers/group-frame';
 import Checkbox, { CheckboxProps } from '@/components/shared/checkbox';
-import Switch, { SwitchProps } from '@/components/shared/switch';
+import Toggle, { ToggleProps } from '@/components/shared/toggle';
 import useControllableState from '@/hooks/use-controllable-state';
 import { FieldSetHTMLAttrs, FieldSetType, SMSizeType } from '@/types';
 import clsx from 'clsx';
-import { ReactElement, Ref, useMemo } from 'react';
+import { ReactElement, ReactNode, Ref, useMemo } from 'react';
 
 const defaultOnChange = () => {};
 
 type BaseCheckboxGroupProps = Omit<FieldSetHTMLAttrs, 'onChange' | 'children'> & SMSizeType;
 export interface CheckboxGroupProps extends BaseCheckboxGroupProps {
-  children: ReactElement<CheckboxProps | SwitchProps>[];
+  children: ReactElement<CheckboxProps | ToggleProps>[];
+  label?: ReactNode;
+  description?: ReactNode;
+  errorMessage?: ReactNode;
   value?: string[];
   defaultValue?: string[];
   onChange?: (value: string[]) => void;
@@ -21,6 +25,9 @@ export interface CheckboxGroupProps extends BaseCheckboxGroupProps {
 const CheckboxGroup = (props: CheckboxGroupProps) => {
   const {
     size,
+    label,
+    description,
+    errorMessage,
     value: externalValue,
     defaultValue = [],
     onChange = defaultOnChange,
@@ -42,28 +49,19 @@ const CheckboxGroup = (props: CheckboxGroupProps) => {
   if (!children.length) return null;
 
   return (
-    <fieldset
-      {...rest}
-      ref={externalRef}
-      className={clsx(
-        'pbc pbc:relative pbc:w-full pbc:appearance-none pbc:flex pbc:flex-col',
-        size === 's' && 'pbc:gap-8',
-        size === 'm' && 'pbc:gap-16',
-        className,
-      )}
-    >
+    <GroupFrame {...rest} ref={externalRef} label={label} description={description} errorMessage={errorMessage} className={className}>
       {children.map(({ type, props: itemProps }, index) => {
         // @ts-expect-error: Unreachable code error
-        const Component = type?.displayName === 'Switch' ? Switch : Checkbox;
+        const Component = type?.displayName === 'Toggle' ? Toggle : Checkbox;
 
         return (
           <Component
             {...itemProps}
             key={index}
-            name={name ? name : undefined}
-            size={size}
+            name={name ?? itemProps.name}
+            size={size ?? itemProps.size}
             checked={activeValue.some((item) => item === (itemProps.value ?? itemProps.children ?? ''))}
-            disabled={disabled ? disabled : undefined}
+            disabled={disabled || itemProps.disabled}
             wrapperClassName={clsx('pbc:w-full', itemProps.wrapperClassName)}
             onChange={(_, value) => {
               let result = [...activeValue];
@@ -77,7 +75,7 @@ const CheckboxGroup = (props: CheckboxGroupProps) => {
           />
         );
       })}
-    </fieldset>
+    </GroupFrame>
   );
 };
 

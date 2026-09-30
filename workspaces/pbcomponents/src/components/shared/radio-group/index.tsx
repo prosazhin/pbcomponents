@@ -1,27 +1,44 @@
 'use client';
 
+import GroupFrame from '@/components/helpers/group-frame';
 import Radio, { RadioProps } from '@/components/shared/radio';
 import useControllableState from '@/hooks/use-controllable-state';
-import { FieldSetHTMLAttrs, FieldSetType, InputEvent, SMSizeType } from '@/types';
+import { FieldSetHTMLAttrs, FieldSetType, SMSizeType } from '@/types';
 import clsx from 'clsx';
-import { ReactElement, Ref, useMemo } from 'react';
+import { ReactElement, ReactNode, Ref, useMemo } from 'react';
 
 type BaseRadioGroupProps = Omit<FieldSetHTMLAttrs, 'onChange' | 'children'> & SMSizeType;
 export interface RadioGroupProps extends BaseRadioGroupProps {
   children: ReactElement<RadioProps>[];
+  label?: ReactNode;
+  description?: ReactNode;
+  errorMessage?: ReactNode;
   value?: string;
   defaultValue?: string;
-  onChange?: (checked: boolean, value: string, event: InputEvent) => void;
+  onChange?: (value: string) => void;
   ref?: Ref<FieldSetType>;
 }
 
 const RadioGroup = (props: RadioGroupProps) => {
-  const { size, value: externalValue, defaultValue, onChange = () => {}, children: childn, className, ref: externalRef, ...rest } = props;
+  const {
+    size,
+    label,
+    description,
+    errorMessage,
+    value: externalValue,
+    defaultValue,
+    onChange,
+    children: childn,
+    className,
+    ref: externalRef,
+    ...rest
+  } = props;
   const { name, disabled } = rest;
 
   const [activeValue, setActiveValue] = useControllableState<string>({
     value: externalValue,
     defaultValue,
+    onChange,
   });
 
   const children = useMemo(() => (childn ? [...childn] : []), [childn]);
@@ -29,32 +46,20 @@ const RadioGroup = (props: RadioGroupProps) => {
   if (!children.length) return null;
 
   return (
-    <fieldset
-      {...rest}
-      ref={externalRef}
-      className={clsx(
-        'pbc pbc:relative pbc:w-full pbc:appearance-none pbc:flex pbc:flex-col',
-        size === 's' && 'pbc:gap-8',
-        size === 'm' && 'pbc:gap-16',
-        className,
-      )}
-    >
+    <GroupFrame {...rest} ref={externalRef} label={label} description={description} errorMessage={errorMessage} className={className}>
       {children.map(({ props: itemProps }, index) => (
         <Radio
           {...itemProps}
           key={index}
-          name={name ? name : undefined}
-          size={size}
+          name={name ?? itemProps.name}
+          size={size ?? itemProps.size}
           checked={activeValue === (itemProps.value ?? itemProps.children ?? '')}
-          disabled={disabled ? disabled : undefined}
+          disabled={disabled || itemProps.disabled}
           wrapperClassName={clsx('pbc:w-full', itemProps.wrapperClassName)}
-          onChange={(checked, value, event) => {
-            setActiveValue(value);
-            onChange(checked, value, event);
-          }}
+          onChange={(_, value) => setActiveValue(value)}
         />
       ))}
-    </fieldset>
+    </GroupFrame>
   );
 };
 

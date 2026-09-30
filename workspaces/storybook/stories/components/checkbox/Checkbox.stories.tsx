@@ -1,5 +1,5 @@
 import { Checkbox as Component, Container } from '@prosazhin/pbcomponents';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useArgs } from 'storybook/preview-api';
 
 const meta = {
@@ -68,9 +68,15 @@ const meta = {
       control: 'boolean',
       defaultValue: { summary: 'false' },
     },
+    description: {
+      control: 'text',
+      type: 'string',
+      defaultValue: { summary: undefined },
+    },
   },
   args: {
     children: 'Label',
+    description: '',
     labelPlace: 'right',
     size: 'm',
     checked: false,
@@ -83,12 +89,13 @@ const meta = {
     textClassName: '',
   },
   render: function Render(args) {
-    const { value, children, labelPlace, size, disabled, className, wrapperClassName, textClassName } = args;
+    const { value, children, description, labelPlace, size, disabled, className, wrapperClassName, textClassName } = args;
     const [{ checked, indeterminate }, setArgs] = useArgs();
 
     return (
       <Component
         value={value}
+        description={description ? description : undefined}
         size={size}
         labelPlace={labelPlace}
         checked={checked}

@@ -1,6 +1,6 @@
 import * as heroicons from '@heroicons/react/24/outline';
 import { Button, Notification as Component, Container, PBCProvider, useNotifications } from '@prosazhin/pbcomponents';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Components/Notification/Notification',

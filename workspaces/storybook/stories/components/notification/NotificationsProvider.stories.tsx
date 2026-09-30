@@ -1,5 +1,5 @@
 import { Button, NotificationsProvider as Component, Container, useNotifications } from '@prosazhin/pbcomponents';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const NotificationsProviderDemo = () => {
   const { notifications, showNotification, hideNotification } = useNotifications();

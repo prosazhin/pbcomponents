@@ -1,11 +1,24 @@
 import * as heroicons from '@heroicons/react/24/outline';
-import { Button, Input as Component, Container } from '@prosazhin/pbcomponents';
-import type { Meta, StoryObj } from '@storybook/react';
+import { Button, Input as Component, Container, type InputProps, type WithIconsType } from '@prosazhin/pbcomponents';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { ChangeEvent, ComponentType, HTMLInputTypeAttribute, ReactNode } from 'react';
 import { useArgs } from 'storybook/preview-api';
+
+// пропсы Input.Control и аддоны вынесены в args, чтобы управлять ими из панели
+type StoryArgs = Omit<InputProps, 'onChange'> &
+  WithIconsType & {
+    value?: string;
+    placeholder?: string;
+    type?: HTMLInputTypeAttribute;
+    addon?: ReactNode;
+    addonAlign?: 'left' | 'right';
+    onChange?: (value: string, event: ChangeEvent<HTMLInputElement>) => void;
+  };
 
 const meta = {
   title: 'Components/Field/Input',
-  component: Component,
+  // args истории шире пропсов компонента (виртуальные поля для панели)
+  component: Component as ComponentType<StoryArgs>,
   decorators: [
     (Story) => (
       <Container size='s'>
@@ -137,7 +150,7 @@ const meta = {
       </Component>
     );
   },
-} satisfies Meta<typeof Component>;
+} satisfies Meta<StoryArgs>;
 
 export default meta;
 

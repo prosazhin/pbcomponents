@@ -1,6 +1,6 @@
 import * as heroicons from '@heroicons/react/24/outline';
 import { Icon as Component, Container } from '@prosazhin/pbcomponents';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Helpers/Icon',
@@ -16,9 +16,9 @@ const meta = {
   ],
   argTypes: {
     size: {
-      options: ['s', 'm', 'l'],
-      control: 'radio',
-      defaultValue: { summary: 'm' },
+      options: [12, 14, 16, 18, 20, 22, 24, 26, 32],
+      control: 'select',
+      defaultValue: { summary: '18' },
     },
     className: {
       control: 'text',
@@ -35,7 +35,7 @@ const meta = {
   },
   args: {
     tag: heroicons.CheckIcon,
-    size: 'm',
+    size: 18,
     className: '',
   },
   render: ({ tag, size, className }) => <Component tag={tag} size={size} className={className ? className : undefined} />,

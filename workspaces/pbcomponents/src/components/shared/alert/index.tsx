@@ -4,13 +4,13 @@ import Text from '@/components/helpers/text';
 import Button from '@/components/shared/button';
 import Headline, { HeadlineProps } from '@/components/shared/headline';
 import useControllableState from '@/hooks/use-controllable-state';
-import { ColorType } from '@/types';
-import { XMarkIcon } from '@heroicons/react/24/solid';
+import { ColorWithWarningType } from '@/types';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import { AnimatePresence, LazyMotion, domAnimation, m } from 'motion/react';
 import { Children, HTMLAttributes, ReactElement, ReactNode, isValidElement, useMemo } from 'react';
 
-type BaseAlertProps = Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'onChange'> & ColorType;
+type BaseAlertProps = Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'onChange'> & ColorWithWarningType;
 export interface AlertProps extends BaseAlertProps {
   children?: ReactNode;
   open?: boolean;
@@ -119,11 +119,12 @@ const Alert = (props: AlertProps) => {
             <div
               {...rest}
               className={clsx(
-                'pbc pbc:w-full pbc:relative pbc:flex pbc:flex-col pbc:gap-y-16 pbc:px-24 pbc:py-16 pbc:border pbc:border-solid pbc:rounded-8 pbc:h-auto pbc:text-text-primary',
-                color === 'primary' && 'pbc:border-primary-200 pbc:bg-primary-50',
-                color === 'secondary' && 'pbc:border-secondary-200 pbc:bg-secondary-50',
-                color === 'success' && 'pbc:border-success-200 pbc:bg-success-50',
-                color === 'danger' && 'pbc:border-danger-200 pbc:bg-danger-50',
+                'pbc pbc:w-full pbc:relative pbc:flex pbc:flex-col pbc:gap-y-16 pbc:px-24 pbc:py-16 pbc:inset-ring pbc:rounded-8 pbc:h-auto pbc:text-text-primary',
+                color === 'primary' && 'pbc:inset-ring-primary-200 pbc:bg-primary-50',
+                color === 'secondary' && 'pbc:inset-ring-secondary-200 pbc:bg-secondary-50',
+                color === 'success' && 'pbc:inset-ring-success-200 pbc:bg-success-50',
+                color === 'danger' && 'pbc:inset-ring-danger-200 pbc:bg-danger-50',
+                color === 'warning' && 'pbc:inset-ring-warning-200 pbc:bg-warning-50',
                 className,
               )}
             >
@@ -132,7 +133,7 @@ const Alert = (props: AlertProps) => {
                   className='pbc:absolute pbc:top-4 pbc:right-4 pbc:w-auto!'
                   size='xs'
                   theme='ghost'
-                  color={color}
+                  color={color === 'warning' ? 'secondary' : color}
                   leftIcon={XMarkIcon}
                   aria-label={closeButtonAriaLabel}
                   onClick={() => setOpen(false)}
@@ -146,14 +147,14 @@ const Alert = (props: AlertProps) => {
                     </Headline>
                   )}
                   {descriptionProps?.children && (
-                    <Text as='p' size='m' className={clsx('pbc:w-full', descriptionProps.className)}>
+                    <Text as='p' size={16} className={clsx('pbc:w-full', descriptionProps.className)}>
                       {descriptionProps.children}
                     </Text>
                   )}
                 </div>
               )}
               {actionsProps?.children && (
-                <div {...actionsProps} className={clsx('pbc pbc:w-full pbc:flex pbc:gap-x-6', actionsProps.className)}>
+                <div {...actionsProps} className={clsx('pbc pbc:w-full pbc:flex pbc:flex-wrap pbc:gap-6', actionsProps.className)}>
                   {actionsProps.children}
                 </div>
               )}

@@ -1,5 +1,5 @@
 import { Button, PBCProvider as Component, Container, Dialog, useDialog, useNotifications, useShowDialog } from '@prosazhin/pbcomponents';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const DIALOG_ID = 'providers-dialog';
 

@@ -1,6 +1,6 @@
 import * as heroicons from '@heroicons/react/24/outline';
 import { Content as Component, Container } from '@prosazhin/pbcomponents';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Helpers/Content',
@@ -43,9 +43,9 @@ const meta = {
       defaultValue: { summary: undefined },
     },
     size: {
-      options: ['s', 'm', 'l'],
-      control: 'radio',
-      defaultValue: { summary: 'm' },
+      options: [10, 12, 14, 16, 20, 24, 32],
+      control: 'select',
+      defaultValue: { summary: '16' },
     },
     medium: {
       control: 'boolean',
@@ -70,7 +70,7 @@ const meta = {
   args: {
     as: 'span',
     children: 'Content',
-    size: 'm',
+    size: 16,
     medium: false,
     leftIcon: undefined,
     leftIconClassName: '',

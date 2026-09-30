@@ -1,5 +1,6 @@
-import { Button, ButtonGroup as Component, Container, Dropdown } from '@prosazhin/pbcomponents';
-import type { Meta, StoryObj } from '@storybook/react';
+import { ChevronUpDownIcon } from '@heroicons/react/24/outline';
+import { Button, ButtonGroup as Component, Container, Popover } from '@prosazhin/pbcomponents';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const data = ['One', 'Two', 'Three'];
 
@@ -30,7 +31,7 @@ const meta = {
     },
     children: {
       control: 'object',
-      table: { type: { summary: 'Button[] | Dropdown[]' } },
+      table: { type: { summary: 'Button[] | Popover[]' } },
       defaultValue: { summary: undefined },
     },
   },
@@ -38,14 +39,18 @@ const meta = {
     children: data.map((value, index) => {
       if (index === data.length - 1) {
         return (
-          <Dropdown key={index}>
-            <Dropdown.Trigger theme='border'>{value}</Dropdown.Trigger>
-            <Dropdown.Content>
-              <Dropdown.Item>One</Dropdown.Item>
-              <Dropdown.Item>Two</Dropdown.Item>
-              <Dropdown.Item>Three</Dropdown.Item>
-            </Dropdown.Content>
-          </Dropdown>
+          <Popover key={index} placement='bottom-end'>
+            <Popover.Trigger>
+              <Button theme='border' rightIcon={ChevronUpDownIcon}>
+                {value}
+              </Button>
+            </Popover.Trigger>
+            <Popover.Content>
+              <Popover.Item>One</Popover.Item>
+              <Popover.Item>Two</Popover.Item>
+              <Popover.Item>Three</Popover.Item>
+            </Popover.Content>
+          </Popover>
         );
       }
 

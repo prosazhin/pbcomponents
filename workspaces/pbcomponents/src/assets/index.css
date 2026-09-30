@@ -49,13 +49,14 @@
   }
 
   .pbc-search-s {
-    padding-right: 32px;
+    padding-right: 30px;
   }
 
   .pbc-search-s::-webkit-search-cancel-button {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
     background: url('./x-mark-16.svg') no-repeat 50% 50%;
+    background-size: contain;
   }
 
   .pbc-search-m {
@@ -63,9 +64,10 @@
   }
 
   .pbc-search-m::-webkit-search-cancel-button {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     background: url('./x-mark-20.svg') no-repeat 50% 50%;
+    background-size: contain;
   }
 
   .pbc-summary::-webkit-details-marker {
@@ -94,4 +96,12 @@
   .pbc-dialog::backdrop {
     background: transparent;
   }
+}
+
+/* рамка inset-ring без верхней стороны — для пунктов сомкнутого CollapseGroup (как position=middle/last в фигме).
+   Вне @layer, чтобы перебить --tw-inset-ring-shadow из утилиты inset-ring */
+.pbc-inset-ring-no-top {
+  --tw-inset-ring-shadow:
+    inset 1px 0 0 0 var(--tw-inset-ring-color, currentcolor), inset -1px 0 0 0 var(--tw-inset-ring-color, currentcolor),
+    inset 0 -1px 0 0 var(--tw-inset-ring-color, currentcolor);
 }

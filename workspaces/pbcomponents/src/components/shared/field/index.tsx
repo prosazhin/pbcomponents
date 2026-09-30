@@ -25,6 +25,10 @@ export interface FieldDescriptionProps extends Omit<HTMLAttributes<HTMLParagraph
   children?: ReactNode;
 }
 
+export interface FieldErrorProps extends Omit<HTMLAttributes<HTMLParagraphElement>, 'children'> {
+  children?: ReactNode;
+}
+
 const FieldLabel = (props: FieldLabelProps) => {
   void props;
 
@@ -46,6 +50,13 @@ const FieldDescription = (props: FieldDescriptionProps) => {
 };
 FieldDescription.displayName = 'Field.Description';
 
+const FieldError = (props: FieldErrorProps) => {
+  void props;
+
+  return null;
+};
+FieldError.displayName = 'Field.Error';
+
 const Field = (props: FieldProps) => {
   const { error = false, children, className, ref: externalRef, id: externalId, ...rest } = props;
 
@@ -53,14 +64,16 @@ const Field = (props: FieldProps) => {
   const ref = useMergeRefs(internalRef, externalRef);
   const generatedId = useId();
 
-  const { labelProps, controlProps, descriptionProps } = useMemo<{
+  const { labelProps, controlProps, descriptionProps, errorProps } = useMemo<{
     labelProps: FieldLabelProps | null;
     controlProps: FieldControlProps | null;
     descriptionProps: FieldDescriptionProps | null;
+    errorProps: FieldErrorProps | null;
   }>(() => {
     let nextLabelProps: FieldLabelProps | null = null;
     let nextControlProps: FieldControlProps | null = null;
     let nextDescriptionProps: FieldDescriptionProps | null = null;
+    let nextErrorProps: FieldErrorProps | null = null;
 
     Children.forEach(children, (child) => {
       if (!isValidElement(child)) return;
@@ -79,6 +92,12 @@ const Field = (props: FieldProps) => {
 
       if (child.type === FieldDescription) {
         nextDescriptionProps = (child as ReactElement<FieldDescriptionProps>).props;
+
+        return;
+      }
+
+      if (child.type === FieldError) {
+        nextErrorProps = (child as ReactElement<FieldErrorProps>).props;
       }
     });
 
@@ -86,6 +105,7 @@ const Field = (props: FieldProps) => {
       labelProps: nextLabelProps,
       controlProps: nextControlProps,
       descriptionProps: nextDescriptionProps,
+      errorProps: nextErrorProps,
     };
   }, [children]);
 
@@ -96,6 +116,8 @@ const Field = (props: FieldProps) => {
   const validControls = controlChildrenArray.filter((item): item is ReactElement => isValidElement(item));
   const isGroup = validControls.length > 1;
   const descriptionId = descriptionProps?.children ? `${baseId}-description` : undefined;
+  const errorId = errorProps?.children ? `${baseId}-error` : undefined;
+  const describedBy = [descriptionId, errorId].filter(Boolean).join(' ') || undefined;
   const singleControl = !isGroup && validControls.length === 1 ? (validControls[0] as ReactElement<Record<string, unknown>>) : null;
   const controlId = singleControl ? ((singleControl.props.id as string | undefined) ?? `${baseId}-control`) : undefined;
 
@@ -103,34 +125,49 @@ const Field = (props: FieldProps) => {
     if (!isValidElement(item)) return item;
     const controlItem = item as ReactElement<Record<string, unknown>>;
 
+    // ошибка поля добавляется к собственной ошибке контрола, а не затирает её
+    const controlError = error || Boolean(controlItem.props.error);
+
     if (isGroup) {
       return cloneElement(controlItem, {
         ...(controlItem.props as object),
-        error,
+        error: controlError,
       });
     }
 
-    const mergedDescribedBy = [controlItem.props['aria-describedby'], descriptionId].filter(Boolean).join(' ') || undefined;
-    const ariaInvalid = error ? true : controlItem.props['aria-invalid'];
+    const mergedDescribedBy = [controlItem.props['aria-describedby'], describedBy].filter(Boolean).join(' ') || undefined;
+    const ariaInvalid = controlError ? true : controlItem.props['aria-invalid'];
 
     return cloneElement(controlItem, {
       ...(controlItem.props as object),
-      error,
+      error: controlError,
       id: controlId,
       'aria-describedby': mergedDescribedBy,
       'aria-invalid': ariaInvalid,
     });
   });
 
+  const labelClassName = clsx('pbc:text-text-primary pbc:w-full pbc:p-0', labelProps?.className);
   const controlClassName = clsx(
     'pbc pbc:flex pbc:flex-col pbc:gap-8',
     isGroup && validControls.length >= 2 && 'pbc:desktop:flex-row',
     controlProps.className,
   );
-  const descriptionClassName = clsx(
-    'pbc:w-full pbc:mt-4',
-    error ? 'pbc:text-danger-300' : 'pbc:text-text-secondary',
-    descriptionProps?.className,
+
+  const content = (
+    <>
+      <div className={controlClassName}>{resolvedControls}</div>
+      {descriptionProps?.children && (
+        <Text id={descriptionId} size={12} className={clsx('pbc:w-full pbc:text-text-secondary', descriptionProps.className)}>
+          {descriptionProps.children}
+        </Text>
+      )}
+      {errorProps?.children && (
+        <Text id={errorId} size={12} className={clsx('pbc:w-full pbc:text-danger-400', errorProps.className)}>
+          {errorProps.children}
+        </Text>
+      )}
+    </>
   );
 
   if (isGroup) {
@@ -139,37 +176,33 @@ const Field = (props: FieldProps) => {
         {...rest}
         ref={ref}
         id={baseId}
-        aria-describedby={descriptionId}
-        className={clsx('pbc pbc:flex pbc:flex-col pbc:w-full', className)}
+        aria-describedby={describedBy}
+        className={clsx('pbc pbc:flex pbc:flex-col pbc:gap-4 pbc:w-full pbc:min-w-0 pbc:m-0 pbc:p-0 pbc:border-0', className)}
       >
         {labelProps?.children && (
-          <Text as='legend' size='s' className={clsx('pbc:text-text-primary pbc:w-full pbc:mb-4', labelProps.className)}>
+          <Text as='legend' size={14} medium className={clsx(labelClassName, 'pbc:mb-4')}>
             {labelProps.children}
           </Text>
         )}
-        <div className={controlClassName}>{resolvedControls}</div>
-        {descriptionProps?.children && (
-          <Text id={descriptionId} size='s' className={descriptionClassName}>
-            {descriptionProps.children}
-          </Text>
-        )}
+        {content}
       </fieldset>
     );
   }
 
   return (
-    <label {...rest} ref={ref} id={baseId} htmlFor={controlId} className={clsx('pbc pbc:flex pbc:flex-col pbc:w-full', className)}>
+    <label
+      {...rest}
+      ref={ref}
+      id={baseId}
+      htmlFor={controlId}
+      className={clsx('pbc pbc:flex pbc:flex-col pbc:gap-4 pbc:w-full', className)}
+    >
       {labelProps?.children && (
-        <Text as='span' size='s' className={clsx('pbc:text-text-primary pbc:w-full pbc:mb-4', labelProps.className)}>
+        <Text as='span' size={14} medium className={labelClassName}>
           {labelProps.children}
         </Text>
       )}
-      <div className={controlClassName}>{resolvedControls}</div>
-      {descriptionProps?.children && (
-        <Text id={descriptionId} size='s' className={descriptionClassName}>
-          {descriptionProps.children}
-        </Text>
-      )}
+      {content}
     </label>
   );
 };
@@ -180,10 +213,12 @@ const FieldCompound: typeof Field & {
   Label: typeof FieldLabel;
   Control: typeof FieldControl;
   Description: typeof FieldDescription;
+  Error: typeof FieldError;
 } = Object.assign(Field, {
   Label: FieldLabel,
   Control: FieldControl,
   Description: FieldDescription,
+  Error: FieldError,
 });
 
 export default FieldCompound;

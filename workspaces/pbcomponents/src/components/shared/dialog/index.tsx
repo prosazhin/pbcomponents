@@ -3,9 +3,10 @@
 import Button, { ButtonProps } from '@/components/shared/button';
 import useControllableState from '@/hooks/use-controllable-state';
 import useMergeRefs from '@/hooks/use-merge-refs';
-import { XMarkIcon } from '@heroicons/react/24/solid';
+import useScreenSize from '@/hooks/use-screen-size';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
-import { LazyMotion, domAnimation, m } from 'motion/react';
+import { LazyMotion, PanInfo, domMax, m, useDragControls } from 'motion/react';
 import {
   Children,
   DialogHTMLAttributes,
@@ -19,6 +20,14 @@ import {
   useMemo,
   useRef,
 } from 'react';
+
+// ширина экрана, до которой окно открывается шторкой снизу (breakpoint mobile из pbstyles)
+const MOBILE_MAX_WIDTH = 768;
+// на сколько окно поднимается при появлении на десктопе
+const DESKTOP_OFFSET = 16;
+// шторка закрывается, если её утянули вниз больше чем на эту долю высоты или смахнули быстрее этой скорости
+const SWIPE_CLOSE_RATIO = 0.25;
+const SWIPE_CLOSE_VELOCITY = 500;
 
 type BaseDialogProps = Omit<DialogHTMLAttributes<HTMLDialogElement>, 'onClose' | 'id' | 'children'>;
 export interface DialogProps extends BaseDialogProps {
@@ -114,6 +123,12 @@ const Dialog = (props: DialogProps) => {
   });
   const open = (isControlled ? controlledOpen : stateOpen) ?? false;
 
+  // на мобильном окно — шторка снизу, которую можно смахнуть вниз за полоску сверху
+  const { width: screenWidth } = useScreenSize();
+  const isMobile = screenWidth <= MOBILE_MAX_WIDTH;
+  const dragControls = useDragControls();
+  const panelRef = useRef<HTMLDivElement>(null);
+
   const requestOpen = useCallback(() => {
     setStateOpen(true);
   }, [setStateOpen]);
@@ -156,6 +171,8 @@ const Dialog = (props: DialogProps) => {
         } catch {
           node.show();
         }
+        // showModal сам ставит фокус на первый элемент внутри (кнопку закрытия) — переводим его на само окно
+        node.focus({ preventScroll: true });
       }
     } else if (wasOpen) {
       closeTimer = setTimeout(() => {
@@ -267,6 +284,17 @@ const Dialog = (props: DialogProps) => {
     };
   }, [children]);
 
+  const handleDragEnd = (_: PointerEvent, info: PanInfo) => {
+    const height = panelRef.current?.offsetHeight ?? 0;
+
+    if (info.offset.y > height * SWIPE_CLOSE_RATIO || info.velocity.y > SWIPE_CLOSE_VELOCITY) {
+      requestClose();
+    }
+  };
+
+  const hiddenState = isMobile ? { opacity: 1, y: '100%' } : { opacity: 0, y: DESKTOP_OFFSET };
+  const enterTransition = { duration: animationDuration / 1000, ease: open ? 'easeOut' : 'easeIn' } as const;
+
   return (
     <>
       {triggerProps && (
@@ -279,12 +307,13 @@ const Dialog = (props: DialogProps) => {
           }}
         />
       )}
-      <LazyMotion features={domAnimation}>
+      <LazyMotion features={domMax}>
         <dialog
           {...rest}
           ref={ref}
           id={id}
-          className='pbc pbc-dialog pbc:fixed pbc:size-full pbc:inset-0 pbc:m-0 pbc:p-0 pbc:border-0 pbc:bg-transparent pbc:max-w-none pbc:max-h-none pbc:overflow-hidden'
+          tabIndex={-1}
+          className='pbc pbc-dialog pbc:outline-none pbc:fixed pbc:size-full pbc:inset-0 pbc:m-0 pbc:p-0 pbc:border-0 pbc:bg-transparent pbc:max-w-none pbc:max-h-none pbc:overflow-hidden'
           onCancel={(event) => {
             rest.onCancel?.(event);
             event.preventDefault();
@@ -295,51 +324,65 @@ const Dialog = (props: DialogProps) => {
             className='pbc:fixed pbc:size-full pbc:inset-0 pbc:m-auto pbc:p-0 pbc:flex pbc:pointer-events-none pbc:desktop:items-center pbc:items-end pbc:justify-end pbc:desktop:justify-center'
             initial={false}
             animate={{ zIndex: open ? 500 : -1 }}
-            transition={{ duration: animationDuration / 1000, ease: open ? 'easeIn' : 'easeOut' }}
+            // слой меняем мгновенно: при закрытии — после того, как доиграет анимация окна
+            transition={{ duration: 0, delay: open ? 0 : animationDuration / 1000 }}
           >
             <m.div
               className={clsx(
                 'pbc:absolute pbc:size-full pbc:inset-0 pbc:z-1 pbc:pointer-events-auto',
-                backdrop ? 'pbc:bg-basic-400/50' : 'pbc:bg-transparent',
+                // затемнение должно быть тёмным в обеих темах, а семантические токены в тёмной теме инвертируются
+                // (basic-400 там белый) — поэтому исключение из правила: константа палитры pbstyles
+                backdrop ? 'pbc:bg-gray-blue-900/50' : 'pbc:bg-transparent',
               )}
               initial={false}
               animate={{ opacity: open ? 1 : 0 }}
-              transition={{ duration: animationDuration / 1000, ease: open ? 'easeIn' : 'easeOut' }}
+              transition={enterTransition}
               onClick={requestClose}
             />
             <m.div
               className={clsx(
-                'pbc pbc:pt-0 pbc:px-0 pbc:z-10 pbc:mx-auto pbc:desktop:m-auto pbc:box-border pbc:pointer-events-auto',
+                'pbc pbc:relative pbc:z-10 pbc:mx-auto pbc:desktop:m-auto pbc:box-border pbc:pointer-events-auto',
                 'pbc:w-full pbc:desktop:w-736 pbc:max-w-full pbc:max-h-[calc(100dvh-40px)] pbc:desktop:max-h-[calc(100dvh-160px)]',
-                'pbc-scrollbar-hidden pbc:overflow-x-hidden pbc:overflow-y-auto pbc:flex pbc:flex-col pbc:pb-40 pbc:desktop:pb-80',
-                'pbc:bg-basic-0 pbc:text-text-primary pbc:rounded-t-16 pbc:desktop:rounded-16 pbc:shadow-xxxxl pbc:border pbc:border-solid pbc:border-secondary-200',
+                'pbc:flex pbc:flex-col pbc:overflow-hidden',
+                'pbc:bg-basic-0 pbc:text-text-primary pbc:rounded-t-16 pbc:desktop:rounded-16 pbc:shadow-xxxxl pbc:inset-ring pbc:inset-ring-secondary-200',
                 className,
                 contentProps?.className,
               )}
               role={contentProps?.role}
-              style={contentProps?.style}
+              style={{ willChange: 'transform', ...contentProps?.style }}
+              ref={panelRef}
               initial={false}
-              animate={{ opacity: open ? 1 : 0, y: open ? 0 : '100%' }}
-              transition={{ duration: animationDuration / 1000, ease: open ? 'easeIn' : 'easeOut' }}
+              animate={open ? { opacity: 1, y: 0 } : hiddenState}
+              transition={enterTransition}
+              drag={isMobile && open ? 'y' : false}
+              dragControls={dragControls}
+              dragListener={false}
+              dragConstraints={{ top: 0, bottom: 0 }}
+              dragElastic={{ top: 0, bottom: 1 }}
+              onDragEnd={handleDragEnd}
             >
-              <div className='pbc:sticky pbc:top-0 pbc:px-8 pbc:pt-8 pbc:z-10 pbc:flex pbc:justify-end pbc:bg-basic-0'>
-                <Button
-                  {...closeProps}
-                  size={closeProps?.size ?? 'm'}
-                  theme={closeProps?.theme ?? 'ghost'}
-                  color={closeProps?.color ?? 'secondary'}
-                  leftIcon={closeProps?.leftIcon ?? XMarkIcon}
-                  autoFocus={false}
-                  className={clsx('pbc:w-auto!', closeProps?.className)}
-                  onClick={(event) => {
-                    closeProps?.onClick?.(event);
-                    requestClose();
-                  }}
-                >
-                  {closeProps?.children}
-                </Button>
+              {/* зона с полоской сверху у мобильной шторки: за неё окно тянут вниз, чтобы закрыть */}
+              <div
+                className='pbc:absolute pbc:top-0 pbc:inset-x-64 pbc:z-10 pbc:flex pbc:h-40 pbc:justify-center pbc:pt-16 pbc:cursor-grab pbc:touch-none pbc:active:cursor-grabbing pbc:desktop:hidden'
+                onPointerDown={(event) => dragControls.start(event)}
+              >
+                <div className='pbc:h-6 pbc:w-40 pbc:rounded-999 pbc:bg-secondary-200' />
               </div>
-              <div className='pbc:px-24 pbc:pt-8 pbc:desktop:px-80 pbc:desktop:pt-24'>
+              <Button
+                {...closeProps}
+                size={closeProps?.size ?? 'm'}
+                theme={closeProps?.theme ?? 'ghost'}
+                color={closeProps?.color ?? 'secondary'}
+                leftIcon={closeProps?.leftIcon ?? XMarkIcon}
+                className={clsx('pbc:absolute! pbc:top-8 pbc:right-8 pbc:z-10 pbc:w-auto!', closeProps?.className)}
+                onClick={(event) => {
+                  closeProps?.onClick?.(event);
+                  requestClose();
+                }}
+              >
+                {closeProps?.children}
+              </Button>
+              <div className='pbc pbc-scrollbar-hidden pbc:min-h-0 pbc:flex-1 pbc:overflow-x-hidden pbc:overflow-y-auto pbc:px-24 pbc:pt-64 pbc:pb-40 pbc:desktop:p-80'>
                 {headerProps?.children && <div className={clsx('pbc:w-full pbc:mb-24', headerProps.className)}>{headerProps.children}</div>}
                 {bodyProps?.children && <div className={clsx('pbc:w-full', bodyProps.className)}>{bodyProps.children}</div>}
                 {footerProps?.children && <div className={clsx('pbc:w-full pbc:mt-24', footerProps.className)}>{footerProps.children}</div>}

@@ -1,9 +1,9 @@
 import * as heroicons from '@heroicons/react/24/outline';
-import { Badge, DropdownItem as Component, Container } from '@prosazhin/pbcomponents';
-import type { Meta, StoryObj } from '@storybook/react';
+import { Badge, PopoverItem as Component, Container } from '@prosazhin/pbcomponents';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
-  title: 'Components/Dropdown/DropdownItem',
+  title: 'Components/Popover/PopoverItem',
   component: Component,
   decorators: [
     (Story) => (
@@ -107,7 +107,7 @@ const meta = {
     },
   },
   args: {
-    children: 'Dropdown Item',
+    children: 'Popover Item',
     borderTop: false,
     borderBottom: false,
     badge: undefined,
@@ -170,4 +170,4 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const DropdownItem: Story = {};
+export const PopoverItem: Story = {};

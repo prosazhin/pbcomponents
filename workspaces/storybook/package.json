@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "storybook dev -p 6006",
-    "lint": "eslint stories",
+    "lint": "eslint stories && tsc --noEmit -p tsconfig.app.json",
     "clean:modules": "rimraf ./node_modules"
   },
   "dependencies": {

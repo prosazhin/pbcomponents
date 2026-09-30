@@ -288,7 +288,7 @@ const NotificationsProvider = (props: NotificationsProviderProps) => {
               key={notification.id}
               ref={getNotificationNodeRef(notification.id)}
               {...resolvedNotificationProps}
-              className={clsx('pbc:absolute pbc:right-0 pbc:m-0', notification.payload.className)}
+              className={clsx('pbc:absolute pbc:right-0 pbc:m-0!', notification.payload.className)}
               isMouseInside={!disableTimerPauseOnContainerHover ? isContainerHovered : undefined}
               onOpenChange={(value, id) => {
                 const resolvedId = id ?? notification.id;

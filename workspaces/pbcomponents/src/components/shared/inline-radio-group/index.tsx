@@ -2,7 +2,7 @@
 
 import InlineRadio, { InlineRadioProps } from '@/components/shared/inline-radio';
 import useControllableState from '@/hooks/use-controllable-state';
-import { FieldSetHTMLAttrs, FieldSetType, InputEvent, InputType, SMSizeType } from '@/types';
+import { FieldSetHTMLAttrs, FieldSetType, InputType, SMSizeType } from '@/types';
 import clsx from 'clsx';
 import { LazyMotion, domAnimation, m } from 'motion/react';
 import { ReactElement, Ref, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
@@ -10,19 +10,31 @@ import { ReactElement, Ref, useEffect, useLayoutEffect, useMemo, useRef, useStat
 type BaseInlineRadioGroupProps = Omit<FieldSetHTMLAttrs, 'onChange' | 'children'> & SMSizeType;
 export interface InlineRadioGroupProps extends BaseInlineRadioGroupProps {
   children: ReactElement<InlineRadioProps>[];
+  rounded?: boolean;
   value?: string;
   defaultValue?: string;
-  onChange?: (checked: boolean, value: string, event: InputEvent) => void;
+  onChange?: (value: string) => void;
   ref?: Ref<FieldSetType>;
 }
 
 const InlineRadioGroup = (props: InlineRadioGroupProps) => {
-  const { size, value: externalValue, defaultValue, onChange = () => {}, children: childn, className, ref: externalRef, ...rest } = props;
+  const {
+    size = 'm',
+    rounded = false,
+    value: externalValue,
+    defaultValue,
+    onChange,
+    children: childn,
+    className,
+    ref: externalRef,
+    ...rest
+  } = props;
   const { name, disabled } = rest;
 
   const [activeValue, setActiveValue] = useControllableState<string>({
     value: externalValue,
     defaultValue,
+    onChange,
   });
   const [indicatorStyle, setIndicatorStyle] = useState<{ x: number; width: number } | null>(null);
   const [mounted, setMounted] = useState<boolean>(false);
@@ -77,8 +89,9 @@ const InlineRadioGroup = (props: InlineRadioGroupProps) => {
       ref={externalRef}
       className={clsx(
         'pbc pbc:relative pbc:w-max pbc:bg-secondary-100 pbc:p-4! pbc:appearance-none',
-        size === 's' && 'pbc:rounded-8',
-        size === 'm' && 'pbc:rounded-12',
+        rounded && 'pbc:rounded-999',
+        !rounded && size === 's' && 'pbc:rounded-8',
+        !rounded && size === 'm' && 'pbc:rounded-12',
         className,
       )}
     >
@@ -91,8 +104,10 @@ const InlineRadioGroup = (props: InlineRadioGroupProps) => {
             <m.div
               className={clsx(
                 'pbc:absolute pbc:left-0 pbc:z-0 pbc:bg-basic-0',
-                size === 's' && 'pbc:top-0 pbc:bottom-0 pbc:rounded-6',
-                size === 'm' && 'pbc:top-0 pbc:bottom-0 pbc:rounded-8',
+                'pbc:top-0 pbc:bottom-0',
+                rounded && 'pbc:rounded-999',
+                !rounded && size === 's' && 'pbc:rounded-6',
+                !rounded && size === 'm' && 'pbc:rounded-8',
               )}
               initial={false}
               animate={{ x: indicatorStyle.x, width: indicatorStyle.width }}
@@ -104,18 +119,16 @@ const InlineRadioGroup = (props: InlineRadioGroupProps) => {
           <InlineRadio
             {...itemProps}
             key={index}
-            name={name ? name : undefined}
+            name={name ?? itemProps.name}
             size={size}
             checked={activeValue === (itemProps.value ?? itemProps.children ?? '')}
             indicator={false}
-            disabled={disabled ? disabled : undefined}
+            rounded={rounded}
+            disabled={disabled || itemProps.disabled}
             ref={(value) => {
               radioRefs.current[index] = value;
             }}
-            onChange={(checked, value, event) => {
-              setActiveValue(value);
-              onChange(checked, value, event);
-            }}
+            onChange={(_, value) => setActiveValue(value)}
           />
         ))}
       </div>

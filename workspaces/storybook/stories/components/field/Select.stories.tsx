@@ -1,10 +1,26 @@
-import { Select as Component, Container } from '@prosazhin/pbcomponents';
-import type { Meta, StoryObj } from '@storybook/react';
+import { Button, Select as Component, Container, type SelectProps } from '@prosazhin/pbcomponents';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { ComponentType } from 'react';
 import { useArgs } from 'storybook/preview-api';
+
+type Option = SelectProps['options'][number];
+type Value = Option | Option[] | undefined;
+// single и multiple в панели переключаются одним флагом, поэтому пропсы собраны без дискриминированного union;
+// addon — какой аддон показать: кнопку слева, справа или ничего
+type StoryArgs = Omit<SelectProps, 'multiple' | 'value' | 'defaultValue' | 'onChange'> & {
+  multiple?: boolean;
+  value?: Value;
+  defaultValue?: Value;
+  onChange?: (value: Value) => void;
+  addon?: 'none' | 'left' | 'right';
+};
+
+const StoryComponent = Component as ComponentType<StoryArgs>;
 
 const meta = {
   title: 'Components/Field/Select',
-  component: Component,
+  // args истории шире пропсов компонента (виртуальные поля для панели)
+  component: StoryComponent,
   decorators: [
     (Story) => (
       <Container size='s'>
@@ -17,6 +33,12 @@ const meta = {
     ),
   ],
   argTypes: {
+    addon: {
+      options: ['none', 'left', 'right'],
+      control: 'radio',
+      defaultValue: { summary: 'none' },
+      table: { type: { summary: 'leftAddon | rightAddon' } },
+    },
     className: { control: 'text', type: 'string', defaultValue: { summary: undefined } },
     wrapperClassName: { control: 'text', type: 'string', defaultValue: { summary: undefined } },
     size: { options: ['s', 'm'], control: 'radio', defaultValue: { summary: 'm' } },
@@ -38,13 +60,14 @@ const meta = {
       defaultValue: { summary: undefined },
       table: { type: { summary: '(value: Option | Option[]) => void' } },
     },
-    dropdownClassName: { control: 'text', type: 'string', defaultValue: { summary: undefined } },
-    dropdownItemClassName: { control: 'text', type: 'string', defaultValue: { summary: undefined } },
+    popoverClassName: { control: 'text', type: 'string', defaultValue: { summary: undefined } },
+    popoverItemClassName: { control: 'text', type: 'string', defaultValue: { summary: undefined } },
     multiple: { control: 'boolean', defaultValue: { summary: false } },
     search: { control: 'boolean', defaultValue: { summary: false } },
     searchPlaceholder: { control: 'text', type: 'string', defaultValue: { summary: 'Placeholder' } },
   },
   args: {
+    addon: 'none',
     size: 'm',
     disabled: false,
     error: false,
@@ -57,11 +80,12 @@ const meta = {
     searchPlaceholder: 'Placeholder',
     className: '',
     wrapperClassName: '',
-    dropdownClassName: '',
-    dropdownItemClassName: '',
+    popoverClassName: '',
+    popoverItemClassName: '',
   },
   render: function Render(args) {
     const {
+      addon,
       size,
       disabled,
       error,
@@ -73,26 +97,40 @@ const meta = {
       searchPlaceholder,
       className,
       wrapperClassName,
-      dropdownClassName,
-      dropdownItemClassName,
+      popoverClassName,
+      popoverItemClassName,
     } = args;
     const [{ value }, setArgs] = useArgs();
 
     return (
-      <Component
+      <StoryComponent
         size={size}
+        leftAddon={
+          addon === 'left' ? (
+            <Button theme='border' color='secondary'>
+              Button
+            </Button>
+          ) : undefined
+        }
+        rightAddon={
+          addon === 'right' ? (
+            <Button theme='border' color='secondary'>
+              Button
+            </Button>
+          ) : undefined
+        }
         disabled={disabled}
         error={error}
         value={value}
         placeholder={placeholder ? placeholder : undefined}
         options={options}
-        multiple={multiple}
         search={search}
         searchPlaceholder={searchPlaceholder}
         className={className ? className : undefined}
         wrapperClassName={wrapperClassName ? wrapperClassName : undefined}
-        dropdownClassName={dropdownClassName ? dropdownClassName : undefined}
-        dropdownItemClassName={dropdownItemClassName ? dropdownItemClassName : undefined}
+        popoverClassName={popoverClassName ? popoverClassName : undefined}
+        popoverItemClassName={popoverItemClassName ? popoverItemClassName : undefined}
+        multiple={multiple}
         onChange={(v) => {
           setArgs({ value: v });
           if (onChange) onChange(v);
@@ -100,7 +138,7 @@ const meta = {
       />
     );
   },
-} satisfies Meta<typeof Component>;
+} satisfies Meta<StoryArgs>;
 
 export default meta;
 

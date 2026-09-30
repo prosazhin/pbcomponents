@@ -11,7 +11,7 @@ import {
   TextClassNameType,
   WithIconsType,
 } from '@/types';
-import { ArrowPathIcon } from '@heroicons/react/24/solid';
+import { ArrowPathIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import { ElementType, Ref, useEffect, useRef, useState } from 'react';
 
@@ -48,6 +48,7 @@ const Tag = (props: TagProps) => {
     children,
     className,
     textClassName,
+    onClick,
     ref: externalRef,
     ...rest
   } = props;
@@ -84,16 +85,20 @@ const Tag = (props: TagProps) => {
       {...rest}
       ref={ref}
       className={clsx(
-        'pbc pbc:rounded-999 pbc:inline-flex pbc:w-max pbc:flex-nowrap pbc:cursor-pointer pbc:items-center pbc:justify-center pbc:transition-colors pbc:duration-150 pbc:focus:outline-outline-primary pbc:outline-4 pbc:outline-offset-0 pbc:border pbc:border-transparent',
+        'pbc pbc:rounded-999 pbc:inline-flex pbc:w-max pbc:flex-nowrap pbc:cursor-pointer pbc:items-center pbc:justify-center pbc:transition pbc:duration-150 pbc:focus:outline-outline-primary pbc:outline-4 pbc:outline-offset-0 pbc:inset-ring pbc:inset-ring-transparent',
         size === 's' && 'pbc:h-26 pbc:px-8 pbc:py-4',
         size === 'm' && 'pbc:h-34 pbc:px-12 pbc:py-8',
         theme === 'light' && !checked && 'pbc:bg-primary-100 pbc:text-text-primary pbc:hover:bg-primary-200',
         theme === 'border' &&
           !checked &&
-          'pbc:border-secondary-200! pbc:text-text-primary pbc:hover:border-primary-300! pbc:bg-transparent',
+          'pbc:inset-ring-primary-200! pbc:text-text-primary pbc:hover:inset-ring-primary-300! pbc:bg-basic-0',
         checked && 'pbc:bg-primary-300 pbc:hover:bg-primary-400 pbc:text-text-contrast',
         (theme === 'light' || checked) && disabled && !loading && 'pbc:bg-secondary-100! pbc:text-text-secondary!',
-        theme === 'border' && disabled && !loading && 'pbc:border-secondary-200! pbc:hover:border-secondary-200! pbc:text-text-secondary!',
+        theme === 'border' &&
+          !checked &&
+          disabled &&
+          !loading &&
+          'pbc:inset-ring-secondary-200! pbc:hover:inset-ring-secondary-200! pbc:text-text-secondary!',
         (disabled || loading) && 'pbc:cursor-default!',
         className,
       )}
@@ -102,13 +107,15 @@ const Tag = (props: TagProps) => {
       target={externalHref ? target : undefined}
       disabled={disabled || loading}
       aria-disabled={disabled || loading}
+      // у задизейбленной ссылки нет атрибута disabled, поэтому клик глушим сами
+      onClick={disabled || loading ? undefined : onClick}
       style={{ width: loading ? width : undefined }}
     >
       {loading ? (
-        <Icon tag={ArrowPathIcon} size='s' className={clsx('pbc:animate-spin pbc:transition')} />
+        <Icon tag={ArrowPathIcon} size={14} className={clsx('pbc:animate-spin pbc:transition')} />
       ) : (
         <Content
-          size='s'
+          size={12}
           leftIcon={leftIcon}
           leftIconClassName={leftIconClassName}
           rightIcon={rightIcon}

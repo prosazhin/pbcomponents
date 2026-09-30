@@ -35,10 +35,15 @@ export type TextClassNameType = { textClassName?: string };
 export type LinkComponentType = { linkComponent?: ElementType };
 
 export type SizeType = { size?: 'xs' | 's' | 'm' | 'l' };
-export type SMLSizeType = { size?: 's' | 'm' | 'l' };
 export type SMSizeType = { size?: 's' | 'm' };
+// шкала размеров шрифта из .content в фигме
+export type TextSize = 10 | 12 | 14 | 16 | 20 | 24 | 32;
+export type TextSizeType = { size?: TextSize };
+export type IconSize = 12 | 14 | 16 | 18 | 20 | 22 | 24 | 26 | 32;
+export type IconSizeType = { size?: IconSize };
 
 export type ColorType = { color?: 'primary' | 'secondary' | 'success' | 'danger' };
+export type ColorWithWarningType = { color?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' };
 export type ThemeType = { theme?: 'filled' | 'light' | 'border' | 'ghost' };
 
 export type ButtonOrLinkType = HTMLButtonElement | HTMLAnchorElement;
@@ -58,6 +63,6 @@ export type TextareaType = HTMLTextAreaElement;
 export type TextareaHTMLAttrs = TextareaHTMLAttributes<HTMLElement>;
 export type TextareaEvent = ChangeEvent<TextareaType>;
 
-export type SelectDropdownOptionType<T> = { display: string; value?: string; disabled?: boolean; badge?: T };
+export type OptionType<T> = { display: string; value?: string; disabled?: boolean; badge?: T };
 
 export type PolymorphicProps<Element extends ElementType, Props> = Props & Omit<ComponentProps<Element>, 'as'> & { as?: Element };

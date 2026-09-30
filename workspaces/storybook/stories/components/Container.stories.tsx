@@ -1,5 +1,8 @@
-import { Container as Component } from '@prosazhin/pbcomponents';
-import type { Meta, StoryObj } from '@storybook/react';
+import { Container as Component, type ContainerProps } from '@prosazhin/pbcomponents';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+
+// leftAside и rightAside включают Container.LeftAside и Container.RightAside
+type StoryArgs = ContainerProps & { leftAside?: boolean; rightAside?: boolean };
 
 const meta = {
   title: 'Components/Container',
@@ -39,7 +42,7 @@ const meta = {
       {rightAside && <Component.RightAside>Right Aside</Component.RightAside>}
     </Component>
   ),
-} satisfies Meta<typeof Component>;
+} satisfies Meta<StoryArgs>;
 
 export default meta;
 

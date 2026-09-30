@@ -1,10 +1,15 @@
 import * as heroicons from '@heroicons/react/24/outline';
-import { Tab as Component, Container } from '@prosazhin/pbcomponents';
-import type { Meta, StoryObj } from '@storybook/react';
+import { Badge, Tab as Component, Container, type TabProps } from '@prosazhin/pbcomponents';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { ComponentType } from 'react';
+
+// badge в панели — текст, из него собирается Badge
+type StoryArgs = Omit<TabProps, 'badge'> & { badge?: string };
 
 const meta = {
   title: 'Components/Tabs/Tab',
-  component: Component,
+  // args истории шире пропсов компонента (виртуальные поля для панели)
+  component: Component as ComponentType<StoryArgs>,
   decorators: [
     (Story) => (
       <Container size='s'>
@@ -15,6 +20,11 @@ const meta = {
     ),
   ],
   argTypes: {
+    badge: {
+      control: 'text',
+      type: 'string',
+      defaultValue: { summary: undefined },
+    },
     className: {
       control: 'text',
       type: 'string',
@@ -50,6 +60,11 @@ const meta = {
     active: {
       control: 'boolean',
       defaultValue: { summary: 'false' },
+    },
+    theme: {
+      options: ['line', 'pill', 'pill-secondary'],
+      control: { type: 'radio' },
+      defaultValue: { summary: 'line' },
     },
     disabled: {
       control: 'boolean',
@@ -87,6 +102,8 @@ const meta = {
   args: {
     label: 'Tab',
     active: false,
+    theme: 'line',
+    badge: '',
     disabled: false,
     href: '#',
     target: '_self',
@@ -101,11 +118,13 @@ const meta = {
   },
   render: ({
     label,
+    badge,
     leftIcon,
     leftIconClassName,
     rightIcon,
     rightIconClassName,
     active,
+    theme,
     disabled,
     href,
     target,
@@ -116,7 +135,9 @@ const meta = {
   }) => (
     <Component
       label={label}
+      badge={badge ? <Badge>{badge}</Badge> : undefined}
       active={active}
+      theme={theme}
       disabled={disabled}
       type={type}
       href={href}
@@ -132,7 +153,7 @@ const meta = {
       onClick={onClick}
     />
   ),
-} satisfies Meta<typeof Component>;
+} satisfies Meta<StoryArgs>;
 
 export default meta;
 

@@ -1,9 +1,9 @@
-import { Switch as Component, Container } from '@prosazhin/pbcomponents';
-import type { Meta, StoryObj } from '@storybook/react';
+import { Toggle as Component, Container } from '@prosazhin/pbcomponents';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useArgs } from 'storybook/preview-api';
 
 const meta = {
-  title: 'Components/Checkbox/Switch',
+  title: 'Components/Checkbox/Toggle',
   component: Component,
   decorators: [
     (Story) => (
@@ -15,6 +15,11 @@ const meta = {
     ),
   ],
   argTypes: {
+    description: {
+      control: 'text',
+      type: 'string',
+      defaultValue: { summary: undefined },
+    },
     children: {
       control: 'text',
       type: 'string',
@@ -67,6 +72,7 @@ const meta = {
   },
   args: {
     children: 'Label',
+    description: '',
     labelPlace: 'right',
     size: 'm',
     checked: false,
@@ -78,12 +84,13 @@ const meta = {
     textClassName: '',
   },
   render: function Render(args) {
-    const { value, children, labelPlace, size, disabled, className, wrapperClassName, textClassName } = args;
+    const { value, children, description, labelPlace, size, disabled, className, wrapperClassName, textClassName } = args;
     const [{ checked }, setArgs] = useArgs();
 
     return (
       <Component
         value={value}
+        description={description ? description : undefined}
         size={size}
         labelPlace={labelPlace}
         checked={checked}
@@ -105,4 +112,4 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Switch: Story = {};
+export const Toggle: Story = {};

@@ -2,6 +2,7 @@
 
 import Icon from '@/components/helpers/icon';
 import Text from '@/components/helpers/text';
+import Progress from '@/components/shared/progress';
 import { SvgType } from '@/types';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
@@ -114,11 +115,12 @@ const Notification = (props: NotificationProps) => {
             open={open}
             className={clsx(
               'pbc pbc-notification pbc:z-999 pbc:pointer-events-auto pbc:overflow-hidden',
-              'pbc:border pbc:border-solid pbc:rounded-8 pbc:w-full pbc:max-w-[calc(100%-32px)] pbc:desktop:max-w-400 pbc:min-h-80 pbc:m-auto pbc:px-24 pbc:py-16',
-              'pbc:border-secondary-100 pbc:bg-basic-0 pbc:flex pbc:flex-row pbc:gap-x-16 pbc:items-center',
+              'pbc:inset-ring pbc:rounded-8 pbc:w-full pbc:max-w-[calc(100%-32px)] pbc:desktop:max-w-400 pbc:min-h-80 pbc:m-auto pbc:px-24 pbc:py-16',
+              'pbc:inset-ring-secondary-100 pbc:bg-basic-0 pbc:flex pbc:flex-row pbc:gap-x-16 pbc:items-center',
               'pbc:shadow-sm pbc:hover:shadow-xxl pbc:transition-shadow pbc:duration-150',
-              onClick ? 'pbc:cursor-pointer' : 'pbc:cursor-default',
-              !disableCloseByClickInsideAnywhere ? 'pbc:cursor-pointer pbc:group' : 'pbc:cursor-default',
+              // курсор один: кликабельно, если есть onClick или клик закрывает уведомление
+              onClick || !disableCloseByClickInsideAnywhere ? 'pbc:cursor-pointer' : 'pbc:cursor-default',
+              !disableCloseByClickInsideAnywhere && 'pbc:group',
               className,
             )}
             onClick={(event) => {
@@ -154,16 +156,16 @@ const Notification = (props: NotificationProps) => {
             {icon && (
               <Icon
                 tag={icon}
-                size='l'
-                className={clsx('pbc:size-32 pbc:pointer-events-none pbc:select-none pbc:text-text-secondary', iconClassName)}
+                size={32}
+                className={clsx('pbc:pointer-events-none pbc:select-none pbc:text-text-secondary', iconClassName)}
               />
             )}
             <div className='pbc:flex pbc:flex-col pbc:w-full pbc:gap-y-4'>
-              <Text size='m' medium className='pbc:w-full pbc:text-text-primary'>
+              <Text size={16} medium className='pbc:w-full pbc:text-text-primary'>
                 {headline}
               </Text>
               {children && (
-                <Text size='s' className='pbc:w-full pbc:text-text-secondary'>
+                <Text size={10} className='pbc:w-full pbc:text-text-secondary'>
                   {children}
                 </Text>
               )}
@@ -179,20 +181,17 @@ const Notification = (props: NotificationProps) => {
             >
               <Icon
                 tag={XMarkIcon}
-                size='l'
+                size={24}
                 className='pbc:text-text-primary pbc:pointer-events-none pbc:group-hover:text-primary-400 pbc:select-none pbc:transition-colors pbc:duration-150'
               />
             </button>
             {!disableTimer && !disableProgressBar && open && (
-              <m.div
-                className='pbc:absolute pbc:h-1 pbc:bottom-0 pbc:inset-x-0 pbc:m-auto pbc:w-full pbc:bg-primary-300'
-                initial={{ opacity: 1, x: '-100%' }}
-                animate={{
-                  opacity: 1,
-                  x: `${progress - 100}%`,
-                }}
-                exit={{ opacity: 0, transition: { duration: 0.2 } }}
-                transition={{ ease: 'linear', duration: 0.05 }}
+              <Progress
+                size='xs'
+                value={progress}
+                background={false}
+                className='pbc:absolute! pbc:inset-x-0 pbc:bottom-1'
+                barClassName='pbc:transition-none'
               />
             )}
           </m.dialog>

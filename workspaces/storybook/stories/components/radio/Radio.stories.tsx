@@ -1,5 +1,5 @@
 import { Radio as Component, Container } from '@prosazhin/pbcomponents';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Components/Radio/Radio',
@@ -14,6 +14,11 @@ const meta = {
     ),
   ],
   argTypes: {
+    description: {
+      control: 'text',
+      type: 'string',
+      defaultValue: { summary: undefined },
+    },
     children: {
       control: 'text',
       type: 'string',
@@ -66,6 +71,7 @@ const meta = {
   },
   args: {
     children: 'Label',
+    description: '',
     labelPlace: 'right',
     size: 'm',
     checked: false,
@@ -76,8 +82,22 @@ const meta = {
     wrapperClassName: '',
     textClassName: '',
   },
-  render: ({ children, checked, value, labelPlace, size, disabled, className, wrapperClassName, textClassName, name, onChange }) => (
+  render: ({
+    children,
+    description,
+    checked,
+    value,
+    labelPlace,
+    size,
+    disabled,
+    className,
+    wrapperClassName,
+    textClassName,
+    name,
+    onChange,
+  }) => (
     <Component
+      description={description ? description : undefined}
       value={value}
       size={size}
       labelPlace={labelPlace}

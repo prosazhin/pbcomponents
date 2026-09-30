@@ -1,10 +1,15 @@
 import * as heroicons from '@heroicons/react/24/outline';
-import { InlineRadio as Component, Container } from '@prosazhin/pbcomponents';
-import type { Meta, StoryObj } from '@storybook/react';
+import { Badge, InlineRadio as Component, Container, type InlineRadioProps } from '@prosazhin/pbcomponents';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { ComponentType } from 'react';
+
+// badge в панели — текст, из него собирается Badge
+type StoryArgs = Omit<InlineRadioProps, 'badge'> & { badge?: string };
 
 const meta = {
   title: 'Components/Inline Radio/InlineRadio',
-  component: Component,
+  // args истории шире пропсов компонента (виртуальные поля для панели)
+  component: Component as ComponentType<StoryArgs>,
   decorators: [
     (Story) => (
       <Container size='s'>
@@ -15,6 +20,15 @@ const meta = {
     ),
   ],
   argTypes: {
+    rounded: {
+      control: 'boolean',
+      defaultValue: { summary: 'false' },
+    },
+    badge: {
+      control: 'text',
+      type: 'string',
+      defaultValue: { summary: undefined },
+    },
     children: {
       control: 'text',
       type: 'string',
@@ -56,6 +70,8 @@ const meta = {
   },
   args: {
     children: 'Label',
+    rounded: false,
+    badge: '',
     size: 'm',
     checked: false,
     disabled: false,
@@ -70,6 +86,8 @@ const meta = {
   },
   render: ({
     children,
+    rounded,
+    badge,
     value,
     leftIcon,
     leftIconClassName,
@@ -85,6 +103,8 @@ const meta = {
   }) => (
     <Component
       value={value}
+      rounded={rounded}
+      badge={badge ? <Badge>{badge}</Badge> : undefined}
       size={size}
       checked={checked}
       disabled={disabled}
@@ -102,7 +122,7 @@ const meta = {
       {children}
     </Component>
   ),
-} satisfies Meta<typeof Component>;
+} satisfies Meta<StoryArgs>;
 
 export default meta;
 

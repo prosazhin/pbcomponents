@@ -53,9 +53,16 @@
 
 Каждый компонент — отдельная папка с `index.tsx`.
 
-- `workspaces/pbcomponents/src/components/helpers/content/`
-- `workspaces/pbcomponents/src/components/helpers/icon/`
-- `workspaces/pbcomponents/src/components/helpers/text/`
+- `workspaces/pbcomponents/src/components/helpers/content/` (шкала `.content` из фигмы: `size` 10–32, иконка и gap подбираются по размеру)
+- `workspaces/pbcomponents/src/components/helpers/icon/` (`size` — размер иконки в px)
+- `workspaces/pbcomponents/src/components/helpers/text/` (`size` — размер шрифта 10–32)
+- `workspaces/pbcomponents/src/components/helpers/control-label/` (внутренний: раскладка Checkbox/Toggle/Radio — контрол, подпись, описание)
+- `workspaces/pbcomponents/src/components/helpers/group-frame/` (внутренний: подпись, описание и ошибка у CheckboxGroup/RadioGroup)
+- `workspaces/pbcomponents/src/components/helpers/popover-panel/` (внутренний: оболочка попапа — рамка, тень, поиск)
+- `workspaces/pbcomponents/src/components/helpers/select-list/` (внутренний: попап со списком пунктов Select/Search)
+- `workspaces/pbcomponents/src/components/helpers/select-option/` (внутренний: пункт списка Select/Search)
+
+Внутренние хелперы (`control-label`, `group-frame`, `popover-panel`, `select-list`, `select-option`) из пакета не экспортируются.
 
 ### Components: shared
 
@@ -69,11 +76,11 @@
 - `workspaces/pbcomponents/src/components/shared/checkbox-group/`
 - `workspaces/pbcomponents/src/components/shared/collapse/`
 - `workspaces/pbcomponents/src/components/shared/collapse-group/`
+- `workspaces/pbcomponents/src/components/shared/confirm-dialog/`
+- `workspaces/pbcomponents/src/components/shared/confirm-popover/`
 - `workspaces/pbcomponents/src/components/shared/container/`
 - `workspaces/pbcomponents/src/components/shared/dialog/`
 - `workspaces/pbcomponents/src/components/shared/dialog-provider/` (`index.ts`, `provider.tsx`, `store.ts`, `types.ts`)
-- `workspaces/pbcomponents/src/components/shared/dropdown/`
-- `workspaces/pbcomponents/src/components/shared/dropdown-item/`
 - `workspaces/pbcomponents/src/components/shared/field/`
 - `workspaces/pbcomponents/src/components/shared/headline/`
 - `workspaces/pbcomponents/src/components/shared/inline-radio/`
@@ -81,16 +88,21 @@
 - `workspaces/pbcomponents/src/components/shared/input/`
 - `workspaces/pbcomponents/src/components/shared/notification/`
 - `workspaces/pbcomponents/src/components/shared/notifications-provider/` (`index.ts`, `provider.tsx`, `store.ts`, `types.ts`)
+- `workspaces/pbcomponents/src/components/shared/pagination/`
 - `workspaces/pbcomponents/src/components/shared/pbc-provider/` (агрегирующий провайдер)
+- `workspaces/pbcomponents/src/components/shared/popover/` (`index.tsx`, `context.ts` — контекст, через который `Popover.Item` закрывает попап; меню собирается из `Popover` + `Popover.Item`, отдельного Dropdown нет)
+- `workspaces/pbcomponents/src/components/shared/popover-item/` (пункт меню, доступен и как `Popover.Item`)
+- `workspaces/pbcomponents/src/components/shared/progress/`
 - `workspaces/pbcomponents/src/components/shared/radio/`
 - `workspaces/pbcomponents/src/components/shared/radio-group/`
 - `workspaces/pbcomponents/src/components/shared/search/`
 - `workspaces/pbcomponents/src/components/shared/select/`
-- `workspaces/pbcomponents/src/components/shared/switch/`
 - `workspaces/pbcomponents/src/components/shared/tab/`
 - `workspaces/pbcomponents/src/components/shared/tabs/`
 - `workspaces/pbcomponents/src/components/shared/tag/`
 - `workspaces/pbcomponents/src/components/shared/textarea/`
+- `workspaces/pbcomponents/src/components/shared/toggle/`
+- `workspaces/pbcomponents/src/components/shared/tooltip/`
 
 ### Hooks
 
@@ -100,11 +112,16 @@
 - `workspaces/pbcomponents/src/hooks/use-hover-controllable.ts`
 - `workspaces/pbcomponents/src/hooks/use-keydown.ts`
 - `workspaces/pbcomponents/src/hooks/use-merge-refs.ts`
+- `workspaces/pbcomponents/src/hooks/use-popover.ts` (позиционирование и поведение попапов на `@floating-ui/react`: Popover, Select, Search, ConfirmPopover, Tooltip; анимация попапов — на motion, как во всей библиотеке)
 - `workspaces/pbcomponents/src/hooks/use-screen-size.ts`
+- `workspaces/pbcomponents/src/hooks/use-select-state.ts` (внутренний, не экспортируется: выбор, фильтр и попап у Select и Search)
 
 ### Цвета и темы
 
 - Цветовые токены приходят из `@prosazhin/pbstyles` (`styles/tailwind/theme.css`), в компонентах используются только семантические имена: `basic-*`, `primary-*`, `secondary-*`, `success-*`, `danger-*` (шкала `50`–`400`), `text-primary` / `text-secondary` / `text-contrast`, `outline-*`. Палитру (`gray-*`, `blue-*` и т.д.) и хардкод цветов в компонентах не использовать.
+- Цвет `warning` есть только у Badge и Alert (`ColorWithWarningType`), у Button его нет.
+- Взаимоисключающие утилиты одного свойства (цвет текста, фон) не ставить одновременно «базой + условием»: в tailwind v4 порядок в css не совпадает с порядком в `className`, и базовый класс может перебить условный. Писать через тернарник.
+- Рамки делать через `inset-ring` (`pbc:inset-ring pbc:inset-ring-<токен>`), а не через `border`: как обводка inside в фигме, рамка не добавляет к размеру, и отступы совпадают с макетом. Рамка без одной стороны — через отдельный класс в `index.css` (пример: `.pbc-inset-ring-no-top` у сомкнутого CollapseGroup). Для плавной смены цвета рамки нужен `pbc:transition`, а не `pbc:transition-colors`.
 - Тёмная тема работает через токены: автоматически по `prefers-color-scheme` или принудительно через `data-theme="light" | "dark"` на `<html>` или любом контейнере. В компонентах отдельных dark-классов нет и быть не должно.
 
 ---
@@ -129,18 +146,20 @@
 - `workspaces/storybook/stories/components/Badge.stories.tsx`
 - `workspaces/storybook/stories/components/Container.stories.tsx`
 - `workspaces/storybook/stories/components/Headline.stories.tsx`
+- `workspaces/storybook/stories/components/Pagination.stories.tsx`
+- `workspaces/storybook/stories/components/Progress.stories.tsx`
 - `workspaces/storybook/stories/components/Tag.stories.tsx`
+- `workspaces/storybook/stories/components/Tooltip.stories.tsx`
 - `workspaces/storybook/stories/components/button/Button.stories.tsx`
 - `workspaces/storybook/stories/components/button/Group.stories.tsx`
 - `workspaces/storybook/stories/components/checkbox/Checkbox.stories.tsx`
 - `workspaces/storybook/stories/components/checkbox/Group.stories.tsx`
-- `workspaces/storybook/stories/components/checkbox/Switch.stories.tsx`
+- `workspaces/storybook/stories/components/checkbox/Toggle.stories.tsx`
 - `workspaces/storybook/stories/components/collapse/Collapse.stories.tsx`
 - `workspaces/storybook/stories/components/collapse/Group.stories.tsx`
+- `workspaces/storybook/stories/components/dialog/ConfirmDialog.stories.tsx`
 - `workspaces/storybook/stories/components/dialog/Dialog.stories.tsx`
 - `workspaces/storybook/stories/components/dialog/DialogProvider.stories.tsx`
-- `workspaces/storybook/stories/components/dropdown/Dropdown.stories.tsx`
-- `workspaces/storybook/stories/components/dropdown/DropdownItem.stories.tsx`
 - `workspaces/storybook/stories/components/field/Field.stories.tsx`
 - `workspaces/storybook/stories/components/field/Input.stories.tsx`
 - `workspaces/storybook/stories/components/field/Search.stories.tsx`
@@ -151,6 +170,9 @@
 - `workspaces/storybook/stories/components/notification/Notification.stories.tsx`
 - `workspaces/storybook/stories/components/notification/NotificationsProvider.stories.tsx`
 - `workspaces/storybook/stories/components/pbc-provider/PBCProvider.stories.tsx`
+- `workspaces/storybook/stories/components/popover/ConfirmPopover.stories.tsx`
+- `workspaces/storybook/stories/components/popover/Popover.stories.tsx`
+- `workspaces/storybook/stories/components/popover/PopoverItem.stories.tsx`
 - `workspaces/storybook/stories/components/radio/Group.stories.tsx`
 - `workspaces/storybook/stories/components/radio/Radio.stories.tsx`
 - `workspaces/storybook/stories/components/tabs/Tab.stories.tsx`

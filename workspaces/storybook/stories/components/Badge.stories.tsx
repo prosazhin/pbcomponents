@@ -1,6 +1,6 @@
 import * as heroicons from '@heroicons/react/24/outline';
 import { Badge as Component, Container } from '@prosazhin/pbcomponents';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {
   title: 'Components/Badge',
@@ -26,7 +26,7 @@ const meta = {
       defaultValue: { summary: undefined },
     },
     size: {
-      options: ['s', 'm'],
+      options: ['xs', 's', 'm'],
       control: 'radio',
       defaultValue: { summary: 'm' },
     },
@@ -63,7 +63,7 @@ const meta = {
       defaultValue: { summary: 'filled' },
     },
     color: {
-      options: ['primary', 'secondary', 'success', 'danger'],
+      options: ['primary', 'secondary', 'success', 'danger', 'warning'],
       control: { type: 'radio' },
       defaultValue: { summary: 'primary' },
     },
