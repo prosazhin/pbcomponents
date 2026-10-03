@@ -1,6 +1,6 @@
 {
   "name": "@prosazhin/pbcomponents",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "UI component library for React with Typescript and Tailwind",
   "license": "MIT",
   "author": "Evgenii Sazhin <prosazhin@gmail.com> (https://prosazhin.dev)",
@@ -56,7 +56,9 @@
   "scripts": {
     "dev": "vite build --watch",
     "build": "tsc && vite build",
-    "lint": "eslint src",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint src tests && tsc --noEmit -p tests/tsconfig.json",
     "clean:build": "rimraf ./dist",
     "clean:modules": "rimraf ./node_modules"
   },
@@ -71,9 +73,13 @@
     "@eslint/js": "^9.39.4",
     "@floating-ui/react": "^0.27.20",
     "@heroicons/react": "^2.2.0",
-    "@prosazhin/pbstyles": "^1.3.1",
+    "@prosazhin/pbstyles": "^1.4.0",
     "@tailwindcss/postcss": "^4.2.2",
     "@tailwindcss/vite": "^4.2.2",
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.7",
     "@types/node": "^25.5.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
@@ -87,6 +93,7 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.26",
     "globals": "^17.4.0",
+    "jsdom": "^30.1.1",
     "motion": "^12.38.0",
     "nanoid": "^5.1.6",
     "react": "^19.2.4",
@@ -98,7 +105,8 @@
     "typescript-eslint": "^8.57.2",
     "vite": "^7.3.2",
     "vite-plugin-dts": "^4.5.4",
-    "vite-plugin-lib-inject-css": "^2.2.2"
+    "vite-plugin-lib-inject-css": "^2.2.2",
+    "vitest": "^5.0.3"
   },
   "contributors": [
     {

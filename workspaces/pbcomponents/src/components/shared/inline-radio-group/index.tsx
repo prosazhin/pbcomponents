@@ -88,7 +88,7 @@ const InlineRadioGroup = (props: InlineRadioGroupProps) => {
       {...rest}
       ref={externalRef}
       className={clsx(
-        'pbc pbc:relative pbc:w-max pbc:bg-secondary-100 pbc:p-4! pbc:appearance-none',
+        'pbc pbc:relative pbc:w-fit pbc:max-w-full pbc:min-w-0 pbc:bg-secondary-100 pbc:p-4! pbc:appearance-none',
         rounded && 'pbc:rounded-999',
         !rounded && size === 's' && 'pbc:rounded-8',
         !rounded && size === 'm' && 'pbc:rounded-12',
@@ -97,7 +97,7 @@ const InlineRadioGroup = (props: InlineRadioGroupProps) => {
     >
       <div
         ref={optionsRef}
-        className='pbc pbc:relative pbc:gap-4 pbc:inline-flex pbc:w-auto pbc:flex-row pbc:flex-nowrap pbc:items-center pbc:overflow-x-auto'
+        className='pbc pbc:relative pbc:gap-4 pbc:inline-flex pbc:max-w-full pbc:flex-row pbc:flex-nowrap pbc:items-center pbc:overflow-x-auto'
       >
         {indicatorStyle && (
           <LazyMotion features={domAnimation}>

@@ -33,7 +33,7 @@ const Badge = (props: BadgeProps) => {
       {...rest}
       ref={externalRef}
       className={clsx(
-        'pbc pbc:rounded-999 pbc:inline-flex pbc:w-max pbc:flex-nowrap pbc:items-center pbc:justify-center pbc:cursor-default!',
+        'pbc pbc:rounded-999 pbc:inline-flex pbc:whitespace-nowrap pbc:flex-nowrap pbc:items-center pbc:justify-center pbc:cursor-default!',
         size === 'xs' && 'pbc:py-2 pbc:px-6 pbc:h-20',
         size === 's' && 'pbc:py-4 pbc:px-8 pbc:h-26',
         size === 'm' && 'pbc:py-8 pbc:px-12 pbc:h-34',

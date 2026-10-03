@@ -48,6 +48,7 @@
 - `workspaces/pbcomponents/src/index.ts` (публичная точка входа)
 - `workspaces/pbcomponents/src/types.ts` (общие типы пропсов: размеры, цвета, `LinkComponentType` и т.д.)
 - `workspaces/pbcomponents/src/vite-env.d.ts`
+- `workspaces/pbcomponents/tests/` (тесты, см. раздел «Автотесты»)
 
 ### Components: helpers
 
@@ -195,12 +196,14 @@
 - `npm run dev:storybook` — запуск Storybook.
 - `npm run build` — сборка библиотеки.
 - `npm run lint` — линт по всем workspace.
+- `npm test` — тесты библиотеки.
 
 ### Библиотека
 
 - `npm run --workspace=pbcomponents dev`
 - `npm run --workspace=pbcomponents build`
 - `npm run --workspace=pbcomponents lint`
+- `npm run --workspace=pbcomponents test` (`test:watch` — в режиме наблюдения)
 
 ### Storybook playground
 
@@ -211,9 +214,16 @@
 
 ## Автотесты
 
-- В этом репозитории автотесты не ведутся: нет unit/integration/e2e-практики как обязательной части разработки.
-- Не предлагать писать автотесты и не добавлять тестовую инфраструктуру в `workspaces/pbcomponents`.
-- Для `workspaces/storybook` действует то же правило: не писать и не предлагать автотесты для сторис, конфигов и playground-сценариев.
+- Тесты есть только у библиотеки: `workspaces/pbcomponents/tests/` (Vitest + jsdom + Testing Library), конфиг — `workspaces/pbcomponents/vitest.config.ts`.
+  - `tests/setup.ts` — jest-dom матчеры и полифилы jsdom (`<dialog>` show/showModal/close, `matchMedia`).
+  - `tests/exports.test.ts` — публичный api пакета: список экспортов из `src/index.ts`. При добавлении или удалении экспорта обновлять список здесь.
+  - `tests/hooks/`, `tests/stores/` — чистая логика: хуки, редьюсеры провайдеров.
+  - `tests/components/` — поведение компонентов через Testing Library (клики, клавиатура, controlled/uncontrolled, aria).
+- Тесты лежат вне `src`, чтобы не попадать в сборку и `d.ts`. Типы тестов проверяются в `lint` (`tsc -p tests/tsconfig.json`).
+- Проверяем поведение и api, а не tailwind-классы и вёрстку.
+- Полного покрытия не добиваемся. При правке логики компонента — добавлять или обновлять тест на эту логику.
+- `npm test` гоняется в CI и перед публикацией.
+- Для `workspaces/storybook` тесты не пишем.
 
 ---
 

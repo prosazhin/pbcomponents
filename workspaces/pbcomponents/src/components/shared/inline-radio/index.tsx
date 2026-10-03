@@ -47,7 +47,7 @@ const InlineRadio = (props: InlineRadioProps) => {
   return (
     <label
       className={clsx(
-        'pbc pbc:relative pbc:z-1 pbc:inline-flex pbc:w-max pbc:flex-nowrap pbc:items-center pbc:justify-center pbc:transition-colors pbc:duration-150 pbc:cursor-pointer',
+        'pbc pbc:relative pbc:z-1 pbc:inline-flex pbc:whitespace-nowrap pbc:flex-nowrap pbc:items-center pbc:justify-center pbc:transition-colors pbc:duration-150 pbc:cursor-pointer',
         // цвета взаимоисключающие: в tailwind v4 порядок одинаковых утилит в css не совпадает с порядком в className
         disabled && 'pbc:text-text-secondary',
         !disabled && checked && 'pbc:text-primary-400',

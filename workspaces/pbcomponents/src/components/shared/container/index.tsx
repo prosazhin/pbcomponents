@@ -106,7 +106,8 @@ const Container = (props: ContainerProps) => {
         (size === 'm' || size === 's') && 'pbc:desktop:px-0',
         !hasAside && size === 'm' && 'pbc:md-min:w-736 pbc:lg-min:w-4/5 pbc:xl:w-1152',
         !hasAside && size === 's' && 'pbc:desktop:w-736',
-        hasAside && size === 'full' && 'pbc:xl:grid-cols-[184px_1fr_184px]',
+        // у full с сайдбарами основная колонка не уже 1152px, а сайдбары делят остаток поровну — как в презентации pbstyles
+        hasAside && size === 'full' && 'pbc:xl:grid-cols-[minmax(0,1fr)_minmax(1152px,1fr)_minmax(0,1fr)]',
         hasAside && (size === 'm' || size === 's') && 'pbc:xl:grid-cols-[184px_736px_184px]',
         hasAside && size === 'm' && 'pbc:md-min:w-736 pbc:lg-min:w-4/5 pbc:xl:w-1152',
         hasAside && size === 's' && 'pbc:md-min:w-736 pbc:lg-min:w-736 pbc:xl:w-1152',

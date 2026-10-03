@@ -85,13 +85,13 @@ const Tag = (props: TagProps) => {
       {...rest}
       ref={ref}
       className={clsx(
-        'pbc pbc:rounded-999 pbc:inline-flex pbc:w-max pbc:flex-nowrap pbc:cursor-pointer pbc:items-center pbc:justify-center pbc:transition pbc:duration-150 pbc:focus:outline-outline-primary pbc:outline-4 pbc:outline-offset-0 pbc:inset-ring pbc:inset-ring-transparent',
+        'pbc pbc:rounded-999 pbc:inline-flex pbc:whitespace-nowrap pbc:flex-nowrap pbc:cursor-pointer pbc:items-center pbc:justify-center pbc:transition pbc:duration-150 pbc:focus:outline-outline-primary pbc:outline-4 pbc:outline-offset-0 pbc:inset-ring pbc:inset-ring-transparent',
         size === 's' && 'pbc:h-26 pbc:px-8 pbc:py-4',
         size === 'm' && 'pbc:h-34 pbc:px-12 pbc:py-8',
         theme === 'light' && !checked && 'pbc:bg-primary-100 pbc:text-text-primary pbc:hover:bg-primary-200',
         theme === 'border' &&
           !checked &&
-          'pbc:inset-ring-primary-200! pbc:text-text-primary pbc:hover:inset-ring-primary-300! pbc:bg-basic-0',
+          'pbc:inset-ring-primary-200! pbc:text-text-primary pbc:hover:inset-ring-primary-300! pbc:bg-transparent',
         checked && 'pbc:bg-primary-300 pbc:hover:bg-primary-400 pbc:text-text-contrast',
         (theme === 'light' || checked) && disabled && !loading && 'pbc:bg-secondary-100! pbc:text-text-secondary!',
         theme === 'border' &&

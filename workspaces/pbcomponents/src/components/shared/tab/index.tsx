@@ -77,7 +77,7 @@ const Tab = (props: TabProps) => {
       {...rest}
       ref={ref}
       className={clsx(
-        'pbc pbc:cursor-pointer pbc:inline-flex pbc:w-max pbc:shrink-0 pbc:flex-nowrap pbc:items-center pbc:justify-center pbc:group pbc:relative pbc:p-0 pbc:border-0 pbc:transition-colors pbc:duration-150',
+        'pbc pbc:cursor-pointer pbc:inline-flex pbc:whitespace-nowrap pbc:shrink-0 pbc:flex-nowrap pbc:items-center pbc:justify-center pbc:group pbc:relative pbc:p-0 pbc:border-0 pbc:transition-colors pbc:duration-150',
         // обводка при фокусе с клавиатуры (между табами ходят стрелками)
         'pbc:outline-4 pbc:outline-offset-0 pbc:focus-visible:outline-outline-primary',
         theme === 'line' && [

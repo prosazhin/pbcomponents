@@ -23,8 +23,15 @@ import {
 
 // ширина экрана, до которой окно открывается шторкой снизу (breakpoint mobile из pbstyles)
 const MOBILE_MAX_WIDTH = 768;
-// на сколько окно поднимается при появлении на десктопе
-const DESKTOP_OFFSET = 16;
+// с какой высоты окно выезжает при появлении на десктопе (и куда уходит при закрытии)
+const DESKTOP_OFFSET = 40;
+// закрытие чуть быстрее открытия — доля от animationDuration
+const CLOSE_DURATION_RATIO = 0.8;
+// запас на последние кадры анимации, прежде чем убрать окно из top layer
+const CLOSE_DELAY_BUFFER = 50;
+// кривые: при появлении быстро стартует и мягко тормозит, при закрытии плавно разгоняется и плавно затухает
+const ENTER_EASE = [0.33, 1, 0.68, 1] as const;
+const EXIT_EASE = [0.4, 0, 0.2, 1] as const;
 // шторка закрывается, если её утянули вниз больше чем на эту долю высоты или смахнули быстрее этой скорости
 const SWIPE_CLOSE_RATIO = 0.25;
 const SWIPE_CLOSE_VELOCITY = 500;
@@ -106,13 +113,14 @@ const Dialog = (props: DialogProps) => {
     backdrop = true,
     children,
     className,
-    animationDuration = 200,
+    animationDuration = 400,
     ref: externalRef,
     ...rest
   } = props;
   const internalRef = useRef<HTMLDialogElement>(null);
   const ref = useMergeRefs(internalRef, externalRef);
   const isControlled = controlledOpen !== undefined;
+  const closeDuration = animationDuration * CLOSE_DURATION_RATIO;
   const wasOpenRef = useRef<boolean>(controlledOpen ?? defaultOpen ?? false);
   const onCloseRef = useRef(onClose);
 
@@ -180,7 +188,7 @@ const Dialog = (props: DialogProps) => {
           node.close();
         }
         onCloseRef.current(false, id);
-      }, animationDuration);
+      }, closeDuration + CLOSE_DELAY_BUFFER);
     }
 
     wasOpenRef.current = open;
@@ -188,7 +196,7 @@ const Dialog = (props: DialogProps) => {
     return () => {
       if (closeTimer) clearTimeout(closeTimer);
     };
-  }, [animationDuration, id, open]);
+  }, [closeDuration, id, open]);
 
   const { triggerProps, contentProps, headerProps, bodyProps, footerProps, closeProps } = useMemo<{
     triggerProps: DialogTriggerProps | null;
@@ -292,8 +300,15 @@ const Dialog = (props: DialogProps) => {
     }
   };
 
+  const duration = (open ? animationDuration : closeDuration) / 1000;
+  const ease = open ? ENTER_EASE : EXIT_EASE;
   const hiddenState = isMobile ? { opacity: 1, y: '100%' } : { opacity: 0, y: DESKTOP_OFFSET };
-  const enterTransition = { duration: animationDuration / 1000, ease: open ? 'easeOut' : 'easeIn' } as const;
+  const backdropTransition = { duration, ease: 'easeInOut' } as const;
+  const panelTransition = {
+    y: { duration, ease },
+    // прозрачность у окна на десктопе: при открытии проявляется быстрее, чем доезжает, при закрытии гаснет всё время анимации
+    opacity: { duration: open ? duration * 0.6 : duration, ease: 'easeInOut' },
+  } as const;
 
   return (
     <>
@@ -325,7 +340,7 @@ const Dialog = (props: DialogProps) => {
             initial={false}
             animate={{ zIndex: open ? 500 : -1 }}
             // слой меняем мгновенно: при закрытии — после того, как доиграет анимация окна
-            transition={{ duration: 0, delay: open ? 0 : animationDuration / 1000 }}
+            transition={{ duration: 0, delay: open ? 0 : (closeDuration + CLOSE_DELAY_BUFFER) / 1000 }}
           >
             <m.div
               className={clsx(
@@ -336,7 +351,7 @@ const Dialog = (props: DialogProps) => {
               )}
               initial={false}
               animate={{ opacity: open ? 1 : 0 }}
-              transition={enterTransition}
+              transition={backdropTransition}
               onClick={requestClose}
             />
             <m.div
@@ -353,7 +368,7 @@ const Dialog = (props: DialogProps) => {
               ref={panelRef}
               initial={false}
               animate={open ? { opacity: 1, y: 0 } : hiddenState}
-              transition={enterTransition}
+              transition={panelTransition}
               drag={isMobile && open ? 'y' : false}
               dragControls={dragControls}
               dragListener={false}

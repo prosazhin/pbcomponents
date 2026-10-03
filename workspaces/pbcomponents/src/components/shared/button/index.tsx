@@ -91,7 +91,7 @@ const Button = (props: ButtonProps) => {
       {...rest}
       ref={ref}
       className={clsx(
-        'pbc pbc:inline-flex pbc:w-max pbc:max-xs:w-full pbc:flex-nowrap pbc:items-center pbc:cursor-pointer pbc:justify-center pbc:transition pbc:duration-150',
+        'pbc pbc:inline-flex pbc:whitespace-nowrap pbc:max-xs:w-full pbc:flex-nowrap pbc:items-center pbc:cursor-pointer pbc:justify-center pbc:transition pbc:duration-150',
         size === 'xs' && 'pbc:py-4 pbc:px-8 pbc:rounded-6 pbc:h-26',
         size === 's' && 'pbc:py-8 pbc:px-12 pbc:rounded-8 pbc:h-34',
         size === 'm' && 'pbc:py-12 pbc:px-16 pbc:rounded-12 pbc:h-48',

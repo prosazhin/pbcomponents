@@ -73,7 +73,7 @@ const meta = {
       disableProgressBar: false,
     },
     dialog: {
-      animationDuration: 200,
+      animationDuration: 400,
     },
   },
 } satisfies Meta<typeof Component>;
@@ -116,7 +116,7 @@ export const PBCProvider: Story = {
 
 <PBCProvider
   notifications={{ top: 20, delay: 5000 }}
-  dialog={{ animationDuration: 200 }}
+  dialog={{ animationDuration: 400 }}
 >
   <Demo />
 </PBCProvider>`,

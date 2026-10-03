@@ -1,4 +1,3 @@
-import { ChevronUpDownIcon } from '@heroicons/react/24/outline';
 import { Button, ButtonGroup as Component, Container, Popover } from '@prosazhin/pbcomponents';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
@@ -41,9 +40,7 @@ const meta = {
         return (
           <Popover key={index} placement='bottom-end'>
             <Popover.Trigger>
-              <Button theme='border' rightIcon={ChevronUpDownIcon}>
-                {value}
-              </Button>
+              <Button theme='border'>{value}</Button>
             </Popover.Trigger>
             <Popover.Content>
               <Popover.Item>One</Popover.Item>

@@ -1,9 +1,11 @@
 'use client';
 
 import PopoverPanel, { PopoverPanelSearchProps } from '@/components/helpers/popover-panel';
+import Button from '@/components/shared/button';
 import PopoverItem from '@/components/shared/popover-item';
 import { PopoverContext } from '@/components/shared/popover/context';
 import usePopover, { PopoverPlacement } from '@/hooks/use-popover';
+import { ChevronUpDownIcon } from '@heroicons/react/24/outline';
 import { Children, HTMLAttributes, ReactElement, ReactNode, Ref, cloneElement, isValidElement, useMemo } from 'react';
 
 import useMergeRefs from '@/hooks/use-merge-refs';
@@ -21,6 +23,8 @@ export interface PopoverProps {
 export interface PopoverTriggerProps {
   // элемент, по клику на который открывается попап (например Button)
   children: ReactElement;
+  // стрелка справа у Button-триггера, если у кнопки не задан свой rightIcon
+  icon?: boolean;
 }
 
 export interface PopoverContentProps extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> {
@@ -62,10 +66,13 @@ const Popover = (props: PopoverProps) => {
       if (!isValidElement(child)) return;
 
       if (child.type === PopoverTrigger) {
-        const triggerChild = (child as ReactElement<PopoverTriggerProps>).props.children;
+        const { children: triggerChild, icon = true } = (child as ReactElement<PopoverTriggerProps>).props;
 
         if (isValidElement(triggerChild)) {
-          nextTriggerElement = triggerChild as ReactElement<Record<string, unknown>>;
+          const element = triggerChild as ReactElement<Record<string, unknown>>;
+          const withIcon = icon && element.type === Button && !('rightIcon' in element.props);
+
+          nextTriggerElement = withIcon ? cloneElement(element, { rightIcon: ChevronUpDownIcon }) : element;
         }
 
         return;

@@ -30,3 +30,4 @@ jobs:
       # сначала сборка: tsc сторибука берёт типы библиотеки из dist
       - run: npm run build
       - run: npm run lint
+      - run: npm test

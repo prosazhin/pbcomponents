@@ -1,4 +1,4 @@
-import { ArrowRightStartOnRectangleIcon, ChevronUpDownIcon, Cog6ToothIcon, UserCircleIcon } from '@heroicons/react/24/outline';
+import { ArrowRightStartOnRectangleIcon, Cog6ToothIcon, UserCircleIcon } from '@heroicons/react/24/outline';
 import { Badge, Button, Popover as Component, Container, type PopoverProps, Text } from '@prosazhin/pbcomponents';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
@@ -64,7 +64,7 @@ const meta = {
     return (
       <Component placement={placement} portal={portal} defaultOpen={defaultOpen} onOpenChange={onOpenChange}>
         <Component.Trigger>
-          <Button rightIcon={ChevronUpDownIcon}>Popover Button</Button>
+          <Button>Popover Button</Button>
         </Component.Trigger>
         <Component.Content search={search ? { value: query, onChange: setQuery, placeholder: 'Search' } : undefined}>
           {items.length ? (

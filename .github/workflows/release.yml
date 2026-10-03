@@ -81,6 +81,7 @@ jobs:
       # сначала сборка: tsc сторибука берёт типы библиотеки из dist
       - run: npm run build:components
       - run: npm run lint
+      - run: npm test
 
       - name: Publish to npm
         run: npm publish ./workspaces/pbcomponents --provenance --access public

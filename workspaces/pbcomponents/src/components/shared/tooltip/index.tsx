@@ -12,6 +12,10 @@ import useMergeRefs from '@/hooks/use-merge-refs';
 // размеры стрелки из фигмы
 const ARROW_WIDTH = 12;
 const ARROW_HEIGHT = 6;
+// максимальная ширина подсказки по умолчанию; дальше текст переносится
+const DEFAULT_MAX_WIDTH = 320;
+// сумма отступов от краёв экрана: по 8px с каждой стороны, как VIEWPORT_PADDING в use-popover
+const VIEWPORT_GAP = 16;
 
 export interface TooltipProps {
   // элемент, при наведении на который показывается подсказка
@@ -28,6 +32,8 @@ export interface TooltipProps {
   disabled?: boolean;
   // рендерить подсказку в body — нужно, если её обрезает родитель с transform и overflow: hidden
   portal?: boolean;
+  // максимальная ширина: число — в px, строка — любое css-значение ('20rem', '50vw', 'none'); на узком экране не шире экрана
+  maxWidth?: number | string;
   className?: string;
 }
 
@@ -43,8 +49,11 @@ const Tooltip = (props: TooltipProps) => {
     delay = 200,
     disabled = false,
     portal = false,
+    maxWidth = DEFAULT_MAX_WIDTH,
     className,
   } = props;
+
+  const maxWidthValue = typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth;
 
   const arrowRef = useRef<SVGSVGElement>(null);
 
@@ -87,9 +96,13 @@ const Tooltip = (props: TooltipProps) => {
               animate={{ opacity: 1, transition: { duration: 0.15, ease: 'easeOut' } }}
               exit={{ opacity: 0, transition: { duration: 0.15, ease: 'easeIn' } }}
               className={clsx(
-                'pbc pbc:relative pbc:flex pbc:max-w-320 pbc:items-center pbc:px-16 pbc:py-6 pbc:rounded-12 pbc:bg-secondary-400 pbc:shadow-sm pbc:text-text-contrast',
+                'pbc pbc:relative pbc:flex pbc:w-max pbc:items-center pbc:px-16 pbc:py-6 pbc:rounded-12 pbc:bg-secondary-400 pbc:shadow-sm pbc:text-text-contrast pbc:wrap-break-word',
                 className,
               )}
+              style={{
+                maxWidth:
+                  maxWidthValue === 'none' ? `calc(100vw - ${VIEWPORT_GAP}px)` : `min(${maxWidthValue}, calc(100vw - ${VIEWPORT_GAP}px))`,
+              }}
             >
               <Text size={12}>{content}</Text>
               {arrow && (

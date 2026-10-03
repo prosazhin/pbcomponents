@@ -32,6 +32,11 @@ const meta = {
       control: 'boolean',
       defaultValue: { summary: 'false' },
     },
+    maxWidth: {
+      control: 'number',
+      table: { type: { summary: 'number | string' } },
+      defaultValue: { summary: '320' },
+    },
     children: {
       control: 'object',
       table: { type: { summary: 'ReactElement' } },
@@ -45,9 +50,10 @@ const meta = {
     arrow: true,
     delay: 200,
     disabled: false,
+    maxWidth: 320,
   },
-  render: ({ children, content, placement, arrow, delay, disabled }) => (
-    <Component content={content} placement={placement} arrow={arrow} delay={delay} disabled={disabled}>
+  render: ({ children, content, placement, arrow, delay, disabled, maxWidth }) => (
+    <Component content={content} placement={placement} arrow={arrow} delay={delay} disabled={disabled} maxWidth={maxWidth}>
       {children}
     </Component>
   ),
